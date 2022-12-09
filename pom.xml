@@ -134,6 +134,7 @@
             <version>${slf4j-log4j12.version}</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -149,6 +150,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
                 <version>${spring-boot-maven-plugin.version}</version>
             </plugin>
         </plugins>
