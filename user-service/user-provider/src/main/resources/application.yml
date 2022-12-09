@@ -1,0 +1,59 @@
+dubbo:
+  application:
+    # 应用名称
+    name: user-provider
+  registry:
+    # 注册中心地址
+    address: zookeeper://101.34.2.207:2181
+
+  metadata-report:
+    address: zookeeper://101.34.2.207:2181
+  protocol:
+    # 协议名称
+    name: dubbo
+    # 协议端口
+    port: 20880
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.60.184.215:3306/qgexam
+    username: root
+    password: Eeeee11111
+
+  # redis配置
+  redis:
+    host: localhost
+    port: 6379
+    password: 11111
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 1ms
+        max-idle: 4
+        min-idle: 0
+
+
+mybatis-plus:
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 逻辑删除字段自动处理
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+
+oss:
+  accessKey: QrsCXu18PoWhOIGDIa5Ufej0pWLIKNfieQ3CpbGp
+  secretKey: ZvqIjeQGEqGs3NyN8ChydWwlJEXbw_GddeLQ26hN
+  bucket: my-blog11
+  ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
+
+
+
+
