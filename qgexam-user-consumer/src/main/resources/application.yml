@@ -1,6 +1,7 @@
 server:
   port: 7777
 
+
 dubbo:
   application:
     # 应用名称
@@ -8,5 +9,6 @@ dubbo:
   registry:
     # 注册中心地址
     address: zookeeper://101.34.2.207:2181
+
 
 

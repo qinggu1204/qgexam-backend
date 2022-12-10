@@ -14,6 +14,7 @@
     <modules>
         <module>user-api</module>
         <module>user-provider</module>
+        <module>user-dao</module>
     </modules>
 
 

@@ -31,6 +31,7 @@
         <aliyun-java-sdk-core.version>4.5.16</aliyun-java-sdk-core.version>
         <aliyun-java-sdk-dysmsapi.version>2.1.0</aliyun-java-sdk-dysmsapi.version>
         <sa-token.version>1.33.0</sa-token.version>
+        <servlet.version>4.0.1</servlet.version>
     </properties>
 
 
@@ -123,6 +124,12 @@
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-dao-redis-jackson</artifactId>
                 <version>${sa-token.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
