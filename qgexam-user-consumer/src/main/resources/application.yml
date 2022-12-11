@@ -1,7 +1,6 @@
 server:
   port: 7777
 
-
 dubbo:
   application:
     # 应用名称
@@ -9,6 +8,19 @@ dubbo:
   registry:
     # 注册中心地址
     address: zookeeper://101.34.2.207:2181
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    #    password: 11111
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 1ms
+        max-idle: 4
+        min-idle: 0
 
 
 

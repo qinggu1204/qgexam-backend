@@ -8,8 +8,8 @@ import java.io.Serializable;
 /**
  * 用户信息表(UserInfo)表实体类
  *
- * @author yzw
- * @since 2022-12-10 11:24:45
+ * @author lamb007
+ * @since 2022-12-10 20:10:22
  */
 @Data
 @AllArgsConstructor

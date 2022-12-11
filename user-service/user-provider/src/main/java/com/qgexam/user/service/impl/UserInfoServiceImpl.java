@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 用户信息表(UserInfo)表服务实现类
  *
- * @author yzw
- * @since 2022-12-10 11:29:21
+ * @author lamb007
+ * @since 2022-12-10 20:13:04
  */
 @DubboService
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> implements UserInfoService {

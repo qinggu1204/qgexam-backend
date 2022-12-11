@@ -6,8 +6,8 @@ import com.qgexam.user.pojo.PO.UserInfo;
 /**
  * 用户信息表(UserInfo)表数据库访问层
  *
- * @author yzw
- * @since 2022-12-10 11:26:24
+ * @author lamb007
+ * @since 2022-12-10 20:12:42
  */
 public interface UserInfoDao extends BaseMapper<UserInfo> {
 

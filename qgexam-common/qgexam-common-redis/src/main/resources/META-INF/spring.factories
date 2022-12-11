@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure=\
+  com.qgexam.common.redis.configure.RedisConfig
