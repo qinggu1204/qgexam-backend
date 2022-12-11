@@ -46,4 +46,6 @@ public class UserInfoController {
 
         return ResponseResult.okResult(token);
     }
+
+
 }

@@ -1,7 +1,10 @@
 package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.qgexam.user.pojo.PO.RoleInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
+
+import java.util.List;
 
 /**
  * 用户信息表(UserInfo)表数据库访问层
@@ -11,5 +14,6 @@ import com.qgexam.user.pojo.PO.UserInfo;
  */
 public interface UserInfoDao extends BaseMapper<UserInfo> {
 
+    List<String> selectRoleListById(Integer id);
 }
 

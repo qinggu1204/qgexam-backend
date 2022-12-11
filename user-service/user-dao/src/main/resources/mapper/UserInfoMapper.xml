@@ -3,4 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.UserInfoDao">
 
+    <select id="selectRoleListById" resultType="java.lang.String">
+        select uri.role_name
+            from user_role_info uri
+        where uri.user_id = #{id}
+    </select>
 </mapper>

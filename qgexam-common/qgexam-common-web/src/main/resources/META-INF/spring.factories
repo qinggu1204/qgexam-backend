@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.qgexam.common.web.configure.WebConfigure,\
+  com.qgexam.common.web.configure.SaTokenConfigure
