@@ -36,7 +36,6 @@ public class UserInfoController {
         }
         // sa-token登录
         StpUtil.login(userInfo.getUserId());
-
         // 获取token
         String token = StpUtil.getTokenValue();
         // 获取session
@@ -46,6 +45,7 @@ public class UserInfoController {
 
         return ResponseResult.okResult(token);
     }
+
 
 
 }

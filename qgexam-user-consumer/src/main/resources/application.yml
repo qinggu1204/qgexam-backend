@@ -11,9 +11,9 @@ dubbo:
 
 spring:
   redis:
-    host: localhost
+    host: 120.46.210.113
     port: 6379
-    #    password: 11111
+    password: Eeeee-11111
     database: 0
     lettuce:
       pool:

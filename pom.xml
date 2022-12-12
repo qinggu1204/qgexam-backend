@@ -122,9 +122,16 @@
             <!--sa-token整合redis-->
             <dependency>
                 <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-dao-redis-jackson</artifactId>
+                <artifactId>sa-token-dao-redis-fastjson</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-dao-redis-fastjson</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -140,6 +147,7 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-log4j12.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
