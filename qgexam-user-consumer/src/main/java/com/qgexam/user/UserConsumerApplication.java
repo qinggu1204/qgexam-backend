@@ -12,9 +12,7 @@ import java.util.Arrays;
 @EnableDubbo
 public class UserConsumerApplication {
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = SpringApplication.run(UserConsumerApplication.class);
-        String[] names = ctx.getBeanDefinitionNames();
-        Arrays.stream(names).forEach(name -> System.out.println(name));
+        SpringApplication.run(UserConsumerApplication.class);
     }
 }
 
