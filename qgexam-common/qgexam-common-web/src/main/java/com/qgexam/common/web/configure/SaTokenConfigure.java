@@ -29,7 +29,9 @@ public class SaTokenConfigure implements WebMvcConfigurer {
             SaRouter.match("/tea/**", r -> StpUtil.checkRoleAnd("tea"))
                     .match("/stu/**", r -> StpUtil.checkRoleAnd("stu"))
                     .match("/netea/**", r -> StpUtil.checkRoleAnd("netea"))
-                    .match("/admin/**", r -> StpUtil.checkRoleAnd("admin"));
+                    .match("/admin/**", r -> StpUtil.checkRoleAnd("admin"))
+                    .match("/common/**", r ->StpUtil.checkRoleAnd("tea", "stu", "netea", "admin"))
+                    .match("/alltea/**", r -> StpUtil.checkRoleAnd("tea", "netea"));
 
 
         })).addPathPatterns("/**")

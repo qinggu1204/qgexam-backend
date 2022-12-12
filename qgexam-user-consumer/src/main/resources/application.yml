@@ -42,7 +42,7 @@ sa-token:
   # 不从cookie里读取token
   is-read-cookie: false
 
-ignored: /error,/user/*
+ignored: /error,/user/**
 
 
 
