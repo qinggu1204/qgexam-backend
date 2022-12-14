@@ -5,6 +5,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
+import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.SchoolInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
@@ -14,9 +15,10 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/user")
-public class UserInfoController {
+public class UserInfoController extends BaseController {
 
     @Reference
     private UserInfoService userInfoService;
@@ -58,5 +60,6 @@ public class UserInfoController {
         Integer userId = StpUtil.getLoginIdAsInt();
         return ResponseResult.okResult(userInfoService.getUserInfoById(userId));
     }
+
 
 }

@@ -19,7 +19,6 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <dubbo.version>2.7.3</dubbo.version>
-        <junit.version>4.13.1</junit.version>
         <slf4j-log4j12.version>1.7.30</slf4j-log4j12.version>
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
         <spring-boot-maven-plugin.version>2.3.1.RELEASE</spring-boot-maven-plugin.version>
@@ -95,13 +94,6 @@
                 <version>${dubbo.version}</version>
             </dependency>
 
-            <!--junit相关版本-->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
             <!--mysql驱动-->
             <dependency>
                 <groupId>mysql</groupId>
