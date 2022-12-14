@@ -1,0 +1,65 @@
+dubbo:
+  application:
+    # 应用名称
+    name: user-provider
+  registry:
+    # 注册中心地址
+    address: zookeeper://101.34.2.207:2181
+    timeout: 250000
+  protocol:
+    # 协议名称
+    name: dubbo
+    # 协议端口
+    port: 20880
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.60.184.215:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: Eeeee11111
+
+  # redis配置
+  redis:
+    host: 120.46.210.113
+    port: 6379
+    password: Eeeee-11111
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 1ms
+        max-idle: 4
+        min-idle: 0
+
+
+mybatis-plus:
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 开启下划线和驼峰命名自动转换
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      # 逻辑删除字段自动处理
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      # 主键自增
+      id-type: auto
+  # mapper文件位置
+  mapper-locations: classpath*:/mapper/**/*.xml
+  # 别名
+  type-aliases-package: com.qgexam.common.core.pojo.PO
+
+
+oss:
+  accessKey: QrsCXu18PoWhOIGDIa5Ufej0pWLIKNfieQ3CpbGp
+  secretKey: ZvqIjeQGEqGs3NyN8ChydWwlJEXbw_GddeLQ26hN
+  bucket: my-blog11
+  ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
+
+
+
+
