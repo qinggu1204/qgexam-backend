@@ -57,6 +57,7 @@ public class UserInfoController extends BaseController {
 
     @GetMapping("/common/getUserInfo")
     public ResponseResult getUserInfo() {
+        //获取用户id
         Integer userId = StpUtil.getLoginIdAsInt();
         return ResponseResult.okResult(userInfoService.getUserInfoById(userId));
     }
