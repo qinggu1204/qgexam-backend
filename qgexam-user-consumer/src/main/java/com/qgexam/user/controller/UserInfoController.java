@@ -5,10 +5,8 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
-import com.qgexam.common.redis.utils.RedisCache;
-
 import com.qgexam.common.core.utils.BeanCopyUtils;
-import com.qgexam.common.web.base.BaseController;
+import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.SchoolInfo;
@@ -28,7 +26,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/user")
-public class UserInfoController extends BaseController {
+public class UserInfoController {
 
     @Reference
     private UserInfoService userInfoService;
