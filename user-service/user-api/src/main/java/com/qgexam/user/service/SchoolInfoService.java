@@ -12,6 +12,6 @@ import java.util.List;
  * @since 2022-12-14 11:15:14
  */
 public interface SchoolInfoService extends IService<SchoolInfo> {
-    List<SchoolInfo> getSchoolList();
+    List<SchoolInfo> getSchoolInfoList();
 }
 

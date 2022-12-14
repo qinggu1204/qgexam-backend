@@ -23,7 +23,7 @@ public class SchoolInfoServiceImpl extends ServiceImpl<SchoolInfoDao, SchoolInfo
     private SchoolInfoDao schoolInfoDao;
 
     @Override
-    public List<SchoolInfo> getSchoolList() {
+    public List<SchoolInfo> getSchoolInfoList() {
         LambdaQueryWrapper<SchoolInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.select(SchoolInfo::getSchoolId, SchoolInfo::getSchoolName);
         return schoolInfoDao.selectList(queryWrapper);
