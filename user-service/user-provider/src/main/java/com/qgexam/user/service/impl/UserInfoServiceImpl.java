@@ -3,10 +3,9 @@ package com.qgexam.user.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.user.dao.UserInfoDao;
-import com.qgexam.user.pojo.PO.RoleInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.service.UserInfoService;
-import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
  * @author lamb007
  * @since 2022-12-10 20:13:04
  */
-@DubboService
+@Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> implements UserInfoService {
 
     @Autowired

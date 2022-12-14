@@ -18,11 +18,11 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <dubbo.version>3.0.7</dubbo.version>
+        <dubbo.version>2.7.3</dubbo.version>
         <junit.version>4.13.1</junit.version>
-        <slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>
-        <spring-boot.version>2.6.11</spring-boot.version>
-        <spring-boot-maven-plugin.version>2.6.11</spring-boot-maven-plugin.version>
+        <slf4j-log4j12.version>1.7.30</slf4j-log4j12.version>
+        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+        <spring-boot-maven-plugin.version>2.3.1.RELEASE</spring-boot-maven-plugin.version>
         <fastjson.version>1.2.33</fastjson.version>
         <mybaitsPlus.vesion>3.5.1</mybaitsPlus.vesion>
         <hutool.version>5.8.8</hutool.version>
@@ -36,6 +36,7 @@
 
 
     <dependencyManagement>
+
         <dependencies>
             <!-- Spring Boot 相关依赖版本-->
             <dependency>
@@ -79,6 +80,21 @@
                 <version>${dubbo.version}</version>
                 <type>pom</type>
             </dependency>
+
+            <!-- dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <!-- dubbo starter -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
             <!--junit相关版本-->
             <dependency>
                 <groupId>junit</groupId>
@@ -126,11 +142,6 @@
                 <version>${sa-token.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-dao-redis-fastjson</artifactId>
-                <version>${sa-token.version}</version>
-            </dependency>
 
 
             <dependency>
@@ -165,8 +176,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
-                <version>${spring-boot-maven-plugin.version}</version>
             </plugin>
         </plugins>
     </build>

@@ -5,9 +5,7 @@ dubbo:
   registry:
     # 注册中心地址
     address: zookeeper://101.34.2.207:2181
-
-  metadata-report:
-    address: zookeeper://101.34.2.207:2181
+    timeout: 250000
   protocol:
     # 协议名称
     name: dubbo
@@ -24,9 +22,9 @@ spring:
 
   # redis配置
   redis:
-    host: localhost
+    host: 120.46.210.113
     port: 6379
-#    password: 11111
+    password: Eeeee-11111
     database: 0
     lettuce:
       pool:

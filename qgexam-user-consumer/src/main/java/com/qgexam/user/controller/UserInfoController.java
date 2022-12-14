@@ -1,25 +1,25 @@
 package com.qgexam.user.controller;
 
 import cn.dev33.satoken.session.SaSession;
+import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.service.UserInfoService;
-import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import cn.dev33.satoken.stp.StpUtil;
 
 @RestController
 @RequestMapping("/user")
 public class UserInfoController {
 
-    @DubboReference
+    @Reference
     private UserInfoService userInfoService;
 
     @PostMapping("/login")
