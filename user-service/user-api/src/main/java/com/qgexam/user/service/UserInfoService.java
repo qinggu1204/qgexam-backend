@@ -17,6 +17,10 @@ public interface UserInfoService extends IService<UserInfo> {
 
     List<String> getRoleListByUserId(Integer id);
 
+
     UserInfo getUserInfoByPhoneNumber(String phoneNumber);
+
+    UserInfo getUserInfoById(Integer id);
+
 }
 

@@ -43,5 +43,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         UserInfo userInfo = userInfoDao.selectOne(queryWrapper);
         return userInfo;
     }
+
+    public UserInfo getUserInfoById(Integer id) {
+        return userInfoDao.getUserInfoById(id);
+    }
+
+
+
 }
 

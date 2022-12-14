@@ -8,4 +8,15 @@
             from user_role_info uri
         where uri.user_id = #{id}
     </select>
+    <resultMap id="userInfoMap" type="com.qgexam.user.pojo.PO.UserInfo">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="head_img" property="headImg"/>
+        <collection property="roleList" column="user_id" select="com.qgexam.user.dao.UserInfoDao.selectRoleListById"/>
+    </resultMap>
+    <select id="getUserInfoById" resultMap="userInfoMap">
+        select user_id, login_name, password, user_name, head_img, create_time, update_time, is_deleted
+            from user_info
+        where user_id = #{id}
+    </select>
 </mapper>
