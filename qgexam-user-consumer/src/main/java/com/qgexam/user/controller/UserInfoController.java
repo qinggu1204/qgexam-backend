@@ -147,7 +147,7 @@ public class UserInfoController {
      * @aythor peter guo
      * @date 2022/12/14 19:10:29
      */
-    @GetMapping("/common/getUserInfo")
+    @GetMapping("/getUserInfo")
     public ResponseResult getUserInfo() {
         //获取用户id
         Integer userId = StpUtil.getLoginIdAsInt();
