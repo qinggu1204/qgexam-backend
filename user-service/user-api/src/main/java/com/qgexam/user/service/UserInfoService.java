@@ -16,5 +16,7 @@ public interface UserInfoService extends IService<UserInfo> {
     UserInfo getUserInfoByLoginName(String loginName);
 
     List<String> getRoleListByUserId(Integer id);
+
+    UserInfo getUserInfoById(Integer id);
 }
 

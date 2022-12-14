@@ -15,5 +15,7 @@ import java.util.List;
 public interface UserInfoDao extends BaseMapper<UserInfo> {
 
     List<String> selectRoleListById(Integer id);
+
+    UserInfo getUserInfoById(Integer id);
 }
 

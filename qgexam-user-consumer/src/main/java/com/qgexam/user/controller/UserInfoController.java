@@ -6,14 +6,13 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
+import com.qgexam.user.pojo.PO.SchoolInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.service.SchoolInfoService;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -21,6 +20,9 @@ public class UserInfoController {
 
     @Reference
     private UserInfoService userInfoService;
+
+    @Reference
+    private SchoolInfoService schoolInfoService;
 
     @PostMapping("/login")
     public ResponseResult userLoginByUsername(@RequestBody @Validated UserLoginByUsernameDTO loginDTO) {
@@ -46,6 +48,15 @@ public class UserInfoController {
         return ResponseResult.okResult(token);
     }
 
+    @GetMapping("/getSchoolList")
+    public ResponseResult getSchoolList() {
+        return ResponseResult.okResult(schoolInfoService.getSchoolList());
+    }
 
+    @GetMapping("/common/getUserInfo")
+    public ResponseResult getUserInfo() {
+        Integer userId = StpUtil.getLoginIdAsInt();
+        return ResponseResult.okResult(userInfoService.getUserInfoById(userId));
+    }
 
 }

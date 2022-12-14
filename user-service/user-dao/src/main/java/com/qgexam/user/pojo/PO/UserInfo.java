@@ -1,10 +1,14 @@
 package com.qgexam.user.pojo.PO;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.List;
+
 /**
  * 用户信息表(UserInfo)表实体类
  *
@@ -31,6 +35,10 @@ public class UserInfo implements Serializable {
     private Date updateTime;
     //0未删除 1已删除
     private Integer isDeleted;
+
+    //角色列表
+    @TableField(exist = false)
+    private List<RoleInfo> roleList;
 
 }
 

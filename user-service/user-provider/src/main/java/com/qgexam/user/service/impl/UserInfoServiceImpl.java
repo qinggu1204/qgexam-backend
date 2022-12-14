@@ -35,5 +35,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         List<String> roleNameList = userInfoDao.selectRoleListById(id);
         return roleNameList;
     }
+
+    @Override
+    public UserInfo getUserInfoById(Integer id) {
+        return userInfoDao.getUserInfoById(id);
+    }
+
+
 }
 
