@@ -35,5 +35,13 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         List<String> roleNameList = userInfoDao.selectRoleListById(id);
         return roleNameList;
     }
+
+    @Override
+    public UserInfo getUserInfoByPhoneNumber(String phoneNumber) {
+        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserInfo::getLoginName, phoneNumber);
+        UserInfo userInfo = userInfoDao.selectOne(queryWrapper);
+        return userInfo;
+    }
 }
 

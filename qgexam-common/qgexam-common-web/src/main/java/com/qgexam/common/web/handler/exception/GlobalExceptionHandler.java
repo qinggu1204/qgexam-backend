@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
      * @return
      * @throws Exception
      */
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ResponseResult<String> exceptionHandler(Exception exception) {
         log.error("exceptionHandle {}\n{}", exception.getMessage(), ExceptionUtil.stacktraceToString(exception));

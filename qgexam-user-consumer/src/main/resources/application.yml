@@ -8,6 +8,8 @@ dubbo:
   registry:
     # 注册中心地址
     address: zookeeper://101.34.2.207:2181
+  metadata-report:
+    address: zookeeper://101.34.2.207:2181
 
 spring:
   redis:
