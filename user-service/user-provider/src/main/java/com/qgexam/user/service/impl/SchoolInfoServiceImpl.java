@@ -22,6 +22,12 @@ public class SchoolInfoServiceImpl extends ServiceImpl<SchoolInfoDao, SchoolInfo
     @Autowired
     private SchoolInfoDao schoolInfoDao;
 
+    /**
+     * 获取学校列表
+     * @author peter guo
+     * @date 2022-12-14 19:18:02
+     * @return java.util.List<com.qgexam.user.pojo.PO.SchoolInfo>
+     */
     @Override
     public List<SchoolInfo> getSchoolInfoList() {
         LambdaQueryWrapper<SchoolInfo> queryWrapper = new LambdaQueryWrapper<>();
