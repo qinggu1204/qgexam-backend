@@ -36,7 +36,6 @@ public class UserInfoController {
     private RedisCache redisCache;
 
 
-
     @Reference
     private SchoolInfoService schoolInfoService;
 
@@ -126,6 +125,12 @@ public class UserInfoController {
         return ResponseResult.okResult(token);
     }
 
+    /**
+     * @description 注册时获取学校信息
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @author peter guo
+     * @date 2022/12/14 19:10:29
+     */
     @GetMapping("/getSchoolList")
     public ResponseResult getSchoolList() {
         List<SchoolInfo> schoolInfoList = schoolInfoService.getSchoolInfoList();
@@ -136,6 +141,12 @@ public class UserInfoController {
         return ResponseResult.okResult(schoolInfoVOList);
     }
 
+    /**
+     * @description 根据用户id获取用户信息
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @aythor peter guo
+     * @date 2022/12/14 19:10:29
+     */
     @GetMapping("/common/getUserInfo")
     public ResponseResult getUserInfo() {
         //获取用户id

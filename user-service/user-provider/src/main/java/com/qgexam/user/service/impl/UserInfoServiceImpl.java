@@ -44,6 +44,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         return userInfo;
     }
 
+    @Override
     public UserInfo getUserInfoById(Integer id) {
         return userInfoDao.getUserInfoById(id);
     }
