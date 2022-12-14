@@ -1,6 +1,8 @@
 package com.qgexam.user.pojo.PO;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class RoleInfo implements Serializable {
     //角色编号
+    @TableId
     private Integer roleId;
     //角色名称
     private String roleName;

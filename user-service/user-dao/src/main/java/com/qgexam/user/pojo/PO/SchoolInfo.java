@@ -1,6 +1,8 @@
 package com.qgexam.user.pojo.PO;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class SchoolInfo implements Serializable {
     //学校编号
+    @TableId
     private Integer schoolId;
     //学校名称
     private String schoolName;

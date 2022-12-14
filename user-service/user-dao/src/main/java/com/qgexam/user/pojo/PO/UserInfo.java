@@ -3,6 +3,7 @@ package com.qgexam.user.pojo.PO;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 public class UserInfo implements Serializable {
     //用户编号
+    @TableId
     private Integer userId;
     //登录名
     private String loginName;
