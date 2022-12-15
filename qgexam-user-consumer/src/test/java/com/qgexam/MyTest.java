@@ -22,4 +22,5 @@ public class MyTest {
         String name = redisCache.getCacheObject("name");
         System.out.println(name);
     }
+
 }

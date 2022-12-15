@@ -81,7 +81,7 @@ public class UserInfoController {
      * @author yzw
      * @date 2022/12/14 15:27:04
      */
-    @DeleteMapping("/logout")
+    @DeleteMapping("/common/logout")
     public ResponseResult logout() {
         StpUtil.logout();
         return ResponseResult.okResult();

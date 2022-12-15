@@ -30,6 +30,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
                     .match("/stu/**", r -> StpUtil.checkRoleAnd("stu"))
                     .match("/netea/**", r -> StpUtil.checkRoleAnd("netea"))
                     .match("/admin/**", r -> StpUtil.checkRoleAnd("admin"))
+                    .match("/user/common/**", r ->StpUtil.checkRoleAnd("tea", "stu", "netea", "admin"))
                     .match("/common/**", r ->StpUtil.checkRoleAnd("tea", "stu", "netea", "admin"))
                     .match("/alltea/**", r -> StpUtil.checkRoleAnd("tea", "netea"));
 
