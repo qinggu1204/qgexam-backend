@@ -16,7 +16,8 @@ public class UserInfoServiceTest {
     private UserInfoService userInfoService;
 
     @Test
-    public void getUserInfoByIdTest() {
-        System.out.println(userInfoService.getUserInfoById(1));
+    public void getUserInfoTest() {
+        System.out.println(userInfoService.getUserInfo());
     }
+
 }

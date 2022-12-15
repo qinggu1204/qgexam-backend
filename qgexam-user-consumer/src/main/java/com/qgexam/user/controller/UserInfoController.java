@@ -9,19 +9,13 @@ import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
-import com.qgexam.user.pojo.PO.SchoolInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
-import com.qgexam.user.pojo.VO.GetSchoolInfoVO;
-import com.qgexam.user.pojo.VO.GetUserInfoByIdVO;
 import com.qgexam.user.service.SchoolInfoService;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Validated
 @RestController
@@ -133,12 +127,7 @@ public class UserInfoController {
      */
     @GetMapping("/getSchoolList")
     public ResponseResult getSchoolList() {
-        List<SchoolInfo> schoolInfoList = schoolInfoService.getSchoolInfoList();
-        List<GetSchoolInfoVO> schoolInfoVOList = new ArrayList<GetSchoolInfoVO>();
-        for (SchoolInfo schoolInfo : schoolInfoList) {
-            schoolInfoVOList.add(BeanCopyUtils.copyBean(schoolInfo, GetSchoolInfoVO.class));
-        }
-        return ResponseResult.okResult(schoolInfoVOList);
+        return ResponseResult.okResult(schoolInfoService.getSchoolInfoList());
     }
 
     /**
@@ -149,10 +138,6 @@ public class UserInfoController {
      */
     @GetMapping("/common/getUserInfo")
     public ResponseResult getUserInfo() {
-        //获取用户id
-        Integer userId = StpUtil.getLoginIdAsInt();
-        UserInfo userInfo = userInfoService.getUserInfoById(userId);
-        GetUserInfoByIdVO userInfoByIdVO = BeanCopyUtils.copyBean(userInfo, GetUserInfoByIdVO.class);
-        return ResponseResult.okResult(userInfoByIdVO);
+        return ResponseResult.okResult(userInfoService.getUserInfo());
     }
 }

@@ -5,20 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author yzw
- * @description 返回用户个人信息
- * @date 2022/12/14 11:32:25
+ * 根据id查询用户信息接口返回信息
+ *
+ * @author peter guo
+ * @since 2022-12-14 16:15:14
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetUserInfoVO {
+public class GetUserInfoVO implements Serializable {
     private Integer userId;
-    //登录名
-    private String loginName;
     //姓名(用户名)
     private String userName;
     //头像url

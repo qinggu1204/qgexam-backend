@@ -1,8 +1,8 @@
 package com.qgexam.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qgexam.user.pojo.PO.RoleInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.VO.GetUserInfoVO;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public interface UserInfoService extends IService<UserInfo> {
 
     UserInfo getUserInfoByPhoneNumber(String phoneNumber);
 
-    UserInfo getUserInfoById(Integer id);
+    GetUserInfoVO getUserInfo();
 
 }
 

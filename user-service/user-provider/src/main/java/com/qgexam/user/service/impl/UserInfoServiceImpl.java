@@ -1,9 +1,14 @@
 package com.qgexam.user.service.impl;
 
+import cn.dev33.satoken.session.SaSession;
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qgexam.common.core.constants.SystemConstants;
+import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.UserInfoDao;
 import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.VO.GetUserInfoVO;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +50,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     }
 
     @Override
-    public UserInfo getUserInfoById(Integer id) {
-        return userInfoDao.getUserInfoById(id);
+    public GetUserInfoVO getUserInfo() {
+        //获取session中的用户信息
+        SaSession session = StpUtil.getSession();
+        UserInfo userInfo = (UserInfo) session.get(SystemConstants.SESSION_KEY);
+        return BeanCopyUtils.copyBean(userInfo, GetUserInfoVO.class);
     }
 
 
