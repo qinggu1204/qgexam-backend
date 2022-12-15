@@ -7,7 +7,8 @@ import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
-import com.qgexam.user.pojo.DTO.*;
+import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
+import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.SchoolInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.GetSchoolInfoVO;
@@ -29,9 +30,10 @@ public class UserInfoController {
 
     @Reference
     private UserInfoService userInfoService;
+
+
     @Autowired
     private RedisCache redisCache;
-
 
 
     @Reference
@@ -79,7 +81,7 @@ public class UserInfoController {
      * @author yzw
      * @date 2022/12/14 15:27:04
      */
-    @DeleteMapping("/logout")
+    @DeleteMapping("/common/logout")
     public ResponseResult logout() {
         StpUtil.logout();
         return ResponseResult.okResult();
@@ -123,6 +125,12 @@ public class UserInfoController {
         return ResponseResult.okResult(token);
     }
 
+    /**
+     * @description 注册时获取学校信息
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @author peter guo
+     * @date 2022/12/14 19:10:29
+     */
     @GetMapping("/getSchoolList")
     public ResponseResult getSchoolList() {
         List<SchoolInfo> schoolInfoList = schoolInfoService.getSchoolInfoList();
@@ -133,6 +141,12 @@ public class UserInfoController {
         return ResponseResult.okResult(schoolInfoVOList);
     }
 
+    /**
+     * @description 根据用户id获取用户信息
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @aythor peter guo
+     * @date 2022/12/14 19:10:29
+     */
     @GetMapping("/common/getUserInfo")
     public ResponseResult getUserInfo() {
         //获取用户id
@@ -140,54 +154,5 @@ public class UserInfoController {
         UserInfo userInfo = userInfoService.getUserInfoById(userId);
         GetUserInfoByIdVO userInfoByIdVO = BeanCopyUtils.copyBean(userInfo, GetUserInfoByIdVO.class);
         return ResponseResult.okResult(userInfoByIdVO);
-    }
-
-    /**
-     * 教师注册
-     *
-     * @param teacherRegisterDTO 教师填写于表单中的信息
-     * @return 注册结果
-     */
-    @PostMapping("/tea/register")
-    public ResponseResult teacherRegister(@RequestBody @Validated TeacherRegisterDTO teacherRegisterDTO){
-        if(userInfoService.registerTeacher(teacherRegisterDTO.getPhoneNumber(),teacherRegisterDTO.getPassword(),
-                teacherRegisterDTO.getTeacherName(),teacherRegisterDTO.getTeacherNumber(),teacherRegisterDTO.getQualificationImg(),
-                teacherRegisterDTO.getSchoolId(),teacherRegisterDTO.getSchoolName())){
-            return ResponseResult.okResult();
-        }
-        else return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-    }
-
-    /**
-     * 学生注册
-     *
-     * @param studentRegisterDTO 学生填写于表单中的信息
-     * @return 注册结果
-     */
-    @PostMapping("/stu/register")
-    public ResponseResult studentRegister(@RequestBody @Validated StudentRegisterDTO studentRegisterDTO){
-        if(userInfoService.registerStudent(studentRegisterDTO.getPhoneNumber(),studentRegisterDTO.getPassword(),
-                studentRegisterDTO.getStudentName(),studentRegisterDTO.getStudentNumber(),
-                studentRegisterDTO.getSchoolId(),studentRegisterDTO.getSchoolName())){
-            return ResponseResult.okResult();
-        }
-        else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-    }
-
-    /**
-     * 修改密码
-     *
-     * @param updatePasswordDTO 用户填写的表单信息
-     * @return 修改结果
-     */
-    @PutMapping("/updatePassword")
-    public ResponseResult updatePassword(@RequestBody @Validated UpdatePasswordDTO updatePasswordDTO){
-        if(false/*手机号验证不通过*/){
-            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-        }
-        if(userInfoService.updatePassword(updatePasswordDTO.getLoginName(),updatePasswordDTO.getPassword())){
-            return ResponseResult.okResult();
-        }
-        else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
 }

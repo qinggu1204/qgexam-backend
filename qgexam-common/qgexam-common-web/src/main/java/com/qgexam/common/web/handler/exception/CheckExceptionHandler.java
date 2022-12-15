@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * @Date: 2021/6/2 8:38
  */
 @RestControllerAdvice
-@Order(-10)
+@Order(-15)
 @Slf4j
 public class CheckExceptionHandler {
 

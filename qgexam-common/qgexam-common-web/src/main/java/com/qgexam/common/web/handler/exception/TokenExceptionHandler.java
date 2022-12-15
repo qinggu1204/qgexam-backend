@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @Date: 2021/6/2 8:39
  */
 @RestControllerAdvice
-@Order(-5)
+@Order(-10)
 @Slf4j
 public class TokenExceptionHandler {
 
