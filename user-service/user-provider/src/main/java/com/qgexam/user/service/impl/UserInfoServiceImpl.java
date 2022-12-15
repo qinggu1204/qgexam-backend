@@ -3,6 +3,7 @@ package com.qgexam.user.service.impl;
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
@@ -14,6 +15,7 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 用户信息表(UserInfo)表服务实现类
@@ -29,6 +31,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     @Override
     public UserInfo getUserInfoByLoginName(String loginName) {
+        String s = null;
+        s.toLowerCase(Locale.ROOT);
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserInfo::getLoginName, loginName);
         UserInfo userInfo = userInfoDao.selectOne(queryWrapper);
