@@ -26,10 +26,10 @@ public class MessageCodeController {
      * @date 2022/12/14 21:21:43
      */
     @GetMapping("/sendCode")
-    public ResponseResult loginByCode(@Validated @RequestBody GetMessageCodeDTO codeDTO) {
+    public ResponseResult loginByCode(@Validated GetMessageCodeDTO codeDTO) {
         String phoneNumber = codeDTO.getPhoneNumber();
         if (messageCodeService.sendCode(phoneNumber)) {
-            return ResponseResult.errorResult(AppHttpCodeEnum.SUCCESS);
+            return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
         }
         return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
@@ -46,7 +46,7 @@ public class MessageCodeController {
         String phoneNumber = codeDTO.getPhoneNumber();
         String code = codeDTO.getCode();
         if (messageCodeService.validateCode(phoneNumber,code)) {
-            return ResponseResult.errorResult(AppHttpCodeEnum.SUCCESS);
+            return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
         }
         return ResponseResult.errorResult(AppHttpCodeEnum.CODE_ERROR);
     }

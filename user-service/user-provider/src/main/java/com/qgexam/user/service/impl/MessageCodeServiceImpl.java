@@ -33,6 +33,7 @@ public class MessageCodeServiceImpl implements MessageCodeService {
     @Override
     public boolean validateCode(String phoneNumber,String code){
         String redisCode = redisCache.getCacheObject(SystemConstants.LOGIN_REDIS_PREFIX + phoneNumber);
+        redisCache.deleteObject(SystemConstants.LOGIN_REDIS_PREFIX + phoneNumber);
         //验证码不为空且验证码正确返回true,否则返回false
         return redisCode != null && redisCode.equals(code);
     }
