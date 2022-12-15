@@ -20,8 +20,8 @@ public interface UserInfoDao extends BaseMapper<UserInfo> {
 
     UserInfo getUserInfoById(Integer id);
     UserInfo getUserInfoByLoginName(String loginName);
-    void insertTeacher(TeacherInfo teacherInfo);
-    void insertStudent(StudentInfo studentInfo);
-    void updatePassword(String loginName,String newPassword);
+    Integer insertTeacher(TeacherInfo teacherInfo);
+    Integer insertStudent(StudentInfo studentInfo);
+    Integer updatePassword(UserInfo userInfo);
 }
 

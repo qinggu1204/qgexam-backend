@@ -16,12 +16,12 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class TeacherRegisterDTO {
     @NotBlank(message = "姓名不能为空")
-    private String userName;
+    private String teacherName;
     @NotBlank(message = "密码不能为空")
     private String password;
-    private String rePassword; /*重复密码，验证两次是否为空*/
     private String phoneNumber;
     private String teacherNumber; /*工号*/
     private Integer schoolId;
+    private String schoolName;
     private String qualificationImg; /*教师资格证图片*/
 }

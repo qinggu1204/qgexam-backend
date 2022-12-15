@@ -150,14 +150,12 @@ public class UserInfoController {
      */
     @PostMapping("/tea/register")
     public ResponseResult teacherRegister(@RequestBody @Validated TeacherRegisterDTO teacherRegisterDTO){
-        if(true/*手机号验证不通过*/){
-            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        if(userInfoService.registerTeacher(teacherRegisterDTO.getPhoneNumber(),teacherRegisterDTO.getPassword(),
+                teacherRegisterDTO.getTeacherName(),teacherRegisterDTO.getTeacherNumber(),teacherRegisterDTO.getQualificationImg(),
+                teacherRegisterDTO.getSchoolId(),teacherRegisterDTO.getSchoolName())){
+            return ResponseResult.okResult();
         }
-        if(teacherRegisterDTO.getPassword().equals(teacherRegisterDTO.getRePassword())){ /*两次输入的密码不一致*/
-            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-        }
-        userInfoService.registerTeacher(teacherRegisterDTO);
-        return ResponseResult.okResult();
+        else return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
 
     /**
@@ -168,14 +166,12 @@ public class UserInfoController {
      */
     @PostMapping("/stu/register")
     public ResponseResult studentRegister(@RequestBody @Validated StudentRegisterDTO studentRegisterDTO){
-        if(true/*手机号验证不通过*/){
-            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        if(userInfoService.registerStudent(studentRegisterDTO.getPhoneNumber(),studentRegisterDTO.getPassword(),
+                studentRegisterDTO.getStudentName(),studentRegisterDTO.getStudentNumber(),
+                studentRegisterDTO.getSchoolId(),studentRegisterDTO.getSchoolName())){
+            return ResponseResult.okResult();
         }
-        if(studentRegisterDTO.getPassword().equals(studentRegisterDTO.getRePassword())){ /*两次输入的密码不一致*/
-            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-        }
-        userInfoService.registerStudent(studentRegisterDTO);
-        return ResponseResult.okResult();
+        else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
 
     /**
@@ -186,13 +182,12 @@ public class UserInfoController {
      */
     @PutMapping("/updatePassword")
     public ResponseResult updatePassword(@RequestBody @Validated UpdatePasswordDTO updatePasswordDTO){
-        if(true/*手机号验证不通过*/){
+        if(false/*手机号验证不通过*/){
             return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
         }
-        if(updatePasswordDTO.getNewPassword().equals(updatePasswordDTO.getReNewPassword())){ /*两次输入的密码不一致*/
-            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        if(userInfoService.updatePassword(updatePasswordDTO.getLoginName(),updatePasswordDTO.getPassword())){
+            return ResponseResult.okResult();
         }
-        userInfoService.updatePassword(updatePasswordDTO.getPhone(),updatePasswordDTO.getNewPassword());
-        return ResponseResult.okResult();
+        else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
 }

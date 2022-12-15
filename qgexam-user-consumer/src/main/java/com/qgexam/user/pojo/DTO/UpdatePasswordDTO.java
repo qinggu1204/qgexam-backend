@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdatePasswordDTO {
-    private String phone;
+    private String loginName;
     private String code;
-    private String newPassword;
-    private String reNewPassword; //重复密码
+    private String password;
 }

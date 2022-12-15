@@ -4,14 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.user.dao.SchoolInfoDao;
 import com.qgexam.user.dao.UserInfoDao;
-import com.qgexam.user.pojo.DTO.StudentRegisterDTO;
-import com.qgexam.user.pojo.DTO.TeacherRegisterDTO;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -56,53 +55,64 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     }
 
     @Override
-    public void registerTeacher(TeacherRegisterDTO teacherRegisterDTO){
+    @Transactional
+    public Boolean registerTeacher(String loginName,String password,String userName,String teacherNumber, String qualificationImg,Integer schoolId,String schoolName){
         /*1.添加新用户*/
         UserInfo newUser=new UserInfo();
-        newUser.setLoginName(teacherRegisterDTO.getPhoneNumber());
-        newUser.setPassword(teacherRegisterDTO.getPassword());
-        newUser.setUserName(teacherRegisterDTO.getUserName());
+        newUser.setLoginName(loginName);
+        newUser.setPassword(password);
+        newUser.setUserName(userName);
         userInfoDao.insert(newUser);
         /*2.获取该新用户的userId*/
         Integer userId = userInfoDao.getUserInfoByLoginName(newUser.getLoginName()).getUserId();
-        /*3.获取该用户的学校名*/
-        String schoolName = schoolInfoDao.queryById(teacherRegisterDTO.getSchoolId()).getSchoolName();
-        /*4.将该用户添加为教师*/
+        /*3.将该用户添加为教师*/
         TeacherInfo newTeacher=new TeacherInfo();
         newTeacher.setUserId(userId);
-        newTeacher.setTeacherNumber(teacherRegisterDTO.getTeacherNumber());
-        newTeacher.setQualificationImg(teacherRegisterDTO.getQualificationImg());
-        newTeacher.setSchoolId(teacherRegisterDTO.getSchoolId());
-        newTeacher.setUserName(teacherRegisterDTO.getUserName());
+        newTeacher.setTeacherNumber(teacherNumber);
+        newTeacher.setQualificationImg(qualificationImg);
+        newTeacher.setSchoolId(schoolId);
+        newTeacher.setUserName(userName);
         newTeacher.setSchoolName(schoolName);
-        userInfoDao.insertTeacher(newTeacher);
+        if(userInfoDao.insertTeacher(newTeacher)!=0){
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void registerStudent(StudentRegisterDTO studentRegisterDTO){
+    @Transactional
+    public Boolean registerStudent(String loginName,String password,String userName,
+                                String studentNumber,Integer schoolId,String schoolName){
         /*1.添加新用户*/
         UserInfo newUser=new UserInfo();
-        newUser.setLoginName(studentRegisterDTO.getPhoneNumber());
-        newUser.setPassword(studentRegisterDTO.getPassword());
-        newUser.setUserName(studentRegisterDTO.getUserName());
+        newUser.setLoginName(loginName);
+        newUser.setPassword(password);
+        newUser.setUserName(userName);
         userInfoDao.insert(newUser);
         /*2.获取该新用户的userId*/
         Integer userId = userInfoDao.getUserInfoByLoginName(newUser.getLoginName()).getUserId();
-        /*3.获取该用户的学校名*/
-        String schoolName = schoolInfoDao.queryById(studentRegisterDTO.getSchoolId()).getSchoolName();
-        /*4.将该用户添加为学生*/
+        /*3.将该用户添加为学生*/
         StudentInfo newStudent=new StudentInfo();
         newStudent.setUserId(userId);
-        newStudent.setUserName(studentRegisterDTO.getUserName());
-        newStudent.setStudentNumber(studentRegisterDTO.getStudentNumber());
-        newStudent.setSchoolId(studentRegisterDTO.getSchoolId());
+        newStudent.setUserName(userName);
+        newStudent.setStudentNumber(studentNumber);
+        newStudent.setSchoolId(schoolId);
         newStudent.setSchoolName(schoolName);
-        userInfoDao.insertStudent(newStudent);
+        if(userInfoDao.insertStudent(newStudent)!=0){
+            return true;
+        }
+        else return false;
     }
 
     @Override
-    public void updatePassword(String loginName, String newPassword) {
-        userInfoDao.updatePassword(loginName, newPassword);
+    public Boolean updatePassword(String loginName, String newPassword) {
+        UserInfo userInfo=new UserInfo();
+        userInfo.setLoginName(loginName);
+        userInfo.setPassword(newPassword);
+        if(userInfoDao.updatePassword(userInfo)!=0){
+            return true;
+        }
+        return true;
     }
 }
 
