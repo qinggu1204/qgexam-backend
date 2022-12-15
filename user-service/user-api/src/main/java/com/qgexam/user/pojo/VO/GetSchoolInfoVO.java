@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * 根据id查询用户信息接口返回信息
  *
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetSchoolInfoVO {
+public class GetSchoolInfoVO implements Serializable {
     private Integer schoolId;
     private String schoolName;
 }
