@@ -3,15 +3,15 @@ package com.qgexam.user.pojo.PO;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 /**
  * 教师表(TeacherInfo)表实体类
- *
- * @author lamb007
- * @since 2022-12-15 19:59:26
+ * @author tageshi
+ * @since 2022-12-14 19:40:13
  */
 @Data
 @AllArgsConstructor

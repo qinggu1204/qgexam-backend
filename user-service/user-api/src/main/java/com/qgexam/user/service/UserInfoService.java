@@ -1,8 +1,10 @@
 package com.qgexam.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
+
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 
@@ -17,18 +19,18 @@ import java.util.List;
 public interface UserInfoService extends IService<UserInfo> {
 
 
-
-
-    UserInfo getUserInfoByPhoneNumber(String phoneNumber);
-
-
-
     UserInfoVO userLogin(UserLoginByUsernameDTO loginDTO);
 
     List<String> getRoleListByUserId(Integer id);
 
 
-
     UserInfoVO userLoginByPhoneNumber(String phoneNumber);
+
+    Boolean registerTeacher(String loginName, String password, String userName, String teacherNumber, String qualificationImg, Integer schoolId, String schoolName);
+
+    Boolean registerStudent(String loginName, String password, String userName, String studentNumber, Integer schoolId, String schoolName);
+
+    Boolean updatePassword(String loginName, String newPassword);
+
 }
 

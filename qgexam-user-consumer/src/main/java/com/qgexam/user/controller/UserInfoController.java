@@ -6,7 +6,8 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
-import com.qgexam.common.redis.utils.RedisCache;
+import com.qgexam.user.pojo.DTO.StudentRegisterDTO;
+import com.qgexam.user.pojo.DTO.UpdatePasswordDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.SchoolInfo;
@@ -17,7 +18,6 @@ import com.qgexam.user.service.MessageCodeService;
 import com.qgexam.user.service.SchoolInfoService;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,11 +31,8 @@ public class UserInfoController {
 
     @Reference
     private UserInfoService userInfoService;
-
     @Reference
     private MessageCodeService messageCodeService;
-
-
 
     @Reference
     private SchoolInfoService schoolInfoService;
@@ -104,7 +101,7 @@ public class UserInfoController {
 
         return ResponseResult.okResult(token);
     }
-    
+
     /**
      * @description 注册时获取学校信息
      * @return com.qgexam.common.core.api.ResponseResult
@@ -136,5 +133,37 @@ public class UserInfoController {
 //        UserInfo userInfo = userInfoService.getUserInfoById(userId);
 //        GetUserInfoByIdVO userInfoByIdVO = BeanCopyUtils.copyBean(userInfo, GetUserInfoByIdVO.class);
         return ResponseResult.okResult(o);
+    }
+    /**
+     * 学生注册
+     *
+     * @param studentRegisterDTO 学生填写于表单中的信息
+     * @return 注册结果
+     */
+    @PostMapping("/stu/register")
+    public ResponseResult studentRegister(@RequestBody @Validated StudentRegisterDTO studentRegisterDTO){
+        if(userInfoService.registerStudent(studentRegisterDTO.getPhoneNumber(),studentRegisterDTO.getPassword(),
+                studentRegisterDTO.getStudentName(),studentRegisterDTO.getStudentNumber(),
+                studentRegisterDTO.getSchoolId(),studentRegisterDTO.getSchoolName())){
+            return ResponseResult.okResult();
+        }
+        else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param updatePasswordDTO 用户填写的表单信息
+     * @return 修改结果
+     */
+    @PutMapping("/updatePassword")
+    public ResponseResult updatePassword(@RequestBody @Validated UpdatePasswordDTO updatePasswordDTO){
+        if(!messageCodeService.validateCode(updatePasswordDTO.getLoginName(),updatePasswordDTO.getCode())){
+            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        }
+        if(userInfoService.updatePassword(updatePasswordDTO.getLoginName(),updatePasswordDTO.getPassword())){
+            return ResponseResult.okResult();
+        }
+        else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
 }

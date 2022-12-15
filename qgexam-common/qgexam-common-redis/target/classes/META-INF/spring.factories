@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.qgexam.common.redis.configure.RedisConfiguration,\
+com.qgexam.common.redis.utils.RedisCache

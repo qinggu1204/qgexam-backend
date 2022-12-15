@@ -2,16 +2,18 @@ package com.qgexam.user.pojo.PO;
 
 import java.util.Date;
 
+
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 /**
  * 学生表(StudentInfo)表实体类
- *
- * @author lamb007
- * @since 2022-12-15 19:54:44
+ * @author tageshi
+ * @since 2022-12-14 19:26:38
+
  */
 @Data
 @AllArgsConstructor
