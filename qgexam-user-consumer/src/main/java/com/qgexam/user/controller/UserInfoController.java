@@ -101,7 +101,6 @@ public class UserInfoController {
         String code = loginDTO.getCode();
         String redisCode = redisCache.getCacheObject(SystemConstants.LOGIN_REDIS_PREFIX + phoneNumber);
 
-
         // 验证码不正确
         if (redisCode == null || !redisCode.equals(code)) {
             return ResponseResult.errorResult(AppHttpCodeEnum.CODE_ERROR);
@@ -124,7 +123,7 @@ public class UserInfoController {
 
         return ResponseResult.okResult(token);
     }
-
+    
     /**
      * @description 注册时获取学校信息
      * @return com.qgexam.common.core.api.ResponseResult
