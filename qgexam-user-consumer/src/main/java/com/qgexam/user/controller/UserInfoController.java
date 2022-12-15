@@ -6,6 +6,7 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.StudentRegisterDTO;
 import com.qgexam.user.pojo.DTO.UpdatePasswordDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
@@ -27,7 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/user")
-public class UserInfoController {
+public class UserInfoController extends BaseController {
 
     @Reference
     private UserInfoService userInfoService;
@@ -126,13 +127,9 @@ public class UserInfoController {
      */
     @GetMapping("/common/getUserInfo")
     public ResponseResult getUserInfo() {
-        //获取用户id
         SaSession session = StpUtil.getSession();
-        UserInfo o = (UserInfo) session.get(SystemConstants.SESSION_USER_KEY);
-        System.out.println(o);
-//        UserInfo userInfo = userInfoService.getUserInfoById(userId);
-//        GetUserInfoByIdVO userInfoByIdVO = BeanCopyUtils.copyBean(userInfo, GetUserInfoByIdVO.class);
-        return ResponseResult.okResult(o);
+        UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
+        return ResponseResult.okResult(userInfoVO);
     }
     /**
      * 学生注册
