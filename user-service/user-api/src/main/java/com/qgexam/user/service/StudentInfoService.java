@@ -15,6 +15,6 @@ import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 public interface StudentInfoService extends IService<StudentInfo> {
 
     GetStudentInfoVO getStudentInfo(SaSession session);
-    Boolean updateStudentInfo(String loginName,String headImg,String faceImg);
+    Boolean updateStudentInfo(Integer userId,String loginName,String headImg,String faceImg);
 }
 

@@ -2,11 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.StudentInfoDao">
-    <update id="updatePassword" parameterMap="updatePasswordParameter">
-        update user_info set password=#{password} where login_name=#{loginName};
+    <update id="updatefaceImgByUserId">
+        update student_info
+        set face_img = #{faceImg}
+        where user_id = #{userId}
     </update>
-    <parameterMap id="updatePasswordParameter" type="com.qgexam.user.pojo.PO.UserInfo">
-        <parameter property="loginName"/>
-        <parameter property="headImg"/>
-    </parameterMap>
 </mapper>

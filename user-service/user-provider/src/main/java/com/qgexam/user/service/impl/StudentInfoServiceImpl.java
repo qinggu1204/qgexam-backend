@@ -46,14 +46,12 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
     }
 
     @Override
-    public Boolean updateStudentInfo(String loginName,String headImg,String faceImg) {
-//        UserInfo userInfo = new UserInfo();
-//        userInfo.setLoginName(loginName);
-//        userInfo.setPassword(headImg);
-//        if (userInfoDao.updatePassword(userInfo) != 0 || ) {
-//            return true;
-//        }
-        return true;
+    public Boolean updateStudentInfo(Integer userId,String loginName,String headImg,String faceImg) {
+        System.out.print(faceImg);
+        if (userInfoDao.updateLoginNameAndHeadImgByUserId(loginName,headImg,userId) != 0 && studentInfoDao.updatefaceImgByUserId(faceImg,userId) != 0) {
+            return true;
+        }
+        return false;
     }
 }
 

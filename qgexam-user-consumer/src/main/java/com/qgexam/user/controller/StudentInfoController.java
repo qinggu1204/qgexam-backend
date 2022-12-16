@@ -6,6 +6,7 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.GetMessageCodeDTO;
 import com.qgexam.user.pojo.DTO.UpdateStudentInfoDTO;
 import com.qgexam.user.pojo.PO.StudentInfo;
@@ -15,13 +16,12 @@ import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("/stu")
-public class StudentInfoController {
+public class StudentInfoController extends BaseController {
 
     @Reference
     private StudentInfoService studentInfoService;
@@ -40,11 +40,11 @@ public class StudentInfoController {
     /**
      * @return com.qgexam.common.core.api.ResponseResult
      * @auther ljy
-     * @date 2022/12/15 14:37:25
+     * @date 2022/12/16 16:31:42
      */
-    @GetMapping("/updateStudentInfo")
-    public ResponseResult updateStudentInfo(@Validated UpdateStudentInfoDTO updateStudentInfoDTO) {
-        if(studentInfoService.updateStudentInfo(updateStudentInfoDTO.getLoginName(),updateStudentInfoDTO.getHeadImg(),updateStudentInfoDTO.getFaceImg()))
+    @PutMapping("/updateStudentInfo")
+    public ResponseResult updateStudentInfo(@RequestBody @Validated UpdateStudentInfoDTO updateStudentInfoDTO) {
+        if(studentInfoService.updateStudentInfo(getUserId(), updateStudentInfoDTO.getLoginName(),updateStudentInfoDTO.getHeadImg(),updateStudentInfoDTO.getFaceImg()))
             return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
         return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
