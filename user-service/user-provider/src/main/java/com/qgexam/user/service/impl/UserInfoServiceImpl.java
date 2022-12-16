@@ -1,8 +1,11 @@
 package com.qgexam.user.service.impl;
 
+import cn.dev33.satoken.session.SaSession;
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
+import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.dao.SchoolInfoDao;
@@ -48,6 +51,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     private RedisCache redisCache;
 
 
+    /**
+     * 用户名密码登录
+     * @author yzw
+     * @param loginDTO
+     * @return
+     */
     @Override
     public UserInfoVO userLogin(UserLoginByUsernameDTO loginDTO) {
         String loginName = loginDTO.getLoginName();
@@ -87,6 +96,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         return roleInfos.stream()
                 .map(RoleInfo::getRoleName)
                 .collect(Collectors.toList());
+
     }
 
     @Override
