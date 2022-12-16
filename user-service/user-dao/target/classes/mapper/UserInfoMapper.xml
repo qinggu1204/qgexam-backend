@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.UserInfoDao">
+<<<<<<< HEAD
 
     <select id="selectRoleListById" resultType="java.lang.String">
         select uri.role_name
@@ -19,4 +20,70 @@
             from user_info
         where user_id = #{id}
     </select>
+=======
+    <insert id="insertTeacher" parameterType="com.qgexam.user.pojo.PO.TeacherInfo">
+        insert into teacher_info (user_id,teacher_number,qualification_img,user_name,school_id,school_name)
+        values (#{userId},#{teacherNumber},#{qualificationImg},#{userName},#{schoolId},#{schoolName});
+    </insert>
+    <insert id="insertStudent" parameterType="com.qgexam.user.pojo.PO.StudentInfo">
+        insert into student_info (user_id,user_name,student_number,school_id,school_name)
+        values (#{userId},#{userName},#{studentNumber},#{schoolId},#{schoolName});
+    </insert>
+    <update id="updatePassword" parameterMap="updatePasswordParameter">
+        update user_info set password=#{password} where login_name=#{loginName};
+    </update>
+
+    <select id="selectRoleInfoListById" resultType="com.qgexam.user.pojo.PO.RoleInfo">
+        select role_id,
+               role_name,
+               create_time,
+               update_time,
+               is_deleted
+        from role_info
+        where is_deleted = 0
+          and role_id in
+              (select role_id
+               from user_role_info
+               where is_deleted = 0
+                 and user_id = #{userId})
+
+    </select>
+
+    <resultMap id="selectUserInfoByLoginName" type="com.qgexam.user.pojo.PO.UserInfo">
+        <id column="user_id" property="userId"/>
+        <result column="login_name" property="loginName"/>
+        <result column="password" property="password"/>
+        <result column="user_name" property="userName"/>
+        <result column="head_img" property="headImg"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <collection property="roleList" column="user_id" select="selectRoleInfoListById"/>
+    </resultMap>
+
+    <select id="selectUserInfoByLoginName" resultMap="selectUserInfoByLoginName">
+        select user_id,
+               login_name,
+               password,
+               user_name,
+               head_img,
+               create_time,
+               update_time,
+               is_deleted
+        from user_info
+        where is_deleted = 0
+          and login_name = #{loginName}
+    </select>
+
+
+
+    <select id="getUserInfoByLoginName" resultType="com.qgexam.user.pojo.PO.UserInfo">
+        select * from user_info where login_name = #{loginName}
+    </select>
+    <parameterMap id="updatePasswordParameter" type="com.qgexam.user.pojo.PO.UserInfo">
+        <parameter property="loginName"/>
+        <parameter property="password"/>
+    </parameterMap>
+
+>>>>>>> 5dcd3b81b561a30e94980844a6657e5a05e7faaf
 </mapper>

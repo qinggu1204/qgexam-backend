@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @Author：dcy
- * @Description: 用户错误相关错误处理
- * @Date: 2021/6/2 8:39
+ * @project qgexam
+ * @description 处理sa-token相关异常
+ * @author yzw
+ * @date 2022/12/16 09:46:13
+ * @version 1.0
  */
 @RestControllerAdvice
-@Order(-5)
+@Order(-10)
 @Slf4j
 public class TokenExceptionHandler {
 

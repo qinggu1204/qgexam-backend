@@ -1,0 +1,8 @@
+com\qgexam\common\core\utils\WebUtils.class
+com\qgexam\common\core\constants\RoleConstants.class
+com\qgexam\common\core\api\AppHttpCodeEnum.class
+com\qgexam\common\core\utils\BPwdEncoderUtil.class
+com\qgexam\common\core\utils\BeanCopyUtils.class
+com\qgexam\common\core\api\ResponseResult.class
+com\qgexam\common\core\constants\ExamConstants.class
+com\qgexam\common\core\constants\SystemConstants.class

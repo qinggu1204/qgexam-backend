@@ -2,6 +2,8 @@ package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.RoleInfo;
+import com.qgexam.user.pojo.PO.StudentInfo;
+import com.qgexam.user.pojo.PO.TeacherInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
 
 import java.util.List;
@@ -14,8 +16,16 @@ import java.util.List;
  */
 public interface UserInfoDao extends BaseMapper<UserInfo> {
 
-    List<String> selectRoleListById(Integer id);
+    List<RoleInfo> selectRoleInfoListById(Integer id);
 
-    UserInfo getUserInfoById(Integer id);
+
+
+    UserInfo selectUserInfoByLoginName(String loginName);
+
+    UserInfo getUserInfoByLoginName(String loginName);
+    Integer insertTeacher(TeacherInfo teacherInfo);
+    Integer insertStudent(StudentInfo studentInfo);
+    Integer updatePassword(UserInfo userInfo);
+
 }
 

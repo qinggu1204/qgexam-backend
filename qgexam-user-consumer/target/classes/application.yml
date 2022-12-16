@@ -10,6 +10,11 @@ dubbo:
     address: zookeeper://101.34.2.207:2181
   metadata-report:
     address: zookeeper://101.34.2.207:2181
+<<<<<<< HEAD
+=======
+  consumer:
+    timeout: 600000
+>>>>>>> 5dcd3b81b561a30e94980844a6657e5a05e7faaf
 
 spring:
   redis:
