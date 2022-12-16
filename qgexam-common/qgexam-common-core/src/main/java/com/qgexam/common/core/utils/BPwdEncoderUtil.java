@@ -3,9 +3,11 @@ package com.qgexam.common.core.utils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @Auther: dcy
- * @Date: 2019/3/22 10:21
- * @Description: 密码加密
+ * @project qgexam
+ * @description 密码加密工具类
+ * @author yzw
+ * @date 2022/12/16 09:47:42
+ * @version 1.0
  */
 public class BPwdEncoderUtil {
 

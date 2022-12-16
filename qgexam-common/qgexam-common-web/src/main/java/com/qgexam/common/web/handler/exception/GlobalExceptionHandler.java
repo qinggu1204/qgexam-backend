@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @Author：dcy
- * @Description: 全局的的异常拦截器（拦截所有的控制器）
- * @Date: 2019/9/6 13:25
+ * @project qgexam
+ * @description 处理其他异常
+ * @author yzw
+ * @date 2022/12/16 09:45:57
+ * @version 1.0
  */
 @RestControllerAdvice
 @Order(-1)

@@ -20,9 +20,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @Author：dcy
- * @Description: 校验参数异常处理
- * @Date: 2021/6/2 8:38
+ * @project qgexam
+ * @description 处理controller的参数校验异常
+ * @author yzw
+ * @date 2022/12/16 09:45:38
+ * @version 1.0
  */
 @RestControllerAdvice
 @Order(-15)

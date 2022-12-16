@@ -51,6 +51,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     private RedisCache redisCache;
 
 
+    /**
+     * 用户名密码登录
+     * @author yzw
+     * @param loginDTO
+     * @return
+     */
     @Override
     public UserInfoVO userLogin(UserLoginByUsernameDTO loginDTO) {
         String loginName = loginDTO.getLoginName();
@@ -90,6 +96,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         return roleInfos.stream()
                 .map(RoleInfo::getRoleName)
                 .collect(Collectors.toList());
+
     }
 
     @Override
