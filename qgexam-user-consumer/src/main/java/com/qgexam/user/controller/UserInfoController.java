@@ -5,7 +5,6 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
-import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
@@ -55,6 +54,7 @@ public class UserInfoController {
         if (!password.equals(userInfo.getPassword())) {
             return ResponseResult.errorResult(AppHttpCodeEnum.LOGIN_ERROR);
         }
+        StpUtil.logout(userInfo.getUserId());
         // sa-token登录
         StpUtil.login(userInfo.getUserId());
         // 获取token
@@ -95,7 +95,6 @@ public class UserInfoController {
         String code = loginDTO.getCode();
         String redisCode = redisCache.getCacheObject(SystemConstants.LOGIN_REDIS_PREFIX + phoneNumber);
 
-
         // 验证码不正确
         if (redisCode == null || !redisCode.equals(code)) {
             return ResponseResult.errorResult(AppHttpCodeEnum.CODE_ERROR);
@@ -118,7 +117,7 @@ public class UserInfoController {
 
         return ResponseResult.okResult(token);
     }
-
+    
     /**
      * @description 注册时获取学校信息
      * @return com.qgexam.common.core.api.ResponseResult
@@ -131,13 +130,20 @@ public class UserInfoController {
     }
 
     /**
-     * @description 根据用户id获取用户信息
+     * @description 从session获取用户信息
      * @return com.qgexam.common.core.api.ResponseResult
      * @aythor peter guo
      * @date 2022/12/14 19:10:29
      */
     @GetMapping("/common/getUserInfo")
     public ResponseResult getUserInfo() {
-        return ResponseResult.okResult(userInfoService.getUserInfo());
+        //获取用户信息
+        SaSession session = StpUtil.getSession();
+        System.out.println(session);
+        UserInfo userInfo = (UserInfo) session.get(SystemConstants.SESSION_KEY);
+        //UserInfo userInfo = JSONObject.toJavaObject((JSON) o, UserInfo.class);
+        System.out.println(userInfo);
+        return ResponseResult.okResult();
+        //return ResponseResult.okResult(userInfoService.getUserInfo());
     }
 }

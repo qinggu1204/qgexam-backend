@@ -2,6 +2,8 @@ package com.qgexam.user.service.impl;
 
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -31,8 +33,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     @Override
     public UserInfo getUserInfoByLoginName(String loginName) {
-        String s = null;
-        s.toLowerCase(Locale.ROOT);
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserInfo::getLoginName, loginName);
         UserInfo userInfo = userInfoDao.selectOne(queryWrapper);
@@ -57,7 +57,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     public GetUserInfoVO getUserInfo() {
         //获取session中的用户信息
         SaSession session = StpUtil.getSession();
-        UserInfo userInfo = (UserInfo) session.get(SystemConstants.SESSION_KEY);
+        JSON o = (JSON) session.get(SystemConstants.SESSION_KEY);
+        UserInfo userInfo = JSONObject.toJavaObject(o, UserInfo.class);
+        System.out.println(userInfo);
         return BeanCopyUtils.copyBean(userInfo, GetUserInfoVO.class);
     }
 
