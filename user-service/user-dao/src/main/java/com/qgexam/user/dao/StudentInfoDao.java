@@ -6,8 +6,8 @@ import com.qgexam.user.pojo.PO.StudentInfo;
 /**
  * 学生表(StudentInfo)表数据库访问层
  *
- * @author lamb007
- * @since 2022-12-15 20:11:39
+ * @author peter guo
+ * @since 2022-12-15 14:27:46
  */
 public interface StudentInfoDao extends BaseMapper<StudentInfo> {
 
