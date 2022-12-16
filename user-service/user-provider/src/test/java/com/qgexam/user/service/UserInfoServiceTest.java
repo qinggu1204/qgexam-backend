@@ -1,6 +1,7 @@
 package com.qgexam.user.service;
 
 
+import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 
@@ -40,5 +41,9 @@ public class UserInfoServiceTest {
                 "孙五","202003150417",1,"浙江工业大学");
 //        UserInfo userInfo=userInfoService.getUserInfoByLoginName("19941200877");
 //        System.out.println(userInfo.toString());
+    }
+    @Test
+    public void updateTeacherInfoTest(){
+        userInfoService.updateTeacherInfo(1,new UpdateTeacherInfoDTO("17682405206", "http://hhhhhh"));
     }
 }

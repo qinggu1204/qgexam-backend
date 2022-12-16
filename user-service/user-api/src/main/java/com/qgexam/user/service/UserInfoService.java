@@ -2,6 +2,7 @@ package com.qgexam.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 
@@ -32,5 +33,6 @@ public interface UserInfoService extends IService<UserInfo> {
 
     Boolean updatePassword(String loginName, String newPassword);
 
+    void updateTeacherInfo(Integer userId, UpdateTeacherInfoDTO updateTeacherInfoDTO);
 }
 
