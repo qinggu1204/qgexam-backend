@@ -11,5 +11,6 @@ import com.qgexam.user.pojo.PO.TeacherInfo;
  */
 public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
 
+
 }
 

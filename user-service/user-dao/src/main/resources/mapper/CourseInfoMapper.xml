@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.user.dao.CourseInfoDao">
+
+    <insert id="insertCourseInfo" useGeneratedKeys="true" keyProperty="courseId" keyColumn="course_id">
+        insert into course_info(course_name, course_url, subject_id, subject_name, year, semester)
+        values(#{courseName}, #{courseUrl}, #{subjectId}, #{subjectName}, #{year}, #{semester})
+    </insert>
+    <insert id="insertCourseTeacher">
+        insert into teacher_course(course_id, teacher_id, user_name)
+        values(#{courseId}, #{teacherId}, #{userName})
+    </insert>
+</mapper>

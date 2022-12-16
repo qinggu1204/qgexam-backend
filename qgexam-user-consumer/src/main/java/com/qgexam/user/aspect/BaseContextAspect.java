@@ -49,6 +49,7 @@ public class BaseContextAspect {
             TeacherInfo teacherInfo = userInfoVO.getTeacherInfo();
             StudentInfo studentInfo = userInfoVO.getStudentInfo();
             BaseContextHandler.setUserID(userInfo == null ? null : userInfo.getUserId());
+            BaseContextHandler.setUserName(userInfo == null ? null : userInfo.getUserName());
             BaseContextHandler.setStudentID(studentInfo == null ? null : studentInfo.getStudentId());
             BaseContextHandler.setTeacherID(teacherInfo == null ? null : teacherInfo.getTeacherId());
         }

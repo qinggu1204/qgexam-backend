@@ -1,6 +1,7 @@
 package com.qgexam.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.qgexam.user.pojo.DTO.CreateCourseDTO;
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.pojo.PO.TeacherInfo;
 
@@ -13,6 +14,6 @@ import com.qgexam.user.pojo.PO.TeacherInfo;
 public interface TeacherInfoService extends IService<TeacherInfo> {
 
 
-
+    void createCourse(Integer teacherId, String userName, CreateCourseDTO createCourseDTO);
 }
 

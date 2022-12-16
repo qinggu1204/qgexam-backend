@@ -14,6 +14,7 @@ public class BaseContextHandler {
 
     public static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<>();
     public static final String CONTEXT_KEY_USER_ID = "currentUserId";
+    public static final String CONTEXT_KEY_USER_NAME = "currentUserName";
     public static final String CONTEXT_KEY_STUDENT_ID = "currentStudentId";
     public static final String CONTEXT_KEY_TEACHER_ID = "currentTeacherId";
 
@@ -45,6 +46,13 @@ public class BaseContextHandler {
         return returnObjectValue(value);
     }
 
+    public static void setUserName(String userName) {
+        set(CONTEXT_KEY_USER_NAME, userName);
+    }
+    public static String getUserName() {
+        Object value = get(CONTEXT_KEY_USER_NAME);
+        return returnObjectValue(value);
+    }
     public static void setStudentID(Integer studentID) {
         set(CONTEXT_KEY_STUDENT_ID, studentID);
     }

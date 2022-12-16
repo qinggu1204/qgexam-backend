@@ -33,5 +33,9 @@ public class BaseController {
         return BaseContextHandler.getTeacherID();
     }
 
+    public String getUserName() {
+        return BaseContextHandler.getUserName();
+    }
+
 
 }
