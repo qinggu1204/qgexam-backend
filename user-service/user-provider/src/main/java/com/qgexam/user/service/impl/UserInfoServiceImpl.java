@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
+import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.dao.SchoolInfoDao;
 import com.qgexam.user.dao.StudentInfoDao;
@@ -18,6 +19,7 @@ import com.qgexam.user.pojo.PO.RoleInfo;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.VO.GetUserInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.Service;
@@ -39,8 +41,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     @Autowired
     private UserInfoDao userInfoDao;
-    @Autowired
-    private SchoolInfoDao schoolInfoDao;
 
     @Autowired
     private TeacherInfoDao teacherInfoDao;
@@ -54,9 +54,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     /**
      * 用户名密码登录
-     * @author yzw
+     *
      * @param loginDTO
      * @return
+     * @author yzw
      */
     @Override
     public UserInfoVO userLogin(UserLoginByUsernameDTO loginDTO) {
@@ -191,12 +192,30 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     }
 
     @Override
+    public GetUserInfoVO getUserInfo(SaSession session) {
+        //获取session中的用户信息
+        UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
+        // 获取用户信息
+        UserInfo userInfo = userInfoVO.getUserInfo();
+        // 获取用户信息中的角色列表
+        List<RoleInfo> roleList = userInfo.getRoleList();
+        // 获取用户信息中的角色列表中的角色名，作为List<String>返回
+        List<String> roleArray = roleList.stream().map(RoleInfo::getRoleName).collect(Collectors.toList());
+        GetUserInfoVO getUserInfoVO = BeanCopyUtils.copyBean(userInfo, GetUserInfoVO.class);
+        // 设置角色列表
+        getUserInfoVO.setRoleList(roleArray);
+        return getUserInfoVO;
+
+    }
+
+    @Override
     public void updateTeacherInfo(Integer userId, UpdateTeacherInfoDTO updateTeacherInfoDTO) {
         Integer count = userInfoDao.updateLoginNameAndHeadImgByUserId(updateTeacherInfoDTO.getLoginName(), updateTeacherInfoDTO.getHeadImg(),
                 userId);
-        if(count <= 0){
+        if (count <= 0) {
             throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
         }
     }
+
 }
 

@@ -2,6 +2,7 @@ package com.qgexam.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qgexam.user.pojo.PO.SchoolInfo;
+import com.qgexam.user.pojo.VO.SchoolInfoVO;
 
 import java.util.List;
 
@@ -12,6 +13,6 @@ import java.util.List;
  * @since 2022-12-14 11:15:14
  */
 public interface SchoolInfoService extends IService<SchoolInfo> {
-    List<SchoolInfo> getSchoolInfoList();
+    List<SchoolInfoVO> getSchoolInfoList();
 }
 

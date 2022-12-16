@@ -5,15 +5,11 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
-import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.StudentRegisterDTO;
 import com.qgexam.user.pojo.DTO.UpdatePasswordDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
-import com.qgexam.user.pojo.PO.SchoolInfo;
-import com.qgexam.user.pojo.PO.UserInfo;
-import com.qgexam.user.pojo.VO.GetSchoolInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.MessageCodeService;
 import com.qgexam.user.service.SchoolInfoService;
@@ -22,8 +18,6 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Validated
 @RestController
@@ -111,25 +105,20 @@ public class UserInfoController extends BaseController {
      */
     @GetMapping("/getSchoolList")
     public ResponseResult getSchoolList() {
-        List<SchoolInfo> schoolInfoList = schoolInfoService.getSchoolInfoList();
-        List<GetSchoolInfoVO> schoolInfoVOList = new ArrayList<GetSchoolInfoVO>();
-        for (SchoolInfo schoolInfo : schoolInfoList) {
-            schoolInfoVOList.add(BeanCopyUtils.copyBean(schoolInfo, GetSchoolInfoVO.class));
-        }
-        return ResponseResult.okResult(schoolInfoVOList);
+        return ResponseResult.okResult(schoolInfoService.getSchoolInfoList());
     }
 
     /**
-     * @description 根据用户id获取用户信息
+     * @description 从session中获取用户信息
      * @return com.qgexam.common.core.api.ResponseResult
      * @aythor peter guo
      * @date 2022/12/14 19:10:29
      */
     @GetMapping("/common/getUserInfo")
     public ResponseResult getUserInfo() {
+        // 获取session
         SaSession session = StpUtil.getSession();
-        UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
-        return ResponseResult.okResult(userInfoVO);
+        return ResponseResult.okResult(userInfoService.getUserInfo(session));
     }
     /**
      * 学生注册
