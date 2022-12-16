@@ -58,13 +58,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
      * @return
      */
     @Override
-<<<<<<< HEAD
-    public UserInfo getUserInfoByLoginName(String loginName) {
-        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserInfo::getLoginName, loginName);
-        UserInfo userInfo = userInfoDao.selectOne(queryWrapper);
-        return userInfo;
-=======
     public UserInfoVO userLogin(UserLoginByUsernameDTO loginDTO) {
         String loginName = loginDTO.getLoginName();
         String password = loginDTO.getPassword();
@@ -95,7 +88,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         userInfoVO.setStudentInfo(studentInfo);
         userInfoVO.setTeacherInfo(teacherInfo);
         return userInfoVO;
->>>>>>> 5dcd3b81b561a30e94980844a6657e5a05e7faaf
     }
 
     @Override

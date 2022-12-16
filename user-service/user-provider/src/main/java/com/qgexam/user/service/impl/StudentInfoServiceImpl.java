@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.StudentInfoDao;
+import com.qgexam.user.dao.UserInfoDao;
+import com.qgexam.user.pojo.DTO.UpdateStudentInfoDTO;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.GetStudentInfoVO;
@@ -25,6 +27,9 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
     @Autowired
     private StudentInfoDao studentInfoDao;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
     @Override
     public GetStudentInfoVO getStudentInfo(SaSession session) {
         // 获取session中的用户信息
@@ -38,6 +43,17 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
         getStudentInfoVO = BeanCopyUtils.copyBean(userInfo, GetStudentInfoVO.class);
         getStudentInfoVO = BeanCopyUtils.copyBean(studentInfo, getStudentInfoVO.getClass());*/
         return getStudentInfoVO;
+    }
+
+    @Override
+    public Boolean updateStudentInfo(String loginName,String headImg,String faceImg) {
+//        UserInfo userInfo = new UserInfo();
+//        userInfo.setLoginName(loginName);
+//        userInfo.setPassword(headImg);
+//        if (userInfoDao.updatePassword(userInfo) != 0 || ) {
+//            return true;
+//        }
+        return true;
     }
 }
 
