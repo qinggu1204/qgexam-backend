@@ -66,4 +66,17 @@
         <parameter property="password"/>
     </parameterMap>
 
+    <update id="updateLoginNameAndHeadImg">
+        update user_info
+        set login_name = #{loginName,jdbcType=VARCHAR},
+            head_img   = #{headImg,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateLoginNameAndHeadImgByUserId">
+        update user_info
+        set login_name = #{loginName},
+            head_img   = #{headImg}
+        where user_id = #{userId}
+    </update>
+
 </mapper>

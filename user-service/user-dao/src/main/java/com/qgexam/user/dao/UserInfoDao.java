@@ -1,4 +1,5 @@
 package com.qgexam.user.dao;
+import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.RoleInfo;
@@ -27,5 +28,6 @@ public interface UserInfoDao extends BaseMapper<UserInfo> {
     Integer insertStudent(StudentInfo studentInfo);
     Integer updatePassword(UserInfo userInfo);
 
+    Integer updateLoginNameAndHeadImgByUserId(@Param("loginName") String loginName, @Param("headImg") String headImg, @Param("userId") Integer userId);
 }
 
