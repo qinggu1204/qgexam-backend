@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TeacherInfoController extends BaseController {
     @Reference
     TeacherInfoService teacherInfoService;
+    @Reference
+    private UserInfoService userInfoService;
 
     /**
      * @description 获取教师信息
@@ -34,4 +36,11 @@ public class TeacherInfoController extends BaseController {
         SaSession session = StpUtil.getSession();
         return ResponseResult.okResult(teacherInfoService.getTeacherInfo(session));
     }
+
+    @PutMapping("/updateTeacherInfo")
+    public ResponseResult updateTeacherInfo(@RequestBody @Validated UpdateTeacherInfoDTO updateTeacherInfoDTO) {
+        userInfoService.updateTeacherInfo(getUserId(), updateTeacherInfoDTO);
+        return ResponseResult.okResult();
+    }
+
 }
