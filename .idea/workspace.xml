@@ -5,100 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="验证码模块测试完毕3">
-      <change afterPath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/qgexam-common-core-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/target/qgexam-common-datasource-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/qgexam-common-redis-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/base/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/BusinessExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/qgexam-common-web-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/aspect/BaseContextAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/DTO/StudentRegisterDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/DTO/TeacherRegisterDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/DTO/UpdatePasswordDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/VO/UserInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/StudentInfoDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/TeacherInfoDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/pojo/PO/StudentInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/pojo/PO/TeacherInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SchoolInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/TeacherInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/StudentInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/TeacherInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/mapper/SchoolInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/constants/SystemConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/constants/SystemConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/exception/BusinessException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/utils/BPwdEncoderUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/utils/BPwdEncoderUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/api/AppHttpCodeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/api/AppHttpCodeEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/api/ResponseResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/api/ResponseResult.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/constants/ExamConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/constants/ExamConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/constants/RoleConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/constants/RoleConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/constants/SystemConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/constants/SystemConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/utils/BPwdEncoderUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/utils/BPwdEncoderUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/utils/BeanCopyUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/utils/BeanCopyUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/utils/WebUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/target/classes/com/qgexam/common/core/utils/WebUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/target/classes/com/qgexam/common/datasource/configure/MybatisPlusConfigure.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/target/classes/com/qgexam/common/datasource/configure/MybatisPlusConfigure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/classes/com/qgexam/common/redis/configure/FastJsonRedisSerializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/classes/com/qgexam/common/redis/configure/FastJsonRedisSerializer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/classes/com/qgexam/common/redis/configure/RedisConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/classes/com/qgexam/common/redis/configure/RedisConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/classes/com/qgexam/common/redis/utils/RedisCache.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/target/classes/com/qgexam/common/redis/utils/RedisCache.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/context/BaseContextHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/context/BaseContextHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/CheckExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/CheckExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/TokenExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/TokenExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/META-INF/spring.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/configure/SaTokenConfigure.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/configure/SaTokenConfigure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/configure/WebConfigure.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/configure/WebConfigure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/handler/exception/CheckExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/handler/exception/CheckExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/handler/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/handler/exception/GlobalExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/handler/exception/TokenExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/target/classes/com/qgexam/common/web/handler/exception/TokenExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/DTO/GetMessageCodeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/DTO/GetMessageCodeDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/DTO/UserLoginByPhoneNumberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/DTO/UserLoginByPhoneNumberDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/DTO/UserLoginByUsernameDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/DTO/UserLoginByUsernameDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/VO/GetSchoolInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/VO/GetSchoolInfoVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/VO/GetUserInfoByIdVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/VO/GetUserInfoByIdVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/pojo/VO/GetUserInfoVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/test/java/com/qgexam/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/test/java/com/qgexam/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/UserInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SchoolInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SchoolInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/UserInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/UserInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/dao/RoleInfoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/dao/RoleInfoDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/dao/SchoolInfoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/dao/SchoolInfoDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/dao/UserInfoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/dao/UserInfoDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/RoleInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/RoleInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/SchoolInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/SchoolInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/com/qgexam/user/pojo/PO/UserInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/target/classes/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/target/classes/mapper/UserInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/UserInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/UserInfoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/UserInfoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__cn_dev33_sa_token_dao_redis_fastjson_1_33_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/qgexam-user-consumer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/qgexam-user-consumer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-api/user-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/user-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/user-provider.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/user-provider.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,8 +23,51 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.UserConsumerApplication">
+    <configuration name="UserConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="qgexam-user-consumer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserConsumerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="user-provider" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserProviderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.UserConsumerApplication" />
+      <item itemvalue="Spring Boot.UserProviderApplication" />
+    </list>
+  </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/qgexam$SMSUtils.ic" NAME="SMSUtils 覆盖结果" MODIFIED="1671074415972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

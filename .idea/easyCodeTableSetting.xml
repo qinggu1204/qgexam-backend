@@ -83,9 +83,9 @@
               </option>
               <option name="name" value="StudentInfo" />
               <option name="preName" value="" />
-              <option name="saveModelName" value="user-dao" />
-              <option name="savePackageName" value="com.qgexam.user" />
-              <option name="savePath" value="./user-service/user-dao/src/main/java/com/qgexam/user" />
+              <option name="saveModelName" value="user-service" />
+              <option name="savePackageName" value="com.qgexam.user.service" />
+              <option name="savePath" value="./user-service/com/qgexam/user/service" />
               <option name="templateGroupName" value="MybatisPlus" />
             </TableInfoDTO>
           </value>

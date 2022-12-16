@@ -76,13 +76,13 @@
     <orderEntry type="library" name="Maven: io.opentracing:opentracing-api:0.33.0" level="project" />
     <orderEntry type="library" name="Maven: io.opentracing:opentracing-util:0.33.0" level="project" />
     <orderEntry type="library" name="Maven: io.opentracing:opentracing-noop:0.33.0" level="project" />
-    <orderEntry type="module" module-name="qgexam-common-web" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-validation:2.3.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish:jakarta.el:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:6.1.5.Final" level="project" />
     <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.4.1.Final" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.5.1" level="project" />
+    <orderEntry type="module" module-name="qgexam-common-web" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.3.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-json:2.3.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.11.0" level="project" />
@@ -111,7 +111,7 @@
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: cn.dev33:sa-token-spring-boot-starter:1.33.0" level="project" />
     <orderEntry type="library" name="Maven: cn.dev33:sa-token-servlet:1.33.0" level="project" />
-    <orderEntry type="library" name="Maven: cn.dev33:sa-token-dao-redis-fastjson:1.33.0" level="project" />
+    <orderEntry type="library" name="Maven: cn.dev33:sa-token-dao-redis-jackson:1.33.0" level="project" />
     <orderEntry type="library" name="Maven: cn.dev33:sa-token-core:1.33.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-redis:2.3.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-redis:2.3.1.RELEASE" level="project" />
@@ -163,6 +163,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-test:5.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.xmlunit:xmlunit-core:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: cn.dev33:sa-token-context-dubbo:1.33.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
   </component>
