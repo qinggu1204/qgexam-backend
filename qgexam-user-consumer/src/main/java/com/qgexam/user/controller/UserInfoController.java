@@ -5,15 +5,11 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
-import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.StudentRegisterDTO;
 import com.qgexam.user.pojo.DTO.UpdatePasswordDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
-import com.qgexam.user.pojo.PO.RoleInfo;
-import com.qgexam.user.pojo.PO.UserInfo;
-import com.qgexam.user.pojo.VO.GetUserInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.MessageCodeService;
 import com.qgexam.user.service.SchoolInfoService;
@@ -22,8 +18,6 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Validated
 @RestController

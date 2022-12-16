@@ -40,8 +40,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     @Autowired
     private UserInfoDao userInfoDao;
-    @Autowired
-    private SchoolInfoDao schoolInfoDao;
 
     @Autowired
     private TeacherInfoDao teacherInfoDao;
