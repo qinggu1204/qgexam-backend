@@ -26,8 +26,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     @Override
     public UserInfo getUserInfoByLoginName(String loginName) {
-        String s = null;
-        s.toLowerCase(Locale.ROOT);
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserInfo::getLoginName, loginName);
         UserInfo userInfo = userInfoDao.selectOne(queryWrapper);
