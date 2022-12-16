@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetSchoolInfoVO implements Serializable {
+public class SchoolInfoVO implements Serializable {
     private Integer schoolId;
     private String schoolName;
 }

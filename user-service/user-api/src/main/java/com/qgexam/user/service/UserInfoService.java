@@ -1,11 +1,13 @@
 package com.qgexam.user.service;
 
+import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 
 import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.VO.GetUserInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 
 import java.util.List;
@@ -31,6 +33,8 @@ public interface UserInfoService extends IService<UserInfo> {
     Boolean registerStudent(String loginName, String password, String userName, String studentNumber, Integer schoolId, String schoolName);
 
     Boolean updatePassword(String loginName, String newPassword);
+
+    GetUserInfoVO getUserInfo(SaSession session);
 
 }
 
