@@ -26,15 +26,14 @@ public class SaTokenConfigure implements WebMvcConfigurer {
                     // 登录校验 -- 拦截所有路由
                     SaRouter.match("/**", r -> StpUtil.checkLogin());
 
-                    // 角色校验
-                    SaRouter.match("/stu/**", r -> StpUtil.checkRoleAnd("student"));
-                    SaRouter.match("/tea/**", r -> StpUtil.checkRoleAnd("teacher"));
-                    SaRouter.match("/netea/**", r -> StpUtil.checkRoleAnd("neteacher"));
-                    SaRouter.match("/admin/**", r -> StpUtil.checkRoleAnd("admin"));
-                    SaRouter.match("/user/common/**", r -> StpUtil.checkRoleOr("teacher", "student", "neteacher", "admin"));
-                    SaRouter.match("/common/**", r -> StpUtil.checkRoleOr("teacher", "student", "neteacher", "admin"));
-                    SaRouter.match("/alltea/**", r -> StpUtil.checkRoleOr("teacher", "neteacher"));
-
+            // 角色校验 -- 拦截以 tea 开头的路由，必须具备 tea 角色才可以通过认证
+            SaRouter.match("/tea/**", r -> StpUtil.checkRoleAnd("teacher"));
+            SaRouter.match("/stu/**", r -> StpUtil.checkRoleAnd("student"));
+            SaRouter.match("/netea/**", r -> StpUtil.checkRoleAnd("neteacher"));
+            SaRouter.match("/admin/**", r -> StpUtil.checkRoleAnd("admin"));
+            SaRouter.match("/user/common/**", r ->StpUtil.checkRoleOr("teacher", "student", "neteacher", "admin"));
+            SaRouter.match("/common/**", r ->StpUtil.checkRoleOr("teacher", "student", "neteacher", "admin"));
+            SaRouter.match("/alltea/**", r -> StpUtil.checkRoleOr("teacher", "neteacher"));
                 })).addPathPatterns("/**")
                 .excludePathPatterns(ignored);
     }

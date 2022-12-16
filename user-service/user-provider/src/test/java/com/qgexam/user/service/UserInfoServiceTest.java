@@ -4,6 +4,7 @@ package com.qgexam.user.service;
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
+import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import org.apache.dubbo.config.annotation.Reference;
 import org.junit.jupiter.api.Test;
@@ -40,18 +41,14 @@ public class UserInfoServiceTest {
 
     @Test
     public void registerTeacherTest() {
-        userInfoService.registerTeacher("18767172095", "zqdzqd", "张半蛋",
-                "T06", "http://xxxx", 1, "浙江工业大学");
-//        UserInfo userInfo=userInfoService.getUserInfoByLoginName("18767171095");
-//        System.out.println(userInfo.toString());
+        userInfoService.registerTeacher("18888888889", "zs", "张1",
+                "T11", "http://xxxx", 1, "浙江工业大学");
     }
 
     @Test
     public void registerStudentTest() {
-        userInfoService.registerStudent("19941200877", "scqscq",
-                "孙五", "202003150417", 1, "浙江工业大学");
-//        UserInfo userInfo=userInfoService.getUserInfoByLoginName("19941200877");
-//        System.out.println(userInfo.toString());
+        userInfoService.registerStudent("19941200879", "scq",
+                "孙六", "202003154417", 1, "浙江工业大学");
     }
 
     @Test
