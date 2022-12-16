@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,11 +14,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetTeacherInfoVO {
+public class GetTeacherInfoVO implements Serializable {
     private String teacherNumber;
-
     private String loginName;
-
     private String userName;
     private String schoolName;
     private String headImg;

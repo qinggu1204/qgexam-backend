@@ -65,5 +65,4 @@
         <parameter property="loginName"/>
         <parameter property="password"/>
     </parameterMap>
-
 </mapper>

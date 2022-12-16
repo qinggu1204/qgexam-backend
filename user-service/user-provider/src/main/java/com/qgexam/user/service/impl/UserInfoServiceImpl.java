@@ -1,7 +1,6 @@
 package com.qgexam.user.service.impl;
 
 import cn.dev33.satoken.session.SaSession;
-import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
@@ -9,15 +8,12 @@ import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
-import com.qgexam.user.dao.SchoolInfoDao;
 import com.qgexam.user.dao.StudentInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
 import com.qgexam.user.dao.UserInfoDao;
+import com.qgexam.user.dao.UserRoleInfoDao;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
-import com.qgexam.user.pojo.PO.RoleInfo;
-import com.qgexam.user.pojo.PO.StudentInfo;
-import com.qgexam.user.pojo.PO.TeacherInfo;
-import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.GetUserInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.UserInfoService;
@@ -46,6 +42,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     @Autowired
     private StudentInfoDao studentInfoDao;
+
+    @Autowired
+    private UserRoleInfoDao userRoleInfoDao;
 
     @Autowired
     private RedisCache redisCache;
@@ -130,7 +129,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     @Override
     @Transactional
-    public Boolean registerTeacher(String loginName, String password, String userName, String teacherNumber, String qualificationImg, Integer schoolId, String schoolName) {
+    public Boolean registerTeacher(String loginName, String password, String userName,
+                                   String teacherNumber, String qualificationImg,
+                                   Integer schoolId, String schoolName) {
         /*1.添加新用户*/
         UserInfo newUser = new UserInfo();
         newUser.setLoginName(loginName);
@@ -147,10 +148,14 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         newTeacher.setSchoolId(schoolId);
         newTeacher.setUserName(userName);
         newTeacher.setSchoolName(schoolName);
-        if (userInfoDao.insertTeacher(newTeacher) != 0) {
-            return true;
+        UserRoleInfo userRoleInfo=new UserRoleInfo();
+        userRoleInfo.setRoleId(2);
+        userRoleInfo.setRoleName("teacher");
+        userRoleInfo.setUserId(userId);
+        if (userInfoDao.insertTeacher(newTeacher) == 0 || userRoleInfoDao.insert(userRoleInfo)==0) {
+            return false;
         }
-        return false;
+        return true;
     }
 
 
@@ -173,9 +178,14 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         newStudent.setStudentNumber(studentNumber);
         newStudent.setSchoolId(schoolId);
         newStudent.setSchoolName(schoolName);
-        if (userInfoDao.insertStudent(newStudent) != 0) {
-            return true;
-        } else return false;
+        UserRoleInfo userRoleInfo=new UserRoleInfo();
+        userRoleInfo.setRoleId(1);
+        userRoleInfo.setRoleName("student");
+        userRoleInfo.setUserId(userId);
+        if (userInfoDao.insertStudent(newStudent) == 0 || userRoleInfoDao.insert(userRoleInfo)==0) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -186,7 +196,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         if (userInfoDao.updatePassword(userInfo) != 0) {
             return true;
         }
-        return true;
+        return false;
     }
 
     @Override
