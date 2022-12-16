@@ -13,6 +13,7 @@ import com.qgexam.user.dao.SchoolInfoDao;
 import com.qgexam.user.dao.StudentInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
 import com.qgexam.user.dao.UserInfoDao;
+import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.RoleInfo;
 import com.qgexam.user.pojo.PO.StudentInfo;
@@ -53,9 +54,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
 
     /**
      * 用户名密码登录
-     * @author yzw
+     *
      * @param loginDTO
      * @return
+     * @author yzw
      */
     @Override
     public UserInfoVO userLogin(UserLoginByUsernameDTO loginDTO) {
@@ -203,6 +205,17 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         // 设置角色列表
         getUserInfoVO.setRoleList(roleArray);
         return getUserInfoVO;
+
     }
+
+    @Override
+    public void updateTeacherInfo(Integer userId, UpdateTeacherInfoDTO updateTeacherInfoDTO) {
+        Integer count = userInfoDao.updateLoginNameAndHeadImgByUserId(updateTeacherInfoDTO.getLoginName(), updateTeacherInfoDTO.getHeadImg(),
+                userId);
+        if (count <= 0) {
+            throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
+        }
+    }
+
 }
 
