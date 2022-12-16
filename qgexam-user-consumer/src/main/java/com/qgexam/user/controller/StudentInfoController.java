@@ -1,7 +1,14 @@
 package com.qgexam.user.controller;
 
+import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.ResponseResult;
+import com.qgexam.common.core.constants.SystemConstants;
+import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.user.pojo.PO.StudentInfo;
+import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.VO.GetStudentInfoVO;
+import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +29,7 @@ public class StudentInfoController {
      */
     @GetMapping("/getStudentInfo")
     public ResponseResult getStudentInfo() {
-        //根据token获取用户编号
-        Integer userId = StpUtil.getLoginIdAsInt();
-        studentInfoService.getStudentInfoByUserId(userId);
-        return ResponseResult.okResult();
+        SaSession session = StpUtil.getSession();
+        return ResponseResult.okResult(studentInfoService.getStudentInfo(session));
     }
 }

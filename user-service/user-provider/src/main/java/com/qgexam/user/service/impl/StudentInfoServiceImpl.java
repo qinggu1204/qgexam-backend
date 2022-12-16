@@ -1,9 +1,17 @@
 package com.qgexam.user.service.impl;
 
+import cn.dev33.satoken.session.SaSession;
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qgexam.common.core.api.ResponseResult;
+import com.qgexam.common.core.constants.SystemConstants;
+import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.StudentInfoDao;
 import com.qgexam.user.pojo.PO.StudentInfo;
+import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.VO.GetStudentInfoVO;
+import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +29,17 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
     private StudentInfoDao studentInfoDao;
 
     @Override
-    public StudentInfo getStudentInfoByUserId(Integer userId) {
-        LambdaQueryWrapper<StudentInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(StudentInfo::getUserId, userId);
-        return studentInfoDao.selectOne(queryWrapper);
+    public GetStudentInfoVO getStudentInfo(SaSession session) {
+        // 获取session中的用户信息
+        UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
+        //获取用户信息
+        UserInfo userInfo = userInfoVO.getUserInfo();
+        //获取学生信息
+        StudentInfo studentInfo = userInfoVO.getStudentInfo();
+        GetStudentInfoVO getStudentInfoVO;
+        getStudentInfoVO = BeanCopyUtils.copyBean(userInfo, GetStudentInfoVO.class);
+        getStudentInfoVO = BeanCopyUtils.copyBean(studentInfo, getStudentInfoVO.getClass());
+        return getStudentInfoVO;
     }
 }
 

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 根据id查询用户信息接口返回信息
+ * 查询用户信息接口返回信息
  *
  * @author peter guo
  * @since 2022-12-14 16:15:14
@@ -24,5 +24,5 @@ public class GetUserInfoVO implements Serializable {
     //头像url
     private String headImg;
     // 角色列表
-    private List<RoleInfo> roleList;
+    private List<String> roleList;
 }

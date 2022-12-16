@@ -1,26 +1,23 @@
-package com.qgexam.common.web.context;
+package com.qgexam.common.core.context;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @project qgexam
- * @description 线程帮助类， 向threadlocal中存放信息
+ * @description 线程帮助类， 在threadLocal中存储当前用户信息
  * @author yzw
- * @date 2022/12/14 11:16:48
+ * @date 2022/12/16 00:32:18
  * @version 1.0
  */
 public class BaseContextHandler {
 
     public static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<>();
     public static final String CONTEXT_KEY_USER_ID = "currentUserId";
-    public static final String CONTEXT_KEY_USERNAME = "currentLoginName";
+    public static final String CONTEXT_KEY_STUDENT_ID = "currentStudentId";
+    public static final String CONTEXT_KEY_TEACHER_ID = "currentTeacherId";
 
-    /**
-     * 向threadlocal中存放信息
-     * @param key
-     * @param value
-     */
+
     public static void set(String key, Object value) {
         Map<String, Object> map = threadLocal.get();
         if (map == null) {
@@ -30,12 +27,6 @@ public class BaseContextHandler {
         threadLocal.set(map);
     }
 
-
-    /**
-     * 从threadlocal中获取信息
-     * @param key
-     * @return
-     */
     public static Object get(String key) {
         Map<String, Object> map = threadLocal.get();
         if (map == null) {
@@ -54,18 +45,29 @@ public class BaseContextHandler {
         return returnObjectValue(value);
     }
 
-    public static void setUsername(String username) {
-        set(CONTEXT_KEY_USERNAME, username);
+    public static void setStudentID(Integer studentID) {
+        set(CONTEXT_KEY_STUDENT_ID, studentID);
     }
 
-    public static String getLoginName() {
-        Object value = get(CONTEXT_KEY_USERNAME);
+    public static Integer getStudentID() {
+        Object value = get(CONTEXT_KEY_STUDENT_ID);
+        return returnObjectValue(value);
+    }
+
+    public static void setTeacherID(Integer teacherID) {
+        set(CONTEXT_KEY_TEACHER_ID, teacherID);
+    }
+
+    public static Integer getTeacherID() {
+        Object value = get(CONTEXT_KEY_TEACHER_ID);
         return returnObjectValue(value);
     }
 
 
     /**
-     * 将传入的Object类型的参数判断是否为空，不为空转换为T类型返回
+     * 传入的Object类型的数据，判断是否为空，不为空则转换为T类型的数据
+     * @param value
+     * @return
      */
     private static <T> T returnObjectValue(Object value) {
         return value == null ? null : (T) value;

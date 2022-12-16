@@ -1,7 +1,9 @@
 package com.qgexam.user.service;
 
+import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qgexam.user.pojo.PO.StudentInfo;
+import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 
 /**
  * 学生表(StudentInfo)表服务接口
@@ -11,6 +13,6 @@ import com.qgexam.user.pojo.PO.StudentInfo;
  */
 public interface StudentInfoService extends IService<StudentInfo> {
 
-    StudentInfo getStudentInfoByUserId(Integer userId);
+    GetStudentInfoVO getStudentInfo(SaSession session);
 }
 

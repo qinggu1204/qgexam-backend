@@ -10,6 +10,6 @@ import com.qgexam.user.pojo.PO.SchoolInfo;
  * @since 2022-12-14 11:12:31
  */
 public interface SchoolInfoDao extends BaseMapper<SchoolInfo> {
-
+    SchoolInfo queryById(Integer schoolId);
 }
 

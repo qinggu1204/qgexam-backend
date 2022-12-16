@@ -33,14 +33,12 @@ public class SchoolInfoServiceImpl extends ServiceImpl<SchoolInfoDao, SchoolInfo
      */
     @Override
     public List<SchoolInfoVO> getSchoolInfoList() {
-        LambdaQueryWrapper<SchoolInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.select(SchoolInfo::getSchoolId, SchoolInfo::getSchoolName);
-        List<SchoolInfo> schoolInfos = schoolInfoDao.selectList(queryWrapper);
-        List<SchoolInfoVO> schoolInfoVOList = new ArrayList<SchoolInfoVO>();
+        List<SchoolInfo> schoolInfos = schoolInfoDao.selectList(null);
+        /*List<SchoolInfoVO> schoolInfoVOList = new ArrayList<SchoolInfoVO>();
         for (SchoolInfo schoolInfo : schoolInfos) {
             schoolInfoVOList.add(BeanCopyUtils.copyBean(schoolInfo, SchoolInfoVO.class));
-        }
-        return schoolInfoVOList;
+        }*/
+        return BeanCopyUtils.copyBeanList(schoolInfos, SchoolInfoVO.class);
     }
 }
 
