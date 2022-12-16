@@ -1,10 +1,8 @@
 package com.qgexam.user.service;
 
-<<<<<<< HEAD
 
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
-=======
->>>>>>> cbe2d4384a1969557a546ed5f3349083f1249691
+
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import org.apache.dubbo.config.annotation.Reference;
