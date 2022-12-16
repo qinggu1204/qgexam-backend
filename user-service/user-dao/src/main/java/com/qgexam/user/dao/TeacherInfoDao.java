@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * 教师表(TeacherInfo)表数据库访问层
  *
- * @author lamb007
- * @since 2022-12-15 20:03:48
+ * @author tageshi
+ * @since 2022-12-16 17:37:04
  */
 public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
     IPage<StudentInfo> getStudentPage(@Param("courseId") Integer courseId, IPage<StudentInfo> page);

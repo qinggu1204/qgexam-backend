@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.user.dao.UserRoleInfoDao">
+    <insert id="insert">
+        insert into user_role_info (role_id,role_name,user_id)
+        values(#{roleId},#{roleName},#{userId});
+    </insert>
+</mapper>
