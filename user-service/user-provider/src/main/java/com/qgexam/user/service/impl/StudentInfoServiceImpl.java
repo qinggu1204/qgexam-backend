@@ -33,9 +33,10 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
         UserInfo userInfo = userInfoVO.getUserInfo();
         //获取学生信息
         StudentInfo studentInfo = userInfoVO.getStudentInfo();
-        GetStudentInfoVO getStudentInfoVO;
+        GetStudentInfoVO getStudentInfoVO = BeanCopyUtils.copyFromManyBean(GetStudentInfoVO.class, userInfo, studentInfo);
+        /*GetStudentInfoVO getStudentInfoVO;
         getStudentInfoVO = BeanCopyUtils.copyBean(userInfo, GetStudentInfoVO.class);
-        getStudentInfoVO = BeanCopyUtils.copyBean(studentInfo, getStudentInfoVO.getClass());
+        getStudentInfoVO = BeanCopyUtils.copyBean(studentInfo, getStudentInfoVO.getClass());*/
         return getStudentInfoVO;
     }
 }

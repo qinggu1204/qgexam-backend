@@ -31,5 +31,21 @@ public class BeanCopyUtils {
                 .map(o -> copyBean(o, targetType))
                 .collect(Collectors.toList());
     }
+
+    public static <V> V copyFromManyBean(Class<V> targetType,Object ...source) {
+        //创建目标对象
+        V result = null;
+        try {
+            result = targetType.newInstance();
+            //实现从多个对象中copy属性
+            for (Object o : source) {
+                BeanUtils.copyProperties(o, result);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //返回结果
+        return result;
+    }
 }
 
