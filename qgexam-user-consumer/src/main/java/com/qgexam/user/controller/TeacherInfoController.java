@@ -23,12 +23,6 @@ public class TeacherInfoController extends BaseController {
     @Reference
     private UserInfoService userInfoService;
 
-    /**
-     * @description 获取教师信息
-     * @return com.qgexam.common.core.api.ResponseResult
-     * @aythor tageshi
-     * @date 2022/12/16 15:58:20
-     */
     @GetMapping("/getTeacherInfo")
     public ResponseResult getTeacherInfo(){
         SaSession session = StpUtil.getSession();

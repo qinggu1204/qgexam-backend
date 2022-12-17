@@ -11,5 +11,6 @@ import com.qgexam.user.pojo.PO.UserRoleInfo;
  */
 public interface UserRoleInfoDao extends BaseMapper<UserRoleInfo> {
     int insert(UserRoleInfo userRoleInfo);
+    String getRoleNameByUserId(Integer userId);
 }
 

@@ -10,6 +10,6 @@ import com.qgexam.user.pojo.PO.TeacherInfo;
  * @since 2022-12-16 17:37:04
  */
 public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
-
+    TeacherInfo getTeacherInfoByUserId(Integer userId);
 }
 
