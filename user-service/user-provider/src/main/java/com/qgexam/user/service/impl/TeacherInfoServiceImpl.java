@@ -8,8 +8,11 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.core.constants.SystemConstants;
-import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.user.dao.CourseInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
+import com.qgexam.user.pojo.DTO.CourseTeacherDTO;
+import com.qgexam.user.pojo.DTO.CreateCourseDTO;
+import com.qgexam.user.pojo.PO.CourseInfo;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
 import com.qgexam.user.pojo.VO.StudentVO;
@@ -21,7 +24,6 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 /**
  * 教师表(TeacherInfo)表服务实现类
@@ -36,14 +38,13 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
     @Autowired
     private TeacherInfoDao teacherInfoDao;
 
+    @Autowired
+    private CourseInfoDao courseInfoDao;
+
     @Override
     public IPage<StudentVO> getStudentList(Integer courseId, Integer currentPage, Integer pageSize) {
-        IPage<StudentInfo> page=new Page<>(currentPage,pageSize);
-        IPage<StudentInfo> studentPage = teacherInfoDao.getStudentPage(courseId,page);
-        Integer pages = Integer.parseInt(String.valueOf(studentPage.getPages()));
-        studentPage.setPages(pages);
-        //将studentInfo转化为VO并封装到分页对象中返回
-        return studentPage.convert(studentInfo -> BeanCopyUtils.copyBean(studentInfo, StudentVO.class));
+        IPage<StudentVO> page=new Page<>(currentPage,pageSize);
+        return teacherInfoDao.getStudentPage(courseId,page);
     }
     @Override
     public GetTeacherInfoVO getTeacherInfo(SaSession session) {
@@ -55,10 +56,6 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
         GetTeacherInfoVO getTeacherInfoVO= BeanCopyUtils.copyFromManyBean(GetTeacherInfoVO.class, userInfo, teacherInfo);
         return getTeacherInfoVO;
     }
-
-
-    @Autowired
-    private CourseInfoDao courseInfoDao;
 
     /**
      * 教师向课程表插入记录，同时向课程-教师表插入记录
