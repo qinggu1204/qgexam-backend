@@ -17,5 +17,18 @@
         <module name="qgexam-common-web" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="qgexam" target="1.8" />
+      <module name="qgexam-common" target="1.8" />
+      <module name="qgexam-common-core" target="1.8" />
+      <module name="qgexam-common-datasource" target="1.8" />
+      <module name="qgexam-common-redis" target="1.8" />
+      <module name="qgexam-common-web" target="1.8" />
+      <module name="qgexam-user-consumer" target="1.8" />
+      <module name="user-api" target="1.8" />
+      <module name="user-dao" target="1.8" />
+      <module name="user-provider" target="1.8" />
+      <module name="user-service" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

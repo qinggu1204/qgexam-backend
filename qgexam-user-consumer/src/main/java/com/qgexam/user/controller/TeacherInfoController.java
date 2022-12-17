@@ -1,6 +1,8 @@
 package com.qgexam.user.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import cn.dev33.satoken.session.SaSession;
+import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.CreateCourseDTO;
@@ -12,19 +14,35 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
+
  * 教师信息controller
  * @author yzw
+ * @author tageshi
+ * @date 2022/12/16 15:49
+
  */
 @RestController
-@Validated
 @RequestMapping("/tea")
 public class TeacherInfoController extends BaseController {
-
+    @Reference
+    TeacherInfoService teacherInfoService;
     @Reference
     private UserInfoService userInfoService;
 
-    @Reference
-    private TeacherInfoService teacherInfoService;
+
+
+
+    /**
+     * @description 获取教师信息
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @aythor tageshi
+     * @date 2022/12/16 15:58:20
+     */
+    @GetMapping("/getTeacherInfo")
+    public ResponseResult getTeacherInfo(){
+        SaSession session = StpUtil.getSession();
+        return ResponseResult.okResult(teacherInfoService.getTeacherInfo(session));
+    }
 
     /**
      * 教师修改个人信息

@@ -27,5 +27,4 @@ public class MyTest {
         String name = redisCache.getCacheObject("username");
         System.out.println(name);
     }
-
 }

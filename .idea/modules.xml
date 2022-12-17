@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/qgexam-common/qgexam-common-core/qgexam-common-core.iml" filepath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/qgexam-common-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/qgexam-common-datasource.iml" filepath="$PROJECT_DIR$/qgexam-common/qgexam-common-datasource/qgexam-common-datasource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qgexam-common/qgexam-common-redis/qgexam-common-redis.iml" filepath="$PROJECT_DIR$/qgexam-common/qgexam-common-redis/qgexam-common-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-dao/user-dao.iml" filepath="$PROJECT_DIR$/user-service/user-dao/user-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-provider/user-provider.iml" filepath="$PROJECT_DIR$/user-service/user-provider/user-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
+    </modules>
+  </component>
+</project>

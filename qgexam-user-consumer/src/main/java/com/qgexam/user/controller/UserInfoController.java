@@ -6,10 +6,7 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.web.base.BaseController;
-import com.qgexam.user.pojo.DTO.StudentRegisterDTO;
-import com.qgexam.user.pojo.DTO.UpdatePasswordDTO;
-import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
-import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
+import com.qgexam.user.pojo.DTO.*;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.MessageCodeService;
 import com.qgexam.user.service.SchoolInfoService;
@@ -120,6 +117,7 @@ public class UserInfoController extends BaseController {
         SaSession session = StpUtil.getSession();
         return ResponseResult.okResult(userInfoService.getUserInfo(session));
     }
+
     /**
      * 学生注册
      *
@@ -131,6 +129,20 @@ public class UserInfoController extends BaseController {
         if(userInfoService.registerStudent(studentRegisterDTO.getPhoneNumber(),studentRegisterDTO.getPassword(),
                 studentRegisterDTO.getStudentName(),studentRegisterDTO.getStudentNumber(),
                 studentRegisterDTO.getSchoolId(),studentRegisterDTO.getSchoolName())){
+            return ResponseResult.okResult();
+        }
+        else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+    }
+    /**
+     * 教师注册
+     *
+     * @param teacherRegisterDTO 教师填写于表单中的信息
+     * @return 注册结果
+     */
+    @PostMapping("/tea/register")
+    public ResponseResult teacherRegister(@RequestBody @Validated TeacherRegisterDTO teacherRegisterDTO){
+        if(userInfoService.registerTeacher(teacherRegisterDTO.getPhoneNumber(),teacherRegisterDTO.getPassword(),teacherRegisterDTO.getTeacherName(),
+                teacherRegisterDTO.getTeacherNumber(),teacherRegisterDTO.getQualificationImg(),teacherRegisterDTO.getSchoolId(),teacherRegisterDTO.getSchoolName())){
             return ResponseResult.okResult();
         }
         else  return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
