@@ -11,11 +11,8 @@ dubbo:
     name: dubbo
     # 协议端口
     port: 20880
-<<<<<<< HEAD
-=======
   consumer:
     timeout: 600000
->>>>>>> 5dcd3b81b561a30e94980844a6657e5a05e7faaf
   provider:
     filter: -exception
 

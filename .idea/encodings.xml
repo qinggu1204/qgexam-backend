@@ -18,12 +18,14 @@
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/DTO/StudentRegisterDTO.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/DTO/TeacherRegisterDTO.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/pojo/DTO/UpdatePasswordDTO.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-dao/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service/user-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/DTO/StudentRegisterDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/DTO/TeacherRegisterDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/DTO/UpdatePasswordDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service/user-entity/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-provider/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />

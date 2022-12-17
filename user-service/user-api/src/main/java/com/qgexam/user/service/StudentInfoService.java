@@ -2,7 +2,6 @@ package com.qgexam.user.service;
 
 import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qgexam.user.pojo.DTO.UpdateStudentInfoDTO;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 
