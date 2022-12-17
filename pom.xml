@@ -13,6 +13,8 @@
         <module>qgexam-user-consumer</module>
         <module>qgexam-marking-answerPapers-consumer</module>
         <module>marking-answerPapers-service</module>
+        <module>qgexam-view-exam-results-consumer</module>
+        <module>view-exam-results-service</module>
     </modules>
     <packaging>pom</packaging>
 

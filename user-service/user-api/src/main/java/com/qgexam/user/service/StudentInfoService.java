@@ -15,5 +15,6 @@ public interface StudentInfoService extends IService<StudentInfo> {
 
     GetStudentInfoVO getStudentInfo(SaSession session);
     Boolean updateStudentInfo(Integer userId,String loginName,String headImg,String faceImg);
+    boolean joinCourse(Integer studentId, String userName, String studentNumber, Integer courseId);
 }
 

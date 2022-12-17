@@ -13,5 +13,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface StudentInfoDao extends BaseMapper<StudentInfo> {
     Integer updatefaceImgByUserId(@Param("faceImg") String faceImg, @Param("userId") Integer userId);
+    Integer joinCourse(@Param("studentId") Integer studentId, @Param("userName") String userName,@Param("studentNumber") String studentNumber, @Param("courseId") Integer courseId);
 }
 

@@ -5,9 +5,9 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
+import com.qgexam.user.pojo.DTO.JoinCourseDTO;
 import com.qgexam.user.pojo.DTO.UpdateStudentInfoDTO;
-import com.qgexam.user.pojo.PO.StudentInfo;
-import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
@@ -40,6 +40,20 @@ public class StudentInfoController extends BaseController {
     @PutMapping("/updateStudentInfo")
     public ResponseResult updateStudentInfo(@RequestBody @Validated UpdateStudentInfoDTO updateStudentInfoDTO) {
         if(studentInfoService.updateStudentInfo(getUserId(), updateStudentInfoDTO.getLoginName(),updateStudentInfoDTO.getHeadImg(),updateStudentInfoDTO.getFaceImg()))
+            return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+    }
+
+    /**
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @auther ljy
+     * @date 2022/12/16 20:31:42
+     */
+    @PostMapping("/joinCourse")
+    public ResponseResult joinCourse(@RequestBody @Validated JoinCourseDTO joinCourseDTO) {
+        SaSession session = StpUtil.getSession();
+        GetStudentInfoVO getStudentInfoVO = studentInfoService.getStudentInfo(session);
+        if(studentInfoService.joinCourse(getStudentId(), getStudentInfoVO.getUserName(),getStudentInfoVO.getStudentNumber(),joinCourseDTO.getCourseId()))
             return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
         return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
