@@ -41,10 +41,30 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
         return getStudentInfoVO;
     }
 
+    /**
+     * 修改学生信息
+     *
+     * @author ljy
+     * @since 2022-12-15714:29:30
+     */
     @Override
     public Boolean updateStudentInfo(Integer userId,String loginName,String headImg,String faceImg) {
         System.out.print(faceImg);
         if (userInfoDao.updateLoginNameAndHeadImgByUserId(loginName,headImg,userId) != 0 && studentInfoDao.updatefaceImgByUserId(faceImg,userId) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 学生加入课程
+     *
+     * @author ljy
+     * @since 2022-12-17 14:29:30
+     */
+    @Override
+    public boolean joinCourse(Integer studentId, String userName, String studentNumber, Integer courseId) {
+        if (studentInfoDao.joinCourse(studentId,userName,studentNumber,courseId) != 0) {
             return true;
         }
         return false;
