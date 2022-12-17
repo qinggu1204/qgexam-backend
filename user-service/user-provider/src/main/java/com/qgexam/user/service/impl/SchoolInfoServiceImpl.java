@@ -1,6 +1,5 @@
 package com.qgexam.user.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.SchoolInfoDao;
@@ -10,7 +9,6 @@ import com.qgexam.user.service.SchoolInfoService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

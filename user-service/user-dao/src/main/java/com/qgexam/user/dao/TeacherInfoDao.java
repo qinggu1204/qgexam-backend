@@ -6,8 +6,6 @@ import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 /**
  * 教师表(TeacherInfo)表数据库访问层
  *
@@ -16,6 +14,7 @@ import java.util.List;
  */
 public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
     IPage<StudentInfo> getStudentPage(@Param("courseId") Integer courseId, IPage<StudentInfo> page);
+
 
 }
 

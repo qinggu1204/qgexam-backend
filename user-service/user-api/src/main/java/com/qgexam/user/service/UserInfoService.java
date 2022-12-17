@@ -4,7 +4,6 @@ import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
-import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 
 import com.qgexam.user.pojo.PO.UserInfo;
