@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.StudentInfoDao;
+import com.qgexam.user.dao.UserInfoDao;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.GetStudentInfoVO;
@@ -25,6 +26,9 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
     @Autowired
     private StudentInfoDao studentInfoDao;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
     @Override
     public GetStudentInfoVO getStudentInfo(SaSession session) {
         // 获取session中的用户信息
@@ -34,10 +38,36 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
         //获取学生信息
         StudentInfo studentInfo = userInfoVO.getStudentInfo();
         GetStudentInfoVO getStudentInfoVO = BeanCopyUtils.copyFromManyBean(GetStudentInfoVO.class, userInfo, studentInfo);
-        /*GetStudentInfoVO getStudentInfoVO;
-        getStudentInfoVO = BeanCopyUtils.copyBean(userInfo, GetStudentInfoVO.class);
-        getStudentInfoVO = BeanCopyUtils.copyBean(studentInfo, getStudentInfoVO.getClass());*/
         return getStudentInfoVO;
+    }
+
+    /**
+     * 修改学生信息
+     *
+     * @author ljy
+     * @since 2022-12-15714:29:30
+     */
+    @Override
+    public Boolean updateStudentInfo(Integer userId,String loginName,String headImg,String faceImg) {
+        System.out.print(faceImg);
+        if (userInfoDao.updateLoginNameAndHeadImgByUserId(loginName,headImg,userId) != 0 && studentInfoDao.updatefaceImgByUserId(faceImg,userId) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 学生加入课程
+     *
+     * @author ljy
+     * @since 2022-12-17 14:29:30
+     */
+    @Override
+    public boolean joinCourse(Integer studentId, String userName, String studentNumber, Integer courseId) {
+        if (studentInfoDao.joinCourse(studentId,userName,studentNumber,courseId) != 0) {
+            return true;
+        }
+        return false;
     }
 }
 

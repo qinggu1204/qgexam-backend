@@ -1,6 +1,0 @@
-com\qgexam\common\web\configure\SaTokenConfigure.class
-com\qgexam\common\web\context\BaseContextHandler.class
-com\qgexam\common\web\handler\exception\CheckExceptionHandler.class
-com\qgexam\common\web\handler\exception\GlobalExceptionHandler.class
-com\qgexam\common\web\handler\exception\TokenExceptionHandler.class
-com\qgexam\common\web\configure\WebConfigure.class

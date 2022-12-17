@@ -1,7 +1,10 @@
 package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 教师表(TeacherInfo)表数据库访问层
@@ -11,5 +14,8 @@ import com.qgexam.user.pojo.PO.TeacherInfo;
  */
 public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
     TeacherInfo getTeacherInfoByUserId(Integer userId);
+    IPage<StudentInfo> getStudentPage(@Param("courseId") Integer courseId, IPage<StudentInfo> page);
+
+
 }
 
