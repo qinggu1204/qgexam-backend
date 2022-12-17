@@ -6,7 +6,6 @@ import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.core.constants.SystemConstants;
-import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.TeacherInfoDao;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
@@ -18,7 +17,6 @@ import com.qgexam.user.service.TeacherInfoService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 
 /**
  * 教师表(TeacherInfo)表服务实现类
@@ -36,9 +34,12 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
     public IPage<StudentVO> getStudentList(Integer courseId, Integer currentPage, Integer pageSize) {
         IPage<StudentInfo> page=new Page<>(currentPage,pageSize);
         IPage<StudentInfo> studentPage = teacherInfoDao.getStudentPage(courseId,page);
+        Integer pages = Integer.parseInt(String.valueOf(studentPage.getPages()));
+        studentPage.setPages(pages);
         //将studentInfo转化为VO并封装到分页对象中返回
         return studentPage.convert(studentInfo -> BeanCopyUtils.copyBean(studentInfo, StudentVO.class));
     }
+
     @Override
     public GetTeacherInfoVO getTeacherInfo(SaSession session) {
         /*获取用户信息*/
