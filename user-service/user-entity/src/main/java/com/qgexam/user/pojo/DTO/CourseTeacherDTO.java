@@ -14,6 +14,6 @@ public class CourseTeacherDTO implements Serializable {
 
     private Integer teacherId;
 
-    private Integer userName;
+    private String userName;
 
 }

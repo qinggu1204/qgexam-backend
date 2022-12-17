@@ -10,6 +10,7 @@ import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.CourseInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
+import com.qgexam.user.pojo.DTO.CourseTeacherDTO;
 import com.qgexam.user.pojo.DTO.CreateCourseDTO;
 import com.qgexam.user.pojo.PO.CourseInfo;
 import com.qgexam.user.pojo.PO.StudentInfo;
@@ -57,8 +58,11 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
         courseInfo.setYear(createCourseDTO.getYearName());
         courseInfo.setSemester(createCourseDTO.getSemesterName());
         courseInfoDao.insertCourseInfo(courseInfo);
-
-        Integer count = courseInfoDao.insertCourseTeacher(courseInfo.getCourseId(), teacherId, userName);
+        CourseTeacherDTO courseTeacherDTO = new CourseTeacherDTO();
+        courseTeacherDTO.setCourseId(courseInfo.getCourseId());
+        courseTeacherDTO.setTeacherId(teacherId);
+        courseTeacherDTO.setUserName(userName);
+        Integer count = courseInfoDao.insertCourseTeacher(courseTeacherDTO);
 
         if (count < 1) {
             throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);

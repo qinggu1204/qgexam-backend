@@ -1,6 +1,7 @@
 package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.qgexam.user.pojo.DTO.CourseTeacherDTO;
 import com.qgexam.user.pojo.PO.CourseInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,6 +15,6 @@ public interface CourseInfoDao extends BaseMapper<CourseInfo> {
 
     Integer insertCourseInfo(CourseInfo courseInfo);
 
-    Integer insertCourseTeacher(@Param("courseId") Integer courseId, @Param("teacherId") Integer teacherId, @Param("userName") String userName);
+    Integer insertCourseTeacher(CourseTeacherDTO courseTeacherDTO);
 }
 
