@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.qgexam.common.datasource.configure.MybatisPlusConfigure
