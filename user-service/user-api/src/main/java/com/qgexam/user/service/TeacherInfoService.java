@@ -1,5 +1,6 @@
 package com.qgexam.user.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -7,6 +8,7 @@ import com.qgexam.user.pojo.DTO.CreateCourseDTO;
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 
 import com.qgexam.user.pojo.PO.TeacherInfo;
+import com.qgexam.user.pojo.VO.StudentVO;
 import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
 
 /**
@@ -20,6 +22,9 @@ public interface TeacherInfoService extends IService<TeacherInfo> {
 
 
     void createCourse(Integer teacherId, String userName, CreateCourseDTO createCourseDTO);
+
+
+    IPage<StudentVO> getStudentList(Integer courseId, Integer currentPage, Integer pageSize);
 
     GetTeacherInfoVO getTeacherInfo(SaSession session);
 

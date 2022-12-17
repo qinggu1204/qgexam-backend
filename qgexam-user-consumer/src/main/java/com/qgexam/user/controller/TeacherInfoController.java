@@ -13,6 +13,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
 /**
 
  * 教师信息controller
@@ -21,15 +22,18 @@ import org.springframework.web.bind.annotation.*;
  * @date 2022/12/16 15:49
 
  */
+
 @RestController
+@Validated
 @RequestMapping("/tea")
 public class TeacherInfoController extends BaseController {
-    @Reference
-    TeacherInfoService teacherInfoService;
+
     @Reference
     private UserInfoService userInfoService;
 
 
+    @Reference
+    private TeacherInfoService teacherInfoService;
 
 
     /**
@@ -56,6 +60,7 @@ public class TeacherInfoController extends BaseController {
         return ResponseResult.okResult();
     }
 
+
     /**
      * 教师创建课程
      * @author yzw
@@ -66,6 +71,12 @@ public class TeacherInfoController extends BaseController {
     public ResponseResult createCourse(@RequestBody @Validated CreateCourseDTO createCourseDTO) {
         teacherInfoService.createCourse(getUserId(), getUserName(), createCourseDTO);
         return ResponseResult.okResult();
+    }
+
+    @GetMapping("/getStudentList/{courseId}")
+    public ResponseResult getStudentList(@PathVariable Integer courseId,Integer currentPage,Integer pageSize) {
+        return ResponseResult.okResult(teacherInfoService.getStudentList(courseId,currentPage,pageSize));
+
     }
 
 }
