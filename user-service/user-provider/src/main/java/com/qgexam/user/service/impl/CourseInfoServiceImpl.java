@@ -8,10 +8,8 @@ import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.CourseInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
-import com.qgexam.user.dao.UserRoleInfoDao;
-import com.qgexam.user.pojo.PO.CourseInfo;
-import com.qgexam.user.pojo.PO.TeacherInfo;
-import com.qgexam.user.pojo.PO.UserInfo;
+import com.qgexam.user.dao.UserInfoDao;
+import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.CourseInfoService;
@@ -29,60 +27,61 @@ import java.util.List;
  */
 @Service
 public class CourseInfoServiceImpl extends ServiceImpl<CourseInfoDao, CourseInfo> implements CourseInfoService {
-
-    @Autowired
-    private UserRoleInfoDao userRoleInfoDao;
     @Autowired
     private TeacherInfoDao teacherInfoDao;
     @Autowired
     private CourseInfoDao courseInfoDao;
-   /* @Override
-    public List<GetCourseListVO> getCourseList(SaSession session, Integer subjectId, String year, String semester) {
-        List courseList=new ArrayList<>();
-        GetCourseListVO GetCourseListVO=new GetCourseListVO();
-        CourseInfo courseInfo;
-        *//*获取role*//*
-        UserInfo userInfo=(UserInfo) session.get(SystemConstants.SESSION_USER_KEY);
-        String role = userRoleInfoDao.getRoleNameByUserId(userInfo.getUserId());
-        *//*根据不同角色，获取DTO中的筛选条件，完成筛选*//*
-        switch (role){
-            case "teacher":
-                *//*获取教师id用于查询该教师所教授的课程*//*
-                Integer teacherId=teacherInfoDao.getTeacherInfoByUserId(userInfo.getUserId()).getTeacherId();
-                *//*循环查找*//*
-                *//*获取课程信息*//*
-                while (courseInfoDao.getCourseListByTeacher(teacherId,subjectId,year,semester)!=null){
-//                    courseInfo=courseInfoDao.getCourseListByTeacher(teacherId,subjectId,year,semester);
-//                    GetCourseListVO.setTeacherList(courseInfoDao.getCourseTeacherList(courseInfo.getCourseId()));
-//                    GetCourseListVO.setCourseUrl(courseInfo.getCourseUrl());
-//                    GetCourseListVO.setCourseName(courseInfo.getCourseName());
-//                    GetCourseListVO.setSemester(courseInfo.getSemester());
-//                    GetCourseListVO.setYear(courseInfo.getYear());
-//                    GetCourseListVO.setIsDeleted(courseInfo.getIsDeleted());
-//                    courseList.add(GetCourseListVO);
-                }
-                break;
-            case "student":
-                break;
-            case "neteacher":
-                break;
-            case "admin":
-                break;
-            default:
-        }
-
-        return courseList;
-    }*/
-
-
+    @Autowired
+    private UserInfoDao userInfoDao;
     @Override
     public IPage<GetCourseListVO> getCourseList(SaSession session, Integer subjectId,
                                                 String year, String semester,Integer currentPage,Integer pageSize) {
-        IPage<CourseInfo> page=new Page<>(currentPage,pageSize);
+        IPage<GetCourseListVO> page=new Page<>(currentPage,pageSize);
+        List<GetCourseListVO >getCourseListVO = new ArrayList<>();
+        /*获取role*/
         UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
+        List<RoleInfo> roleInfoList=userInfoDao.selectRoleInfoListById(userInfoVO.getUserInfo().getUserId());
+        String role=new String();
+        /*优先考虑教务教师身份*/
+        for (RoleInfo roleInfo:roleInfoList) {
+            role=roleInfo.getRoleName();
+            if(role.equals("neteacher")){
+                break;
+            }
+        }
+        /*根据不同角色，获取DTO中的筛选条件，完成筛选*/
         TeacherInfo teacherInfo = userInfoVO.getTeacherInfo();
-        Integer teacherId = teacherInfo.getTeacherId();
-        courseInfoDao.getCourseListByTeacher(teacherId,subjectId,year,semester,page);
+        StudentInfo studentInfo = userInfoVO.getStudentInfo();
+        switch (role){
+            case "teacher":
+                /*获取课程信息*/
+                getCourseListVO=courseInfoDao.getCourseListByTeacher(teacherInfo.getTeacherId(),subjectId,year,semester);
+                for (GetCourseListVO course:getCourseListVO) {
+                    course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
+                }
+                break;
+            case "student":
+                /*获取课程信息*/
+                getCourseListVO=courseInfoDao.getCourseListByStudent(studentInfo.getStudentId(),subjectId,year,semester);
+                for (GetCourseListVO course:getCourseListVO) {
+                    course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
+                }
+                break;
+            case "neteacher":
+                getCourseListVO=courseInfoDao.getCourseListByNeteacher(teacherInfo.getSchoolId(),subjectId,year,semester);
+                for (GetCourseListVO course:getCourseListVO) {
+                    course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
+                }
+                break;
+            case "admin":
+                getCourseListVO=courseInfoDao.getCourseListByAdmin(subjectId,year,semester);
+                for (GetCourseListVO course:getCourseListVO) {
+                    course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
+                }
+                break;
+            default:
+        }
+        page.setRecords(getCourseListVO);
         return page.convert(courseInfo -> BeanCopyUtils.copyBean(courseInfo,GetCourseListVO.class));
     }
 }

@@ -1,6 +1,5 @@
 package com.qgexam.user.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.ResponseResult;

@@ -6,6 +6,7 @@
 
     <select id="getTeacherInfoByUserId" resultType="com.qgexam.user.pojo.PO.TeacherInfo">
         select * from teacher_info where user_id=#{userId} and is_delete=0;
+    </select>
     <select id="getStudentPage" resultType="com.qgexam.user.pojo.PO.StudentInfo">
         select student_id,
                user_id,
