@@ -11,6 +11,8 @@
         <module>qgexam-common</module>
         <module>user-service</module>
         <module>qgexam-user-consumer</module>
+        <module>qgexam-view-exam-results-consumer</module>
+        <module>view-exam-results-service</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -7,8 +7,6 @@ import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.JoinCourseDTO;
 import com.qgexam.user.pojo.DTO.UpdateStudentInfoDTO;
-import com.qgexam.user.pojo.PO.StudentInfo;
-import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.Reference;
