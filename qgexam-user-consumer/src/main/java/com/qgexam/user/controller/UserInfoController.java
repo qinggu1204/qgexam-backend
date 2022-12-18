@@ -11,6 +11,7 @@ import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.MessageCodeService;
 import com.qgexam.user.service.SchoolInfoService;
 import com.qgexam.user.service.UserInfoService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserInfoController extends BaseController {
 
-    @Reference
+    @DubboReference
     private UserInfoService userInfoService;
-    @Reference
+    @DubboReference
     private MessageCodeService messageCodeService;
 
-    @Reference
+    @DubboReference
     private SchoolInfoService schoolInfoService;
 
     /**

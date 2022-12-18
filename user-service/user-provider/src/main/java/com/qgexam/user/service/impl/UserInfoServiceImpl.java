@@ -18,6 +18,7 @@ import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.GetUserInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.UserInfoService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
  * @author lamb007
  * @since 2022-12-10 20:13:04
  */
-@Service
+@DubboService(registry = {"userRegistry", "enterExamRegistry", "viewExamResultsRegistry", "registry4", "registry5"})
 @Transactional
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> implements UserInfoService {
 

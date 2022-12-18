@@ -1,13 +1,14 @@
 package com.qgexam.user.service;
 
 import com.qgexam.user.pojo.DTO.CreateCourseDTO;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Reference;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class TeacherInfoServiceTest {
-    @Reference
+    @DubboReference
     private TeacherInfoService teacherInfoService;
 
     @Test
