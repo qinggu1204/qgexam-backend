@@ -4,27 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit 实现了教师查看选课学生">
-      <change afterPath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-dao/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-entity/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/src/main/java/com/qgexam/answerPapers/marking/MarkingAnswerPapersProviderApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marking-answerPapers-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/MarkingAnswerPapersConsumerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/aspect/BaseContextAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/satoken/StpInterfaceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/test/java/com/qgexam/MyTest.java" afterDir="false" />
+    <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit 创建教师阅卷模块">
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-dao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-dao/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-entity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-entity/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-provider/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/src/main/java/com/qgexam/answerPapers/marking/MarkingAnswerPapersProviderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-provider/src/main/java/com/qgexam/marking/MarkingProviderApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-provider/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/TeacherInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/TeacherInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/TeacherInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/TeacherInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/TeacherInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/TeacherInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/MarkingAnswerPapersConsumerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/MarkingConsumerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/aspect/BaseContextAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/aspect/BaseContextAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/satoken/StpInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/satoken/StpInterfaceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/test/java/com/qgexam/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/test/java/com/qgexam/MyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,9 +71,10 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -90,21 +87,34 @@
       <recent name="com.qgexam.answerPapers.marking" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserConsumerApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.MarkingProviderApplication">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserConsumerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="qgexam-marking-answerPapers-consumer" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.answerPaper.marking.MarkingAnswerPapersConsumerApplication" />
+    <configuration name="MarkingConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="qgexam-marking-consumer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingConsumerApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MarkingProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="marking-provider" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingProviderApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,13 +122,8 @@
     <configuration name="UserConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-user-consumer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserConsumerApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserProviderApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="marking-answerPapers-provider" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.answerPapers.marking.MarkingAnswerPapersProviderApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -126,6 +131,8 @@
     <configuration name="UserProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="user-provider" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserProviderApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -133,9 +140,15 @@
     <list>
       <item itemvalue="Spring Boot.UserConsumerApplication" />
       <item itemvalue="Spring Boot.UserProviderApplication" />
-      <item itemvalue="Spring Boot.UserConsumerApplication (1)" />
-      <item itemvalue="Spring Boot.UserProviderApplication (1)" />
+      <item itemvalue="Spring Boot.MarkingProviderApplication" />
+      <item itemvalue="Spring Boot.MarkingConsumerApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.MarkingConsumerApplication" />
+        <item itemvalue="Spring Boot.MarkingProviderApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -161,7 +174,8 @@
       <updated>1671188548499</updated>
       <workItem from="1671188552197" duration="4696000" />
       <workItem from="1671268066062" duration="463000" />
-      <workItem from="1671268549377" duration="9858000" />
+      <workItem from="1671268549377" duration="12787000" />
+      <workItem from="1671331741743" duration="1571000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -170,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671204136439</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="peter commit 创建教师阅卷模块">
+      <created>1671284015232</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671284015232</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +213,8 @@
     <MESSAGE value="hhh" />
     <MESSAGE value="修改学生信息" />
     <MESSAGE value="peter commit 实现了教师查看选课学生" />
-    <option name="LAST_COMMIT_MESSAGE" value="peter commit 实现了教师查看选课学生" />
+    <MESSAGE value="peter commit 创建教师阅卷模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="peter commit 创建教师阅卷模块" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/qgexam$SMSUtils.ic" NAME="SMSUtils 覆盖结果" MODIFIED="1671074415972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
