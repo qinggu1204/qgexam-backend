@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit 创建教师阅卷模块">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-dao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-dao/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-entity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-entity/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-provider/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/src/main/java/com/qgexam/answerPapers/marking/MarkingAnswerPapersProviderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-provider/src/main/java/com/qgexam/marking/MarkingProviderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/marking-answerPapers-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-provider/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-answerPapers-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/MarkingAnswerPapersConsumerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/MarkingConsumerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/aspect/BaseContextAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/aspect/BaseContextAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/java/com/qgexam/answerPaper/marking/satoken/StpInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/satoken/StpInterfaceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-marking-answerPapers-consumer/src/test/java/com/qgexam/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/test/java/com/qgexam/MyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +160,7 @@
       <workItem from="1671188552197" duration="4696000" />
       <workItem from="1671268066062" duration="463000" />
       <workItem from="1671268549377" duration="12787000" />
-      <workItem from="1671331741743" duration="1571000" />
+      <workItem from="1671331741743" duration="3458000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -191,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671284015232</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="peter commit 创建教师阅卷模块">
+      <created>1671334296294</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671334296294</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
