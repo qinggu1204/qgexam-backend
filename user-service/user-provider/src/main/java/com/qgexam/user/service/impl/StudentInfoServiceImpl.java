@@ -11,6 +11,7 @@ import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.StudentInfoService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author peter guo
  * @since 2022-12-15 14:29:30
  */
-@Service
+@DubboService
 public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentInfo> implements StudentInfoService {
 
     @Autowired

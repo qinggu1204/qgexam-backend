@@ -6,6 +6,7 @@ import com.qgexam.user.dao.SchoolInfoDao;
 import com.qgexam.user.pojo.PO.SchoolInfo;
 import com.qgexam.user.pojo.VO.SchoolInfoVO;
 import com.qgexam.user.service.SchoolInfoService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * @author peter guo
  * @since 2022-12-14 11:18:02
  */
-@Service
+@DubboService
 public class SchoolInfoServiceImpl extends ServiceImpl<SchoolInfoDao, SchoolInfo> implements SchoolInfoService {
 
     @Autowired

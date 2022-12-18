@@ -4,6 +4,7 @@ import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.SMSUtils;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.service.MessageCodeService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @author ljy
  * @since 2022-12-15 11:12:05
  */
-@Service
+@DubboService
 public class MessageCodeServiceImpl implements MessageCodeService {
 
     @Autowired

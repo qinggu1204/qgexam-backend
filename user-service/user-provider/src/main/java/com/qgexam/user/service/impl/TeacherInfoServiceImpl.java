@@ -20,6 +20,7 @@ import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.TeacherInfoService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author yzw
  * @since 2022-12-16 16:00:15
  */
-@Service
+@DubboService
 @Transactional
 public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherInfo> implements TeacherInfoService {
 

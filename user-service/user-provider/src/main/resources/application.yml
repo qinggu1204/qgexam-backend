@@ -2,10 +2,6 @@ dubbo:
   application:
     # 应用名称
     name: user-provider
-  registry:
-    # 注册中心地址
-    address: zookeeper://101.34.2.207:2181
-    timeout: 250000
   protocol:
     # 协议名称
     name: dubbo
@@ -15,6 +11,39 @@ dubbo:
     timeout: 600000
   provider:
     filter: -exception
+
+# dubbo 多注册中心配置
+  registries:
+    # 注册中心名称
+    userRegistry:
+      # 注册中心地址
+      address: zookeeper://101.34.2.207:2181
+      default: true
+      timeout: 600000
+    enterExamRegistry:
+      # 注册中心地址
+      address: zookeeper://121.199.73.86:2181
+      default: false
+      timeout: 600000
+    viewExamResultsRegistry:
+      # 注册中心地址
+      address: zookeeper://121.199.73.86:2182
+      default: false
+      timeout: 600000
+    registry4:
+      # 注册中心地址
+      address: zookeeper://81.68.168.28:2181
+      default: false
+      timeout: 600000
+    registry5:
+      # 注册中心地址
+      address: zookeeper://81.68.168.28:2182
+      default: false
+      timeout: 600000
+
+
+
+
 
 
 spring:
@@ -54,8 +83,6 @@ mybatis-plus:
       id-type: auto
   # mapper文件位置
   mapper-locations: classpath*:/mapper/**/*.xml
-  # 别名
-  type-aliases-package: com.qgexam.common.core.pojo.PO
 
 
 oss:

@@ -5,6 +5,7 @@ import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.user.pojo.DTO.GetMessageCodeDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByPhoneNumberDTO;
 import com.qgexam.user.service.MessageCodeService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class MessageCodeController {
 
-    @Reference
+    @DubboReference
     private MessageCodeService messageCodeService;
 
     /**
