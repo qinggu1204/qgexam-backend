@@ -82,7 +82,6 @@ public class TeacherInfoController extends BaseController {
     @GetMapping("/getStudentList/{courseId}")
     public ResponseResult getStudentList(@PathVariable Integer courseId,Integer currentPage,Integer pageSize) {
         return ResponseResult.okResult(teacherInfoService.getStudentList(courseId,currentPage,pageSize));
-
     }
 
 }
