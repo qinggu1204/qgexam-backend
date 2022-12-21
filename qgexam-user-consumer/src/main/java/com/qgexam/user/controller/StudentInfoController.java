@@ -9,6 +9,7 @@ import com.qgexam.user.pojo.DTO.JoinCourseDTO;
 import com.qgexam.user.pojo.DTO.UpdateStudentInfoDTO;
 import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 import com.qgexam.user.service.StudentInfoService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/stu")
 public class StudentInfoController extends BaseController {
 
-    @Reference
+    @DubboReference
     private StudentInfoService studentInfoService;
 
     /**

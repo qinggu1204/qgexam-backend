@@ -1,20 +1,23 @@
 dubbo:
   application:
     # 应用名称
-    name: view-exam-results-provider
-  registry:
-    # 注册中心地址
-    address: zookeeper://121.199.73.86:2182
-    timeout: 250000
+    name: enter-exam-provider
   protocol:
     # 协议名称
     name: dubbo
     # 协议端口
-    port: 20880
+    port: 20881
   consumer:
     timeout: 600000
   provider:
     filter: -exception
+  registries:
+    # 注册中心名称
+    enterExamRegistry:
+      # 注册中心地址
+      address: zookeeper://121.199.73.86:2181
+      default: true
+      timeout: 600000
 
 
 spring:

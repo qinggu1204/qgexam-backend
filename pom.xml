@@ -15,6 +15,10 @@
         <module>finishi-exam-service</module>
         <!--<module>qgexam-view-exam-results-consumer</module>
         <module>view-exam-results-service</module>-->
+        <module>qgexam-view-exam-results-consumer</module>
+        <module>view-exam-results-service</module>
+        <module>qgexam-enter-exam-consumer</module>
+        <module>enter-exam-service</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -22,7 +26,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <dubbo.version>2.7.3</dubbo.version>
+        <dubbo.version>2.7.7</dubbo.version>
         <slf4j-log4j12.version>1.7.30</slf4j-log4j12.version>
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
         <spring-boot-maven-plugin.version>2.3.1.RELEASE</spring-boot-maven-plugin.version>
