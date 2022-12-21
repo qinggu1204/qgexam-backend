@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit 创建教师阅卷模块">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_dubbo_dubbo_2_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_dubbo_dubbo_spring_boot_autoconfigure_2_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_dubbo_dubbo_spring_boot_autoconfigure_compatible_2_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_dubbo_dubbo_spring_boot_starter_2_7_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-service/marking-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-provider/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/satoken/StpInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/java/com/qgexam/marking/satoken/StpInterfaceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/TeacherInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/TeacherInfoController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,16 +81,21 @@
       <recent name="com.qgexam.answerPapers.marking" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MarkingProviderApplication">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+  <component name="RunManager" selected="Spring Boot.MarkingConsumerApplication">
+    <configuration name="EnterExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="qgexam-enter-exam-consumer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.EnterExamConsumerApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EnterExamProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="enter-exam-provider" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamProviderApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -127,6 +141,8 @@
       <item itemvalue="Spring Boot.UserProviderApplication" />
       <item itemvalue="Spring Boot.MarkingProviderApplication" />
       <item itemvalue="Spring Boot.MarkingConsumerApplication" />
+      <item itemvalue="Spring Boot.EnterExamProviderApplication" />
+      <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -160,7 +176,8 @@
       <workItem from="1671188552197" duration="4696000" />
       <workItem from="1671268066062" duration="463000" />
       <workItem from="1671268549377" duration="12787000" />
-      <workItem from="1671331741743" duration="3458000" />
+      <workItem from="1671331741743" duration="9099000" />
+      <workItem from="1671620657534" duration="295000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -183,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671334296294</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="peter commit 创建教师阅卷模块">
+      <created>1671351996907</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671351996907</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
