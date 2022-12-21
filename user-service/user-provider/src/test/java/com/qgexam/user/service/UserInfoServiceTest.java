@@ -6,6 +6,7 @@ import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.UserInfoVO;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Reference;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class UserInfoServiceTest {
 
-    @Reference
+    @DubboReference
     private UserInfoService userInfoService;
 
     @Test

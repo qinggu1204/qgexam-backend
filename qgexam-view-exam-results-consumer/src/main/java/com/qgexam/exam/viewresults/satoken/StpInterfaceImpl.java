@@ -2,6 +2,7 @@ package com.qgexam.exam.viewresults.satoken;
 
 import cn.dev33.satoken.stp.StpInterface;
 import com.qgexam.user.service.UserInfoService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @Component    // 保证此类被SpringBoot扫描，完成Sa-Token的自定义权限验证扩展
 public class StpInterfaceImpl implements StpInterface {
 
-    @Reference
+    @DubboReference
     private UserInfoService userInfoService;
 
     @Override

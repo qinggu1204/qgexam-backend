@@ -8,6 +8,7 @@ import com.qgexam.user.pojo.DTO.CreateCourseDTO;
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.service.TeacherInfoService;
 import com.qgexam.user.service.UserInfoService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +28,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tea")
 public class TeacherInfoController extends BaseController {
 
-    @Reference
+    @DubboReference
     private UserInfoService userInfoService;
 
 
-    @Reference
+    @DubboReference
     private TeacherInfoService teacherInfoService;
 
 
@@ -72,10 +73,15 @@ public class TeacherInfoController extends BaseController {
         return ResponseResult.okResult();
     }
 
+    /**
+     * @description 教师获取选课学生
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @author peter guo
+     * @date 2022/12/14 19:10:29
+     */
     @GetMapping("/getStudentList/{courseId}")
     public ResponseResult getStudentList(@PathVariable Integer courseId,Integer currentPage,Integer pageSize) {
         return ResponseResult.okResult(teacherInfoService.getStudentList(courseId,currentPage,pageSize));
-
     }
 
 }

@@ -54,8 +54,6 @@ mybatis-plus:
       id-type: auto
   # mapper文件位置
   mapper-locations: classpath*:/mapper/**/*.xml
-  # 别名
-  type-aliases-package: com.qgexam.common.core.pojo.PO
 
 
 oss:
