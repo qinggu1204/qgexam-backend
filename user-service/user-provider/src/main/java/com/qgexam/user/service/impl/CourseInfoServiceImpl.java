@@ -13,7 +13,7 @@ import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.CourseInfoService;
-import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.List;
  * @author tageshi
  * @since 2022-12-16 19:42:52
  */
-@Service
+@DubboService
 public class CourseInfoServiceImpl extends ServiceImpl<CourseInfoDao, CourseInfo> implements CourseInfoService {
     @Autowired
     private TeacherInfoDao teacherInfoDao;

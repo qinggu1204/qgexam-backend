@@ -11,6 +11,16 @@
     <file url="file://$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/enter-exam-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/enter-exam-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finishi-exam-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/marking-service/marking-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/marking-service/marking-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/marking-service/marking-dao/src/main/java" charset="UTF-8" />
