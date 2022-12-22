@@ -3,6 +3,7 @@ package com.qgexam.user.controller;
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.ResponseResult;
+import com.qgexam.user.pojo.DTO.ArrangeInvigilationDTO;
 import com.qgexam.user.service.NeTeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
@@ -36,9 +37,21 @@ public class NeteacherInfoController {
         return ResponseResult.okResult();
     }
 
+    /**
+     * 获取试卷列表
+     */
     @GetMapping("/getPaperList")
     public ResponseResult getPaperList(Integer currentPage, Integer pageSize){
         SaSession session= StpUtil.getSession();
         return  ResponseResult.okResult(neTeacherInfoService.getExaminationPaperList(session,currentPage,pageSize));
     }
+
+    /**
+     * 安排监考任务
+     */
+    @PostMapping("/arrangeInvigilation")
+    public  ResponseResult arrangeInvigilation(@RequestBody @Validated ArrangeInvigilationDTO arrangeInvigilationDTO){
+        return ResponseResult.okResult(neTeacherInfoService.arrangeInvigilation(arrangeInvigilationDTO.getExaminationId()));
+    }
+
 }

@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.TeacherInfoDao">
+    <insert id="arrangeInvigilation">
+        insert into teacher_invigilation(examination_id,teacher_id,course_id,course_name,teacher_name,examination_name)
+        values(#{examinationId},#{teacherId},#{courseId},#{courseName},#{teacherName},#{examinationName})
+    </insert>
 
 
     <select id="getTeacherInfoByUserId" resultType="com.qgexam.user.pojo.PO.TeacherInfo">
@@ -33,5 +37,25 @@
     </select>
     <select id="getExaminationPaperList" resultType="com.qgexam.user.pojo.VO.GetExaminationPaperVO">
         select examination_paper_id,title from examination_paper where created_by=#{userId}
+    </select>
+    <select id="getInvigilationTeacherList" resultType="com.qgexam.user.pojo.PO.TeacherInfo">
+        select teacher_id,user_name from teacher_info
+        where teacher_id not in
+              (select teacher_id from course_examination,teacher_course
+               where teacher_course.course_id=course_examination.course_id and
+                   course_examination.examination_id=#{examinationId})
+          and teacher_id not in (select teacher_id from teacher_invigilation,examination_info
+                                 where teacher_invigilation.examination_id=examination_info.examination_id
+                                   and (examination_info.start_time=
+                                        (select start_time from examination_info
+                                         where examination_info.examination_id=#{examinationId})
+                                     or examination_info.end_time=
+                                        (select end_time from examination_info
+                                         where examination_info.examination_id=#{examinationId})))
+    </select>
+    <select id="getCourseExaminationList" resultType="com.qgexam.user.pojo.PO.CourseInfo">
+        select course_examination.course_id,course_name from course_examination,course_info
+        where examination_id=#{examinationId}
+          and course_examination.course_id=course_info.course_id
     </select>
 </mapper>

@@ -14,4 +14,5 @@ import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
  */
 public interface NeTeacherInfoService{
     IPage<GetExaminationPaperVO> getExaminationPaperList(SaSession session, Integer currentPage, Integer pageSize);
+    boolean arrangeInvigilation(Integer examinationId);
 }
