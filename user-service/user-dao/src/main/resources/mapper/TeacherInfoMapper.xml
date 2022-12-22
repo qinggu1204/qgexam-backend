@@ -25,4 +25,10 @@
             where course_id = #{courseId}
         )
     </select>
+    <select id="getStudentPage" resultType="com.qgexam.user.pojo.VO.StudentVO">
+        select user_name,
+               student_number
+        from student_course
+        where course_id = #{courseId}
+    </select>
 </mapper>

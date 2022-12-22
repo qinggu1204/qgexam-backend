@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
+import com.qgexam.user.pojo.VO.StudentVO;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -15,6 +16,7 @@ import org.apache.ibatis.annotations.Param;
 public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
     TeacherInfo getTeacherInfoByUserId(Integer userId);
     IPage<StudentInfo> getStudentPage(@Param("courseId") Integer courseId, IPage<StudentInfo> page);
+    IPage<StudentVO> getStudentPage(@Param("courseId") Integer courseId, IPage<StudentVO> page);
 
 
 }

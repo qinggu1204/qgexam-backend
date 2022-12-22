@@ -73,10 +73,15 @@ public class TeacherInfoController extends BaseController {
         return ResponseResult.okResult();
     }
 
+    /**
+     * @description 教师获取选课学生
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @author peter guo
+     * @date 2022/12/14 19:10:29
+     */
     @GetMapping("/getStudentList/{courseId}")
     public ResponseResult getStudentList(@PathVariable Integer courseId,Integer currentPage,Integer pageSize) {
         return ResponseResult.okResult(teacherInfoService.getStudentList(courseId,currentPage,pageSize));
-
     }
 
 }
