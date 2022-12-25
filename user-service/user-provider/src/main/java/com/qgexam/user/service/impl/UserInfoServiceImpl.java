@@ -11,7 +11,6 @@ import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.dao.StudentInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
 import com.qgexam.user.dao.UserInfoDao;
-import com.qgexam.user.dao.UserRoleInfoDao;
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.pojo.DTO.UserLoginByUsernameDTO;
 import com.qgexam.user.pojo.PO.*;
@@ -45,8 +44,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     @Autowired
     private StudentInfoDao studentInfoDao;
 
-    @Autowired
-    private UserRoleInfoDao userRoleInfoDao;
 
     @Autowired
     private RedisCache redisCache;
@@ -151,11 +148,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         newTeacher.setSchoolId(schoolId);
         newTeacher.setUserName(userName);
         newTeacher.setSchoolName(schoolName);
-        UserRoleInfo userRoleInfo=new UserRoleInfo();
-        userRoleInfo.setRoleId(2);
-        userRoleInfo.setRoleName("teacher");
-        userRoleInfo.setUserId(userId);
-        if (userInfoDao.insertTeacher(newTeacher) == 0 || userRoleInfoDao.insert(userRoleInfo)==0) {
+        if (userInfoDao.insertTeacher(newTeacher) == 0 || userInfoDao.insertTeacherRole(2,"teacher",userId)==0) {
             return false;
         }
         return true;
@@ -181,11 +174,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         newStudent.setStudentNumber(studentNumber);
         newStudent.setSchoolId(schoolId);
         newStudent.setSchoolName(schoolName);
-        UserRoleInfo userRoleInfo=new UserRoleInfo();
-        userRoleInfo.setRoleId(1);
-        userRoleInfo.setRoleName("student");
-        userRoleInfo.setUserId(userId);
-        if (userInfoDao.insertStudent(newStudent) == 0 || userRoleInfoDao.insert(userRoleInfo)==0) {
+        if (userInfoDao.insertStudent(newStudent) == 0 || userInfoDao.insertTeacherRole(1,"student",userId)==0) {
             return false;
         }
         return true;

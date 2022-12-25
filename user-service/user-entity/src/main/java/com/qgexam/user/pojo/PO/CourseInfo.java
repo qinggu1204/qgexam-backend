@@ -2,11 +2,14 @@ package com.qgexam.user.pojo.PO;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.List;
+
 /**
  * 课程信息表(CourseInfo)表实体类
  *
@@ -17,16 +20,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CourseInfo implements Serializable {
-
     @TableId
     private Integer courseId;
     //课程名称
     private String courseName;
     //课程封面url
     private String courseUrl;
-    
+
     private Integer subjectId;
-    
+
     private String subjectName;
     //创建时间
     private Date createTime;
@@ -39,5 +41,8 @@ public class CourseInfo implements Serializable {
     //学期
     private String semester;
 
+    //课程教师列表
+    @TableField(exist = false)
+    private List<TeacherInfo> teacherList;
 }
 
