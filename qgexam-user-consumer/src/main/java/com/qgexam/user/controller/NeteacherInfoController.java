@@ -54,4 +54,15 @@ public class NeteacherInfoController {
         return ResponseResult.okResult(neTeacherInfoService.arrangeInvigilation(arrangeInvigilationDTO.getExaminationId()));
     }
 
+    /**
+     * @description 根据学科查询学科章节
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @aythor ljy
+     * @date 2022/12/25 20:10:44
+     */
+    @GetMapping("/getChapterBySubject/ {subjectId}")
+    public ResponseResult getChapterBySubject(@PathVariable Integer subjectId){
+        return ResponseResult.okResult(neTeacherInfoService.getChapterInfoList(subjectId));
+    }
+
 }

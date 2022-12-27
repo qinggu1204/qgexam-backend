@@ -18,10 +18,7 @@ import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
  */
 public interface TeacherInfoService extends IService<TeacherInfo> {
 
-
-
     void createCourse(Integer teacherId, String userName, CreateCourseDTO createCourseDTO);
-
 
     IPage<StudentVO> getStudentList(Integer courseId, Integer currentPage, Integer pageSize);
 

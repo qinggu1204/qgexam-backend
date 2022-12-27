@@ -4,8 +4,11 @@ import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qgexam.user.pojo.PO.CourseInfo;
+import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
 import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
+
+import java.util.List;
 
 /**
  * @author yzw
@@ -15,4 +18,5 @@ import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
 public interface NeTeacherInfoService{
     IPage<GetExaminationPaperVO> getExaminationPaperList(SaSession session, Integer currentPage, Integer pageSize);
     boolean arrangeInvigilation(Integer examinationId);
+    List<ChapterInfoListVO> getChapterInfoList(Integer subjectId);
 }

@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.user.dao.ChapterInfoDao;
 import com.qgexam.user.dao.ExaminationInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
 import com.qgexam.user.pojo.PO.CourseInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
+import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
 import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
@@ -32,6 +34,8 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     private TeacherInfoDao teacherInfoDao;
     @Autowired
     private ExaminationInfoDao examinationInfoDao;
+    @Autowired
+    private ChapterInfoDao chapterInfoDao;
 
     /**
      * 查看试卷列表
@@ -74,4 +78,15 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         if(flag) return true;
         else return false;
     }
+
+    /**
+     * @author ljy
+     * @description 获取学科章节列表
+     * @date 2022/12/25 20:01:03
+     */
+    @Override
+    public List<ChapterInfoListVO> getChapterInfoList(Integer subjectId){
+        return chapterInfoDao.getChapterListBySubject(subjectId);
+    }
+
 }
