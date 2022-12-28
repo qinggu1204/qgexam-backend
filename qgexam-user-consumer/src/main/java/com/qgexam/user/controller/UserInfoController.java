@@ -30,6 +30,41 @@ public class UserInfoController extends BaseController {
     @DubboReference
     private SchoolInfoService schoolInfoService;
 
+
+    /**
+     * @description 发送短信验证码
+     * @param codeDTO
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @author ljy
+     * @date 2022/12/14 21:21:43
+     */
+    @GetMapping("/sendCode")
+    public ResponseResult sendCode(@Validated GetMessageCodeDTO codeDTO) {
+        String phoneNumber = codeDTO.getPhoneNumber();
+        if (messageCodeService.sendCode(phoneNumber)) {
+            return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+        }
+        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+    }
+
+    /**
+     * @description 校验短信验证码
+     * @param codeDTO
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @author ljy
+     * @date 2022/12/14 22:57:13
+     */
+    @PostMapping("/validateCode")
+    public ResponseResult validateCode(@Validated @RequestBody UserLoginByPhoneNumberDTO codeDTO) {
+        String phoneNumber = codeDTO.getPhoneNumber();
+        String code = codeDTO.getCode();
+        if (messageCodeService.validateCode(phoneNumber,code)) {
+            return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+        }
+        return ResponseResult.errorResult(AppHttpCodeEnum.CODE_ERROR);
+    }
+
+
     /**
      * @param loginDTO
      * @return com.qgexam.common.core.api.ResponseResult

@@ -8,7 +8,9 @@ import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.ChapterInfoDao;
 import com.qgexam.user.dao.ExaminationInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
+import com.qgexam.user.pojo.DTO.CreateExamDTO;
 import com.qgexam.user.pojo.PO.CourseInfo;
+import com.qgexam.user.pojo.PO.ExaminationInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
 import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
@@ -89,4 +91,25 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         return chapterInfoDao.getChapterListBySubject(subjectId);
     }
 
+    /**
+     * @author ljy
+     * @description 创建（发布）考试
+     * @date 2022/12/28 22:01:03
+     */
+    @Override
+    public boolean createExamination(Integer userId, CreateExamDTO createExamDTO){
+        ExaminationInfo examinationInfo = new ExaminationInfo();
+        examinationInfo.setExaminationPaperId(createExamDTO.getExaminationPaperId());
+        examinationInfo.setExaminationName(createExamDTO.getExaminationName());
+        examinationInfo.setCreatedBy(userId);
+        examinationInfo.setStartTime(createExamDTO.getStartTime());
+        examinationInfo.setEndTime(createExamDTO.getEndTime());
+        examinationInfo.setLimitTime(createExamDTO.getLimitTime());
+        examinationInfo.setIsQuestionResort(createExamDTO.getIsQuestionResort());
+        examinationInfo.setIsOptionResort(createExamDTO.getIsOptionResort());
+        if (examinationInfoDao.insertExaminationInfo(examinationInfo) != 0) {
+            return true;
+        }
+        return false;
+    }
 }

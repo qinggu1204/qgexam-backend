@@ -11,5 +11,6 @@ import com.qgexam.user.pojo.PO.ExaminationInfo;
  */
 public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
     ExaminationInfo getByExaminationId(Integer examinationId);
+    Integer insertExaminationInfo(ExaminationInfo examinationInfo);
 }
 

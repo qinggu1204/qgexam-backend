@@ -6,4 +6,10 @@
     <select id="getByExaminationId" resultType="com.qgexam.user.pojo.PO.ExaminationInfo">
         select * from examination_info where examination_id=#{examinationId}
     </select>
+
+    <insert id="insertExaminationInfo" useGeneratedKeys="true" keyProperty="examinationId" keyColumn="examination_id">
+        insert into examination_info(examination_paper_id, examination_name, created_by, start_time, end_time, limit_time, is_question_resort, is_option_resort)
+        values(#{examinationPaperId},#{examinationName}, #{createdBy}, #{startTime}, #{endTime}, #{limitTime}, #{isQuestionResort}, #{isOptionResort})
+    </insert>
+
 </mapper>
