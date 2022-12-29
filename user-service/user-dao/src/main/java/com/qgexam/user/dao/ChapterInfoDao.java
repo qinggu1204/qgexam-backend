@@ -3,6 +3,7 @@ package com.qgexam.user.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.ChapterInfo;
 import com.qgexam.user.pojo.VO.ChapterInfoListVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ import java.util.List;
  * @since 2022-12-25 22:51:46
  */
 public interface ChapterInfoDao extends BaseMapper<ChapterInfo> {
-    List<ChapterInfoListVO> getChapterListBySubject(Integer subjectId);
+    List<ChapterInfoListVO> getChapterListBySubject(@Param("subjectId")Integer subjectId);
 }
 

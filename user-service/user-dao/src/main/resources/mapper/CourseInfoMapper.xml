@@ -153,4 +153,10 @@
         </where>
         group by ci.course_id
     </select>
+
+    <select id="getCourseListBySubject" resultType="com.qgexam.user.pojo.PO.CourseInfo">
+        select * from course_info
+        where subject_id=#{subjectId}
+    </select>
+
 </mapper>

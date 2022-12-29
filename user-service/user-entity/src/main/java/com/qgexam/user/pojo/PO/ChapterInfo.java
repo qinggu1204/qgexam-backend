@@ -1,6 +1,8 @@
 package com.qgexam.user.pojo.PO;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChapterInfo implements Serializable {
-    
+    @TableId
     private Integer chapterId;
     //学科编号
     private Integer subjectId;

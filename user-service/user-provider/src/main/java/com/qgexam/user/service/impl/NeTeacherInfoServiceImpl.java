@@ -5,13 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
-import com.qgexam.user.dao.ChapterInfoDao;
-import com.qgexam.user.dao.ExaminationInfoDao;
-import com.qgexam.user.dao.TeacherInfoDao;
+import com.qgexam.user.dao.*;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
-import com.qgexam.user.pojo.PO.CourseInfo;
-import com.qgexam.user.pojo.PO.ExaminationInfo;
-import com.qgexam.user.pojo.PO.TeacherInfo;
+import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
 import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
@@ -38,6 +34,10 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     private ExaminationInfoDao examinationInfoDao;
     @Autowired
     private ChapterInfoDao chapterInfoDao;
+    @Autowired
+    private CourseInfoDao courseInfoDao;
+    @Autowired
+    private MessageInfoDao messageInfoDao;
 
     /**
      * 查看试卷列表
@@ -98,6 +98,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
      */
     @Override
     public boolean createExamination(Integer userId, CreateExamDTO createExamDTO){
+        /*1.创建新考试对象*/
         ExaminationInfo examinationInfo = new ExaminationInfo();
         examinationInfo.setExaminationPaperId(createExamDTO.getExaminationPaperId());
         examinationInfo.setExaminationName(createExamDTO.getExaminationName());
@@ -107,9 +108,32 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         examinationInfo.setLimitTime(createExamDTO.getLimitTime());
         examinationInfo.setIsQuestionResort(createExamDTO.getIsQuestionResort());
         examinationInfo.setIsOptionResort(createExamDTO.getIsOptionResort());
-        if (examinationInfoDao.insertExaminationInfo(examinationInfo) != 0) {
-            return true;
+        /*2.向数据表插入考试并获取该考试的examinationId*/
+        if (examinationInfoDao.insertExaminationInfo(examinationInfo) == 0) { return false; }
+        Integer examinationId = examinationInfo.getExaminationId();
+        /*3.根据学科编号获取课程列表*/
+        List<CourseInfo> courseList=courseInfoDao.getCourseListBySubject(createExamDTO.getSubjectId());
+        /*4.给这些课程及其学生发布考试*/
+        for (CourseInfo course:courseList) {
+            /*4.1.插入课程考试关联表*/
+            if (teacherInfoDao.insertCourseExamination(examinationId,course.getCourseId()) == 0) {
+                return false;
+            }
+            /*4.2.获取该课程的学生列表*/
+            List<StudentInfo> studentInfoList=teacherInfoDao.getStudentListByCourse(course.getCourseId());
+            /*4.3.给学生发布考试通知*/
+            for(StudentInfo student:studentInfoList){
+                MessageInfo messageInfo = new MessageInfo();
+                messageInfo.setUserId(student.getUserId());
+                messageInfo.setTitle("考试通知");
+                messageInfo.setExaminationName(createExamDTO.getExaminationName());
+                messageInfo.setStartTime(createExamDTO.getStartTime());
+                messageInfo.setEndTime(createExamDTO.getEndTime());
+                if(messageInfoDao.insertMessageInfo(messageInfo) == 0){
+                    return false;
+                }
+            }
         }
-        return false;
+        return true;
     }
 }

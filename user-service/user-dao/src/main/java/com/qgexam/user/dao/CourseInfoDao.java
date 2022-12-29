@@ -26,5 +26,7 @@ public interface CourseInfoDao extends BaseMapper<CourseInfo> {
 
     Integer insertCourseTeacher(CourseTeacherDTO courseTeacherDTO);
     List<CourseTeacherListVO> getCourseTeacherList(Integer userId);
+    List<CourseInfo> getCourseListBySubject(@Param("subjectId") Integer subjectId);
+
 }
 
