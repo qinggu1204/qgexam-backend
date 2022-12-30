@@ -70,10 +70,20 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         int randomIndex = rand.nextInt(availableTeacherList.size());
         for (CourseInfo course:availableCourseList) {
             for(int i=0;i<availableCourseList.size();i++){
+                /*随机抽中的教师信息*/
                 TeacherInfo randomElement = availableTeacherList.get(randomIndex);
+                /*创建该教师收到的监考消息对象*/
+                MessageInfo messageInfo=new MessageInfo();
+                /*注入消息对象属性值*/
+                messageInfo.setUserId(randomElement.getUserId());
+                messageInfo.setTitle("监考通知");
+                messageInfo.setExaminationName(examinationName);
+                messageInfo.setStartTime(examinationInfoDao.getByExaminationId(examinationId).getStartTime());
+                messageInfo.setEndTime(examinationInfoDao.getByExaminationId(examinationId).getEndTime());
                 if(teacherInfoDao.arrangeInvigilation(examinationId,course.getCourseId(),randomElement.getTeacherId(),course.getCourseName(),randomElement.getUserName(),examinationName)==0){
                     flag=false;
                 }
+                messageInfoDao.insertMessageInfo(messageInfo);
                 availableTeacherList.remove(randomIndex);
             }
         }
