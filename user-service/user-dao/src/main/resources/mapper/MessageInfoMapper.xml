@@ -8,4 +8,10 @@
         values(#{userId},#{title}, #{examinationName}, #{startTime}, #{endTime})
     </insert>
 
+    <select id="getMessagePage" resultType="com.qgexam.user.pojo.VO.MessageInfoListVO">
+        select message_id, title, status
+        from message_info
+        where user_id = #{userId}
+    </select>
+
 </mapper>

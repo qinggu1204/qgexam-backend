@@ -1,7 +1,10 @@
 package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.user.pojo.PO.MessageInfo;
+import com.qgexam.user.pojo.VO.MessageInfoListVO;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 消息表(MessageInfo)表数据库访问层
@@ -11,5 +14,6 @@ import com.qgexam.user.pojo.PO.MessageInfo;
  */
 public interface MessageInfoDao extends BaseMapper<MessageInfo> {
     Integer insertMessageInfo(MessageInfo messageInfo);
+    IPage<MessageInfoListVO> getMessagePage(@Param("userId") Integer userId, IPage<MessageInfoListVO> page);
 }
 
