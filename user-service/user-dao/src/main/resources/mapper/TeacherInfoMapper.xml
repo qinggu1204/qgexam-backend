@@ -58,4 +58,16 @@
         where examination_id=#{examinationId}
           and course_examination.course_id=course_info.course_id
     </select>
+
+    <insert id="insertCourseExamination">
+        insert into course_examination(examination_id,course_id)
+        values(#{examinationId},#{courseId})
+    </insert>
+
+    <select id="getStudentListByCourse" resultType="com.qgexam.user.pojo.PO.StudentInfo">
+        select user_id
+        from student_course sc,student_info si
+        where sc.course_id = #{courseId} and si.student_id = sc.student_id
+    </select>
+
 </mapper>

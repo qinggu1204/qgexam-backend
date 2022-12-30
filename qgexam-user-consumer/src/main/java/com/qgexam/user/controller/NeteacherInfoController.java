@@ -2,8 +2,11 @@ package com.qgexam.user.controller;
 
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
+import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
+import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.ArrangeInvigilationDTO;
+import com.qgexam.user.pojo.DTO.CreateExamDTO;
 import com.qgexam.user.service.NeTeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RestController
 @RequestMapping("/netea")
-public class NeteacherInfoController {
+public class NeteacherInfoController extends BaseController {
 
     @DubboReference
     private NeTeacherInfoService neTeacherInfoService;
@@ -54,4 +57,28 @@ public class NeteacherInfoController {
         return ResponseResult.okResult(neTeacherInfoService.arrangeInvigilation(arrangeInvigilationDTO.getExaminationId()));
     }
 
+    /**
+     * @description 根据学科查询学科章节
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @aythor ljy
+     * @date 2022/12/25 20:10:44
+     */
+    @GetMapping("/getChapterBySubject/ {subjectId}")
+    public ResponseResult getChapterBySubject(@PathVariable Integer subjectId){
+        return ResponseResult.okResult(neTeacherInfoService.getChapterInfoList(subjectId));
+    }
+
+    /**
+     * @description 创建（发布）考试
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @aythor ljy
+     * @date 2022/12/28 15:14:42
+     */
+    @PostMapping("/createExam")
+    public ResponseResult createExam(@RequestBody @Validated CreateExamDTO createExamDTO){
+        if (neTeacherInfoService.createExamination(getUserId(),createExamDTO)) {
+            return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+        }
+        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+    }
 }
