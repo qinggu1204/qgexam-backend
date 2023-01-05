@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="自动安排监考教师">
+    <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="ddddd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" afterDir="false" />
     </list>
-    <list id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/CommonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/MessageInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/MessageInfoListVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/MessageInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/MessageInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/MessageInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/MessageInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/MessageInfoMapper.xml" afterDir="false" />
-    </list>
+    <list id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,6 +223,7 @@
       <workItem from="1672291730274" duration="17114000" />
       <workItem from="1672371303012" duration="807000" />
       <workItem from="1672383221814" duration="13972000" />
+      <workItem from="1672735074904" duration="3188000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -288,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672327052553</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="ddddd">
+      <created>1672735138008</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672735138008</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +315,8 @@
     <MESSAGE value="发布考试" />
     <MESSAGE value="教务教师查看试卷列表" />
     <MESSAGE value="自动安排监考教师" />
-    <option name="LAST_COMMIT_MESSAGE" value="自动安排监考教师" />
+    <MESSAGE value="ddddd" />
+    <option name="LAST_COMMIT_MESSAGE" value="ddddd" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/qgexam$SMSUtils.ic" NAME="SMSUtils 覆盖结果" MODIFIED="1671074415972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
