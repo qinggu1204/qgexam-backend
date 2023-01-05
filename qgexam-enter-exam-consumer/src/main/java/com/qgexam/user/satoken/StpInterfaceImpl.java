@@ -14,7 +14,7 @@ import java.util.List;
 @Component    // 保证此类被SpringBoot扫描，完成Sa-Token的自定义权限验证扩展
 public class StpInterfaceImpl implements StpInterface {
 
-    @DubboReference
+    @DubboReference(registry = "userRegistry")
     private UserInfoService userInfoService;
 
     @Override
