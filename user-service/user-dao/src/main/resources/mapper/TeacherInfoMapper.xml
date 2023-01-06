@@ -69,5 +69,10 @@
         from student_course sc,student_info si
         where sc.course_id = #{courseId} and si.student_id = sc.student_id
     </select>
+    <select id="selectInvigilationInfo" resultType="com.qgexam.user.pojo.VO.GetInvigilationInfoVO">
+        select id, teacher_name, course_name
+        from teacher_invigilation
+        where examination_id = #{examinationId}
+    </select>
 
 </mapper>

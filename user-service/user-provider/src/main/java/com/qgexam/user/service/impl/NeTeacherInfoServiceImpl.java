@@ -7,11 +7,9 @@ import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.*;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
+import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
 import com.qgexam.user.pojo.PO.*;
-import com.qgexam.user.pojo.VO.ChapterInfoListVO;
-import com.qgexam.user.pojo.VO.GetCourseListVO;
-import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
-import com.qgexam.user.pojo.VO.UserInfoVO;
+import com.qgexam.user.pojo.VO.*;
 import com.qgexam.user.service.NeTeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,5 +143,11 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             }
         }
         return true;
+    }
+
+    @Override
+    public IPage<GetInvigilationInfoVO> getInvigilationInfo(GetInvigilationInfoDTO getInvigilationInfoDTO) {
+        IPage<GetInvigilationInfoVO> page = new Page<>(getInvigilationInfoDTO.getCurrentPage(), getInvigilationInfoDTO.getPageSize());
+        return teacherInfoDao.selectInvigilationInfo(page,getInvigilationInfoDTO.getExaminationId());
     }
 }
