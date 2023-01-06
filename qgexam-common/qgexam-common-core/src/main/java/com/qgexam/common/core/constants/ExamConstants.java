@@ -4,17 +4,17 @@ public class ExamConstants {
     /**
      * 考试未开始
      */
-    public static final String EXAM_STATUS_NOT_START = "NOT_START";
+    public static final Integer EXAM_STATUS_NOT_START = 2;
 
     /**
      * 考试进行中
      */
-    public static final String EXAM_STATUS_UNDERWAY = "UNDERWAY";
+    public static final Integer EXAM_STATUS_UNDERWAY = 1;
 
     /**
      * 考试已结束
      */
-    public static final String EXAM_STATUS_OVER = "OVER";
+    public static final Integer EXAM_STATUS_OVER = 3;
 
     /**
      * 题目类型：单选题
