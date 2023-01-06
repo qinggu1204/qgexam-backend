@@ -28,8 +28,8 @@ public class ExaminationInfo implements Serializable {
     private Integer createdBy;
     //考试结束时间
     private LocalDateTime endTime;
-    //考试状态(NOT_START UNDERWAY OVER)
-    private String status;
+    //考试状态(1表示进行中 2表示未开始 3表示已结束)
+    private Integer status;
     //考试开始时间
     private LocalDateTime startTime;
     //是否题目乱序(0表示否，1表示是)
