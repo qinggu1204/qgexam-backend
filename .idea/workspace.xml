@@ -224,6 +224,8 @@
       <workItem from="1672371303012" duration="807000" />
       <workItem from="1672383221814" duration="13972000" />
       <workItem from="1672735074904" duration="3188000" />
+      <workItem from="1672908051731" duration="601000" />
+      <workItem from="1672926304662" duration="3506000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -288,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672735138008</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ddddd">
+      <created>1672908087637</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672908087637</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

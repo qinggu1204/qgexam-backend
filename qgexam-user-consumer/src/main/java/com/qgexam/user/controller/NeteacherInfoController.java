@@ -63,7 +63,7 @@ public class NeteacherInfoController extends BaseController {
      * @aythor ljy
      * @date 2022/12/25 20:10:44
      */
-    @GetMapping("/getChapterBySubject/ {subjectId}")
+    @GetMapping("/getChapterBySubject/{subjectId}")
     public ResponseResult getChapterBySubject(@PathVariable Integer subjectId){
         return ResponseResult.okResult(neTeacherInfoService.getChapterInfoList(subjectId));
     }
