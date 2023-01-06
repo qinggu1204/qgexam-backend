@@ -5,19 +5,20 @@ dubbo:
   application:
     # 应用名称
     name: enter-exam-consumer
+  # dubbo 多注册中心配置
   registries:
     # 注册中心名称
     userRegistry:
-      # 注册中心地址
-      address: zookeeper://101.34.2.207:2181
+      # 注册中心地址 user
+      address: zookeeper://47.96.154.148:2181
+      default: true
       timeout: 600000
     enterExamRegistry:
-      # 注册中心地址
-      address: zookeeper://121.199.73.86:2181
+      # 注册中心地址 yzw
+      address: zookeeper://211.159.223.185:2182
+      default: false
       timeout: 600000
 
-  metadata-report:
-    address: zookeeper://121.199.73.86:2181
   consumer:
     timeout: 600000
 

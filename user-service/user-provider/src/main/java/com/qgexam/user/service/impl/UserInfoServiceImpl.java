@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * @author lamb007
  * @since 2022-12-10 20:13:04
  */
-@DubboService(registry = {"userRegistry", "enterExamRegistry", "viewExamResultsRegistry", "registry4", "registry5"})
+@DubboService(registry = {"userRegistry", "enterExamRegistry", "viewExamResultsRegistry", "markingRegistry", "finishExamRegistry"})
 @Transactional
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> implements UserInfoService {
 

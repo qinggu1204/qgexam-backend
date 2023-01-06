@@ -9,11 +9,9 @@ dubbo:
     # 注册中心名称
     userRegistry:
       # 注册中心地址
-      address: zookeeper://101.34.2.207:2181
+      address: zookeeper://47.96.154.148:2181
       timeout: 600000
 
-  metadata-report:
-    address: zookeeper://101.34.2.207:2181
   consumer:
     timeout: 600000
 
