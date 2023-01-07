@@ -17,4 +17,5 @@ public class GetTeacherListVO implements Serializable {
     private Integer teacherId;
     private Integer userId;
     private String teacherName;
+    private String loginName;
 }
