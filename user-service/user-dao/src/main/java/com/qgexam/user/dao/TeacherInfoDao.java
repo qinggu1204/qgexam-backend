@@ -30,5 +30,6 @@ public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
     List<CourseInfo> getCourseExaminationList(Integer examinationId);
     Integer insertCourseExamination(@Param("examinationId") Integer examinationId, @Param("courseId") Integer courseId);
     List<StudentInfo> getStudentListByCourse(@Param("courseId") Integer courseId);
+    Integer insertNeteacher(@Param("roleId") Integer roleId,@Param("roleName")String roleName,@Param("userId") Integer userId);
 }
 

@@ -8,16 +8,12 @@ import java.io.Serializable;
 
 /**
  * @author ljy
- * @date 2022/12/30 16:55
+ * @date 2022/1/7 16:55
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageInfoListVO implements Serializable {
-    //消息编号
-    Integer messageId;
-    //消息标题
-    String title;
-    //消息状态
-    Integer status;
+public class GetNeteacherListVO implements Serializable {
+    private Integer teacherId;
+    private String teacherName;
 }

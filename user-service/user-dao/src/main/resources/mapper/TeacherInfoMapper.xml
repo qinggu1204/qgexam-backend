@@ -70,4 +70,9 @@
         where sc.course_id = #{courseId} and si.student_id = sc.student_id
     </select>
 
+    <insert id="insertNeteacher">
+        insert into user_role_info(role_id,role_name,user_id)
+        values(#{roleId},#{roleName},#{userId})
+    </insert>
+
 </mapper>

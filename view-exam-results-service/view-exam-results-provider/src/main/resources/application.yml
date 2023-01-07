@@ -4,13 +4,13 @@ dubbo:
     name: view-exam-results-provider
   registry:
     # 注册中心地址
-    address: zookeeper://121.199.73.86:2182
+    address: zookeeper://101.35.52.77:2181
     timeout: 250000
   protocol:
     # 协议名称
     name: dubbo
     # 协议端口
-    port: 20880
+    port: -1
   consumer:
     timeout: 600000
   provider:
