@@ -53,11 +53,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-        <!-- Sa-Token 整合 Dubbo -->
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-context-dubbo</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
 
     </dependencies>
 

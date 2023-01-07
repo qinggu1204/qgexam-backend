@@ -7,6 +7,7 @@ import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.ArrangeInvigilationDTO;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
+import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
 import com.qgexam.user.service.NeTeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
@@ -31,14 +32,6 @@ public class NeteacherInfoController extends BaseController {
         return ResponseResult.okResult();
     }
 
-    /**
-     * 获取排考结果
-     */
-    @GetMapping("/getInvigilationInfo/{examinationId}")
-    public ResponseResult getInvigilationInfo(@PathVariable("examinationId") Integer examinationId){
-
-        return ResponseResult.okResult();
-    }
 
     /**
      * 获取试卷列表
@@ -80,5 +73,18 @@ public class NeteacherInfoController extends BaseController {
             return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
         }
         return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+    }
+
+    /**
+     * @description 教务教师获取排考结果
+     * @param
+     * @return
+     * @author yzw
+     * @date 2023/1/6 10:43:18
+     */
+    @GetMapping("/getInvigilationInfo/{examinationId}")
+    public ResponseResult getInvigilationInfo(@PathVariable("examinationId") Integer examinationId,
+                                              Integer currentPage, Integer pageSize){
+        return ResponseResult.okResult(neTeacherInfoService.getInvigilationInfo(new GetInvigilationInfoDTO(examinationId,currentPage,pageSize)));
     }
 }

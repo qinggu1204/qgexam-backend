@@ -6,7 +6,7 @@ dubbo:
     # 协议名称
     name: dubbo
     # 协议端口
-    port: 20881
+    port: -1
   consumer:
     timeout: 600000
   provider:
@@ -23,7 +23,7 @@ dubbo:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.60.184.215:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
 

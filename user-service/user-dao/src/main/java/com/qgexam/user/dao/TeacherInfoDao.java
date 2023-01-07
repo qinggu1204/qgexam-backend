@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.user.pojo.PO.CourseInfo;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
-import com.qgexam.user.pojo.VO.GetCourseListVO;
-import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
-import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
-import com.qgexam.user.pojo.VO.StudentVO;
+import com.qgexam.user.pojo.VO.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -31,5 +28,6 @@ public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
     Integer insertCourseExamination(@Param("examinationId") Integer examinationId, @Param("courseId") Integer courseId);
     List<StudentInfo> getStudentListByCourse(@Param("courseId") Integer courseId);
     Integer insertNeteacher(@Param("roleId") Integer roleId,@Param("roleName")String roleName,@Param("userId") Integer userId);
+    IPage<GetInvigilationInfoVO> selectInvigilationInfo(IPage<GetInvigilationInfoVO> page, @Param("examinationId") Integer examinationId);
 }
 
