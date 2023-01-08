@@ -69,10 +69,30 @@
         from student_course sc,student_info si
         where sc.course_id = #{courseId} and si.student_id = sc.student_id
     </select>
+
     <select id="selectInvigilationInfo" resultType="com.qgexam.user.pojo.VO.GetInvigilationInfoVO">
         select id, teacher_name, course_name
         from teacher_invigilation
         where examination_id = #{examinationId}
+    </select>
+
+    <insert id="insertNeteacher">
+        insert into user_role_info(role_id,role_name,user_id)
+        values(#{roleId},#{roleName},#{userId})
+    </insert>
+
+    <select id="getTeacherPage" resultType="com.qgexam.user.pojo.VO.GetTeacherListVO">
+        select ti.teacher_id, ti.user_id, ti.user_name as teacherName, ui.login_name
+        from teacher_info ti, user_info ui, user_role_info uri
+        <where>
+            <if test="loginName!=null and loginName!=''">
+                and ui.login_name = #{loginName}
+            </if>
+            and ti.school_id = #{schoolId}
+            and ti.user_id = ui.user_id
+            and ui.user_id = uri.user_id
+            and uri.role_id = #{roleId}
+        </where>
     </select>
 
 </mapper>
