@@ -1,4 +1,4 @@
-package com.qgexam.user.aspect;
+package com.qgexam.exam.enter.aspect;
 
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;

@@ -33,6 +33,8 @@ spring:
         max-wait: 1ms
         max-idle: 4
         min-idle: 0
+
+
   rabbitmq:
     host: 101.35.52.77
     port: 5672

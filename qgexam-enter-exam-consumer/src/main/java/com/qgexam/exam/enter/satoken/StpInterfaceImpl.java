@@ -1,9 +1,8 @@
-package com.qgexam.user.satoken;
+package com.qgexam.exam.enter.satoken;
 
 import cn.dev33.satoken.stp.StpInterface;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

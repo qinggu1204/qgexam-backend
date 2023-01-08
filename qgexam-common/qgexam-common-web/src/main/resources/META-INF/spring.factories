@@ -4,4 +4,5 @@ com.qgexam.common.web.configure.SaTokenConfigure,\
 com.qgexam.common.web.handler.exception.CheckExceptionHandler,\
 com.qgexam.common.web.handler.exception.GlobalExceptionHandler,\
 com.qgexam.common.web.handler.exception.TokenExceptionHandler,\
+com.qgexam.common.web.handler.exception.SchedulerExceptionHandler,\
 com.qgexam.common.web.handler.exception.BusinessExceptionHandler

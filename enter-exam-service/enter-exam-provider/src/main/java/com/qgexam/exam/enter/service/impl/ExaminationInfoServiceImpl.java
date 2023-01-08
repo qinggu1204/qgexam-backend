@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.common.quartz.pojo.SysJob;
+import com.qgexam.common.quartz.service.SysJobService;
 import com.qgexam.exam.enter.dao.ExaminationInfoDao;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.enter.pojo.VO.GetExamListVO;
 import com.qgexam.exam.enter.service.ExaminationInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -22,6 +25,9 @@ import java.util.List;
  */
 @DubboService
 public class ExaminationInfoServiceImpl extends ServiceImpl<ExaminationInfoDao, ExaminationInfo> implements ExaminationInfoService {
+
+    @Autowired
+    private SysJobService sysJobService;
 
     @Autowired
     private ExaminationInfoDao examinationInfoDao;
@@ -38,5 +44,19 @@ public class ExaminationInfoServiceImpl extends ServiceImpl<ExaminationInfoDao, 
         pageVO.setRecords(getExamListVOS);
         return pageVO;
     }
+
+    @Override
+    public String test() throws SchedulerException {
+        SysJob job = new SysJob()
+                .setJobName("测试考试开始2222")
+                .setJobGroup("测试任务组")
+                .setInvokeTarget("testJob.execute()")
+                        .setCronExpression("0 20 14 8 1 ? 2023");
+
+        sysJobService.saveJob(job);
+        return "finish";
+    }
+
+
 }
 

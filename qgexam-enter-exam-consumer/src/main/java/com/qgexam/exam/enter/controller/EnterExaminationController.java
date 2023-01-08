@@ -1,9 +1,10 @@
-package com.qgexam.user.controller;
+package com.qgexam.exam.enter.controller;
 
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.service.ExaminationInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.quartz.SchedulerException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import javax.validation.constraints.NotNull;
  */
 @Validated
 @RestController
-@RequestMapping("/stu")
+@RequestMapping("/stu/enterExam")
 public class EnterExaminationController {
 
     @DubboReference
@@ -36,11 +37,16 @@ public class EnterExaminationController {
      * @date 2023/1/6 15:59
      */
 
-    @GetMapping("/enterExam/getExamList")
+    @GetMapping("/getExamList")
     public ResponseResult getExamList(Integer courseId, String examinationName,
                                       @NotNull(message = "currentPage不能为空") Integer currentPage,
                                       @NotNull(message = "pageSize不能为空") Integer pageSize) {
         return ResponseResult.okResult(examinationInfoService.getExamList(new GetExamListDTO(courseId, examinationName, currentPage, pageSize)));
 
+    }
+
+    @GetMapping("/test")
+    public ResponseResult test() throws SchedulerException {
+        return ResponseResult.okResult(examinationInfoService.test());
     }
 }

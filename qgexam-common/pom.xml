@@ -16,6 +16,7 @@
         <module>qgexam-common-datasource</module>
         <module>qgexam-common-redis</module>
         <module>qgexam-common-web</module>
+        <module>qgexam-common-quartz</module>
     </modules>
 
 

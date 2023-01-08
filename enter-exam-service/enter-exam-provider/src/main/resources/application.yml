@@ -23,6 +23,11 @@ spring:
     username: root
     password: Eeeee11111
 
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+
   # redis配置
   redis:
     host: 120.46.166.53
