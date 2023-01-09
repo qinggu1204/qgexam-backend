@@ -10,6 +10,7 @@ import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
 import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
 import com.qgexam.user.pojo.VO.GetInvigilationInfoVO;
+import org.quartz.SchedulerException;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface NeTeacherInfoService{
     IPage<GetExaminationPaperVO> getExaminationPaperList(SaSession session, Integer currentPage, Integer pageSize);
     boolean arrangeInvigilation(Integer examinationId);
     List<ChapterInfoListVO> getChapterInfoList(Integer subjectId);
-    boolean createExamination(Integer userId, CreateExamDTO createExamDTO);
+    boolean createExamination(Integer userId, CreateExamDTO createExamDTO) throws SchedulerException;
 
     IPage<GetInvigilationInfoVO> getInvigilationInfo(GetInvigilationInfoDTO getInvigilationInfoDTO);
 }

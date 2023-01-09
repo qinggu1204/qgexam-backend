@@ -10,6 +10,7 @@ import com.qgexam.user.pojo.DTO.CreateExamDTO;
 import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
 import com.qgexam.user.service.NeTeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.quartz.SchedulerException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,7 +69,7 @@ public class NeteacherInfoController extends BaseController {
      * @date 2022/12/28 15:14:42
      */
     @PostMapping("/createExam")
-    public ResponseResult createExam(@RequestBody @Validated CreateExamDTO createExamDTO){
+    public ResponseResult createExam(@RequestBody @Validated CreateExamDTO createExamDTO) throws SchedulerException {
         if (neTeacherInfoService.createExamination(getUserId(),createExamDTO)) {
             return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
         }

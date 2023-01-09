@@ -58,6 +58,11 @@
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-context-dubbo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.qgexam</groupId>
+            <artifactId>qgexam-common-quartz</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
