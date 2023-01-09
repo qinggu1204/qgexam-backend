@@ -35,4 +35,17 @@ public class ViewExamResultsController extends BaseController {
     public ResponseResult getCourseScore(Integer courseId) {
         return ResponseResult.okResult(courseInfoService.getFinalScore(courseId,getStudentId()));
     }
+
+    /**
+     * 学生查看考试成绩明细
+     *
+     * @return ResponseResult
+     * @author ljy
+     * @date 2023/1/7 15:59
+     */
+
+    @GetMapping("/getExamScoreDetail")
+    public ResponseResult getExamScoreDetail(Integer examinationId) {
+        return ResponseResult.okResult();
+    }
 }
