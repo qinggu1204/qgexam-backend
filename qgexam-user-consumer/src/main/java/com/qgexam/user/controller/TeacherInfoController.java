@@ -83,4 +83,14 @@ public class TeacherInfoController extends BaseController {
         return ResponseResult.okResult(teacherInfoService.getStudentList(courseId,currentPage,pageSize));
     }
 
+    /**
+     * @description 教师获取学科列表
+     * @return com.qgexam.common.core.api.ResponseResult
+     * @author ljy
+     * @date 2022/1/8 19:10:29
+     */
+    @GetMapping("/getSubjectList")
+    public ResponseResult getSubjectList() {
+        return ResponseResult.okResult();
+    }
 }

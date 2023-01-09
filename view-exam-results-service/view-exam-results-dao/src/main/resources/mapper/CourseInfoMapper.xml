@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.exam.viewresults.dao.CourseInfoDao">
+
+    <select id="getFinalScore" resultType="java.lang.Integer">
+        select final_score
+        from student_course
+        where course_id=#{courseId}
+          and student_id=#{studentId}
+    </select>
+
+</mapper>
