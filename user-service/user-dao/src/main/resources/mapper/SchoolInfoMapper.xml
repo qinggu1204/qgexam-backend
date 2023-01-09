@@ -4,6 +4,6 @@
 <mapper namespace="com.qgexam.user.dao.SchoolInfoDao">
     <select id="queryById" resultType="com.qgexam.user.pojo.PO.SchoolInfo">
         select * from school_info
-        where school_id = #{schoolId}
+        where school_id = #{schoolId} and is_deleted = 0;
     </select>
 </mapper>

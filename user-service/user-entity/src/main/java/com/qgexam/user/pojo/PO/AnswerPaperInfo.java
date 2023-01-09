@@ -1,10 +1,12 @@
-package com.qgexam.exam.viewresults.pojo.PO;
+package com.qgexam.user.pojo.PO;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
+import java.util.Date;
+
 /**
  * 答卷表(AnswerPaperInfo)表实体类
  *
