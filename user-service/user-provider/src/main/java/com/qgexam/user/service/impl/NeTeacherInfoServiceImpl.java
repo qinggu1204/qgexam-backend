@@ -49,6 +49,8 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     private CourseInfoDao courseInfoDao;
     @Autowired
     private MessageInfoDao messageInfoDao;
+    @Autowired
+    private AnswerPaperInfoDao answerPaperInfoDao;
 
     @DubboReference(registry = "quartzRegistry")
     private SysJobService sysJobService;
@@ -187,12 +189,15 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
                 messageInfo.setExaminationName(createExamDTO.getExaminationName());
                 messageInfo.setStartTime(createExamDTO.getStartTime());
                 messageInfo.setEndTime(createExamDTO.getEndTime());
-                if (messageInfoDao.insertMessageInfo(messageInfo) == 0) {
+                AnswerPaperInfo answerPaperInfo = new AnswerPaperInfo();
+                answerPaperInfo.setStudentId(student.getStudentId());
+                answerPaperInfo.setExaminationId(examinationId);
+                answerPaperInfo.setExaminationName(createExamDTO.getExaminationName());
+                if (messageInfoDao.insertMessageInfo(messageInfo) == 0 || answerPaperInfoDao.insert(answerPaperInfo) == 0) {
                     return false;
                 }
             }
         }
-
         return true;
     }
 

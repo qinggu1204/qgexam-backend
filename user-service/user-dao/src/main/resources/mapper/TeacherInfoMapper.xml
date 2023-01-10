@@ -57,6 +57,8 @@
         select course_examination.course_id,course_name from course_examination,course_info
         where examination_id=#{examinationId}
           and course_examination.course_id=course_info.course_id
+          and course_examination.is_deleted = 0
+          and course_info.is_deleted = 0;
     </select>
 
     <insert id="insertCourseExamination">
@@ -65,15 +67,18 @@
     </insert>
 
     <select id="getStudentListByCourse" resultType="com.qgexam.user.pojo.PO.StudentInfo">
-        select user_id
+        select si.student_id, si.user_id
         from student_course sc,student_info si
-        where sc.course_id = #{courseId} and si.student_id = sc.student_id
+        where sc.course_id = #{courseId}
+          and si.student_id = sc.student_id
+          and sc.is_deleted = 0
+          and si.is_deleted = 0;
     </select>
 
     <select id="selectInvigilationInfo" resultType="com.qgexam.user.pojo.VO.GetInvigilationInfoVO">
         select id, teacher_name, course_name
         from teacher_invigilation
-        where examination_id = #{examinationId}
+        where examination_id = #{examinationId} and is_deleted = 0;
     </select>
 
     <insert id="insertNeteacher">
@@ -92,6 +97,9 @@
             and ti.user_id = ui.user_id
             and ui.user_id = uri.user_id
             and uri.role_id = #{roleId}
+            and ui.is_deleted = 0
+            and ti.is_deleted = 0
+            and uri.is_deleted = 0;
         </where>
     </select>
 

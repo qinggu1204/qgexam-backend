@@ -5,6 +5,6 @@
 
     <select id="getChapterListBySubject" resultType="com.qgexam.user.pojo.VO.ChapterInfoListVO">
         select chapter_id, chapter_name, importance_level
-        from chapter_info where subject_id=#{subjectId}
+        from chapter_info where subject_id=#{subjectId} and is_deleted = 0;
     </select>
 </mapper>
