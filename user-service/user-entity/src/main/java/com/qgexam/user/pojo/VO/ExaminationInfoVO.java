@@ -1,10 +1,13 @@
 package com.qgexam.user.pojo.VO;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author yzw
@@ -14,8 +17,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExaminationInfoVO {
+    private Integer examinationId;
     private String examinationName;
     private LocalDateTime startTime;
-    private LocalDateTime endTime;
     private String status;
+    private Integer limitTime;
+    //是否题目乱序(0表示否，1表示是)
+    private Integer isQuestionResort;
+    //是否选项乱序(0表示否，1表示是)
+    private Integer isOptionResort;
+
 }

@@ -10,7 +10,9 @@ import com.qgexam.user.dao.OptionInfoDao;
 import com.qgexam.user.dao.SubQuestionInfoDao;
 import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.ExaminationInfoVO;
+import com.qgexam.user.pojo.VO.OptionInfoVO;
 import com.qgexam.user.pojo.VO.QuestionInfoVO;
+import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -61,9 +63,9 @@ public class ExamPaperTest {
                     // 获取题目Id
                     Integer questionId = questionInfo.getQuestionId();
                     // 根据题目Id查询选项
-                    List<OptionInfo> optionInfos = optionInfoDao.selectOptionInfoListByQuestionInfoId(questionId);
+                    List<OptionInfoVO> optionInfos = optionInfoDao.selectOptionInfoListByQuestionInfoId(questionId);
                     // 根据题目Id查询小题
-                    List<SubQuestionInfo> subQuestionInfos = subQuestionInfoDao.selectSubQuestionInfoListByQuestionInfoId(questionId);
+                    List<SubQuestionInfoVO> subQuestionInfos = subQuestionInfoDao.selectSubQuestionInfoListByQuestionInfoId(questionId);
                     questionInfo.setOptionInfo(optionInfos);
                     questionInfo.setSubQuestionInfo(subQuestionInfos);
                 });
@@ -161,14 +163,6 @@ public class ExamPaperTest {
 
     @Test
     public void testSubQuestionAndOption() {
-        List<OptionInfo> optionInfos = optionInfoDao.selectOptionInfoListByQuestionInfoId(3);
-        List<SubQuestionInfo> subQuestionInfos = subQuestionInfoDao.selectSubQuestionInfoListByQuestionInfoId(3);
-        optionInfos.stream().forEach(optionInfo -> {
-            System.out.println("=====optionInfo: " + optionInfo);
-        });
-        System.out.println("--------------------------------");
-        subQuestionInfos.stream().forEach(subQuestionInfo -> {
-            System.out.println("=====subQuestionInfo: " + subQuestionInfo);
-        });
+
     }
 }

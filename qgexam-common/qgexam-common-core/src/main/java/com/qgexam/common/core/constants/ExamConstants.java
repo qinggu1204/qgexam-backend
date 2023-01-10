@@ -57,6 +57,14 @@ public class ExamConstants {
      */
     public static final String QUESTION_TYPE_JUDGE = "JUDGE";
 
+
+    public static final Integer QUESTION_RESORT = 1;
+    public static final Integer QUESTION_NOT_RESORT = 0;
+
+    public static final Integer OPTION_RESORT = 1;
+    public static final Integer OPTION_NOT_RESORT = 0;
+
+
     /**
      *
      */

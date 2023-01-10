@@ -1,7 +1,6 @@
 package com.qgexam.user.service.impl;
 
 import cn.dev33.satoken.session.SaSession;
-import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -9,9 +8,11 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
-import com.qgexam.common.quartz.pojo.SysJob;
-import com.qgexam.common.quartz.service.SysJobService;
-import com.qgexam.common.quartz.utils.CronUtil;
+
+
+import com.qgexam.quartz.pojo.PO.SysJob;
+import com.qgexam.quartz.service.SysJobService;
+import com.qgexam.quartz.utils.CronUtil;
 import com.qgexam.user.constants.ExamBeginJobConstants;
 import com.qgexam.user.dao.*;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
@@ -19,14 +20,15 @@ import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
 import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.*;
 import com.qgexam.user.service.NeTeacherInfoService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
+
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -48,7 +50,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     @Autowired
     private MessageInfoDao messageInfoDao;
 
-    @Autowired
+    @DubboReference(registry = "quartzRegistry")
     private SysJobService sysJobService;
 
     /**
@@ -120,7 +122,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean createExamination(Integer userId, CreateExamDTO createExamDTO) throws SchedulerException {
+    public boolean createExamination(Integer userId, CreateExamDTO createExamDTO)  {
         /*1.创建新考试对象*/
         ExaminationInfo examinationInfo = new ExaminationInfo();
         examinationInfo.setExaminationPaperId(createExamDTO.getExaminationPaperId());
@@ -142,7 +144,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         // 不设置Status，因为定时任务默认为启用状态 不设置concurrent，因为定时任务默认为不允许并发执行
         // 不设置misfirePolicy 因为定时任务失火时默认为放弃执行
         SysJob job = new SysJob()
-                // 定时任务的名称为examBeginJob:考试Id:考试名称
+                // 定时任务的名称为examBeginJob :考试Id:考试名称
                 .setJobName(ExamBeginJobConstants.JOB_NAME + ":" + examinationInfo.getExaminationId())
                 .setJobGroup(ExamBeginJobConstants.JOB_GROUP)
                 .setInvokeTarget(ExamBeginJobConstants.getInvokeTarget(invokeTargetParam));
@@ -155,7 +157,12 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         // 设置cron表达式
         job.setCronExpression(cron);
         // 添加job
-        Boolean succ = sysJobService.saveJob(job);
+        Boolean succ = null;
+        try {
+            succ = sysJobService.saveJob(job);
+        } catch (SchedulerException e) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), e.getMessage());
+        }
         if (!succ) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "创建考试失败");
         }

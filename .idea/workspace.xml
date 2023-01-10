@@ -5,35 +5,94 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="考试状态改为数字">
-      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/CronUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/ExaminationPaperService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/ExaminationPaperDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/OptionInfoDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/QuestionInfoDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubQuestionInfoDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/ExaminationPaperMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/OptionInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/QuestionInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubQuestionInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/OptionInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/QuestionInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/SubQuestionInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/ExaminationInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/QuestionInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/constants/ExamBeginJobConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/job/ExamBeginJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/ExaminationPaperServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/ExamPaperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/RedisCacheTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/EnterExamService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/java/com/qgexam/exam/enter/dao/StudentExamRecordDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/resources/mapper/StudentExamRecordMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/DTO/ExamRecordDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/PO/StudentExamRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/CompletionVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/ComplexVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/GetExaminationPaperVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/JudgeVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/MultipleVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/SingleVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/config/ExamRecordRabbitConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/RabbitMessageListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/EnterExamServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/config/rabbit/ExamRecordRabbitConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-api/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/java/com/qgexam/quartz/dao/ExaminationInfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/java/com/qgexam/quartz/dao/ExaminationPaperDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/java/com/qgexam/quartz/dao/OptionInfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/java/com/qgexam/quartz/dao/SubQuestionInfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/resources/mapper/ExaminationInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/resources/mapper/ExaminationPaperMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/resources/mapper/OptionInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/resources/mapper/SubQuestionInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-entity/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/QuartzProviderApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/OptionInfoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/SubQuestionInfoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/TimeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/ExaminationInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/ExaminationInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/resources/rebel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/PO/ExaminationInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/PO/ExaminationInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/PO/SysJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-entity/src/main/java/com/qgexam/quartz/pojo/PO/SysJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/EnterExamProviderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/EnterExamProviderApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/job/TestJob.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/ExaminationInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/ExaminationInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/constants/ExamConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/constants/ExamConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/config/SchedulerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/config/SchedulerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/constants/ScheduleConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/constants/ScheduleConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/dao/SysJobDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/java/com/qgexam/quartz/dao/SysJobDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/enums/ScheduleApiErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/enums/ScheduleApiErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/pojo/SysJob.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/service/SysJobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-api/src/main/java/com/qgexam/quartz/service/SysJobService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/service/impl/SysJobServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/service/impl/SysJobServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/AbstractQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/utils/AbstractQuartzJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/CronUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/utils/CronUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/JobInvokeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/utils/JobInvokeUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/QuartzDisallowConcurrentExecution.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/utils/QuartzDisallowConcurrentExecution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/QuartzJobExecution.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/utils/QuartzJobExecution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/ScheduleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/utils/ScheduleUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/resources/mapper/SysJobMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/resources/mapper/SysJobMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/resources/quartz.properties" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/resources/quartz.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/BusinessExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/BusinessExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/handler/exception/SchedulerExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/resources/META-INF/spring.factories" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/EnterExamConsumerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/EnterExamConsumerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/aspect/BaseContextAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/aspect/BaseContextAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/config/rabbit/RabbitConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/controller/EnterExaminationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/controller/EnterExaminationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/NeteacherInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/NeteacherInfoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/NeTeacherInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/NeTeacherInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/ExaminationPaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/ExaminationPaper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/OptionInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/OptionInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubQuestionInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubQuestionInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/OptionInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/OptionInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubQuestionInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubQuestionInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/QuestionInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/QuestionInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/ExaminationInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/ExaminationInfoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/QuestionInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/QuestionInfoVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/UserProviderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/UserProviderApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/job/ExamBeginJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamBeginJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/ExamPaperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/ExamPaperTest.java" afterDir="false" />
     </list>
     <list id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,9 +103,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="HTML File" />
         <option value="mybatis-mapper" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -75,7 +134,8 @@
       <MavenGeneralSettings>
         <option name="localRepository" value="D:\maven\apache-maven-3.3.9-bin\maven_repository" />
         <option name="mavenHome" value="D:/maven/apache-maven-3.3.9-bin/apache-maven-3.3.9" />
-        <option name="userSettingsFile" value="E:\IDEA\IntelliJ IDEA 2021.1.3\plugins\maven\lib\maven3\conf\settings.xml" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\maven\apache-maven-3.3.9-bin\apache-maven-3.3.9\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -99,14 +159,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/111/qgexam" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/quartz-service/quartz-dao/src/main/resources/mapper" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="com.sjhy.plugin.ui.TypeMapperSettingForm" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -116,10 +178,26 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\JavaEE Projects\project\qgexam" />
+      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\resources\mapper" />
+      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\java\com\qgexam\quartz\dao" />
+      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-provider\src\main\java\com\qgexam\quartz\utils" />
+      <recent name="E:\JavaWeb\javaee_project\qgexam" />
+      <recent name="E:\JavaWeb\javaee_project\qgexam\rabbitmq-service\rabbitmq-provider\src\main\java\com\qgexam\rabbit\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\resources\mapper" />
+      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\resources" />
+      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-provider\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.qgexam.answerPapers.marking" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qgexam.quartz.service.impl" />
+      <recent name="com.qgexam.quartz.service" />
+      <recent name="com.qgexam.quartz.PO" />
+      <recent name="com.qgexam.quartz.enums" />
+      <recent name="com.qgexam.quartz.dao" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -129,7 +207,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ExamPaperTest.test01">
+  <component name="RunManager" selected="JUnit.TimeTest.test">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -189,7 +267,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RedisCacheTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TimeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-provider" />
       <extension name="coverage">
         <pattern>
@@ -198,25 +276,38 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.qgexam.user.service" />
-      <option name="MAIN_CLASS_NAME" value="com.qgexam.user.service.RedisCacheTest" />
+      <option name="MAIN_CLASS_NAME" value="com.qgexam.user.service.TimeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-provider" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qgexam.user.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.qgexam.user.service" />
+      <option name="MAIN_CLASS_NAME" value="com.qgexam.user.service.TimeTest" />
       <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EnterExamConsumerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="EnterExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-enter-exam-consumer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamConsumerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EnterExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="qgexam-enter-exam-consumer" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.EnterExamConsumerApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <configuration name="EnterExamProviderApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="quartz-provider" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamProviderApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -225,7 +316,6 @@
       <module name="enter-exam-provider" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamProviderApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -244,6 +334,13 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingProviderApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuartzProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="quartz-provider" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.quartz.QuartzProviderApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -269,6 +366,7 @@
     <configuration name="ViewExamResultsConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-view-exam-results-consumer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.viewresults.ViewExamResultsConsumerApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -276,32 +374,35 @@
     <configuration name="ViewExamResultsProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="view-exam-results-provider" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.viewresults.ViewExamResultsProviderApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ExamPaperTest.test" />
+      <item itemvalue="JUnit.ExamPaperTest.testSubQuestionAndOption" />
+      <item itemvalue="JUnit.ExamPaperTest.test01" />
+      <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
       <item itemvalue="Spring Boot.UserConsumerApplication" />
       <item itemvalue="Spring Boot.UserProviderApplication" />
       <item itemvalue="Spring Boot.MarkingProviderApplication" />
       <item itemvalue="Spring Boot.MarkingConsumerApplication" />
       <item itemvalue="Spring Boot.EnterExamProviderApplication" />
-      <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
       <item itemvalue="Spring Boot.ViewExamResultsProviderApplication" />
       <item itemvalue="Spring Boot.ViewExamResultsConsumerApplication" />
-      <item itemvalue="Spring Boot.EnterExamConsumerApplication (1)" />
-      <item itemvalue="JUnit.RedisCacheTest.test" />
-      <item itemvalue="JUnit.ExamPaperTest.test" />
-      <item itemvalue="JUnit.ExamPaperTest.testSubQuestionAndOption" />
-      <item itemvalue="JUnit.ExamPaperTest.test01" />
+      <item itemvalue="JUnit.TimeTest" />
+      <item itemvalue="JUnit.TimeTest.test" />
+      <item itemvalue="Spring Boot.EnterExamProviderApplication (1)" />
+      <item itemvalue="Spring Boot.QuartzProviderApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TimeTest.test" />
+        <item itemvalue="JUnit.TimeTest" />
         <item itemvalue="JUnit.ExamPaperTest.test01" />
         <item itemvalue="JUnit.ExamPaperTest.testSubQuestionAndOption" />
         <item itemvalue="JUnit.ExamPaperTest.test" />
-        <item itemvalue="JUnit.RedisCacheTest.test" />
-        <item itemvalue="Spring Boot.MarkingConsumerApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -355,7 +456,7 @@
       <workItem from="1673020767074" duration="1256000" />
       <workItem from="1673077040238" duration="5689000" />
       <workItem from="1673165799278" duration="21000" />
-      <workItem from="1673183665821" duration="33679000" />
+      <workItem from="1673183665821" duration="91854000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -476,27 +577,27 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/service/impl/SysJobServiceImpl.java</url>
+          <line>146</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/service/impl/SysJobServiceImpl.java</url>
-          <line>144</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/utils/ScheduleUtils.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/qgexam-common/qgexam-common-quartz/src/main/java/com/qgexam/common/quartz/utils/ScheduleUtils.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java</url>
-          <line>139</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/RabbitMessageListener.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.util.LinkedHashMap$Entry" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

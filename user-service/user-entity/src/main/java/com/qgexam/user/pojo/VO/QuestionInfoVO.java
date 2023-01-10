@@ -29,10 +29,10 @@ public class QuestionInfoVO implements Serializable {
     // 题目分数，平均算
     private Integer questionScore;
     // 题目选项
-    private List<OptionInfo> optionInfo;
+    private List<OptionInfoVO> optionInfo;
 
     // 题目小题
-    private List<SubQuestionInfo> subQuestionInfo;
+    private List<SubQuestionInfoVO> subQuestionInfo;
 
 
 }

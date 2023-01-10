@@ -4,8 +4,8 @@
 <mapper namespace="com.qgexam.user.dao.SubQuestionInfoDao">
 
     <select id="selectSubQuestionInfoListByQuestionInfoId"
-            resultType="com.qgexam.user.pojo.PO.SubQuestionInfo">
-        select *
+            resultType="com.qgexam.user.pojo.VO.SubQuestionInfoVO">
+        select sqi.sub_question_id, sqi.sub_question_desc
         from sub_question_info sqi
         where sqi.question_id = #{questionId} and sqi.is_deleted = 0
     </select>

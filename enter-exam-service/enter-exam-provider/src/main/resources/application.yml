@@ -54,6 +54,9 @@ spring:
     # 只要抵达队列，以异步的方式回调returnCallback
     template:
       mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 
 mybatis-plus:
