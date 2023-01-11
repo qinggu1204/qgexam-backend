@@ -64,7 +64,11 @@ public class ExamConstants {
     public static final Integer OPTION_RESORT = 1;
     public static final Integer OPTION_NOT_RESORT = 0;
 
+    public static final Integer QUESTION_SUB = 0;
+    public static final Integer QUESTION_OBJ = 1;
 
+    public static final Integer HAS_SUB_QUESTION = 1;
+    public static final Integer NO_SUB_QUESTION = 0;
     /**
      *
      */

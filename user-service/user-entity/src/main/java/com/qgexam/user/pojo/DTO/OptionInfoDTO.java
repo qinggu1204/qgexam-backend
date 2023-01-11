@@ -10,14 +10,14 @@ import java.io.Serializable;
 
 /**
  * @author yzw
- * @date 2023年01月11日 14:54
+ * @date 2023年01月11日 20:20
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class SubQuestionInfoDTO implements Serializable {
-    @NotBlank(message = "子题目内容不能为空")
-    private String subQuestionDesc;
-    @NotBlank(message = "子题目答案不能为空")
-    private String subQuestionAns;
+@AllArgsConstructor
+public class OptionInfoDTO implements Serializable {
+    @NotBlank(message = "选项名称不能为空")
+    private String optionName;
+    @NotBlank(message = "选项内容不能为空")
+    private String optionDesc;
 }
