@@ -32,6 +32,8 @@ public class StudentInfo implements Serializable {
     private String schoolName;
     //人脸url
     private String faceImg;
+    //人脸特征
+    private byte[] faceFeature;
     //创建时间
     private Date createTime;
     //更新时间

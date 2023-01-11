@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.user.dao.AnswerPaperInfoDao">
+    <select id="getCheatPaperIdList" resultType="java.lang.Integer">
+        select answer_paper_id
+        from answer_paper_info
+        where (examination_id,student_id) in (select student_exam_record.examination_id,student_exam_record.student_id
+                            from student_exam_record
+                            where examination_id = #{examinationId}
+                              and is_cheat = 1)
+    </select>
+</mapper>

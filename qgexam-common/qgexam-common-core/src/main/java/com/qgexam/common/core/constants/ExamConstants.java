@@ -36,5 +36,23 @@ public class ExamConstants {
      */
     public static final String QUESTION_TYPE_COMPLEX = "COMPLEX";
 
+    /**
+     * 题目难度等级最小值
+     */
+    public static final Integer DIFFICULTY_LEVEL_MINIMUM = 1;
 
+    /**
+     * 题目难度等级最大值
+     */
+    public static final Integer DIFFICULTY_LEVEL_MAXIMUM = 10;
+
+    /**
+     * 储存的答卷的键的前缀
+     */
+    public static final String ANSWER_PAPER_KEY = "before:marking:answerPaper:";
+
+    /**
+     * 答卷id列表
+     */
+    public static final String ANSWER_PAPER_ID_LIST_KEY = "after:marking:answerPaperIdList";
 }

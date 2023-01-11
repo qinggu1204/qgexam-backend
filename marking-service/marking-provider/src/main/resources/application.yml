@@ -6,7 +6,7 @@ dubbo:
     # 协议名称
     name: dubbo
     # 协议端口
-    port: 20881
+    port: -1
   consumer:
     timeout: 600000
   provider:
@@ -15,7 +15,7 @@ dubbo:
     # 注册中心名称
     markingRegistry:
       # 注册中心地址
-      address: zookeeper://81.68.168.28:2182
+      address: zookeeper://101.35.52.77:2182
       default: true
       timeout: 600000
 
@@ -23,13 +23,13 @@ dubbo:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.60.184.215:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
 
   # redis配置
   redis:
-    host: 120.46.210.113
+    host: 120.46.166.53
     port: 6379
     password: Eeeee-11111
     database: 0
@@ -64,7 +64,6 @@ oss:
   secretKey: ZvqIjeQGEqGs3NyN8ChydWwlJEXbw_GddeLQ26hN
   bucket: my-blog11
   ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
-
 
 
 
