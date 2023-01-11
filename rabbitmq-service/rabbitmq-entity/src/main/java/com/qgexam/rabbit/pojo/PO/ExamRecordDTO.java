@@ -1,4 +1,4 @@
-package com.qgexam.exam.enter.pojo.DTO;
+package com.qgexam.rabbit.pojo.PO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.qgexam.user.pojo.VO;
+package com.qgexam.quartz.pojo.VO;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -16,10 +17,11 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExaminationInfoVO {
+public class ExaminationInfoVO implements Serializable {
     private Integer examinationId;
     private String examinationName;
     private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String status;
     private Integer limitTime;
     //是否题目乱序(0表示否，1表示是)

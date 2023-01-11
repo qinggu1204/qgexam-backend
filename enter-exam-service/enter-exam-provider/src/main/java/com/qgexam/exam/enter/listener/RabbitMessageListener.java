@@ -1,10 +1,9 @@
 package com.qgexam.exam.enter.listener;
 
-import cn.hutool.log.Log;
-import com.qgexam.exam.enter.config.ExamRecordRabbitConfig;
 import com.qgexam.exam.enter.dao.StudentExamRecordDao;
-import com.qgexam.exam.enter.pojo.DTO.ExamRecordDTO;
 import com.qgexam.exam.enter.pojo.PO.StudentExamRecord;
+import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
+import com.qgexam.rabbit.pojo.PO.ExamRecordDTO;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -25,7 +24,7 @@ public class RabbitMessageListener {
     @Autowired
     private StudentExamRecordDao studentExamRecordDao;
 
-    @RabbitListener(queues = ExamRecordRabbitConfig.EXAM_RECORD_QUEUE_NAME)
+    @RabbitListener(queues = ExamRecordRabbitConstant.EXAM_RECORD_QUEUE_NAME)
     public void listenExamRecordQueue(ExamRecordDTO examRecordDTO, Channel channel, Message message) throws IOException {
         Integer studentId = examRecordDTO.getStudentId();
         Integer examinationId = examRecordDTO.getExaminationId();

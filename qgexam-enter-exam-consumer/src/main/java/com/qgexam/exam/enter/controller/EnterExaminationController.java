@@ -2,20 +2,17 @@ package com.qgexam.exam.enter.controller;
 
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
-import com.qgexam.exam.enter.config.rabbit.ExamRecordRabbitConfig;
-import com.qgexam.exam.enter.pojo.DTO.ExamRecordDTO;
+import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
+import com.qgexam.rabbit.pojo.PO.ExamRecordDTO;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.pojo.VO.GetExaminationPaperVO;
 import com.qgexam.exam.enter.service.EnterExamService;
 import com.qgexam.exam.enter.service.ExaminationInfoService;
+import com.qgexam.rabbit.config.ExamRecordRabbitConfig;
+import com.qgexam.rabbit.service.RabbitService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 
-import org.springframework.amqp.AmqpException;
-import org.springframework.amqp.rabbit.connection.CorrelationData;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * @author yzw
@@ -42,8 +38,8 @@ public class EnterExaminationController extends BaseController {
     @DubboReference
     private EnterExamService enterExamService;
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    @DubboReference(registry = "rabbitmqRegistry")
+    private RabbitService rabbitService;
 
     /**
      * 获取考试列表
@@ -75,29 +71,17 @@ public class EnterExaminationController extends BaseController {
         examRecordDTO.setExaminationId(examinationId);
         examRecordDTO.setStudentId(getStudentId());
         examRecordDTO.setEnterTime(LocalDateTime.now());
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        correlationData.getFuture().addCallback(
-                result -> {
-                    if (result.isAck()) {
-                        log.debug("消息发送成功, 消息id:{}", correlationData.getId());
-                    } else {
-                        log.error("消息发送失败, 消息id:{}, 原因:{}", correlationData.getId(), result.getReason());
-                        // 重发消息
-                        rabbitTemplate.convertAndSend(ExamRecordRabbitConfig.EXAM_RECORD_EXCHANGE_NAME,
-                                ExamRecordRabbitConfig.EXAM_RECORD_ROUTING_KEY, examRecordDTO, correlationData);
-                    }
-                },
-                ex -> {
-                    log.error("消息发送失败, 消息id:{}, 原因:{}", correlationData.getId(), ex.getMessage());
-                    // 重发消息
-                    rabbitTemplate.convertAndSend(ExamRecordRabbitConfig.EXAM_RECORD_EXCHANGE_NAME,
-                            ExamRecordRabbitConfig.EXAM_RECORD_ROUTING_KEY, examRecordDTO, correlationData);
-                }
-        );
-        // 发送消息
-        rabbitTemplate.convertAndSend(ExamRecordRabbitConfig.EXAM_RECORD_EXCHANGE_NAME,
-                ExamRecordRabbitConfig.EXAM_RECORD_ROUTING_KEY, examRecordDTO, correlationData);
+
+        // 消息队列发送一条消息
+        rabbitService.sendMessage(ExamRecordRabbitConstant.EXAM_RECORD_EXCHANGE_NAME,
+                ExamRecordRabbitConstant.EXAM_RECORD_ROUTING_KEY,
+                examRecordDTO);
         return ResponseResult.okResult(examinationPaper);
+    }
+
+    @GetMapping("/getExamInfo")
+    public ResponseResult getExaminationInfo(@NotNull Integer examinationId) {
+        return ResponseResult.okResult(enterExamService.getExaminationInfo(examinationId));
     }
 
 

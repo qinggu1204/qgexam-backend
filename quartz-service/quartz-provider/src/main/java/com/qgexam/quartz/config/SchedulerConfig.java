@@ -15,7 +15,7 @@ public class SchedulerConfig {
   public SchedulerFactoryBean scheduler(DataSource dataSource) {
     SchedulerFactoryBean factory = new SchedulerFactoryBean();
     factory.setConfigLocation(new ClassPathResource("quartz.properties"));
-    factory.setDataSource(dataSource);
+//    factory.setDataSource(dataSource);
     factory.setJobFactory(new SpringBeanJobFactory());
     // 延时启动
     factory.setStartupDelay(1);

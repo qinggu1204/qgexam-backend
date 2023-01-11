@@ -39,6 +39,11 @@ spring:
         max-idle: 4
         min-idle: 0
 
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+
 
 mybatis-plus:
   configuration:

@@ -10,7 +10,7 @@ import com.qgexam.quartz.dao.ExaminationPaperDao;
 import com.qgexam.quartz.dao.OptionInfoDao;
 import com.qgexam.quartz.dao.SubQuestionInfoDao;
 import com.qgexam.user.pojo.PO.*;
-import com.qgexam.user.pojo.VO.ExaminationInfoVO;
+import com.qgexam.quartz.pojo.VO.ExaminationInfoVO;
 import com.qgexam.user.pojo.VO.OptionInfoVO;
 import com.qgexam.user.pojo.VO.QuestionInfoVO;
 import com.qgexam.user.pojo.VO.SubQuestionInfoVO;

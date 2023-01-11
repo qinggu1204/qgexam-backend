@@ -17,6 +17,10 @@ dubbo:
       address: zookeeper://211.159.223.185:2182
       default: true
       timeout: 600000
+    rabbitmqRegistry:
+      # 注册中心地址 rabbitmq
+      address: zookeeper://211.159.223.185:2183
+      timeout: 600000
 
   consumer:
     timeout: 600000

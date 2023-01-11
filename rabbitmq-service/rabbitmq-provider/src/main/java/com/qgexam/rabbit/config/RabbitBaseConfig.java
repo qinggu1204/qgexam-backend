@@ -1,4 +1,4 @@
-package com.qgexam.exam.enter.config.rabbit;
+package com.qgexam.rabbit.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
  */
 @Slf4j
 @Configuration
-public class RabbitConfig implements RabbitTemplate.ReturnCallback{
+public class RabbitBaseConfig implements RabbitTemplate.ReturnCallback{
 
     @Autowired
     private RabbitTemplate rabbitTemplate;

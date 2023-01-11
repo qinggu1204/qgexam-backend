@@ -5,12 +5,13 @@ import cn.hutool.core.date.LocalDateTimeUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.common.core.exception.BusinessException;
+import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.enter.dao.ExaminationInfoDao;
-import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.enter.pojo.VO.*;
 import com.qgexam.exam.enter.service.EnterExamService;
-import com.qgexam.user.pojo.VO.ExaminationInfoVO;
+
+import com.qgexam.quartz.pojo.VO.ExaminationInfoVO;
 import com.qgexam.user.pojo.VO.QuestionInfoVO;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author yzw
@@ -37,11 +37,18 @@ public class EnterExamServiceImpl implements EnterExamService {
     public GetExaminationPaperVO getExaminationPaper(Integer examinationId) {
         // 从redis中读出考试信息
         ExaminationInfoVO examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
+        if (examinationInfo == null) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已经结束。");
+        }
         // 获取限时进入时间
         Integer limitTime = examinationInfo.getLimitTime();
+        LocalDateTime startTime = examinationInfo.getStartTime();
+        // 考试未开始
+//        if(LocalDateTime.now().isBefore(startTime)){
+//            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试还未开始，无法进入考试。");
+//        }
         // 等于0说明不限时进入
         if (limitTime != 0) {
-            LocalDateTime startTime = examinationInfo.getStartTime();
             // 计算限时进入时间点
             LocalDateTime enterLimitTime = LocalDateTimeUtil.offset(startTime, limitTime, ChronoUnit.MINUTES);
             // 判断当前时间是否在限时进入时间之前
@@ -105,6 +112,34 @@ public class EnterExamServiceImpl implements EnterExamService {
         getExaminationPaperVO.setComplex(new ComplexVO(ExamConstants.QUESTION_TYPE_COMPLEX, complexList));
 
         return getExaminationPaperVO;
+    }
+
+    @Override
+    public GetExaminationInfoVO getExaminationInfo(Integer examinationId) {
+        // 从redis中读出考试信息
+        ExaminationInfoVO examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
+
+        if (examinationInfo == null) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已经结束。");
+        }
+        // 获取限时进入时间
+        Integer limitTime = examinationInfo.getLimitTime();
+        LocalDateTime startTime = examinationInfo.getStartTime();
+        // 考试未开始
+        if(LocalDateTime.now().isBefore(startTime)){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试还未开始，无法进入考试。");
+        }
+        // 等于0说明不限时进入
+        if (limitTime != 0) {
+            // 计算限时进入时间点
+            LocalDateTime enterLimitTime = LocalDateTimeUtil.offset(startTime, limitTime, ChronoUnit.MINUTES);
+            // 判断当前时间是否在限时进入时间之前
+            if (!LocalDateTime.now().isBefore(enterLimitTime)) {
+                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "晚于考试限时进入时间，无法进入考试。");
+            }
+        }
+        GetExaminationInfoVO examinationInfoVO = BeanCopyUtils.copyBean(examinationInfo, GetExaminationInfoVO.class);
+        return examinationInfoVO;
     }
 
 }

@@ -1,5 +1,6 @@
-package com.qgexam.exam.enter.config.rabbit;
+package com.qgexam.rabbit.config;
 
+import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -14,25 +15,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ExamRecordRabbitConfig {
 
-    public static final String EXAM_RECORD_EXCHANGE_NAME = "exam.enter.record.exchange";
-
-    public static final String EXAM_RECORD_QUEUE_NAME = "exam.enter.record.queue";
-
-    public static final String EXAM_RECORD_ROUTING_KEY = "exam.enter.record";
-
-
     @Bean
     public DirectExchange examRecordDirectExchange() {
-        return new DirectExchange(EXAM_RECORD_EXCHANGE_NAME, true, false);
+        return new DirectExchange(ExamRecordRabbitConstant.EXAM_RECORD_EXCHANGE_NAME, true, false);
     }
     @Bean
     public Queue examRecordQueue() {
-        return new Queue(EXAM_RECORD_QUEUE_NAME, true, false, false);
+        return new Queue(ExamRecordRabbitConstant.EXAM_RECORD_QUEUE_NAME, true, false, false);
     }
 
     @Bean
     public Binding examRecordBinding(DirectExchange examRecordDirectExchange, Queue examRecordQueue) {
-        return BindingBuilder.bind(examRecordQueue).to(examRecordDirectExchange).with(EXAM_RECORD_ROUTING_KEY);
+        return BindingBuilder.bind(examRecordQueue).to(examRecordDirectExchange).with(ExamRecordRabbitConstant.EXAM_RECORD_ROUTING_KEY);
     }
 
 
