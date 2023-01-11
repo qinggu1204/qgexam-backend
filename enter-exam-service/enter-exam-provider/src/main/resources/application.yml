@@ -6,30 +6,27 @@ dubbo:
     # 协议名称
     name: dubbo
     # 协议端口
-    port: 20881
+    port: -1
   consumer:
     timeout: 600000
   provider:
     filter: -exception
-  registries:
-    # 注册中心名称
-    enterExamRegistry:
-      # 注册中心地址
-      address: zookeeper://121.199.73.86:2181
-      default: true
-      timeout: 600000
+  registry:
+    address: zookeeper://211.159.223.185:2182
+    timeout: 600000
 
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.60.184.215:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
 
+
   # redis配置
   redis:
-    host: 120.46.210.113
+    host: 120.46.166.53
     port: 6379
     password: Eeeee-11111
     database: 0
@@ -39,6 +36,23 @@ spring:
         max-wait: 1ms
         max-idle: 4
         min-idle: 0
+
+  rabbitmq:
+    host: 101.35.52.77
+    port: 5672
+    username: qgexam
+    password: qgexam
+    virtual-host: /qgexam
+    # 开启发送端确认
+    publisher-confirm-type: correlated
+    # 开启发送端抵达队列确认
+    publisher-returns: true
+    # 只要抵达队列，以异步的方式回调returnCallback
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 
 mybatis-plus:

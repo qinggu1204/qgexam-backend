@@ -1,21 +1,25 @@
 server:
-  port: 7777
+  port: 7780
 
 dubbo:
   application:
     # 应用名称
     name: view-exam-results-consumer
-  registry:
-    # 注册中心地址
-    address: zookeeper://121.199.73.86:2182
-  metadata-report:
-    address: zookeeper://121.199.73.86:2182
-  consumer:
-    timeout: 600000
+  registries:
+    # 注册中心名称
+    userRegistry:
+      # 注册中心地址 user
+      address: zookeeper://47.96.154.148:2181
+      timeout: 600000
+    viewExamResultsRegistry:
+      # 注册中心地址 ljy
+      address: zookeeper://101.35.52.77:2181
+      default: true
+      timeout: 600000
 
 spring:
   redis:
-    host: 120.46.210.113
+    host: 120.46.166.53
     port: 6379
     password: Eeeee-11111
     database: 0

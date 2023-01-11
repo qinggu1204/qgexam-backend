@@ -1,5 +1,6 @@
 package com.qgexam.user.pojo.PO;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -10,8 +11,8 @@ import java.io.Serializable;
 /**
  * 消息表(MessageInfo)表实体类
  *
- * @author peter guo
- * @since 2023-01-03 19:49:01
+ * @author ljy
+ * @since 2022-12-29 15:09:12
  */
 @Data
 @AllArgsConstructor
@@ -29,9 +30,9 @@ public class MessageInfo implements Serializable {
     //考试名称
     private String examinationName;
     //考试/阅卷开始时间
-    private Date startTime;
+    private LocalDateTime startTime;
     //考试/阅卷结束时间
-    private Date endTime;
+    private LocalDateTime endTime;
     //创建时间
     private Date createTime;
     //更新时间

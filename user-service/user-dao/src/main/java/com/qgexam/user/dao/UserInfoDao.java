@@ -18,13 +18,11 @@ import java.util.List;
 public interface UserInfoDao extends BaseMapper<UserInfo> {
 
     List<RoleInfo> selectRoleInfoListById(Integer id);
-
-
-
     UserInfo selectUserInfoByLoginName(String loginName);
 
     UserInfo getUserInfoByLoginName(String loginName);
     Integer insertTeacher(TeacherInfo teacherInfo);
+    Integer insertTeacherRole(Integer roleId,String roleName,Integer userId);
     Integer insertStudent(StudentInfo studentInfo);
     Integer updatePassword(UserInfo userInfo);
 

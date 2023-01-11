@@ -2,13 +2,107 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.TeacherInfoDao">
+    <insert id="arrangeInvigilation">
+        insert into teacher_invigilation(examination_id,teacher_id,course_id,course_name,teacher_name,examination_name)
+        values(#{examinationId},#{teacherId},#{courseId},#{courseName},#{teacherName},#{examinationName})
+    </insert>
 
+
+    <select id="getTeacherInfoByUserId" resultType="com.qgexam.user.pojo.PO.TeacherInfo">
+        select * from teacher_info where user_id=#{userId} and is_delete=0;
+    </select>
+<!--    <select id="getStudentPage" resultType="com.qgexam.user.pojo.PO.StudentInfo">
+        select student_id,
+               user_id,
+               user_name,
+               student_number,
+               school_id,
+               school_name,
+               face_img,
+               create_time,
+               update_time,
+               is_deleted
+        from student_info
+        where student_id in (
+            select student_id
+            from student_course
+            where course_id = #{courseId}
+        )
+    </select>-->
     <select id="getStudentPage" resultType="com.qgexam.user.pojo.VO.StudentVO">
         select user_name,
                student_number
         from student_course
         where course_id = #{courseId}
     </select>
+    <select id="getExaminationPaperList" resultType="com.qgexam.user.pojo.VO.GetExaminationPaperVO">
+        select examination_paper_id,title from examination_paper where created_by=#{userId}
+    </select>
+    <select id="getInvigilationTeacherList" resultType="com.qgexam.user.pojo.PO.TeacherInfo">
+        select teacher_id,user_name from teacher_info
+        where teacher_id not in
+              (select teacher_id from course_examination,teacher_course
+               where teacher_course.course_id=course_examination.course_id and
+                   course_examination.examination_id=#{examinationId})
+          and teacher_id not in (select teacher_id from teacher_invigilation,examination_info
+                                 where teacher_invigilation.examination_id=examination_info.examination_id
+                                   and (examination_info.start_time=
+                                        (select start_time from examination_info
+                                         where examination_info.examination_id=#{examinationId})
+                                     or examination_info.end_time=
+                                        (select end_time from examination_info
+                                         where examination_info.examination_id=#{examinationId})))
+    </select>
+    <select id="getCourseExaminationList" resultType="com.qgexam.user.pojo.PO.CourseInfo">
+        select course_examination.course_id,course_name from course_examination,course_info
+        where examination_id=#{examinationId}
+          and course_examination.course_id=course_info.course_id
+          and course_examination.is_deleted = 0
+          and course_info.is_deleted = 0;
+    </select>
+
+    <insert id="insertCourseExamination">
+        insert into course_examination(examination_id,course_id)
+        values(#{examinationId},#{courseId})
+    </insert>
+
+    <select id="getStudentListByCourse" resultType="com.qgexam.user.pojo.PO.StudentInfo">
+        select si.student_id, si.user_id
+        from student_course sc,student_info si
+        where sc.course_id = #{courseId}
+          and si.student_id = sc.student_id
+          and sc.is_deleted = 0
+          and si.is_deleted = 0;
+    </select>
+
+    <select id="selectInvigilationInfo" resultType="com.qgexam.user.pojo.VO.GetInvigilationInfoVO">
+        select id, teacher_name, course_name
+        from teacher_invigilation
+        where examination_id = #{examinationId} and is_deleted = 0;
+    </select>
+
+    <insert id="insertNeteacher">
+        insert into user_role_info(role_id,role_name,user_id)
+        values(#{roleId},#{roleName},#{userId})
+    </insert>
+
+    <select id="getTeacherPage" resultType="com.qgexam.user.pojo.VO.GetTeacherListVO">
+        select ti.teacher_id, ti.user_id, ti.user_name as teacherName, ui.login_name
+        from teacher_info ti, user_info ui, user_role_info uri
+        <where>
+            <if test="loginName!=null and loginName!=''">
+                and ui.login_name = #{loginName}
+            </if>
+            and ti.school_id = #{schoolId}
+            and ti.user_id = ui.user_id
+            and ui.user_id = uri.user_id
+            and uri.role_id = #{roleId}
+            and ui.is_deleted = 0
+            and ti.is_deleted = 0
+            and uri.is_deleted = 0;
+        </where>
+    </select>
+
     <select id="getScorePage" resultType="com.qgexam.user.pojo.VO.ScoreVO">
         select student_id,
                student_number,

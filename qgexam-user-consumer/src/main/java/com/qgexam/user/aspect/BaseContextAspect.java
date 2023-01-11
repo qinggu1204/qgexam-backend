@@ -30,7 +30,7 @@ public class BaseContextAspect {
     /**
      * 切入点
      */
-    @Pointcut("execution(public * com.qgexam.*.controller..*.*(..))")
+    @Pointcut("execution(public * com.qgexam..*.controller..*.*(..))")
     public void controllerMethod() {
     }
 

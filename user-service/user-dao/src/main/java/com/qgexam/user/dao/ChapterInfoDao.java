@@ -2,14 +2,18 @@ package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.ChapterInfo;
+import com.qgexam.user.pojo.VO.ChapterInfoListVO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 学科章节表(ChapterInfo)表数据库访问层
  *
- * @author peter guo
- * @since 2022-12-23 12:21:16
+ * @author ljy
+ * @since 2022-12-25 22:51:46
  */
 public interface ChapterInfoDao extends BaseMapper<ChapterInfo> {
-
+    List<ChapterInfoListVO> getChapterListBySubject(@Param("subjectId")Integer subjectId);
 }
 

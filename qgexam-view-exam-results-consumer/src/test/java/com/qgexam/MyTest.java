@@ -1,7 +1,7 @@
 package com.qgexam;
 
 import com.qgexam.common.redis.utils.RedisCache;
-import com.qgexam.exam.viewresults.UserConsumerApplication;
+import com.qgexam.exam.viewresults.ViewExamResultsConsumerApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @description test
  * @date 2022/12/14 18:22:56
  */
-@SpringBootTest(classes = UserConsumerApplication.class)
+@SpringBootTest(classes = ViewExamResultsConsumerApplication.class)
 public class MyTest {
 
     @Autowired

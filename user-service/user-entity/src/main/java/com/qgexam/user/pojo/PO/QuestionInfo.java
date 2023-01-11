@@ -1,17 +1,22 @@
 package com.qgexam.user.pojo.PO;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.qgexam.user.pojo.VO.OptionInfoVO;
+import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.List;
+
 /**
  * 题目信息表(QuestionInfo)表实体类
  *
- * @author peter guo
- * @since 2022-12-23 18:07:39
+ * @author lamb007
+ * @since 2023-01-09 11:44:11
  */
 @Data
 @AllArgsConstructor
@@ -40,11 +45,21 @@ public class QuestionInfo implements Serializable {
     //是否有小题(0没有小题 1有小题)
     private Integer hasSubQuestion;
     //创建时间
-    private Date createTime;
+    private LocalDateTime createTime;
     //更新时间
-    private Date updateTime;
+    private LocalDateTime updateTime;
     //0未删除 1已删除
     private Integer isDeleted;
+
+    @TableField(exist = false)
+    private Integer questionScore;
+    // 题目选项
+    @TableField(exist = false)
+    private List<OptionInfoVO> optionInfo;
+
+    // 题目小题
+    @TableField(exist = false)
+    private List<SubQuestionInfoVO> subQuestionInfo;
 
 }
 

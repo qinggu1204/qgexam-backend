@@ -26,5 +26,7 @@ public interface ExaminationPaperDao extends BaseMapper<ExaminationPaper> {
     Integer savePaperQuestionBatch(@Param("examinationPaperId") Integer examinationPaperId,
                                    @Param("questionIdList") List<Integer> questionIdList,
                                    @Param("questionScore") Double questionScore);
+
+    ExaminationPaper selectExaminationPaperById(Integer examinationPaperId);
 }
 

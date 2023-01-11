@@ -6,42 +6,45 @@ dubbo:
     # 协议名称
     name: dubbo
     # 协议端口
-    port: 20880
+    port: -1
   consumer:
     timeout: 600000
   provider:
     filter: -exception
 
-  # dubbo 多注册中心配置
+# dubbo 多注册中心配置
   registries:
     # 注册中心名称
     userRegistry:
-      # 注册中心地址
+      # 注册中心地址 user
       address: zookeeper://47.96.154.148:2181
       default: true
       timeout: 600000
     enterExamRegistry:
-      # 注册中心地址
-      address: zookeeper://211.159.223.185:2181
-      default: false
-      timeout: 600000
-    viewExamResultsRegistry:
-      # 注册中心地址
+      # 注册中心地址 yzw
       address: zookeeper://211.159.223.185:2182
       default: false
       timeout: 600000
-    registry4:
-      # 注册中心地址
+    viewExamResultsRegistry:
+      # 注册中心地址 ljy
       address: zookeeper://101.35.52.77:2181
       default: false
       timeout: 600000
-    registry5:
-      # 注册中心地址
+    markingRegistry:
+      # 注册中心地址 gc
       address: zookeeper://101.35.52.77:2182
       default: false
       timeout: 600000
-
-
+    finishExamRegistry:
+      # 注册中心地址 fzj
+      address: zookeeper://211.159.223.185:2181
+      default: false
+      timeout: 600000
+    quartzRegistry:
+      # 注册中心地址 quartz
+      address: zookeeper://47.96.154.148:2182
+      timeout: 600000
+      default: false
 
 
 
@@ -81,10 +84,6 @@ spring:
         max-wait: 1ms
         max-idle: 4
         min-idle: 0
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
 
 
 mybatis-plus:

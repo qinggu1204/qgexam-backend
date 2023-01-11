@@ -3,6 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.ExaminationInfoDao">
 
+    <select id="getByExaminationId" resultType="com.qgexam.user.pojo.PO.ExaminationInfo">
+        select * from examination_info where examination_id=#{examinationId} and is_deleted = 0;
+    </select>
+
+    <insert id="insertExaminationInfo" useGeneratedKeys="true" keyProperty="examinationId" keyColumn="examination_id">
+        insert into examination_info(examination_paper_id, examination_name, created_by, start_time, end_time, limit_time, is_question_resort, is_option_resort)
+        values(#{examinationPaperId},#{examinationName}, #{createdBy}, #{startTime}, #{endTime}, #{limitTime}, #{isQuestionResort}, #{isOptionResort})
+    </insert>
+
     <select id="getTeacherIdList" resultType="java.lang.Integer">
         select teacher_id
         from teacher_course

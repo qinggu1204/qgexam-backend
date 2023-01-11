@@ -3,6 +3,42 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.CourseInfoDao">
 
+    <resultMap id="getCourseListByTeacher" type="com.qgexam.user.pojo.PO.CourseInfo">
+        <id column="course_id" property="courseId"/>
+        <result column="course_name" property="courseName"/>
+        <result column="course_url" property="courseUrl"/>
+        <result column="subject_id" property="subjectId"/>
+        <result column="subject_name" property="subjectName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="year" property="year"/>
+        <result column="semester" property="semester"/>
+        <collection property="teacherList" ofType="com.qgexam.user.pojo.VO.CourseTeacherListVO">
+            <id column="teacher_id" property="teacherId"/>
+            <result column="user_name" property="userName"/>
+        </collection>
+    </resultMap>
+    <!--<select id="getCourseListByTeacher" resultMap="getCourseListByTeacher">
+        select ci.course_id,
+               ci.course_name,
+               ci.course_url,
+               ci.subject_id,
+               ci.subject_name,
+               ci.create_time,
+               ci.update_time,
+               ci.is_deleted,
+               ci.year,
+               ci.semester,
+               tc.teacher_id,
+               tc.user_name
+        from course_info ci, teacher_course tc
+        where ci.subject_id=#{subjectId}
+          and ci.year =#{year}
+          and ci.semester=#{semester}
+          and tc.teacher_id=#{teacherId}
+          and ci.course_id=tc.course_id
+    </select>-->
     <insert id="insertCourseInfo" useGeneratedKeys="true" keyProperty="courseId" keyColumn="course_id">
         insert into course_info(course_name, course_url, subject_id, subject_name, year, semester)
         values(#{courseName}, #{courseUrl}, #{subjectId}, #{subjectName}, #{year}, #{semester})
@@ -11,4 +47,116 @@
         insert into teacher_course(course_id, teacher_id, user_name)
         values(#{courseId}, #{teacherId}, #{userName})
     </insert>
+    <select id="getCourseListByTeacher" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
+        select ci.course_id,
+               ci.course_name,
+               ci.course_url,
+               ci.subject_id,
+               ci.subject_name,
+               ci.create_time,
+               ci.update_time,
+               ci.is_deleted,
+               ci.year,
+               ci.semester
+        from course_info ci, teacher_course tc
+        <where>
+            <if test="year!=null and year!=''">
+                and ci.year =#{year}
+            </if>
+            <if test="semester!=null and semester!=''">
+                and ci.semester=#{semester}
+            </if>
+            <if test="subjectId!=null and subjectId!=''">
+                and ci.subject_id=#{subjectId}
+            </if>
+            and tc.teacher_id=#{teacherId}
+            and ci.course_id=tc.course_id
+        </where>
+    </select>
+    <select id="getCourseTeacherList" resultType="com.qgexam.user.pojo.VO.CourseTeacherListVO">
+        select teacher_id,user_name from teacher_course where course_id=#{courseId}
+    </select>
+    <select id="getCourseListByStudent" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
+        select ci.course_id,
+               ci.course_name,
+               ci.course_url,
+               ci.subject_id,
+               ci.subject_name,
+               ci.create_time,
+               ci.update_time,
+               ci.is_deleted,
+               ci.year,
+               ci.semester
+        from course_info ci, student_course sc
+        <where>
+            <if test="year!=null and year!=''">
+                and ci.year =#{year}
+            </if>
+            <if test="semester!=null and semester!=''">
+                and ci.semester=#{semester}
+            </if>
+            <if test="subjectId!=null and subjectId!=''">
+                and ci.subject_id=#{subjectId}
+            </if>
+            and sc.student_id=#{studentId}
+            and ci.course_id=sc.course_id
+        </where>
+    </select>
+    <select id="getCourseListByAdmin" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
+        select ci.course_id,
+               ci.course_name,
+               ci.course_url,
+               ci.subject_id,
+               ci.subject_name,
+               ci.create_time,
+               ci. update_time,
+               ci.is_deleted,
+               ci.year,
+               ci.semester
+        from course_info ci
+        <where>
+            <if test="year!=null and year!=''">
+                and ci.year =#{year}
+            </if>
+            <if test="semester!=null and semester!=''">
+                and ci.semester=#{semester}
+            </if>
+            <if test="subjectId!=null and subjectId!=''">
+                and ci.subject_id=#{subjectId}
+            </if>
+        </where>
+    </select>
+    <select id="getCourseListByNeteacher" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
+        select ci.course_id,
+               ci.course_name,
+               ci.course_url,
+               ci.subject_id,
+               ci.subject_name,
+               ci.create_time,
+               ci.update_time,
+               ci.is_deleted,
+               ci.year,
+               ci.semester
+        from course_info ci,teacher_course tc
+        <where>
+            <if test="year!=null and year!=''">
+                and ci.year =#{year}
+            </if>
+            <if test="semester!=null and semester!=''">
+                and ci.semester=#{semester}
+            </if>
+            <if test="subjectId!=null and subjectId!=''">
+                and ci.subject_id=#{subjectId}
+            </if>
+            and tc.course_id=ci.course_id
+            and tc.teacher_id in (select ti.teacher_id from teacher_info ti where ti.school_id=#{schoolId})
+        </where>
+        group by ci.course_id
+    </select>
+
+    <select id="getCourseListBySubject" resultType="com.qgexam.user.pojo.PO.CourseInfo">
+        select * from course_info
+        where subject_id=#{subjectId} and is_deleted = 0;
+    </select>
+
 </mapper>

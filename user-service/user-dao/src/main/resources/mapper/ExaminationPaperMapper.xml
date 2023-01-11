@@ -10,4 +10,43 @@
             (#{examinationPaperId}, #{questionId},#{questionScore})
         </foreach>
     </insert>
+
+    <resultMap id="selectExaminationPaperByIdResultMap" type="com.qgexam.user.pojo.PO.ExaminationPaper">
+        <id column="examination_paper_id" property="examinationPaperId"/>
+        <result column="title" property="title"/>
+        <result column="total_score" property="totalScore"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_time" property="createTime"/>
+        <collection property="questionInfoList" ofType="com.qgexam.user.pojo.PO.QuestionInfo">
+            <id column="question_id" property="questionId"/>
+            <result column="subject_id" property="subjectId"/>
+            <result column="chapter_id" property="chapterId"/>
+            <result column="subject_id" property="subjectId"/>
+            <result column="subject_name" property="subjectName"/>
+            <result column="chapter_name" property="chapterName"/>
+            <result column="type" property="type"/>
+            <result column="description" property="description"/>
+            <result column="difficulty_level" property="difficultyLevel"/>
+            <result column="question_ans" property="questionAns"/>
+            <result column="sub_or_obj" property="subOrObj"/>
+            <result column="has_sub_question" property="hasSubQuestion"/>
+            <result column="create_time" property="createTime"/>
+            <result column="update_time" property="updateTime"/>
+            <result column="is_deleted" property="isDeleted"/>
+            <result column="question_score" property="questionScore"/>
+        </collection>
+    </resultMap>
+    <select id="selectExaminationPaperById" resultMap="selectExaminationPaperByIdResultMap">
+        select distinct ep.*, qi.*, epq.question_score
+        from examination_paper ep
+                 left join
+             examination_paper_question epq
+             on ep.examination_paper_id = epq.examination_paper_id
+                 join
+             question_info qi
+             on epq.question_id = qi.question_id
+        where ep.examination_paper_id = #{examinationPaperId};
+    </select>
 </mapper>

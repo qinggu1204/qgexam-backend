@@ -11,6 +11,10 @@
         <module>qgexam-common</module>
         <module>user-service</module>
         <module>qgexam-user-consumer</module>
+        <module>qgexam-finish-exam-consumer</module>
+        <module>finishi-exam-service</module>
+        <!--<module>qgexam-view-exam-results-consumer</module>
+        <module>view-exam-results-service</module>-->
         <module>qgexam-marking-consumer</module>
         <module>marking-service</module>
         <module>qgexam-view-exam-results-consumer</module>
@@ -140,13 +144,12 @@
                 <artifactId>sa-token-dao-redis-jackson</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-context-dubbo</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
-
-
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>

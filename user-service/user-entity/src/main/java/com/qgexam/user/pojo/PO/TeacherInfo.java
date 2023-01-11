@@ -2,12 +2,15 @@ package com.qgexam.user.pojo.PO;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.List;
+
 /**
  * 教师表(TeacherInfo)表实体类
  * @author tageshi
@@ -38,6 +41,9 @@ public class TeacherInfo implements Serializable {
     private Date updateTime;
     //0未删除 1已删除
     private Integer isDeleted;
+
+    @TableField(exist = false)
+    private List<CourseInfo> courseList;
 
 }
 

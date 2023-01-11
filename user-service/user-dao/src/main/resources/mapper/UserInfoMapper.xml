@@ -10,6 +10,10 @@
         insert into student_info (user_id,user_name,student_number,school_id,school_name)
         values (#{userId},#{userName},#{studentNumber},#{schoolId},#{schoolName});
     </insert>
+    <insert id="insertTeacherRole">
+        insert into user_role_info (role_id,role_name,user_id)
+        values(#{roleId},#{roleName},#{userId});
+    </insert>
     <update id="updatePassword" parameterMap="updatePasswordParameter">
         update user_info set password=#{password} where login_name=#{loginName};
     </update>
