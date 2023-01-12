@@ -23,10 +23,6 @@ spring:
     username: root
     password: Eeeee11111
 
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: never
 
   # redis配置
   redis:
@@ -54,6 +50,9 @@ spring:
     # 只要抵达队列，以异步的方式回调returnCallback
     template:
       mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 
 mybatis-plus:

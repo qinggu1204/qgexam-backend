@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.enter.pojo.VO.GetExamListVO;
-import org.quartz.SchedulerException;
 
 /**
  * 考试信息表(ExaminationInfo)表服务接口
@@ -16,6 +15,5 @@ import org.quartz.SchedulerException;
 public interface ExaminationInfoService extends IService<ExaminationInfo> {
 
     IPage<GetExamListVO> getExamList(GetExamListDTO getExamListDTO);
-    String test() throws SchedulerException;
 }
 

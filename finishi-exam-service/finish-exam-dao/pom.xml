@@ -11,9 +11,7 @@
 
     <artifactId>finish-exam-dao</artifactId>
 
-    <name>finish-exam-dao</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

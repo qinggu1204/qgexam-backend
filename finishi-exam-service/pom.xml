@@ -12,9 +12,7 @@
     <artifactId>finishi-exam-service</artifactId>
     <packaging>pom</packaging>
 
-    <name>finishi-exam-service</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+
     <modules>
         <module>finish-exam-api</module>
         <module>finish-exam-dao</module>

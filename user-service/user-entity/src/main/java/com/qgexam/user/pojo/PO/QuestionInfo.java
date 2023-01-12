@@ -3,6 +3,9 @@ package com.qgexam.user.pojo.PO;
 import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.qgexam.user.pojo.VO.OptionInfoVO;
+import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionInfo implements Serializable {
-    
+    @TableId
     private Integer questionId;
     //学科编号
     private Integer subjectId;
@@ -52,11 +55,11 @@ public class QuestionInfo implements Serializable {
     private Integer questionScore;
     // 题目选项
     @TableField(exist = false)
-    private List<OptionInfo> optionInfo;
+    private List<OptionInfoVO> optionInfo;
 
     // 题目小题
     @TableField(exist = false)
-    private List<SubQuestionInfo> subQuestionInfo;
+    private List<SubQuestionInfoVO> subQuestionInfo;
 
 }
 

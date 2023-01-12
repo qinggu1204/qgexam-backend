@@ -60,9 +60,10 @@
         </dependency>
         <dependency>
             <groupId>com.qgexam</groupId>
-            <artifactId>qgexam-common-quartz</artifactId>
+            <artifactId>quartz-provider</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 
 </project>

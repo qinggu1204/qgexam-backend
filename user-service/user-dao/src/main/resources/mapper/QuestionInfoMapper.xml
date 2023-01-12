@@ -4,4 +4,12 @@
 <mapper namespace="com.qgexam.user.dao.QuestionInfoDao">
 
 
+    <!--插入数据，返回主键-->
+    <insert id="insertQuestionInfo" useGeneratedKeys="true" keyProperty="questionId" keyColumn="question_id">
+        insert into question_info(subject_id, chapter_id, subject_name, chapter_name, type, description,
+                                  difficulty_level, question_ans, sub_or_obj, has_sub_question)
+        values (#{subjectId}, #{chapterId}, #{subjectName}, #{chapterName}, #{type}, #{description},
+                #{difficultyLevel}, #{questionAns}, #{subOrObj}, #{hasSubQuestion})
+    </insert>
+
 </mapper>

@@ -12,5 +12,6 @@ import java.util.List;
  * @since 2023-01-09 11:59:42
  */
 public interface QuestionInfoDao extends BaseMapper<QuestionInfo> {
+    Integer insertQuestionInfo(QuestionInfo questionInfo);
 }
 

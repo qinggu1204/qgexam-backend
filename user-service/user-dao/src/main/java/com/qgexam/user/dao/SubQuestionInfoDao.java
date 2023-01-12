@@ -2,6 +2,7 @@ package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.SubQuestionInfo;
+import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
 
 import java.util.List;
 
@@ -12,6 +13,6 @@ import java.util.List;
  * @since 2023-01-09 12:30:24
  */
 public interface SubQuestionInfoDao extends BaseMapper<SubQuestionInfo> {
-    List<SubQuestionInfo> selectSubQuestionInfoListByQuestionInfoId(Integer questionInfoId);
+    List<SubQuestionInfoVO> selectSubQuestionInfoListByQuestionInfoId(Integer questionInfoId);
 }
 
