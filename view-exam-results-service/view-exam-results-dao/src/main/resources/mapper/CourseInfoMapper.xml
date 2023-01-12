@@ -8,6 +8,7 @@
         from student_course
         where course_id=#{courseId}
           and student_id=#{studentId}
+          and is_deleted = 0;
     </select>
 
 </mapper>

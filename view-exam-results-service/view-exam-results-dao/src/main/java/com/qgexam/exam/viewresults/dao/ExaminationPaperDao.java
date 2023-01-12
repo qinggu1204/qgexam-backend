@@ -10,6 +10,6 @@ import com.qgexam.exam.viewresults.pojo.PO.ExaminationPaper;
  * @since 2022-12-17 21:33:46
  */
 public interface ExaminationPaperDao extends BaseMapper<ExaminationPaper> {
-
+    ExaminationPaper selectExaminationPaperById(Integer examinationPaperId);
 }
 

@@ -2,6 +2,7 @@ package com.qgexam.exam.viewresults.controller;
 
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
+import com.qgexam.exam.viewresults.service.AnswerPaperInfoService;
 import com.qgexam.exam.viewresults.service.CourseInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +23,8 @@ public class ViewExamResultsController extends BaseController {
 
     @DubboReference
     private CourseInfoService courseInfoService;
+    @DubboReference
+    private AnswerPaperInfoService answerPaperInfoService;
 
     /**
      * 学生查看课程成绩
@@ -46,6 +49,6 @@ public class ViewExamResultsController extends BaseController {
 
     @GetMapping("/getExamScoreDetail")
     public ResponseResult getExamScoreDetail(Integer examinationId) {
-        return ResponseResult.okResult();
+        return ResponseResult.okResult(answerPaperInfoService.getExamScoreDetail(examinationId,getStudentId()));
     }
 }
