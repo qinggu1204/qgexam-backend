@@ -1,4 +1,4 @@
-package com.qgexam.user.pojo.PO;
+package com.qgexam.exam.enter.pojo.PO;
 
 import java.time.LocalDateTime;
 
@@ -8,23 +8,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 /**
- * 选项表(OptionInfo)表实体类
+ * (StudentExamAction)表实体类
  *
  * @author lamb007
- * @since 2023-01-09 11:47:04
+ * @since 2023-01-13 15:24:29
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OptionInfo implements Serializable {
+public class StudentExamAction implements Serializable {
+    //主键
     @TableId
-    private Integer optionId;
-    //题目编号
-    private Integer questionId;
-    //选项名称
-    private String optionName;
-    //选项描述
-    private String optionDesc;
+    private Integer id;
+    //学生id
+    private Integer studentId;
+    
+    private Integer examinationId;
+    //学生切屏次数
+    private Integer screenCuttingNumber;
     //创建时间
     private LocalDateTime createTime;
     //更新时间

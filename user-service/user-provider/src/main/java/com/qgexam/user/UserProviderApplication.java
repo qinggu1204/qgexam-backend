@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @EnableDubbo
-@MapperScan(basePackages = {"com.qgexam.user.dao"})
+@MapperScan(basePackages = "com.qgexam.user.dao")
 public class UserProviderApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserProviderApplication.class);

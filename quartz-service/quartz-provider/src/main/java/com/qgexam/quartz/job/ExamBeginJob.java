@@ -125,16 +125,6 @@ public class ExamBeginJob {
                         questionInfo -> BeanCopyUtils.copyBean(questionInfo, QuestionInfoVO.class)
                 ));
 
-        // 获取考试信息
-        ExaminationInfoVO examinationInfoVO = BeanCopyUtils.copyBean(examinationInfo, ExaminationInfoVO.class);
-        // 将数字的考试状态转换为中文
-        if(ExamConstants.EXAM_STATUS_NOT_START.equals(examinationInfo.getStatus())){
-            examinationInfoVO.setStatus(ExamConstants.EXAM_STATUS_NOT_START_VO);
-        }else if(ExamConstants.EXAM_STATUS_UNDERWAY.equals(examinationInfo.getStatus())){
-            examinationInfoVO.setStatus(ExamConstants.EXAM_STATUS_UNDERWAY_VO);
-        }else if(ExamConstants.EXAM_STATUS_OVER.equals(examinationInfo.getStatus())){
-            examinationInfoVO.setStatus(ExamConstants.EXAM_STATUS_OVER_VO);
-        }
 
         // 获取考试结束时间
         LocalDateTime endTime = examinationInfo.getEndTime();
@@ -144,7 +134,7 @@ public class ExamBeginJob {
         long timeout = duration.toMillis();
 
         // 将考试信息存入redis
-        redisCache.setCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), examinationInfoVO);
+        redisCache.setCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), examinationInfo);
         redisCache.expire(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), timeout, TimeUnit.MILLISECONDS);
         // 将题目信息存入redis
         // 单选题

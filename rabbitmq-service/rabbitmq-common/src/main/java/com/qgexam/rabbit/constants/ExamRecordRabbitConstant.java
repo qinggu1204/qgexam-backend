@@ -14,4 +14,11 @@ public class ExamRecordRabbitConstant {
 
     public static final String EXAM_RECORD_ROUTING_KEY = "exam.enter.record";
 
+
+    public static final String EXAM_ACTION_QUEUE_NAME = "exam.enter.action.queue";
+
+    public static final String EXAM_ACTION_EXCHANGE_NAME = "exam.enter.action.exchange";
+
+    public static final String EXAM_ACTION_ROUTING_KEY = "exam.enter.action";
+
 }

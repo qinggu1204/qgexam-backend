@@ -2,21 +2,21 @@ package com.qgexam.exam.enter.controller;
 
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
+import com.qgexam.exam.enter.pojo.DTO.JoinExamDTO;
+import com.qgexam.exam.enter.pojo.DTO.ScreenCuttingDTO;
 import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
 import com.qgexam.rabbit.pojo.PO.ExamRecordDTO;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.pojo.VO.GetExaminationPaperVO;
 import com.qgexam.exam.enter.service.EnterExamService;
 import com.qgexam.exam.enter.service.ExaminationInfoService;
-import com.qgexam.rabbit.config.ExamRecordRabbitConfig;
+import com.qgexam.rabbit.pojo.PO.ScreenCuttingRabbitMessageDTO;
 import com.qgexam.rabbit.service.RabbitService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -63,25 +63,49 @@ public class EnterExaminationController extends BaseController {
 
     @GetMapping("/joinExam")
     public ResponseResult joinExam(@NotNull Integer examinationId) {
+        JoinExamDTO joinExamDTO = new JoinExamDTO();
+        joinExamDTO.setExaminationId(examinationId);
+        joinExamDTO.setJoinTime(LocalDateTime.now());
         // 获取试卷
-        GetExaminationPaperVO examinationPaper = enterExamService.getExaminationPaper(examinationId);
+        GetExaminationPaperVO examinationPaper = enterExamService.getExaminationPaper(joinExamDTO);
         // 向学生考试记录消息队列中发送一条消息
         //封装队列消息
         ExamRecordDTO examRecordDTO = new ExamRecordDTO();
         examRecordDTO.setExaminationId(examinationId);
         examRecordDTO.setStudentId(getStudentId());
         examRecordDTO.setEnterTime(LocalDateTime.now());
-
-        // 消息队列发送一条消息
+        // 消息队列发送一条消息--保存学生考试记录
         rabbitService.sendMessage(ExamRecordRabbitConstant.EXAM_RECORD_EXCHANGE_NAME,
                 ExamRecordRabbitConstant.EXAM_RECORD_ROUTING_KEY,
                 examRecordDTO);
+
         return ResponseResult.okResult(examinationPaper);
     }
 
     @GetMapping("/getExamInfo")
     public ResponseResult getExaminationInfo(@NotNull Integer examinationId) {
-        return ResponseResult.okResult(enterExamService.getExaminationInfo(examinationId));
+        JoinExamDTO joinExamDTO = new JoinExamDTO();
+        joinExamDTO.setExaminationId(examinationId);
+        joinExamDTO.setJoinTime(LocalDateTime.now());
+        return ResponseResult.okResult(enterExamService.getExaminationInfo(joinExamDTO));
+    }
+
+    @PutMapping("/screenCutting")
+    public ResponseResult screenCutting(@Validated @RequestBody ScreenCuttingDTO screenCuttingDTO) {
+        JoinExamDTO joinExamDTO = new JoinExamDTO();
+        joinExamDTO.setExaminationId(screenCuttingDTO.getExaminationId());
+        joinExamDTO.setJoinTime(LocalDateTime.now());
+        // 判断当前考试是否合法
+        enterExamService.screenCutting(joinExamDTO);
+        // 封装队列消息
+        ScreenCuttingRabbitMessageDTO screenCuttingRabbitMessageDTO = new ScreenCuttingRabbitMessageDTO();
+        screenCuttingRabbitMessageDTO.setExaminationId(screenCuttingDTO.getExaminationId());
+        screenCuttingRabbitMessageDTO.setStudentId(getStudentId());
+        // 消息队列发送一条消息--记录学生考试行为
+        rabbitService.sendMessage(ExamRecordRabbitConstant.EXAM_ACTION_EXCHANGE_NAME,
+                ExamRecordRabbitConstant.EXAM_ACTION_EXCHANGE_NAME,
+                screenCuttingRabbitMessageDTO);
+        return ResponseResult.okResult();
     }
 
 

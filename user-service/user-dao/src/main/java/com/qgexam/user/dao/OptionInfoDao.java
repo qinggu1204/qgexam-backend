@@ -3,6 +3,7 @@ package com.qgexam.user.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.OptionInfo;
 import com.qgexam.user.pojo.VO.OptionInfoVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,5 +15,8 @@ import java.util.List;
  */
 public interface OptionInfoDao extends BaseMapper<OptionInfo> {
     List<OptionInfoVO> selectOptionInfoListByQuestionInfoId(Integer questionInfoId);
+
+    Integer insertOptionInfoBatch(@Param("optionInfoList") List<OptionInfo> optionInfoList);
+
 }
 
