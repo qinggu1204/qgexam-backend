@@ -5,6 +5,9 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Arrays;
 
 /**
  * @author yzw
@@ -17,7 +20,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RabbitmqProviderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RabbitmqProviderApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(RabbitmqProviderApplication.class, args);
+        String[] names = run.getBeanDefinitionNames();
+        Arrays.stream(names).forEach(System.out::println);
     }
 
 }

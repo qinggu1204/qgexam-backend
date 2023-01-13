@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.OptionInfoDao">
+    <insert id="insertOptionInfoBatch">
+        insert into option_info(question_id, option_name, option_desc)
+        values
+        <foreach collection="optionInfoList" item="optionInfo" separator=",">
+            (#{optionInfo.questionId}, #{optionInfo.optionName}, #{optionInfo.optionDesc})
+        </foreach>
+    </insert>
 
     <select id="selectOptionInfoListByQuestionInfoId" resultType="com.qgexam.user.pojo.VO.OptionInfoVO">
         select oi.option_name value, oi.option_desc label

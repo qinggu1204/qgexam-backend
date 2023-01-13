@@ -40,7 +40,6 @@ public class AddQuestionDTO implements Serializable {
     @NotNull(message = "题目难度不能为空")
     private Integer difficultyLevel;
 
-    @NotBlank(message = "题目答案不能为空")
     private String questionAns;
 
     @Valid

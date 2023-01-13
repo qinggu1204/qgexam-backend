@@ -4,12 +4,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.user.dao.*;
-import com.qgexam.user.pojo.DTO.AddQuestionDTO;
-import com.qgexam.user.pojo.DTO.AddQuestionListDTO;
-import com.qgexam.user.pojo.DTO.GetSchoolListDTO;
-import com.qgexam.user.pojo.DTO.OptionInfoDTO;
+import com.qgexam.user.pojo.DTO.*;
 import com.qgexam.user.pojo.PO.OptionInfo;
 import com.qgexam.user.pojo.PO.QuestionInfo;
+import com.qgexam.user.pojo.PO.SubQuestionInfo;
 import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetTeacherListVO;
 import com.qgexam.user.pojo.VO.OptionInfoVO;
@@ -56,8 +54,8 @@ public class AdminInfoServiceImpl implements AdminInfoService {
      * @date 2022/1/7 20:01:03
      */
     @Override
-    public boolean addNeteacher(Integer userId){
-        if (teacherInfoDao.insertNeteacher(3,"neteacher",userId) != 0) {
+    public boolean addNeteacher(Integer userId) {
+        if (teacherInfoDao.insertNeteacher(3, "neteacher", userId) != 0) {
             return true;
         }
         return false;
@@ -69,9 +67,9 @@ public class AdminInfoServiceImpl implements AdminInfoService {
      * @date 2022/1/7 20:01:03
      */
     @Override
-    public IPage<GetTeacherListVO> getTeacherList(Integer currentPage, Integer pageSize, Integer schoolId, Integer roleId, String loginName){
-        IPage<GetTeacherListVO> page=new Page<>(currentPage,pageSize);
-        return teacherInfoDao.getTeacherPage(schoolId,roleId,loginName,page);
+    public IPage<GetTeacherListVO> getTeacherList(Integer currentPage, Integer pageSize, Integer schoolId, Integer roleId, String loginName) {
+        IPage<GetTeacherListVO> page = new Page<>(currentPage, pageSize);
+        return teacherInfoDao.getTeacherPage(schoolId, roleId, loginName, page);
     }
 
     @Override
@@ -82,12 +80,12 @@ public class AdminInfoServiceImpl implements AdminInfoService {
 
     @Override
     public IPage<SchoolInfoVO> getSchoolList(GetSchoolListDTO getSchoolListDTO) {
-        IPage<SchoolInfoVO> page=new Page<>(getSchoolListDTO.getCurrentPage(),getSchoolListDTO.getPageSize());
+        IPage<SchoolInfoVO> page = new Page<>(getSchoolListDTO.getCurrentPage(), getSchoolListDTO.getPageSize());
         return schoolInfoDao.getSchoolList(page);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void addQuestion(AddQuestionListDTO addQuestionListDTO) {
         List<AddQuestionDTO> questionDTOList = addQuestionListDTO.getQuestion();
         // 过滤出单选题、多选题、判断题
@@ -122,24 +120,80 @@ public class AdminInfoServiceImpl implements AdminInfoService {
                     questionInfo.setSubOrObj(ExamConstants.QUESTION_OBJ);
                     questionInfo.setHasSubQuestion(ExamConstants.NO_SUB_QUESTION);
                     // 保存题目
-                    Integer questionInfoKey = questionInfoDao.insertQuestionInfo(questionInfo);
+                    questionInfoDao.insertQuestionInfo(questionInfo);
+                    // 获取主键
+                    Integer questionInfoKey = questionInfo.getQuestionId();
                     // 获取题目选项
                     List<OptionInfoDTO> optionInfoDTOList = questionDTO.getOptionInfo();
-                    // DTO转换成PO
-//                    List<OptionInfo> optionInfoList = optionInfo.stream()
-//                            .map(optionInfoDTO -> {
-//                                OptionInfo optionInfoPO = new OptionInfo();
-//                                optionInfoPO.setQuestionId(questionInfoKey);
-//                                optionInfoPO.setOptionContent(optionInfoDTO.getOptionContent());
-//                                optionInfoPO.setOptionAns(optionInfoDTO.getOptionAns());
-//                                return optionInfoPO;
-//                            })
-//                            .collect(Collectors.toList());
-//                    // 为题目选项设置题目id
-//                    optionInfo.forEach(optionInfoVO -> optionInfoVO.setQuestionId(questionInfoKey));
-//                    optionInfoDao.insertOptionInfoBatch(optionInfo, questionInfoKey);
-                    // TODO 保存题目选项
-                });
-    }
+                    // 选项DTO转换成PO,获取PO的list
+                    List<OptionInfo> optionInfoList = optionInfoDTOList.stream()
+                            .map(optionInfoDTO -> {
+                                OptionInfo optionInfo = new OptionInfo();
+                                optionInfo.setQuestionId(questionInfoKey);
+                                optionInfo.setOptionName(optionInfoDTO.getOptionName());
+                                optionInfo.setOptionDesc(optionInfoDTO.getOptionDesc());
+                                optionInfo.setOptionId(questionInfoKey);
+                                return optionInfo;
+                            }).collect(Collectors.toList());
 
+                    // 批量插入选项
+                    optionInfoDao.insertOptionInfoBatch(optionInfoList);
+
+                });
+        // 保存填空题
+        completionQuestionList
+                .forEach(questionDTO -> {
+                    QuestionInfo questionInfo = new QuestionInfo();
+                    questionInfo.setSubjectId(questionDTO.getSubjectId());
+                    questionInfo.setChapterId(questionDTO.getChapterId());
+                    questionInfo.setSubjectName(questionDTO.getSubjectName());
+                    questionInfo.setChapterName(questionDTO.getChapterName());
+                    questionInfo.setType(questionDTO.getType());
+                    questionInfo.setDescription(questionDTO.getDescription());
+                    questionInfo.setDifficultyLevel(questionDTO.getDifficultyLevel());
+                    questionInfo.setQuestionAns(questionDTO.getQuestionAns());
+                    questionInfo.setSubOrObj(ExamConstants.QUESTION_SUB);
+                    questionInfo.setHasSubQuestion(ExamConstants.NO_SUB_QUESTION);
+                    // 保存题目
+                    questionInfoDao.insertQuestionInfo(questionInfo);
+                });
+        // 保存大题
+        complexQuestionList
+                .forEach(questionDTO -> {
+                    QuestionInfo questionInfo = new QuestionInfo();
+                    questionInfo.setSubjectId(questionDTO.getSubjectId());
+                    questionInfo.setChapterId(questionDTO.getChapterId());
+                    questionInfo.setSubjectName(questionDTO.getSubjectName());
+                    questionInfo.setChapterName(questionDTO.getChapterName());
+                    questionInfo.setType(questionDTO.getType());
+                    questionInfo.setDescription(questionDTO.getDescription());
+                    questionInfo.setDifficultyLevel(questionDTO.getDifficultyLevel());
+                    questionInfo.setQuestionAns(questionDTO.getQuestionAns());
+                    questionInfo.setSubOrObj(ExamConstants.QUESTION_SUB);
+                    if (questionDTO.getSubQuestionInfo() == null || questionDTO.getSubQuestionInfo().isEmpty()) {
+                        questionInfo.setHasSubQuestion(ExamConstants.NO_SUB_QUESTION);
+                    } else {
+                        questionInfo.setHasSubQuestion(ExamConstants.HAS_SUB_QUESTION);
+                    }
+                    // 保存题目,返回题目的主键
+                    questionInfoDao.insertQuestionInfo(questionInfo);
+                    // 获取主键
+                    Integer questionKey = questionInfo.getQuestionId();
+                    // 获取题目小题
+                    List<SubQuestionInfoDTO> subQuestionInfoDTOList = questionDTO.getSubQuestionInfo();
+                    // 小题DTO转换成PO，获取PO的list
+                    List<SubQuestionInfo> subQuestionInfoList = subQuestionInfoDTOList.stream()
+                            .map(subQuestionInfoDTO -> {
+                                SubQuestionInfo subQuestionInfo = new SubQuestionInfo();
+                                subQuestionInfo.setQuestionId(questionKey);
+                                subQuestionInfo.setSubQuestionDesc(subQuestionInfoDTO.getSubQuestionDesc());
+                                subQuestionInfo.setSubQuestionAns(subQuestionInfoDTO.getSubQuestionAns());
+                                return subQuestionInfo;
+                            })
+                            .collect(Collectors.toList());
+                    // 批量插入小题
+                    subQuestionInfoDao.insertSubQuestionInfoBatch(subQuestionInfoList);
+                });
+
+    }
 }
