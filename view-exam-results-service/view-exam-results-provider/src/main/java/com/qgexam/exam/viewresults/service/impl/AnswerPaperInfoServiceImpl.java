@@ -74,11 +74,27 @@ public class AnswerPaperInfoServiceImpl extends ServiceImpl<AnswerPaperInfoDao, 
                     AnswerPaperDetail answerPaperDetail = answerPaperDetailDao.selectStuAnswerDetail(answerPaperInfo.getAnswerPaperId(),questionId);
                     // 根据题目Id查询选项
                     List<OptionResultVO> optionInfos = optionInfoDao.selectOptionInfoListByQuestionInfoId(questionId);
-                    // 根据题目Id查询小题
-                    List<SubQuestionResultVO> subQuestionInfos = subQuestionInfoDao.selectSubQuestionInfoListByQuestionInfoId(questionId);
-                    // 创建客观题和主观题对象
-                    ObjResultVO objResultVO = new ObjResultVO(questionId,questionInfo.getDescription(),questionInfo.getQuestionScore(),answerPaperDetail.getScore(),answerPaperDetail.getStudentAnswer(),questionInfo.getQuestionAns(),optionInfos);
-                    SubResultVO subResultVO = new SubResultVO(questionId,questionInfo.getDescription(),questionInfo.getQuestionScore(),answerPaperDetail.getScore(),questionInfo.getHasSubQuestion()==1,answerPaperDetail.getStudentAnswer(),questionInfo.getQuestionAns(),subQuestionInfos);
+                    // 创建小题明细对象
+                    List<SubQuestionResultVO> subQuestionInfos;
+                    // 创建客观题明细对象
+                    ObjResultVO objResultVO;
+                    // 创建主观题明细对象
+                    SubResultVO subResultVO;
+                    // 判断是否有答卷明细表
+                    if(answerPaperDetail != null)
+                    {
+                        // 根据题目Id和答卷Id查询小题和答卷小题
+                        subQuestionInfos = subQuestionInfoDao.selectSubQuestionInfoList(answerPaperDetail.getAnswerPaperDetailId(),questionId);
+                        // 创建客观题和主观题对象
+                        objResultVO = new ObjResultVO(questionId, questionInfo.getDescription(), questionInfo.getQuestionScore(), answerPaperDetail.getScore(), answerPaperDetail.getStudentAnswer(), questionInfo.getQuestionAns(), optionInfos);
+                        subResultVO = new SubResultVO(questionId, questionInfo.getDescription(), questionInfo.getQuestionScore(), answerPaperDetail.getScore(), questionInfo.getHasSubQuestion() == 1, answerPaperDetail.getStudentAnswer(), questionInfo.getQuestionAns(), subQuestionInfos);
+                    }else{
+                        // 根据题目Id查询小题
+                        subQuestionInfos = subQuestionInfoDao.selectSubQuestionInfoListByQuestionInfoId(questionId);
+                        // 创建客观题和主观题对象
+                        objResultVO = new ObjResultVO(questionId, questionInfo.getDescription(), questionInfo.getQuestionScore(), 0, "", questionInfo.getQuestionAns(), optionInfos);
+                        subResultVO = new SubResultVO(questionId, questionInfo.getDescription(), questionInfo.getQuestionScore(), 0, questionInfo.getHasSubQuestion() == 1, "", questionInfo.getQuestionAns(), subQuestionInfos);
+                    }
                     // 根据题目类型放到指定的list
                     if (Objects.equals(questionInfo.getType(), "SINGLE")) {
                         singleList.add(objResultVO);

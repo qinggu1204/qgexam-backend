@@ -80,7 +80,16 @@ public class ExamConstants {
 
     public static final String EXAMINATION_INFO_HASH_KEY_PREFIX = "before:examination:info:";
 
-
-
+    /**
+     * 查询成绩明细缓存常量
+     */
+    public static final String EXAMRESULT_SINGLE_QUESTION_HASH_FIELD = "examinationresult:question:single:";
+    public static final String EXAMRESULT_MULTI_QUESTION_HASH_FIELD = "examinationresult:question:multi:";
+    public static final String EXAMRESULT_JUDGE_QUESTION_HASH_FIELD = "examinationresult:question:judge:";
+    public static final String EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD = "examinationresult:question:completion:";
+    public static final String EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD = "examinationresult:question:complex:";
+    public static final String EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX = "examinationresult:totalscore:";
+    public static final String EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX = "examinationresult:stutotalscore:";
+    public static final String EXAMRESULT_STUID_HASH_KEY_PREFIX = "studentId:";
 
 }
