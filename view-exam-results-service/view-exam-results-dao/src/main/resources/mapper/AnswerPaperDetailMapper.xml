@@ -7,6 +7,6 @@
         from answer_paper_detail
         where answer_paper_id = #{answerPaperId}
           and question_id = #{questionId}
-          and is_deleted = 0;
+          and is_deleted = 0
     </select>
 </mapper>

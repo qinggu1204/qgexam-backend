@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,21 +44,52 @@ public class AnswerPaperInfoServiceImpl extends ServiceImpl<AnswerPaperInfoDao, 
     private SubQuestionInfoDao subQuestionInfoDao;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public ExamScoreDetailVO getExamScoreDetail(Integer examinationId, Integer studentId){
         // 创建考试成绩明细对象
         ExamScoreDetailVO examScoreDetailVO = new ExamScoreDetailVO();
+        // 从缓存里取查询成绩的时间
+        String strQueryTime = redisCache.getCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId);
         // 判断是否到查询成绩的时间了
-        LocalDateTime resultQueryTime = redisCache.getCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId);;
-        // 成绩查询未开始
-        if (LocalDateTime.now().isBefore(resultQueryTime)) {
-            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "成绩查询还未开始，无法进入查询页面。");
+        if(strQueryTime != null) {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime resultQueryTime = LocalDateTime.parse(strQueryTime, df);
+            // 成绩查询未开始
+            if (LocalDateTime.now().isBefore(resultQueryTime)) {
+                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "成绩查询还未开始，无法进入查询页面。");
+            }
+            // 查询缓存里的考试总分和答卷总分
+            Integer totalScore = redisCache.getCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId);
+            Integer stuTotalScore = redisCache.getCacheObject(ExamConstants.EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId);
+            // 设置考试总分和答卷总分
+            examScoreDetailVO.setTotalScore(totalScore);
+            examScoreDetailVO.setStuTotalScore(stuTotalScore);
+            // 从缓存查考试题目成绩明细
+            String singlePrefix = ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
+            String multiPrefix = ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
+            String judgePrefix = ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
+            String completionPrefix = ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
+            String complexPrefix = ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
+            Map<String, ObjResultVO> singleMap = redisCache.getCacheMap(singlePrefix);
+            Map<String, ObjResultVO> multiMap = redisCache.getCacheMap(multiPrefix);
+            Map<String, ObjResultVO> judgeMap = redisCache.getCacheMap(judgePrefix);
+            Map<String, ObjResultVO> completionMap = redisCache.getCacheMap(completionPrefix);
+            Map<String, SubResultVO> complexMap = redisCache.getCacheMap(complexPrefix);
+            // 创建不同题型的list
+            List<ObjResultVO> singleList1 = new ArrayList<>(singleMap.values());
+            List<ObjResultVO> multiList1 = new ArrayList<>(multiMap.values());
+            List<ObjResultVO> judgeList1 = new ArrayList<>(judgeMap.values());
+            List<ObjResultVO> completionList1 = new ArrayList<>(completionMap.values());
+            List<SubResultVO> complexList1 = new ArrayList<>(complexMap.values());
+            examScoreDetailVO.setSingle(new SingleVO(singleList1));
+            examScoreDetailVO.setMulti(new MultiVO(multiList1));
+            examScoreDetailVO.setJudge(new JudgeVO(judgeList1));
+            examScoreDetailVO.setCompletion(new CompletionVO(completionList1));
+            examScoreDetailVO.setComplex(new ComplexVO(complexList1));
+            return examScoreDetailVO;
         }
-        // 查询缓存里的考试总分和答卷总分
-        Integer totalScore = redisCache.getCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId);
-        Integer stuTotalScore = redisCache.getCacheObject(ExamConstants.EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId);
-        // 如果找不到缓存里的考试总分和答卷总分就去数据库查找成绩明细
-        if (totalScore == null || stuTotalScore == null) {
+        // 如果找不到缓存里的查询成绩时间就说明查询成绩时间已到且已经过了高并发阶段，就去数据库查找成绩明细
+        else {
             // 根据考试Id查询考试信息
             ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationId);
             // 如果examinationInfo为空，抛出BusinessException
@@ -135,32 +167,6 @@ public class AnswerPaperInfoServiceImpl extends ServiceImpl<AnswerPaperInfoDao, 
             examScoreDetailVO.setComplex(new ComplexVO(complexList));
             return examScoreDetailVO;
         }
-        // 设置考试总分和答卷总分
-        examScoreDetailVO.setTotalScore(totalScore);
-        examScoreDetailVO.setStuTotalScore(stuTotalScore);
-        // 从缓存查考试题目成绩明细
-        String singlePrefix = ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
-        String multiPrefix = ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
-        String judgePrefix = ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
-        String completionPrefix = ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
-        String complexPrefix = ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId;
-        Map<String, ObjResultVO> singleMap = redisCache.getCacheMap(singlePrefix);
-        Map<String, ObjResultVO> multiMap = redisCache.getCacheMap(multiPrefix);
-        Map<String, ObjResultVO> judgeMap = redisCache.getCacheMap(judgePrefix);
-        Map<String, ObjResultVO> completionMap = redisCache.getCacheMap(completionPrefix);
-        Map<String, SubResultVO> complexMap = redisCache.getCacheMap(complexPrefix);
-        // 创建不同题型的list
-        List<ObjResultVO> singleList1 = new ArrayList<>(singleMap.values());
-        List<ObjResultVO> multiList1 = new ArrayList<>(multiMap.values());
-        List<ObjResultVO> judgeList1 = new ArrayList<>(judgeMap.values());
-        List<ObjResultVO> completionList1 = new ArrayList<>(completionMap.values());
-        List<SubResultVO> complexList1 = new ArrayList<>(complexMap.values());
-        examScoreDetailVO.setSingle(new SingleVO(singleList1));
-        examScoreDetailVO.setMulti(new MultiVO(multiList1));
-        examScoreDetailVO.setJudge(new JudgeVO(judgeList1));
-        examScoreDetailVO.setCompletion(new CompletionVO(completionList1));
-        examScoreDetailVO.setComplex(new ComplexVO(complexList1));
-        return examScoreDetailVO;
     }
 }
 

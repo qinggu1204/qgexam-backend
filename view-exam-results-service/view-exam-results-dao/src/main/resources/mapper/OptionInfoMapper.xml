@@ -6,6 +6,6 @@
     <select id="selectOptionInfoListByQuestionInfoId" resultType="com.qgexam.exam.viewresults.pojo.VO.OptionResultVO">
         select oi.option_desc as label, oi.option_name as value
         from option_info oi
-        where oi.question_id = #{questionInfoId} and oi.is_deleted = 0;
+        where oi.question_id = #{questionInfoId} and oi.is_deleted = 0
     </select>
 </mapper>

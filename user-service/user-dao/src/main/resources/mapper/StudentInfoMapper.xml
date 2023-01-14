@@ -9,6 +9,6 @@
     </update>
     <insert id="joinCourse">
         insert into student_course (student_id,user_name,student_number,course_id)
-        values (#{studentId},#{userName},#{studentNumber},#{courseId});
+        values (#{studentId},#{userName},#{studentNumber},#{courseId})
     </insert>
 </mapper>

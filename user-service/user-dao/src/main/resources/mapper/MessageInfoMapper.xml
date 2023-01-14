@@ -11,7 +11,7 @@
     <select id="getMessagePage" resultType="com.qgexam.user.pojo.VO.MessageInfoListVO">
         select message_id, title, status
         from message_info
-        where user_id = #{userId} and is_deleted = 0;
+        where user_id = #{userId} and is_deleted = 0
     </select>
 
 </mapper>
