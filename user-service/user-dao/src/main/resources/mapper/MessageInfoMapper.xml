@@ -13,5 +13,8 @@
         from message_info
         where user_id = #{userId}
     </select>
+    <select id="getMessage" resultType="com.qgexam.user.pojo.VO.MessageInfoVO">
+        select examination_name,start_time,end_time from message_info where user_id=#{userId} and message_id=#{messageId}
+    </select>
 
 </mapper>

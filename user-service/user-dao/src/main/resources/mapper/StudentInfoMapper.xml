@@ -7,6 +7,24 @@
         set face_img = #{faceImg}
         where user_id = #{userId}
     </update>
+    <update id="updateStudentNumber">
+        update student_info si
+        set si.student_number=#{newStudentNUmber} where si.student_id=#{studentId}
+    </update>
+    <update id="updateStudentNumberInStudentCourse">
+        update student_course sc
+        set sc.student_number=#{newStudentNUmber} where sc.student_id=#{studentId}
+    </update>
+    <select id="getStudentList" resultType="com.qgexam.user.pojo.VO.GetStudentVO">
+        select si.student_number,si.user_name
+        from student_info si,user_info ui
+        <where>
+            <if test="loginName!=null and loginName!=''">
+                and ui.login_name =#{loginName}
+            </if>
+            and si.school_id=#{schoolId}
+        </where>
+    </select>
     <insert id="joinCourse">
         insert into student_course (student_id,user_name,student_number,course_id)
         values (#{studentId},#{userName},#{studentNumber},#{courseId});

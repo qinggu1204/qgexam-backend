@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.exam.finish.dao.SubQuestionAnswerDetailDao">
+
+    <insert id="insert">
+        insert into sub_question_answer_detail(answer_paper_detail_id,sub_question_id,sub_question_answer)
+        values (#{answerPaperDetailId},#{subQuestionId},#{subQuestionAnswer})
+    </insert>
+</mapper>

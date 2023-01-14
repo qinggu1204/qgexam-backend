@@ -69,5 +69,14 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
         }
         return false;
     }
+    @Override
+    public Integer getStudentId(SaSession session){
+        UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
+        //获取用户信息
+        UserInfo userInfo = userInfoVO.getUserInfo();
+        //获取学生信息
+        StudentInfo studentInfo = userInfoVO.getStudentInfo();
+        return studentInfo.getStudentId();
+    }
 }
 
