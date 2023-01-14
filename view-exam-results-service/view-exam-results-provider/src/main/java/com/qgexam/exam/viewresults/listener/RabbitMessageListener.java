@@ -48,9 +48,7 @@ public class RabbitMessageListener {
 
 
     @RabbitListener(queues = RabbitMQConstants.BEGIN_CACHE_QUEUE_NAME)
-    public void listenExamRecordQueue(String s, Channel channel, Message message) throws IOException {
-        System.out.println("==================放缓存===================");
-        Integer examinationId = 1;
+    public void listenExamRecordQueue(Integer examinationId, Channel channel, Message message) throws IOException {
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationId);
         // 如果examinationInfo为空，抛出BusinessException
@@ -65,6 +63,7 @@ public class RabbitMessageListener {
         // 获取题目list
         List<QuestionInfo> questionInfoList = examinationPaper.getQuestionInfoList();
         try {
+
             // 将试卷总分存入redis
             redisCache.setCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId, examinationPaper.getTotalScore(), 2, TimeUnit.MINUTES);
             // 根据考试编号获取课程列表

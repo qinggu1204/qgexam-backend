@@ -57,9 +57,9 @@ public class ViewExamResultsController extends BaseController {
     @GetMapping("/getExamScoreDetail")
     public ResponseResult getExamScoreDetail(Integer examinationId) {
         // 消息队列发送一条消息
-        rabbitService.sendMessage(ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_EXCHANGE_NAME,
-                ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_ROUTING_KEY,
-                getStudentId());
+//        rabbitService.sendMessage(ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_EXCHANGE_NAME,
+//                ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_ROUTING_KEY,
+//                getStudentId());
         return ResponseResult.okResult(answerPaperInfoService.getExamScoreDetail(examinationId,getStudentId()));
     }
 }
