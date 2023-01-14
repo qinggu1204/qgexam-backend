@@ -13,16 +13,15 @@ import org.springframework.web.bind.annotation.*;
 
 @Validated
 @RestController
-@RequestMapping("/stu")
+@RequestMapping("/stu/finishExam")
 public class FinishExamController extends BaseController {
     @DubboReference
     private FinishExamService finishExamService;
     @DubboReference
     private StudentInfoService studentInfoService;
 
-    @PostMapping("/finishExam/saveOrSubmit")
+    @PostMapping("/saveOrSubmit")
     public ResponseResult saveOrSubmit(@Validated @RequestBody SaveOrSubmitDTO saveOrSubmitDTO){
-        System.out.println(getStudentId());
         return ResponseResult.okResult(finishExamService.saveOrSubmit(saveOrSubmitDTO,getStudentId()));
     }
 }

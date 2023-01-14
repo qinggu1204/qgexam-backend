@@ -39,8 +39,7 @@ public class FinishExamServiceImpl implements FinishExamService {
         Integer examinationId=saveOrSubmitDTO.getExaminationId();
         boolean flag=true;
         /*插入提交记录*/
-        SimpleDateFormat now= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String submitTime=now.toString();
+        Date submitTime=new Date();
         if(examSubmitRecordDao.insertRecord(studentId,examinationId,submitTime)==0){
             flag=false;
         }

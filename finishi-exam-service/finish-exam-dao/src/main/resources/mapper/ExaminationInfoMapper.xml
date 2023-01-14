@@ -4,6 +4,6 @@
 <mapper namespace="com.qgexam.exam.finish.dao.ExaminationInfoDao">
 
     <select id="getExaminationPaperId" resultType="java.lang.Integer">
-        select examination_paper_id from examination_info where examination_id=#{examinationId} and is_delete=0
+        select examination_paper_id from examination_info where examination_id=#{examinationId} and is_deleted=0
     </select>
 </mapper>

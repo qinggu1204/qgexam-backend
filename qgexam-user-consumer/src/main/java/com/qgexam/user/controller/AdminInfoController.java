@@ -93,8 +93,4 @@ public class AdminInfoController extends BaseController {
     public ResponseResult updateTeacherNumber(@RequestBody @Validated UpdateTeacherNumberDTO updateTeacherNumberDTO){
         return  ResponseResult.okResult(adminInfoService.updateTeacherNumber(updateTeacherNumberDTO.getTeacherId(),updateTeacherNumberDTO.getNewTeacherNumber()));
     }
-    @GetMapping("/getChapterBySubject/{subjectId}")
-    public ResponseResult getChapterBySubject(@PathVariable Integer subjectId){
-        return ResponseResult.okResult(neTeacherInfoService.getChapterInfoList(subjectId));
-    }
 }

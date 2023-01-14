@@ -4,12 +4,12 @@
 <mapper namespace="com.qgexam.exam.finish.dao.QuestionInfoDao">
 
     <select id="hasSubQuestion" resultType="java.lang.Integer">
-        select has_sub_question from question_info where question_id=#{questionId} and is_delete=0
+        select has_sub_question from question_info where question_id=#{questionId} and is_deleted=0
     </select>
     <select id="geyTypeByQuestionId" resultType="java.lang.String">
-        select type from quetion_info where question_id=#{qustionId} and is_delete=0
+        select type from question_info where question_id=#{questionId} and is_deleted=0
     </select>
     <select id="getCorrectAnswer" resultType="java.lang.String">
-        select question_ans from question_info where question_id=#{questionId} and is_delete=0
+        select question_ans from question_info where question_id=#{questionId} and is_deleted=0
     </select>
 </mapper>

@@ -3,6 +3,8 @@ package com.qgexam.exam.finish.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
+
 /**
  * (ExamSubmitRecord)表数据库访问层
  *
@@ -12,6 +14,6 @@ import org.apache.ibatis.annotations.Param;
 public interface ExamSubmitRecordDao extends BaseMapper<PO.ExamSubmitRecord> {
     Integer insertRecord(@Param("studentId")Integer studentId,
                          @Param("examinationId")Integer examinationId,
-                         @Param("submitTime")String submitTime);
+                         @Param("submitTime")Date submitTime);
 }
 
