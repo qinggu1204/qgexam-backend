@@ -5,33 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="考试状态改为数字">
-      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/java/com/qgexam/exam/enter/dao/StudentExamActionDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/resources/mapper/StudentExamActionMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/DTO/JoinExamDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/DTO/ScreenCuttingDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/PO/StudentExamAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/ExamActionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-entity/src/main/java/com/qgexam/rabbit/pojo/PO/ScreenCuttingRabbitMessageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/ExamActionRabbitConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/EnterExamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/EnterExamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/GetExaminationInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/GetExaminationInfoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/ExamActionListener.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/RabbitMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/RabbitMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/EnterExamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/EnterExamServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/controller/EnterExaminationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/controller/EnterExaminationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/test/java/com/qgexam/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/test/java/com/qgexam/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamBeginJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamBeginJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-common/src/main/java/com/qgexam/rabbit/constants/ExamRecordRabbitConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-common/src/main/java/com/qgexam/rabbit/constants/ExamRecordRabbitConstant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/RabbitmqProviderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/RabbitmqProviderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/ExamRecordRabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/ExamRecordRabbitConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/OptionInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/OptionInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubQuestionInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubQuestionInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/OptionInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/OptionInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubQuestionInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubQuestionInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/DTO/AddQuestionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/DTO/AddQuestionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/OptionInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/OptionInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/UserProviderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/UserProviderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/AdminInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/AdminInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/TranTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/test/java/com/qgexam/user/service/TranTest.java" afterDir="false" />
     </list>
     <list id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -330,6 +308,7 @@
       <item itemvalue="JUnit.TranTest.test" />
       <item itemvalue="JUnit.MyTest.test2" />
       <item itemvalue="JUnit.TranTest.test2" />
+      <item itemvalue="Spring Boot.QuartzProviderApplication" />
       <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
       <item itemvalue="Spring Boot.UserConsumerApplication" />
       <item itemvalue="Spring Boot.UserProviderApplication" />
@@ -339,7 +318,6 @@
       <item itemvalue="Spring Boot.ViewExamResultsProviderApplication" />
       <item itemvalue="Spring Boot.ViewExamResultsConsumerApplication" />
       <item itemvalue="Spring Boot.EnterExamProviderApplication (1)" />
-      <item itemvalue="Spring Boot.QuartzProviderApplication" />
       <item itemvalue="Spring Boot.QuartzProviderApplication (1)" />
       <item itemvalue="Spring Boot.RabbitmqProviderApplication" />
     </list>
@@ -406,7 +384,9 @@
       <workItem from="1673183665821" duration="96126000" />
       <workItem from="1673398541376" duration="35978000" />
       <workItem from="1673488093138" duration="36158000" />
-      <workItem from="1673610679124" duration="3661000" />
+      <workItem from="1673610679124" duration="8512000" />
+      <workItem from="1673661569967" duration="17000" />
+      <workItem from="1673675140229" duration="7656000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
