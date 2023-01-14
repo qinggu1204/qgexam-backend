@@ -14,6 +14,8 @@ import com.qgexam.quartz.pojo.PO.SysJob;
 import com.qgexam.quartz.service.SysJobService;
 import com.qgexam.quartz.utils.CronUtil;
 import com.qgexam.user.constants.ExamBeginJobConstants;
+import com.qgexam.user.constants.ExamFinishJobConstants;
+import com.qgexam.user.constants.ExamUnderwayJobConstants;
 import com.qgexam.user.dao.*;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
 import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
@@ -139,17 +141,16 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         if (examinationInfoDao.insertExaminationInfo(examinationInfo) == 0) {
             return false;
         }
+        Integer examinationId = examinationInfo.getExaminationId();
         // ---------------------------yzw添加开始---------------------------------
-        // 获取考试Id
-        Integer invokeTargetParam = examinationInfo.getExaminationId();
         // 创建定时任务，在考试开始前10分钟将试卷信息放入redis
         // 不设置Status，因为定时任务默认为启用状态 不设置concurrent，因为定时任务默认为不允许并发执行
         // 不设置misfirePolicy 因为定时任务失火时默认为放弃执行
         SysJob job = new SysJob()
                 // 定时任务的名称为examBeginJob :考试Id:考试名称
-                .setJobName(ExamBeginJobConstants.JOB_NAME + ":" + examinationInfo.getExaminationId())
+                .setJobName(ExamBeginJobConstants.JOB_NAME + ":" + examinationId)
                 .setJobGroup(ExamBeginJobConstants.JOB_GROUP)
-                .setInvokeTarget(ExamBeginJobConstants.getInvokeTarget(invokeTargetParam));
+                .setInvokeTarget(ExamBeginJobConstants.getInvokeTarget(examinationId));
         // 获取考试开始时间
         LocalDateTime startTime = examinationInfo.getStartTime();
         // hutool日期偏移，获取startTime的前10分钟
@@ -170,7 +171,48 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         }
         // ---------------------------yzw添加结束---------------------------------
 
-        Integer examinationId = examinationInfo.getExaminationId();
+        // ---------------------------修改考试状态为进行中的定时任务---------------------------------
+        SysJob job1 = new SysJob()
+                // 定时任务的名称为examBeginJob :考试Id:考试名称
+                .setJobName(ExamUnderwayJobConstants.JOB_NAME + ":" + examinationId)
+                .setJobGroup(ExamUnderwayJobConstants.JOB_GROUP)
+                .setInvokeTarget(ExamUnderwayJobConstants.getInvokeTarget(examinationId));
+        // 根据上述时间获取cron表达式
+        String cron1 = CronUtil.localDateTimeToCron(createExamDTO.getStartTime());
+        // 设置cron表达式
+        job1.setCronExpression(cron1);
+        // 添加job
+        Boolean succ1 = null;
+        try {
+            succ1 = sysJobService.saveJob(job1);
+        } catch (SchedulerException e) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), e.getMessage());
+        }
+        if (!succ1) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "创建考试失败");
+        }
+
+        // ---------------------------修改考试状态为已结束的定时任务---------------------------------
+        SysJob job2 = new SysJob()
+                // 定时任务的名称为examBeginJob :考试Id:考试名称
+                .setJobName(ExamFinishJobConstants.JOB_NAME + ":" + examinationId)
+                .setJobGroup(ExamFinishJobConstants.JOB_GROUP)
+                .setInvokeTarget(ExamFinishJobConstants.getInvokeTarget(examinationId));
+        // 根据上述时间获取cron表达式
+        String cron2 = CronUtil.localDateTimeToCron(createExamDTO.getEndTime());
+        // 设置cron表达式
+        job2.setCronExpression(cron2);
+        // 添加job
+        Boolean succ2 = null;
+        try {
+            succ2 = sysJobService.saveJob(job2);
+        } catch (SchedulerException e) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), e.getMessage());
+        }
+        if (!succ2) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "创建考试失败");
+        }
+
         /*3.根据学科编号获取课程列表*/
         List<CourseInfo> courseList = courseInfoDao.getCourseListBySubject(createExamDTO.getSubjectId());
         /*4.给这些课程及其学生发布考试*/

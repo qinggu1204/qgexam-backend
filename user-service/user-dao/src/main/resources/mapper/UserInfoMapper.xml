@@ -4,18 +4,18 @@
 <mapper namespace="com.qgexam.user.dao.UserInfoDao">
     <insert id="insertTeacher" parameterType="com.qgexam.user.pojo.PO.TeacherInfo">
         insert into teacher_info (user_id,teacher_number,qualification_img,user_name,school_id,school_name)
-        values (#{userId},#{teacherNumber},#{qualificationImg},#{userName},#{schoolId},#{schoolName});
+        values (#{userId},#{teacherNumber},#{qualificationImg},#{userName},#{schoolId},#{schoolName})
     </insert>
     <insert id="insertStudent" parameterType="com.qgexam.user.pojo.PO.StudentInfo">
         insert into student_info (user_id,user_name,student_number,school_id,school_name)
-        values (#{userId},#{userName},#{studentNumber},#{schoolId},#{schoolName});
+        values (#{userId},#{userName},#{studentNumber},#{schoolId},#{schoolName})
     </insert>
     <insert id="insertTeacherRole">
         insert into user_role_info (role_id,role_name,user_id)
-        values(#{roleId},#{roleName},#{userId});
+        values(#{roleId},#{roleName},#{userId})
     </insert>
     <update id="updatePassword" parameterMap="updatePasswordParameter">
-        update user_info set password=#{password} where login_name=#{loginName};
+        update user_info set password=#{password} where login_name=#{loginName}
     </update>
 
     <select id="selectRoleInfoListById" resultType="com.qgexam.user.pojo.PO.RoleInfo">
