@@ -69,10 +69,36 @@ public class RabbitMessageListener {
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    @RabbitListener(queues = ExamRecordRabbitConstant.EXAM_ACTION_QUEUE_NAME)
+    public void listenExamActionQueue(ScreenCuttingRabbitMessageDTO screenCuttingRabbitMessageDTO,
+                                      Channel channel, Message message) throws IOException {
+        Integer studentId = screenCuttingRabbitMessageDTO.getStudentId();
+        Integer examinationId = screenCuttingRabbitMessageDTO.getExaminationId();
 
-
-
-
+        // 判断该学生的该场考试是否已经有记录
+        StudentExamAction studentExamAction = studentExamActionDao.selectByStudentIdAndExaminationId(studentId, examinationId);
+        // 如果没有记录，先创建记录
+        if (studentExamAction == null) {
+            studentExamAction = new StudentExamAction();
+            studentExamAction.setStudentId(studentId);
+            studentExamAction.setExaminationId(examinationId);
+            studentExamActionDao.insertStudentExamAction(studentExamAction);
+        }
+        // 获取记录的主键
+        Integer id = studentExamAction.getId();
+        // 更新记录
+        int count = studentExamActionDao.updateScreenCuttingCount(id);
+        if (count > 0) {
+            log.info("学生{}切屏，更新记录成功", studentId);
+            // 手动ack
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        } else {
+            log.info("学生{}切屏，更新记录失败", studentId);
+            // 手动reject
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
+        }
+    }
 
 
 }

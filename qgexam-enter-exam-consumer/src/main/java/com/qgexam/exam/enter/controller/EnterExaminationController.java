@@ -103,7 +103,7 @@ public class EnterExaminationController extends BaseController {
         screenCuttingRabbitMessageDTO.setStudentId(getStudentId());
         // 消息队列发送一条消息--记录学生考试行为
         rabbitService.sendMessage(ExamRecordRabbitConstant.EXAM_ACTION_EXCHANGE_NAME,
-                ExamRecordRabbitConstant.EXAM_ACTION_EXCHANGE_NAME,
+                ExamRecordRabbitConstant.EXAM_ACTION_ROUTING_KEY,
                 screenCuttingRabbitMessageDTO);
         return ResponseResult.okResult();
     }
