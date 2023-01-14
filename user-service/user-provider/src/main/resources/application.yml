@@ -40,6 +40,14 @@ dubbo:
       address: zookeeper://211.159.223.185:2181
       default: false
       timeout: 600000
+    quartzRegistry:
+      # 注册中心地址 quartz
+      address: zookeeper://47.96.154.148:2182
+      timeout: 600000
+      default: false
+
+
+
 
 spring:
   datasource:
@@ -60,6 +68,7 @@ spring:
         max-wait: 1ms
         max-idle: 4
         min-idle: 0
+
 
 
 mybatis-plus:

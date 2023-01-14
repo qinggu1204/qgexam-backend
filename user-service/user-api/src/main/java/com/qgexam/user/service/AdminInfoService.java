@@ -4,7 +4,13 @@ import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.user.pojo.VO.GetCourseListVO;
 import com.qgexam.user.pojo.VO.GetStudentVO;
+import com.qgexam.user.pojo.DTO.AddQuestionListDTO;
+import com.qgexam.user.pojo.DTO.GetSchoolListDTO;
+import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetTeacherListVO;
+import com.qgexam.user.pojo.VO.SchoolInfoVO;
+
+import java.util.List;
 
 /**
  * @author ljy
@@ -17,4 +23,10 @@ public interface AdminInfoService {
     IPage<GetStudentVO> getStudentList(Integer schoolId, String loginName, Integer currentPage, Integer pageSize);
     boolean updateStudentNumber(Integer studentId,String newStudentNumber);
     boolean updateTeacherNumber(Integer teacherId,String newTeacherNumber);
+
+    List<ChapterInfoListVO> getChapterBySubjectId(Integer subjectId);
+
+    IPage<SchoolInfoVO> getSchoolList(GetSchoolListDTO getSchoolListDTO);
+
+    void addQuestion(AddQuestionListDTO addQuestionListDTO);
 }

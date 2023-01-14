@@ -7,11 +7,15 @@ import com.qgexam.user.pojo.DTO.AddNeteacherDTO;
 import com.qgexam.user.pojo.DTO.GetStudentDTO;
 import com.qgexam.user.pojo.DTO.UpdateStudentNumberDTO;
 import com.qgexam.user.pojo.DTO.UpdateTeacherNumberDTO;
+import com.qgexam.user.pojo.DTO.AddQuestionListDTO;
+import com.qgexam.user.pojo.DTO.GetSchoolListDTO;
 import com.qgexam.user.service.AdminInfoService;
 import com.qgexam.user.service.NeTeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.NotNull;
 
 @Validated
 @RestController
@@ -57,6 +61,24 @@ public class AdminInfoController extends BaseController {
     public ResponseResult getNeteacherList(Integer currentPage, Integer pageSize, Integer schoolId, String loginName) {
         return ResponseResult.okResult(adminInfoService.getTeacherList(currentPage, pageSize, schoolId,3, loginName));
     }
+
+    @GetMapping("/getChapterBySubject/{subjectId}")
+    public ResponseResult getChapter(@PathVariable @NotNull(message = "学科id不能为空") Integer subjectId) {
+        return ResponseResult.okResult(adminInfoService.getChapterBySubjectId(subjectId));
+    }
+
+    @GetMapping("/getSchoolList")
+    public ResponseResult getSchoolList(@NotNull(message = "currentPage不能为空") Integer currentPage,
+                                        @NotNull(message = "pageSize不能为空") Integer pageSize) {
+        return ResponseResult.okResult(adminInfoService.getSchoolList(new GetSchoolListDTO(currentPage, pageSize)));
+    }
+
+    @PostMapping("/addQuestion")
+    public ResponseResult addQuestion(@RequestBody @Validated AddQuestionListDTO addQuestionListDTO) {
+        adminInfoService.addQuestion(addQuestionListDTO);
+        return ResponseResult.okResult();
+    }
+
     @GetMapping("/getStudentList")
     public ResponseResult getStudentList(@Validated GetStudentDTO getStudentDTO, Integer currentPage, Integer pageSize){
         return ResponseResult.okResult(adminInfoService.getStudentList(getStudentDTO.getSchoolId(),getStudentDTO.getLoginName(),currentPage,pageSize));

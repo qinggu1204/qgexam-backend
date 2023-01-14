@@ -17,6 +17,10 @@ dubbo:
       address: zookeeper://211.159.223.185:2182
       default: true
       timeout: 600000
+    rabbitmqRegistry:
+      # 注册中心地址 rabbitmq
+      address: zookeeper://211.159.223.185:2183
+      timeout: 600000
 
   consumer:
     timeout: 600000
@@ -33,6 +37,8 @@ spring:
         max-wait: 1ms
         max-idle: 4
         min-idle: 0
+
+
   rabbitmq:
     host: 101.35.52.77
     port: 5672
@@ -46,6 +52,9 @@ spring:
     # 只要抵达队列，以异步的方式回调returnCallback
     template:
       mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 
 

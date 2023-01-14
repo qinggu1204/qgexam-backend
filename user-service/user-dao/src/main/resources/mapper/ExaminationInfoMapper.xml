@@ -4,7 +4,7 @@
 <mapper namespace="com.qgexam.user.dao.ExaminationInfoDao">
 
     <select id="getByExaminationId" resultType="com.qgexam.user.pojo.PO.ExaminationInfo">
-        select * from examination_info where examination_id=#{examinationId}
+        select * from examination_info where examination_id=#{examinationId} and is_deleted = 0;
     </select>
 
     <insert id="insertExaminationInfo" useGeneratedKeys="true" keyProperty="examinationId" keyColumn="examination_id">

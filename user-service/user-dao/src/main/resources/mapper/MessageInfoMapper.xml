@@ -11,7 +11,7 @@
     <select id="getMessagePage" resultType="com.qgexam.user.pojo.VO.MessageInfoListVO">
         select message_id, title, status
         from message_info
-        where user_id = #{userId}
+        where user_id = #{userId} and is_deleted = 0;
     </select>
     <select id="getMessage" resultType="com.qgexam.user.pojo.VO.MessageInfoVO">
         select examination_name,start_time,end_time from message_info where user_id=#{userId} and message_id=#{messageId}

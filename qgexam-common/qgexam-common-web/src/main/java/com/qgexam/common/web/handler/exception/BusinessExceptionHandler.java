@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @version 1.0
  */
 @RestControllerAdvice
-@Order(-5)
+@Order(-20)
 @Slf4j
 public class BusinessExceptionHandler {
 
@@ -35,7 +35,7 @@ public class BusinessExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseResult<String> exceptionHandler(BusinessException exception) {
         log.error("exceptionHandle {}\n{}", exception.getMessage(), ExceptionUtil.stacktraceToString(exception));
-        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR, exception.getMessage());
+        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR, exception.getMsg());
     }
 
 

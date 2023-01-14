@@ -23,6 +23,7 @@ spring:
     username: root
     password: Eeeee11111
 
+
   # redis配置
   redis:
     host: 120.46.166.53
@@ -49,6 +50,9 @@ spring:
     # 只要抵达队列，以异步的方式回调returnCallback
     template:
       mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 
 mybatis-plus:

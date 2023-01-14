@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.qgexam</groupId>
-            <artifactId>user-api</artifactId>
+            <artifactId>view-exam-results-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -36,7 +36,7 @@
         </dependency>
         <dependency>
             <groupId>com.qgexam</groupId>
-            <artifactId>user-entity</artifactId>
+            <artifactId>view-exam-results-entity</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -62,7 +62,28 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.qgexam</groupId>
+            <artifactId>view-exam-results-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.qgexam</groupId>
+            <artifactId>user-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.qgexam</groupId>
+            <artifactId>rabbitmq-provider</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qgexam</groupId>
+            <artifactId>rabbitmq-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

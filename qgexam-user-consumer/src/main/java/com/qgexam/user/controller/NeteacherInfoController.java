@@ -68,7 +68,7 @@ public class NeteacherInfoController extends BaseController {
      * @date 2022/12/28 15:14:42
      */
     @PostMapping("/createExam")
-    public ResponseResult createExam(@RequestBody @Validated CreateExamDTO createExamDTO){
+    public ResponseResult createExam(@RequestBody @Validated CreateExamDTO createExamDTO) {
         if (neTeacherInfoService.createExamination(getUserId(),createExamDTO)) {
             return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
         }

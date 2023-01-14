@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.utils.BeanCopyUtils;
+
 import com.qgexam.exam.enter.dao.ExaminationInfoDao;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
@@ -23,6 +24,7 @@ import java.util.List;
 @DubboService
 public class ExaminationInfoServiceImpl extends ServiceImpl<ExaminationInfoDao, ExaminationInfo> implements ExaminationInfoService {
 
+
     @Autowired
     private ExaminationInfoDao examinationInfoDao;
 
@@ -38,5 +40,10 @@ public class ExaminationInfoServiceImpl extends ServiceImpl<ExaminationInfoDao, 
         pageVO.setRecords(getExamListVOS);
         return pageVO;
     }
+
+
+
+
+
 }
 
