@@ -2,14 +2,13 @@ package com.qgexam.exam.viewresults.controller;
 
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
+import com.qgexam.exam.viewresults.pojo.DTO.ErrorDTO;
 import com.qgexam.exam.viewresults.service.AnswerPaperInfoService;
 import com.qgexam.exam.viewresults.service.CourseInfoService;
-import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
 import com.qgexam.rabbit.constants.RabbitMQConstants;
 import com.qgexam.rabbit.constants.ViewExamResultsRabbitConstant;
 import com.qgexam.rabbit.service.RabbitService;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,10 +56,6 @@ public class ViewExamResultsController extends BaseController {
 
     @GetMapping("/getExamScoreDetail")
     public ResponseResult getExamScoreDetail(Integer examinationId) {
-        // 消息队列发送一条消息
-//        rabbitService.sendMessage(ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_EXCHANGE_NAME,
-//                ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_ROUTING_KEY,
-//                getStudentId());
         return ResponseResult.okResult(answerPaperInfoService.getExamScoreDetail(examinationId,getStudentId()));
     }
 
@@ -72,13 +67,13 @@ public class ViewExamResultsController extends BaseController {
      * @date 2023/1/14 15:59
      */
 
-    @PostMapping("/addErrorSet")
-    public ResponseResult addErrorSet(Integer examinationId, Integer questionId) {
+    @PostMapping("/addErrorQuestion")
+    public ResponseResult addErrorQuestion(ErrorDTO errorDTO) {
         // 消息队列发送一条消息
-//        rabbitService.sendMessage(ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_EXCHANGE_NAME,
-//                ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_ROUTING_KEY,
-//                getStudentId());
-        return ResponseResult.okResult(answerPaperInfoService.getExamScoreDetail(examinationId,getStudentId()));
+        rabbitService.sendMessage(ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_EXCHANGE_NAME,
+                ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_ROUTING_KEY,
+                errorDTO);
+        return ResponseResult.okResult();
     }
 
     /**
@@ -89,8 +84,8 @@ public class ViewExamResultsController extends BaseController {
      * @date 2023/1/14 15:59
      */
 
-    @GetMapping("/getErrorSet")
-    public ResponseResult getErrorSet(Integer courseId) {
+    @GetMapping("/getErrorQuestionList")
+    public ResponseResult getErrorQuestionList(Integer courseId) {
         // 消息队列发送一条消息
         rabbitService.sendMessage(RabbitMQConstants.BEGIN_CACHE_EXCHANGE_NAME,
                 RabbitMQConstants.BEGIN_CACHE_ROUTING_KEY,

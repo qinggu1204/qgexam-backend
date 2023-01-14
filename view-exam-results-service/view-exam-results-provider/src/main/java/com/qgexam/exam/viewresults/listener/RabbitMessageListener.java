@@ -3,10 +3,12 @@ package com.qgexam.exam.viewresults.listener;
 import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.viewresults.dao.*;
+import com.qgexam.exam.viewresults.pojo.DTO.ErrorDTO;
 import com.qgexam.exam.viewresults.pojo.PO.*;
 import com.qgexam.exam.viewresults.pojo.VO.*;
 import com.qgexam.rabbit.constants.RabbitMQConstants;
 
+import com.qgexam.rabbit.constants.ViewExamResultsRabbitConstant;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -46,7 +48,11 @@ public class RabbitMessageListener {
     @Autowired
     private SubQuestionInfoDao subQuestionInfoDao;
 
-
+    /**
+     * 查询成绩开放前将某场考试的所有学生的成绩明细存入缓存（监听阅卷结束发送的消息）
+     * @author ljy
+     * @date 2023/1/10 15:59
+     */
     @RabbitListener(queues = RabbitMQConstants.BEGIN_CACHE_QUEUE_NAME)
     public void listenBeginCacheQueue(Integer examinationId, Channel channel, Message message) throws IOException {
         // 根据考试Id查询考试信息
@@ -186,5 +192,15 @@ public class RabbitMessageListener {
         log.info("考试{}的所有学生的答卷存入缓存成功", examinationId);
         // 手动ack
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+    }
+
+    /**
+     * 把学生的错题加入错题集（监听加入错题集接口发送的消息）
+     * @author ljy
+     * @date 2023/1/14 15:59
+     */
+    @RabbitListener(queues = ViewExamResultsRabbitConstant.EXAM_RVIEWRESULTS_QUEUE_NAME)
+    public void listenExamViewResultsQueue(ErrorDTO errorDTO, Channel channel, Message message) throws IOException {
+
     }
 }
