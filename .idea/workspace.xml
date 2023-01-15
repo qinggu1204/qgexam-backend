@@ -4,7 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="考试状态改为数字">
       <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/ExaminationInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/ExaminationInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/java/com/qgexam/exam/enter/dao/ExaminationInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/java/com/qgexam/exam/enter/dao/ExaminationInfoDao.java" afterDir="false" />
@@ -63,27 +62,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/23215/Desktop/qgexam-backend/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "项目",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "07b1b8c92fe209f8ac7554f7079410bc"
-  }
-}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -132,58 +110,58 @@
     </configuration>
     <configuration name="EnterExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-enter-exam-consumer" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.EnterExamConsumerApplication" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="EnterExamProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="enter-exam-provider" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamProviderApplication" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="FinishExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="qgexam-finish-exam-consumer" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.finish.FinishExamConsumerApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.qgexam.exam.finish.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.finish.FinishExamConsumerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="FinishExamProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="finish-exam-provider" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.finish.service.FinishExamProviderApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.qgexam.exam.finish.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.finish.service.FinishExamProviderApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="MarkingConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-marking-consumer" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingConsumerApplication" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="MarkingProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="marking-provider" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingProviderApplication" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -204,16 +182,16 @@
     </configuration>
     <configuration name="UserConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-user-consumer" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserConsumerApplication" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="UserProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="user-provider" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserProviderApplication" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -299,7 +277,6 @@
       <workItem from="1672735074904" duration="3188000" />
       <workItem from="1672908051731" duration="601000" />
       <workItem from="1672926304662" duration="3506000" />
-<<<<<<< HEAD
       <workItem from="1672972327521" duration="399000" />
       <workItem from="1672980303713" duration="48000" />
       <workItem from="1673001101010" duration="11159000" />
@@ -313,22 +290,6 @@
       <workItem from="1673661569967" duration="17000" />
       <workItem from="1673675140229" duration="15702000" />
       <workItem from="1673712023499" duration="18851000" />
-=======
-      <workItem from="1673081657824" duration="47000" />
-      <workItem from="1673081721307" duration="569000" />
-      <workItem from="1673157752231" duration="10050000" />
-      <workItem from="1673171370234" duration="126000" />
-      <workItem from="1673182030372" duration="5863000" />
-      <workItem from="1673261832039" duration="1326000" />
-      <workItem from="1673263181004" duration="3679000" />
-      <workItem from="1673337009470" duration="9136000" />
-      <workItem from="1673418943575" duration="9625000" />
-      <workItem from="1673513657803" duration="3000000" />
-      <workItem from="1673601226126" duration="8337000" />
-      <workItem from="1673680840472" duration="1865000" />
-      <workItem from="1673682956646" duration="104000" />
-      <workItem from="1673683071729" duration="17451000" />
->>>>>>> a0be2b1eeee249499976bb2bbac29358f4386a3a
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
