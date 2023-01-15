@@ -14,6 +14,7 @@ import com.qgexam.quartz.pojo.VO.ExaminationInfoVO;
 import com.qgexam.user.pojo.VO.OptionInfoVO;
 import com.qgexam.user.pojo.VO.QuestionInfoVO;
 import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
  * @author yzw
  * @date 2023年01月08日 23:42
  */
+@Slf4j
 @Component("examBeginJob")
 public class ExamBeginJob {
 
@@ -48,7 +50,7 @@ public class ExamBeginJob {
     private SubQuestionInfoDao subQuestionInfoDao;
 
     public void execute(Integer examinationId) {
-        System.out.println("###########examBeginJob.execute()###########");
+        log.info("###########examBeginJob.execute()###########");
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
         // 如果examinationInfo为空，抛出BusinessException
