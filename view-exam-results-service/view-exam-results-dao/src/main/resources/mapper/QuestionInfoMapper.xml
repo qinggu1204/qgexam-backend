@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.exam.viewresults.dao.QuestionInfoDao">
+
+    <select id="selectOptionInfoListByQuestionInfoId" resultType="com.qgexam.exam.viewresults.pojo.PO.QuestionInfo">
+        select qi.*, epq.question_score as questionScore
+        from question_info qi, examination_paper_question epq
+        where qi.question_id = #{questionId}
+          and epq.question_id = qi.question_id
+          and epq.examination_paper_id = #{examinationPaperId}
+          and oi.is_deleted = 0
+    </select>
+</mapper>

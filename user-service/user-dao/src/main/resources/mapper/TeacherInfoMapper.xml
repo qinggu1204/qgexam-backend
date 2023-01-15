@@ -6,6 +6,9 @@
         insert into teacher_invigilation(examination_id,teacher_id,course_id,course_name,teacher_name,examination_name)
         values(#{examinationId},#{teacherId},#{courseId},#{courseName},#{teacherName},#{examinationName})
     </insert>
+    <update id="updateTeacherNumberInteger">
+        update teacher_info set teacher_number=#{newTeacherNumber} where teacher_id=#{teacherId}
+    </update>
 
 
     <select id="getTeacherInfoByUserId" resultType="com.qgexam.user.pojo.PO.TeacherInfo">

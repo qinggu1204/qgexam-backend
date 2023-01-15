@@ -3,8 +3,10 @@ package com.qgexam.exam.viewresults.controller;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.exam.viewresults.pojo.DTO.ErrorDTO;
+import com.qgexam.exam.viewresults.pojo.DTO.ErrorQuestionDTO;
 import com.qgexam.exam.viewresults.service.AnswerPaperInfoService;
 import com.qgexam.exam.viewresults.service.CourseInfoService;
+import com.qgexam.exam.viewresults.service.ErrorquestionInfoService;
 import com.qgexam.rabbit.constants.RabbitMQConstants;
 import com.qgexam.rabbit.constants.ViewExamResultsRabbitConstant;
 import com.qgexam.rabbit.service.RabbitService;
@@ -30,6 +32,9 @@ public class ViewExamResultsController extends BaseController {
     private CourseInfoService courseInfoService;
     @DubboReference
     private AnswerPaperInfoService answerPaperInfoService;
+    @DubboReference
+    private ErrorquestionInfoService errorquestionInfoService;
+
     @DubboReference(registry = "rabbitmqRegistry")
     private RabbitService rabbitService;
 
@@ -69,10 +74,12 @@ public class ViewExamResultsController extends BaseController {
 
     @PostMapping("/addErrorQuestion")
     public ResponseResult addErrorQuestion(ErrorDTO errorDTO) {
+        // 封装消息
+        ErrorQuestionDTO errorQuestionDTO = new ErrorQuestionDTO(errorDTO.getExaminationId(),errorDTO.getQuestionId(),getStudentId());
         // 消息队列发送一条消息
         rabbitService.sendMessage(ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_EXCHANGE_NAME,
                 ViewExamResultsRabbitConstant.EXAM_VIEWRESULTS_ROUTING_KEY,
-                errorDTO);
+                errorQuestionDTO);
         return ResponseResult.okResult();
     }
 
@@ -86,10 +93,6 @@ public class ViewExamResultsController extends BaseController {
 
     @GetMapping("/getErrorQuestionList")
     public ResponseResult getErrorQuestionList(Integer courseId) {
-        // 消息队列发送一条消息
-        rabbitService.sendMessage(RabbitMQConstants.BEGIN_CACHE_EXCHANGE_NAME,
-                RabbitMQConstants.BEGIN_CACHE_ROUTING_KEY,
-                1);
-        return ResponseResult.okResult();
+        return ResponseResult.okResult(errorquestionInfoService.getErrorQuestionList(courseId,getStudentId()));
     }
 }

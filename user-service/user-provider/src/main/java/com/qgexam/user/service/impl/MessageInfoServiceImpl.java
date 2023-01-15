@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.user.dao.MessageInfoDao;
 import com.qgexam.user.pojo.PO.MessageInfo;
 import com.qgexam.user.pojo.VO.MessageInfoListVO;
+import com.qgexam.user.pojo.VO.MessageInfoVO;
 import com.qgexam.user.service.MessageInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class MessageInfoServiceImpl extends ServiceImpl<MessageInfoDao, MessageI
     public IPage<MessageInfoListVO> getMessageList(Integer userId, Integer currentPage, Integer pageSize){
         IPage<MessageInfoListVO> page=new Page<>(currentPage,pageSize);
         return messageInfoDao.getMessagePage(userId,page);
+    }
+
+    @Override
+    public MessageInfoVO getMessage(Integer userId, Integer messageId) {
+        MessageInfoVO messageInfoVO=messageInfoDao.getMessage(userId,messageId);
+        return messageInfoVO;
     }
 }
 

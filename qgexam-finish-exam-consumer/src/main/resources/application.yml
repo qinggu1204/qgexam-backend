@@ -1,15 +1,27 @@
 server:
-  port: 7777
+  port: 7779
 
 dubbo:
   application:
     # 应用名称
-    name: qgexam-finish-exam-consumer
-  registry:
-    # 注册中心地址
-    address: zookeeper://81.68.168.28:2181
-  metadata-report:
-    address: zookeeper://81.68.168.28:2181
+    name: finish-exam-consumer
+  # dubbo 多注册中心配置
+  registries:
+    # 注册中心名称
+    userRegistry:
+      # 注册中心地址 user
+      address: zookeeper://47.96.154.148:2181
+      timeout: 600000
+    enterExamRegistry:
+      # 注册中心地址 fzj
+      address: zookeeper://211.159.223.185:2181
+      default: true
+      timeout: 600000
+    rabbitmqRegistry:
+      # 注册中心地址 rabbitmq
+      address: zookeeper://211.159.223.185:2183
+      timeout: 600000
+
   consumer:
     timeout: 600000
 
@@ -25,6 +37,22 @@ spring:
         max-wait: 1ms
         max-idle: 4
         min-idle: 0
+  rabbitmq:
+    host: 101.35.52.77
+    port: 5672
+    username: qgexam
+    password: qgexam
+    virtual-host: /qgexam
+    # 开启发送端确认
+    publisher-confirm-type: correlated
+    # 开启发送端抵达队列确认
+    publisher-returns: true
+    # 只要抵达队列，以异步的方式回调returnCallback
+    template:
+      mandatory: true
+
+
+
 
 sa-token:
   # token名称 (同时也是cookie名称)
@@ -35,6 +63,7 @@ sa-token:
   is-concurrent: true
 #  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
   is-share: true
+
   # token风格
   token-style: uuid
   # 是否输出操作日志

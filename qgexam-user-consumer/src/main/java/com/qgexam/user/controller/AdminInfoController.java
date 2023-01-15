@@ -4,10 +4,13 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.AddNeteacherDTO;
+import com.qgexam.user.pojo.DTO.UpdateStudentNumberDTO;
+import com.qgexam.user.pojo.DTO.UpdateTeacherNumberDTO;
 import com.qgexam.user.pojo.DTO.AddQuestionListDTO;
 import com.qgexam.user.pojo.DTO.GetSchoolListDTO;
 import com.qgexam.user.service.AdminInfoService;
-import com.qgexam.user.service.MessageInfoService;
+import com.qgexam.user.service.NeTeacherInfoService;
+import com.qgexam.user.service.SubjectInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,10 @@ import javax.validation.constraints.NotNull;
 public class AdminInfoController extends BaseController {
     @DubboReference
     private AdminInfoService adminInfoService;
+    @DubboReference
+    private NeTeacherInfoService neTeacherInfoService;
+    @DubboReference
+    private SubjectInfoService subjectInfoService;
 
     /**
      * @description 设置教务老师
@@ -74,4 +81,23 @@ public class AdminInfoController extends BaseController {
         return ResponseResult.okResult();
     }
 
+    @GetMapping("/getStudentList")
+    public ResponseResult getStudentList(@NotNull(message = "schoolId不能为空")Integer schoolId,String loginName,
+                                         Integer currentPage, Integer pageSize){
+        return ResponseResult.okResult(adminInfoService.getStudentList(schoolId,loginName,currentPage,pageSize));
+    }
+
+    @PutMapping("/updateStudentNumber")
+    public ResponseResult updateStudentNumber(@RequestBody @Validated UpdateStudentNumberDTO updateStudentNumberDTO){
+        return  ResponseResult.okResult(adminInfoService.updateStudentNumber(updateStudentNumberDTO.getStudentId(),updateStudentNumberDTO.getNewStudentNumber()));
+    }
+
+    @PutMapping("/updateTeacherNumber")
+    public ResponseResult updateTeacherNumber(@RequestBody @Validated UpdateTeacherNumberDTO updateTeacherNumberDTO){
+        return  ResponseResult.okResult(adminInfoService.updateTeacherNumber(updateTeacherNumberDTO.getTeacherId(),updateTeacherNumberDTO.getNewTeacherNumber()));
+    }
+    @GetMapping("/getSubjectList")
+    public ResponseResult getSubjectList() {
+        return ResponseResult.okResult(subjectInfoService.getSubjectList());
+    }
 }
