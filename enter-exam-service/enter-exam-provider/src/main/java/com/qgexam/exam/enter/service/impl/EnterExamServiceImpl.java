@@ -104,8 +104,10 @@ public class EnterExamServiceImpl implements EnterExamService {
         Integer examinationId = joinExamDTO.getExaminationId();
         LocalDateTime joinTime = joinExamDTO.getJoinTime();
         // 判断当前考试是否合法
-        ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime);
-
+        ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
+        if(examinationInfo == null) {
+            examinationInfo = examinationInfoDao.selectById(examinationId);
+        }
         // 获取考试信息
         GetExaminationInfoVO examinationInfoVO = BeanCopyUtils.copyBean(examinationInfo, GetExaminationInfoVO.class);
 
