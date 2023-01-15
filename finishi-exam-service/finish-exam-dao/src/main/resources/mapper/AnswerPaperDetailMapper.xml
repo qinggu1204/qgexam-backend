@@ -8,6 +8,6 @@
         values (#{answerPaperId},#{questionId},#{studentAnswer},#{score})
     </insert>
     <select id="getAnswerPaperDetailId" resultType="java.lang.Integer">
-        select answer_paper_detail_id from answer_paper_detail where answer_paper_id=#{answerPaperId} and question_id=#{questionId} and is_deleted=0
+        select a.answer_paper_detail_id from answer_paper_detail a where a.answer_paper_id=#{answerPaperId} and a.question_id=#{questionId} and a.is_deleted=0
     </select>
 </mapper>

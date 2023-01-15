@@ -55,6 +55,6 @@ public class StudentInfoController extends BaseController {
         GetStudentInfoVO getStudentInfoVO = studentInfoService.getStudentInfo(session);
         if(studentInfoService.joinCourse(getStudentId(), getStudentInfoVO.getUserName(),getStudentInfoVO.getStudentNumber(),joinCourseDTO.getCourseId()))
             return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
-        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR,"课程已结束");
     }
 }

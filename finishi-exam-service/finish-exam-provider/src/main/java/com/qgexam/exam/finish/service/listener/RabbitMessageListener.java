@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
@@ -17,13 +18,15 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
+@Component
 public class RabbitMessageListener {
     @Autowired
     private ExaminationInfoDao examinationInfoDao;
     @Autowired
     private ExamSubmitRecordDao examSubmitRecordDao;
-    @RabbitListener(queues = FinishExamRabbitConstants.EXAM_FINISH_NAME)
+
     @Transactional
+    @RabbitListener(queues = FinishExamRabbitConstants.EXAM_FINISH_NAME)
     public void listenExamFinishQueue(SaveOrSubmitDTO saveOrSubmitDTO,Integer studentId,Channel channel, Message message)throws IOException{
         boolean flag=true;
         //获取考试信息
@@ -39,17 +42,17 @@ public class RabbitMessageListener {
                 flag=false;
             }
             if(flag){
-                log.info("已上传作答情况");
+                log.info("作答已上传");
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             }
             else{
-                log.info("保存失败");
+                log.info("作答上传失败");
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
             }
         }
         //超时提交
         else {
-            log.info("超时提交，保存失败");
+            log.info("超时提交作答，上传失败");
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
         }
     }

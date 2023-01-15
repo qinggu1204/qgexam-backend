@@ -4,6 +4,7 @@ import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.user.dao.CourseInfoDao;
 import com.qgexam.user.dao.StudentInfoDao;
 import com.qgexam.user.dao.UserInfoDao;
 import com.qgexam.user.pojo.PO.StudentInfo;
@@ -28,6 +29,8 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
 
     @Autowired
     private UserInfoDao userInfoDao;
+    @Autowired
+    private CourseInfoDao courseInfoDao;
 
     @Override
     public GetStudentInfoVO getStudentInfo(SaSession session) {
@@ -63,6 +66,9 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
      */
     @Override
     public boolean joinCourse(Integer studentId, String userName, String studentNumber, Integer courseId) {
+        if(courseInfoDao.selectById(courseId)==null){
+            return false;
+        }
         if (studentInfoDao.joinCourse(studentId,userName,studentNumber,courseId) != 0) {
             return true;
         }

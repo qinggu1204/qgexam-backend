@@ -57,7 +57,8 @@ public class EnterExaminationController extends BaseController {
     public ResponseResult getExamList(Integer courseId, String examinationName,
                                       @NotNull(message = "currentPage不能为空") Integer currentPage,
                                       @NotNull(message = "pageSize不能为空") Integer pageSize) {
-        return ResponseResult.okResult(examinationInfoService.getExamList(new GetExamListDTO(courseId, examinationName, currentPage, pageSize)));
+        return ResponseResult.okResult(examinationInfoService.getExamList(new GetExamListDTO(courseId,
+                examinationName, currentPage, pageSize)));
 
     }
 
@@ -90,7 +91,7 @@ public class EnterExaminationController extends BaseController {
         return ResponseResult.okResult(enterExamService.getExaminationInfo(joinExamDTO));
     }
 
-    @PutMapping("/screenCutting")
+    @PostMapping("/screenCutting")
     public ResponseResult screenCutting(@Validated @RequestBody ScreenCuttingDTO screenCuttingDTO) {
         JoinExamDTO joinExamDTO = new JoinExamDTO();
         joinExamDTO.setExaminationId(screenCuttingDTO.getExaminationId());

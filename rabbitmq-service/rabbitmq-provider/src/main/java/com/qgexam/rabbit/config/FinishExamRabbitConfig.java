@@ -19,12 +19,10 @@ public class FinishExamRabbitConfig {
     public DirectExchange examFinishExchange() {
         return new DirectExchange(FinishExamRabbitConstants.EXAM_FINISH_EXCHANGE_NAME, true, false);
     }
-
     @Bean
     public Queue examFinishQueue() {
         return new Queue(FinishExamRabbitConstants.EXAM_FINISH_NAME, true, false, false);
     }
-
     @Bean
     public Binding examFinishBinding(DirectExchange examFinishExchange, Queue examFinishQueue) {
         return BindingBuilder.bind(examFinishQueue).to(examFinishExchange).with(FinishExamRabbitConstants.EXAM_FINISH_ROUTING_KEY);

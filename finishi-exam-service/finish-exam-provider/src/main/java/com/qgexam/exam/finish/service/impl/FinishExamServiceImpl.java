@@ -9,8 +9,6 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,8 +29,6 @@ public class FinishExamServiceImpl implements FinishExamService {
     private ExaminationPaperQuestionDao examinationPaperQuestionDao;
     @Autowired
     private SubQuestionAnswerDetailDao subQuestionAnswerDetailDao;
-    @Autowired
-    private ExamSubmitRecordDao examSubmitRecordDao;
     @Override
     @Transactional
     public boolean saveOrSubmit(SaveOrSubmitDTO saveOrSubmitDTO,Integer studentId) {
@@ -48,11 +44,13 @@ public class FinishExamServiceImpl implements FinishExamService {
         String questionAnswer;
         String subQuestionAnswer;
         Integer objectiveScore=0;
+        Integer answerPaperDetailId;
         /*提取body中的题目array*/
         List<QuestionDTO>questionDTO=saveOrSubmitDTO.getQuestion();
         for (QuestionDTO question:questionDTO) {
             questionId=question.getQuestionId();
             questionAnswer=question.getQuestionAnswer();
+            answerPaperDetailId=answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId);
             String correctAnswer=questionInfoDao.getCorrectAnswer(questionId);
             Integer questionScore=examinationPaperQuestionDao.getScore(examinationPaperId,questionId);
             switch (questionInfoDao.geyTypeByQuestionId(questionId)){
@@ -84,7 +82,7 @@ public class FinishExamServiceImpl implements FinishExamService {
                         for (SubQuestionDTO subQuestion:subQuestionDTO) {
                             subQuestionId=subQuestion.getSubQuestionId();
                             subQuestionAnswer=subQuestion.getSubQuestionAnswer();
-                            if( subQuestionAnswerDetailDao.insert(answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId),subQuestionId,subQuestionAnswer)==0){
+                            if(subQuestionAnswerDetailDao.insert(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
                                 flag=false;
                             }
                         }
