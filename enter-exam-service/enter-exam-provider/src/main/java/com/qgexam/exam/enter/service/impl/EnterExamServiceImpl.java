@@ -7,6 +7,7 @@ import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
+
 import com.qgexam.exam.enter.dao.ExaminationInfoDao;
 import com.qgexam.exam.enter.pojo.DTO.JoinExamDTO;
 import com.qgexam.exam.enter.pojo.VO.*;
@@ -108,7 +109,6 @@ public class EnterExamServiceImpl implements EnterExamService {
         // 获取考试信息
         GetExaminationInfoVO examinationInfoVO = BeanCopyUtils.copyBean(examinationInfo, GetExaminationInfoVO.class);
 
-        examinationInfoVO.setStatus(ExamConstants.EXAM_STATUS_UNDERWAY_VO);
         return examinationInfoVO;
     }
 
@@ -125,21 +125,36 @@ public class EnterExamServiceImpl implements EnterExamService {
         // 从redis中读出考试信息
         ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
 
+        /*
+            * 1.考试未开始，数据内容还未加载到redis中
+            * 2.考试已结束，数据内容已从redis中删除
+         */
         if (examinationInfo == null) {
-            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已经结束。");
+            // 从数据库查询考试消息
+            ExaminationInfo tempExaminationInfo = examinationInfoDao.selectById(examinationId);
+            LocalDateTime startTime = tempExaminationInfo.getStartTime();
+            LocalDateTime endTime = tempExaminationInfo.getEndTime();
+            // 考试未开始
+            if(joinTime.isBefore(startTime)) {
+                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试还未开始，无法进入考试。");
+            }
+            // 考试已结束
+            if(joinTime.isAfter(endTime)) {
+                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已结束。");
+            }
         }
+        // 运行到此处说明examinationInfo不为空
+
         // 判断考试是否已经结束
         LocalDateTime endTime = examinationInfo.getEndTime();
-        if (joinTime.isAfter(endTime)) {
-            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已经结束。");
-        }
-        // 获取限时进入时间
         Integer limitTime = examinationInfo.getLimitTime();
         LocalDateTime startTime = examinationInfo.getStartTime();
+
         // 考试未开始
         if (joinTime.isBefore(startTime)) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试还未开始，无法进入考试。");
         }
+
         // 等于0说明不限时进入
         if (limitTime != 0) {
             // 计算限时进入时间点
@@ -149,6 +164,11 @@ public class EnterExamServiceImpl implements EnterExamService {
                 throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "晚于考试限时进入时间，无法进入考试。");
             }
         }
+        // 判断考试是否已经结束，非必须
+        if (joinTime.isAfter(endTime)) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已经结束。");
+        }
+
         return examinationInfo;
     }
 

@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.exam.enter.dao.ExaminationInfoDao">
 
-    <select id="selectAllExaminationInfo" resultType="com.qgexam.exam.enter.pojo.PO.ExaminationInfo">
-        select distinct ei.examination_id, ei.examination_paper_id, ei.examination_name, ei.created_by, ei.start_time, ei.end_time, ei.status, ei.limit_time, ei.is_question_resort, ei.is_option_resort, ei.judge_overtime, ei.create_time, ei.update_time, ei.is_deleted
+    <select id="selectAllExaminationInfo" resultType="com.qgexam.user.pojo.PO.ExaminationInfo">
+        select distinct ei.examination_id, ei.examination_paper_id, ei.examination_name, ei.created_by, ei.start_time, ei.end_time, ei.status, ei.limit_time, ei.is_question_resort, ei.is_option_resort, ei.result_query_time, ei.create_time, ei.update_time, ei.is_deleted
         from examination_info ei
         left join course_examination ce on ei.examination_id = ce.examination_id
         <where>

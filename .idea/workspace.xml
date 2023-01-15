@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="考试状态改为数字">
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamBeginJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamBeginJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamFinishJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamFinishJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamUnderwayJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java/com/qgexam/quartz/job/ExamUnderwayJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/resources/quartz.properties" beforeDir="false" afterPath="$PROJECT_DIR$/quartz-service/quartz-provider/src/main/resources/quartz.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/constants/ExamBeginJobConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/constants/ExamBeginJobConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/ExaminationInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java/com/qgexam/exam/enter/service/ExaminationInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/java/com/qgexam/exam/enter/dao/ExaminationInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/java/com/qgexam/exam/enter/dao/ExaminationInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/resources/mapper/ExaminationInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/resources/mapper/ExaminationInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/PO/ExaminationInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/PO/ExaminationInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/GetExamListVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/GetExamListVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/GetExaminationInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java/com/qgexam/exam/enter/pojo/VO/GetExaminationInfoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/EnterExamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/EnterExamServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/ExaminationInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/service/impl/ExaminationInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-marking-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-view-exam-results-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-view-exam-results-consumer/src/main/resources/application.yml" afterDir="false" />
     </list>
     <list id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -388,7 +396,7 @@
       <workItem from="1673610679124" duration="8512000" />
       <workItem from="1673661569967" duration="17000" />
       <workItem from="1673675140229" duration="15702000" />
-      <workItem from="1673712023499" duration="5959000" />
+      <workItem from="1673712023499" duration="18851000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
