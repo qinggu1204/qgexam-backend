@@ -1,7 +1,5 @@
 package com.qgexam.exam.finish.controller;
 
-import cn.dev33.satoken.session.SaSession;
-import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.exam.finish.pojo.DTO.SaveOrSubmitDTO;

@@ -82,7 +82,8 @@ public class AdminInfoController extends BaseController {
     }
 
     @GetMapping("/getStudentList")
-    public ResponseResult getStudentList(@NotNull(message = "schoolId不能为空")Integer schoolId,String loginName, Integer currentPage, Integer pageSize){
+    public ResponseResult getStudentList(@NotNull(message = "schoolId不能为空")Integer schoolId,String loginName,
+                                         Integer currentPage, Integer pageSize){
         return ResponseResult.okResult(adminInfoService.getStudentList(schoolId,loginName,currentPage,pageSize));
     }
 

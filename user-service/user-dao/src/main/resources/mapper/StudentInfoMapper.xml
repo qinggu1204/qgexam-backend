@@ -23,6 +23,9 @@
                 and ui.login_name =#{loginName}
             </if>
             and si.school_id=#{schoolId}
+            and si.is_deleted=0
+            and ui.user_id=si.user_id
+            and ui.is_deleted=0
         </where>
     </select>
     <insert id="joinCourse">

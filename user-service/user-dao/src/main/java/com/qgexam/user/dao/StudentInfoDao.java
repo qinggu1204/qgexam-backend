@@ -19,7 +19,8 @@ import java.util.List;
 public interface StudentInfoDao extends BaseMapper<StudentInfo> {
     Integer updatefaceImgByUserId(@Param("faceImg") String faceImg, @Param("userId") Integer userId);
     Integer joinCourse(@Param("studentId") Integer studentId, @Param("userName") String userName,@Param("studentNumber") String studentNumber, @Param("courseId") Integer courseId);
-    IPage<GetStudentVO> getStudentList(@Param("schoolId")Integer schoolId, @Param("loginName")String loginName, IPage<GetStudentVO> page);
+    IPage<GetStudentVO> getStudentList(@Param("schoolId")Integer schoolId,
+                                       @Param("loginName")String loginName, IPage<GetStudentVO> page);
     Integer updateStudentNumber(@Param("studentId")Integer studentId,@Param("newStudentNUmber")String newStudentNumber);
     Integer updateStudentNumberInStudentCourse(@Param("studentId")Integer studentId,@Param("newStudentNUmber")String newStudentNumber);
 }

@@ -36,13 +36,9 @@ public class FinishExamServiceImpl implements FinishExamService {
     @Override
     @Transactional
     public boolean saveOrSubmit(SaveOrSubmitDTO saveOrSubmitDTO,Integer studentId) {
-        Integer examinationId=saveOrSubmitDTO.getExaminationId();
         boolean flag=true;
-        /*插入提交记录*/
-        Date submitTime=new Date();
-        if(examSubmitRecordDao.insertRecord(studentId,examinationId,submitTime)==0){
-            flag=false;
-        }
+        /*获取考试信息*/
+        Integer examinationId=saveOrSubmitDTO.getExaminationId();
         /*获取学生答卷和考试试卷*/
         Integer answerPaperId=answerPaperInfoDao.getAnswerPaperId(studentId,examinationId);
         Integer examinationPaperId=examinationInfoDao.getExaminationPaperId(examinationId);
