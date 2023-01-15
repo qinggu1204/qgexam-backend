@@ -4,19 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/java/com/qgexam/exam/finish/aspect/BaseContextAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/java/com/qgexam/exam/finish/satoken/StpInterfaceImpl.java" afterDir="false" />
+    <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="Finish Examination">
+      <change afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/listener/RabbitMessageListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-common/src/main/java/com/qgexam/rabbit/constants/FinishExamRabbitConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/FinishExamRabbitConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/SubjectInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/GetSubjectVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/SubjectInfoServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/ExamSubmitRecordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/ExamSubmitRecordDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/AnswerPaperDetailMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/AnswerPaperDetailMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/AnswerPaperInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/AnswerPaperInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/ExaminationInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/ExaminationInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/AnswerPaperInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/AnswerPaperInfoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/ExaminationInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/ExaminationInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/ExaminationPaperQuestionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/ExaminationPaperQuestionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/QuestionInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/QuestionInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/impl/FinishExamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/impl/FinishExamServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-finish-exam-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-finish-exam-consumer/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/java/com/qgexam/exam/finish/controller/FinishExamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/java/com/qgexam/exam/finish/controller/FinishExamController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/AdminInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/AdminInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubjectInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubjectInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubjectInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubjectInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/StudentInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/StudentInfoServiceImpl.java" afterDir="false" />
     </list>
     <list id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,27 +67,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/23215/Desktop/qgexam-backend/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;07b1b8c92fe209f8ac7554f7079410bc&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/23215/Desktop/qgexam-backend/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "spring.configuration.checksum": "07b1b8c92fe209f8ac7554f7079410bc"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -92,6 +99,7 @@
       <recent name="com.qgexam.answerPapers.marking" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qgexam.exam.finish.service.listener" />
       <recent name="com.qgexam.exam.finish.aspect" />
     </key>
   </component>
@@ -308,7 +316,7 @@
       <workItem from="1673601226126" duration="8337000" />
       <workItem from="1673680840472" duration="1865000" />
       <workItem from="1673682956646" duration="104000" />
-      <workItem from="1673683071729" duration="3922000" />
+      <workItem from="1673683071729" duration="17451000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -387,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673682698223</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Finish Examination">
+      <created>1673689571636</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673689571636</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +431,19 @@
     <MESSAGE value="自动安排监考教师" />
     <MESSAGE value="ddddd" />
     <MESSAGE value="Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+    <MESSAGE value="Finish Examination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish Examination" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/impl/FinishExamServiceImpl.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -51,6 +51,7 @@ public class FinishExamServiceImpl implements FinishExamService {
         Integer subQuestionId;
         String questionAnswer;
         String subQuestionAnswer;
+        Integer objectiveScore=0;
         /*提取body中的题目array*/
         List<QuestionDTO>questionDTO=saveOrSubmitDTO.getQuestion();
         for (QuestionDTO question:questionDTO) {
@@ -65,6 +66,7 @@ public class FinishExamServiceImpl implements FinishExamService {
                 case "MULTI":
                     if(questionAnswer.equals(correctAnswer)){
                         if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,questionScore)==0){
+                            objectiveScore+=questionScore;
                             flag=false;
                         }
                     }
@@ -95,6 +97,7 @@ public class FinishExamServiceImpl implements FinishExamService {
                 default:break;
             }
         }
+        answerPaperInfoDao.insertObjectiveScore(answerPaperId,objectiveScore);
         if(flag){
             return true;
         }

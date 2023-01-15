@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.exam.finish.dao.AnswerPaperInfoDao">
+    <insert id="insertObjectiveScore">
+        insert into answer_paper_info(obejective_score)values (#{objectiveScore}) where answer_paper_id=#{answerPaperId}
+    </insert>
 
     <select id="getAnswerPaperId" resultType="java.lang.Integer">
         select answer_paper_id from answer_paper_info where student_id=#{studentId} and examination_id=#{examinationId}

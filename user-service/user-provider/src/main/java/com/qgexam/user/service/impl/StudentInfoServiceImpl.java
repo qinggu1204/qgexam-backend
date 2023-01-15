@@ -12,7 +12,6 @@ import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

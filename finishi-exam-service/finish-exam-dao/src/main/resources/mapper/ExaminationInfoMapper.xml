@@ -6,4 +6,7 @@
     <select id="getExaminationPaperId" resultType="java.lang.Integer">
         select examination_paper_id from examination_info where examination_id=#{examinationId} and is_deleted=0
     </select>
+    <select id="getEndTimeDate" resultType="java.util.Date">
+        select end_time from examination_info where examination_id=#{examinationId} and is_deleted=0
+    </select>
 </mapper>

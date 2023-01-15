@@ -11,5 +11,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface AnswerPaperInfoDao extends BaseMapper<PO.AnswerPaperInfo> {
     public Integer getAnswerPaperId(@Param("studentId")Integer studentId, @Param("examinationId")Integer examinationId);
+    public Integer insertObjectiveScore(@Param("answerPaperId")Integer answerPaperId,@Param("objectiveScore")Integer objectiveScore);
 }
 

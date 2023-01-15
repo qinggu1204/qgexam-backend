@@ -11,6 +11,7 @@ import com.qgexam.user.pojo.DTO.AddQuestionListDTO;
 import com.qgexam.user.pojo.DTO.GetSchoolListDTO;
 import com.qgexam.user.service.AdminInfoService;
 import com.qgexam.user.service.NeTeacherInfoService;
+import com.qgexam.user.service.SubjectInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,8 @@ public class AdminInfoController extends BaseController {
     private AdminInfoService adminInfoService;
     @DubboReference
     private NeTeacherInfoService neTeacherInfoService;
+    @DubboReference
+    private SubjectInfoService subjectInfoService;
 
     /**
      * @description 设置教务老师
@@ -92,5 +95,9 @@ public class AdminInfoController extends BaseController {
     @PutMapping("/updateTeacherNumber")
     public ResponseResult updateTeacherNumber(@RequestBody @Validated UpdateTeacherNumberDTO updateTeacherNumberDTO){
         return  ResponseResult.okResult(adminInfoService.updateTeacherNumber(updateTeacherNumberDTO.getTeacherId(),updateTeacherNumberDTO.getNewTeacherNumber()));
+    }
+    @GetMapping("/getSubjectList")
+    public ResponseResult getSubjectList() {
+        return ResponseResult.okResult(subjectInfoService.getSubjectList());
     }
 }
