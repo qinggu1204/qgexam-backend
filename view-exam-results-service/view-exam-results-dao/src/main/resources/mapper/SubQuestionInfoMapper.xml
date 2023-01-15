@@ -14,7 +14,7 @@
     </select>
 
     <select id="selectSubQuestionInfoListByQuestionInfoId" resultType="com.qgexam.exam.viewresults.pojo.VO.SubQuestionResultVO">
-        select sqi.sub_question_id,sqi.sub_question_desc,0 as subQuestionAnswer,sqi.sub_question_ans
+        select sqi.sub_question_id,sqi.sub_question_desc,"" as subQuestionAnswer,sqi.sub_question_ans
         from sub_question_info sqi
         where sqi.question_id = #{questionId}
           and sqi.is_deleted = 0
