@@ -2,7 +2,9 @@ package com.qgexam.user.service.impl;
 
 import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.constants.SystemConstants;
+import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.CourseInfoDao;
 import com.qgexam.user.dao.StudentInfoDao;
@@ -66,13 +68,9 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
      */
     @Override
     public boolean joinCourse(Integer studentId, String userName, String studentNumber, Integer courseId) {
-        if(courseInfoDao.selectById(courseId)==null){
-            return false;
-        }
-        if (studentInfoDao.joinCourse(studentId,userName,studentNumber,courseId) != 0) {
-            return true;
-        }
-        return false;
+        if(courseInfoDao.selectById(courseId) == null){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "课程已结束");
+        }else return studentInfoDao.joinCourse(studentId, userName, studentNumber, courseId) != 0;
     }
     @Override
     public Integer getStudentId(SaSession session){
