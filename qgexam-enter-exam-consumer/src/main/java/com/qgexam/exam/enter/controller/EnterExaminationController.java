@@ -91,7 +91,7 @@ public class EnterExaminationController extends BaseController {
         return ResponseResult.okResult(enterExamService.getExaminationInfo(joinExamDTO));
     }
 
-    @PostMapping("/screenCutting")
+    @PutMapping("/screenCutting")
     public ResponseResult screenCutting(@Validated @RequestBody ScreenCuttingDTO screenCuttingDTO) {
         JoinExamDTO joinExamDTO = new JoinExamDTO();
         joinExamDTO.setExaminationId(screenCuttingDTO.getExaminationId());
