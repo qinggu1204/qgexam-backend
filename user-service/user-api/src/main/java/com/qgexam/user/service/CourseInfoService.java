@@ -15,7 +15,7 @@ import java.util.List;
  * @since 2022-12-16 19:37:09
  */
 public interface CourseInfoService extends IService<CourseInfo> {
-    IPage<GetCourseListVO> getCourseList(SaSession session, Integer subjectId, String year, String semester,Integer currentPage,Integer pageSize);
+    IPage<GetCourseListVO> getCourseList(SaSession session, Integer courseId, String year, String semester,Integer currentPage,Integer pageSize);
 
 }
 

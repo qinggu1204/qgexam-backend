@@ -21,6 +21,6 @@ public class CourseInfoController extends BaseController {
     @GetMapping("/common/getCourseList")
     public ResponseResult getCourseList(@Validated GetCourseListDTO getCourseListDTO, Integer currentPage, Integer pageSize){
         SaSession session= StpUtil.getSession();
-        return ResponseResult.okResult(courseInfoService.getCourseList(session,getCourseListDTO.getSubjectId(),getCourseListDTO.getYear(),getCourseListDTO.getSemester(),currentPage,pageSize));
+        return ResponseResult.okResult(courseInfoService.getCourseList(session,getCourseListDTO.getCourseId(),getCourseListDTO.getYear(),getCourseListDTO.getSemester(),currentPage,pageSize));
     }
 }

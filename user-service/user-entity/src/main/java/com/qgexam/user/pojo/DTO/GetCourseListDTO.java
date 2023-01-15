@@ -14,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetCourseListDTO implements Serializable {
-    Integer subjectId;
+    Integer courseId;
     String year;
     String semester;
 }

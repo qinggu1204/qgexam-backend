@@ -34,7 +34,7 @@ public class CourseInfoServiceImpl extends ServiceImpl<CourseInfoDao, CourseInfo
     @Autowired
     private UserInfoDao userInfoDao;
     @Override
-    public IPage<GetCourseListVO> getCourseList(SaSession session, Integer subjectId,
+    public IPage<GetCourseListVO> getCourseList(SaSession session, Integer courseId,
                                                 String year, String semester,Integer currentPage,Integer pageSize) {
         IPage<GetCourseListVO> page=new Page<>(currentPage,pageSize);
         List<GetCourseListVO >getCourseListVO = new ArrayList<>();
@@ -55,26 +55,26 @@ public class CourseInfoServiceImpl extends ServiceImpl<CourseInfoDao, CourseInfo
         switch (role){
             case "teacher":
                 /*获取课程信息*/
-                getCourseListVO=courseInfoDao.getCourseListByTeacher(teacherInfo.getTeacherId(),subjectId,year,semester);
+                getCourseListVO=courseInfoDao.getCourseListByTeacher(teacherInfo.getTeacherId(),courseId,year,semester);
                 for (GetCourseListVO course:getCourseListVO) {
                     course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
                 }
                 break;
             case "student":
                 /*获取课程信息*/
-                getCourseListVO=courseInfoDao.getCourseListByStudent(studentInfo.getStudentId(),subjectId,year,semester);
+                getCourseListVO=courseInfoDao.getCourseListByStudent(studentInfo.getStudentId(),courseId,year,semester);
                 for (GetCourseListVO course:getCourseListVO) {
                     course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
                 }
                 break;
             case "neteacher":
-                getCourseListVO=courseInfoDao.getCourseListByNeteacher(teacherInfo.getSchoolId(),subjectId,year,semester);
+                getCourseListVO=courseInfoDao.getCourseListByNeteacher(teacherInfo.getSchoolId(),courseId,year,semester);
                 for (GetCourseListVO course:getCourseListVO) {
                     course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
                 }
                 break;
             case "admin":
-                getCourseListVO=courseInfoDao.getCourseListByAdmin(subjectId,year,semester);
+                getCourseListVO=courseInfoDao.getCourseListByAdmin(courseId,year,semester);
                 for (GetCourseListVO course:getCourseListVO) {
                     course.setTeacherList(courseInfoDao.getCourseTeacherList(course.getCourseId()));
                 }
