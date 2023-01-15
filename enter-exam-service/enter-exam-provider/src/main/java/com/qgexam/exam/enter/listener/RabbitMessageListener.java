@@ -1,18 +1,12 @@
 package com.qgexam.exam.enter.listener;
 
-import cn.hutool.core.date.LocalDateTimeUtil;
-import com.qgexam.common.core.api.AppHttpCodeEnum;
-import com.qgexam.common.core.constants.ExamConstants;
-import com.qgexam.common.core.exception.BusinessException;
-import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.enter.dao.StudentExamActionDao;
 import com.qgexam.exam.enter.dao.StudentExamRecordDao;
 import com.qgexam.exam.enter.pojo.PO.StudentExamAction;
 import com.qgexam.exam.enter.pojo.PO.StudentExamRecord;
 import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
-import com.qgexam.rabbit.pojo.PO.ExamRecordDTO;
-import com.qgexam.rabbit.pojo.PO.ScreenCuttingRabbitMessageDTO;
-import com.qgexam.user.pojo.PO.ExaminationInfo;
+import com.qgexam.rabbit.pojo.DTO.ExamRecordDTO;
+import com.qgexam.rabbit.pojo.DTO.ScreenCuttingRabbitMessageDTO;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -23,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 /**
  * @author yzw

@@ -209,6 +209,7 @@ public class RabbitMessageListener {
     @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = ViewExamResultsRabbitConstant.EXAM_RVIEWRESULTS_QUEUE_NAME)
     public void listenExamViewResultsQueue(ErrorQuestionDTO errorQuestionDTO, Channel channel, Message message) throws IOException {
+        System.out.println("========================收到消息");
         // 设置插入语句是否成功的标志
         Integer flag = 0;
         // 根据考试Id查询考试信息
