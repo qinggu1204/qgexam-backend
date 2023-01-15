@@ -14,6 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetStudentVO implements Serializable {
-    String studentNumber;
-    String userName;
+    //id
+    private Integer studentId;
+    private String studentName;
 }

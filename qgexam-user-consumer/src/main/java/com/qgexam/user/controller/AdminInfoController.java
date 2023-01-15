@@ -4,7 +4,6 @@ import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.AddNeteacherDTO;
-import com.qgexam.user.pojo.DTO.GetStudentDTO;
 import com.qgexam.user.pojo.DTO.UpdateStudentNumberDTO;
 import com.qgexam.user.pojo.DTO.UpdateTeacherNumberDTO;
 import com.qgexam.user.pojo.DTO.AddQuestionListDTO;
@@ -83,8 +82,8 @@ public class AdminInfoController extends BaseController {
     }
 
     @GetMapping("/getStudentList")
-    public ResponseResult getStudentList(@Validated GetStudentDTO getStudentDTO, Integer currentPage, Integer pageSize){
-        return ResponseResult.okResult(adminInfoService.getStudentList(getStudentDTO.getSchoolId(),getStudentDTO.getLoginName(),currentPage,pageSize));
+    public ResponseResult getStudentList(@NotNull(message = "schoolId不能为空")Integer schoolId,String loginName, Integer currentPage, Integer pageSize){
+        return ResponseResult.okResult(adminInfoService.getStudentList(schoolId,loginName,currentPage,pageSize));
     }
 
     @PutMapping("/updateStudentNumber")

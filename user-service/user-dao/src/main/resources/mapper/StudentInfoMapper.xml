@@ -16,7 +16,7 @@
         set sc.student_number=#{newStudentNUmber} where sc.student_id=#{studentId}
     </update>
     <select id="getStudentList" resultType="com.qgexam.user.pojo.VO.GetStudentVO">
-        select si.student_number,si.user_name
+        select si.student_id,si.user_name as studentName
         from student_info si,user_info ui
         <where>
             <if test="loginName!=null and loginName!=''">

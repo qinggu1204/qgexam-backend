@@ -18,6 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetStudentInfoVO implements Serializable {
+
     //姓名(用户名)
     private String userName;
     //学号
