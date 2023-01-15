@@ -3,8 +3,8 @@ package com.qgexam.exam.enter.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
-import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.enter.pojo.VO.GetExamListVO;
+import com.qgexam.user.pojo.PO.ExaminationInfo;
 
 /**
  * 考试信息表(ExaminationInfo)表服务接口

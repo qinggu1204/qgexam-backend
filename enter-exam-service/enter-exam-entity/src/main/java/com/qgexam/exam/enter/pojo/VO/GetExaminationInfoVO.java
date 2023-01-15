@@ -18,6 +18,6 @@ public class GetExaminationInfoVO implements Serializable {
     private Integer examinationId;
     private String examinationName;
     private LocalDateTime startTime;
-    private String status;
+    private Integer status;
     private LocalDateTime endTime;
 }
