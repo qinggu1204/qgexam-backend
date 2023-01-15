@@ -3,13 +3,12 @@ package com.qgexam.exam.viewresults.listener;
 import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.viewresults.dao.*;
-import com.qgexam.exam.viewresults.pojo.DTO.ErrorDTO;
-import com.qgexam.exam.viewresults.pojo.DTO.ErrorQuestionDTO;
 import com.qgexam.exam.viewresults.pojo.PO.*;
 import com.qgexam.exam.viewresults.pojo.VO.*;
 import com.qgexam.rabbit.constants.RabbitMQConstants;
 
 import com.qgexam.rabbit.constants.ViewExamResultsRabbitConstant;
+import com.qgexam.rabbit.pojo.PO.ErrorQuestionDTO;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -209,8 +208,6 @@ public class RabbitMessageListener {
     @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = ViewExamResultsRabbitConstant.EXAM_RVIEWRESULTS_QUEUE_NAME)
     public void listenExamViewResultsQueue(ErrorQuestionDTO errorQuestionDTO, Channel channel, Message message) throws IOException {
-        // 设置插入语句是否成功的标志
-        Integer flag = 0;
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(errorQuestionDTO.getExaminationId());
         // 如果examinationInfo为空，抛出BusinessException
@@ -219,7 +216,7 @@ public class RabbitMessageListener {
         }
         // 根据examinationInfo.paperId查询试卷信息
         Integer examinationPaperId = examinationInfo.getExaminationPaperId();
-        QuestionInfo questionInfo = questionInfoDao.selectQuestionInfoById(errorQuestionDTO.getQuestionId(), examinationPaperId);
+        QuestionInfo questionInfo = questionInfoDao.selectQuestionInfoByIds(errorQuestionDTO.getQuestionId(), examinationPaperId);
         ErrorquestionInfo errorquestionInfo = new ErrorquestionInfo();
         errorquestionInfo.setStudentId(errorQuestionDTO.getStudentId());
         errorquestionInfo.setQuestionId(errorQuestionDTO.getQuestionId());

@@ -8,6 +8,7 @@
         where ei.student_id = #{studentId}
           and ci.course_id = #{courseId}
           and ei.subject_id = ci.subject_id
-          and is_deleted = 0
+          and ei.is_deleted = 0
+          and ci.is_deleted = 0
     </select>
 </mapper>
