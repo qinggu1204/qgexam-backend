@@ -4,12 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="考试状态改为数字">
-      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/ExamActionListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/RabbitMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java/com/qgexam/exam/enter/listener/RabbitMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/controller/EnterExaminationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java/com/qgexam/exam/enter/controller/EnterExaminationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/RabbitmqProviderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/RabbitmqProviderApplication.java" afterDir="false" />
+    <list default="true" id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="Finish Examination">
+      <change afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/listener/RabbitMessageListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-common/src/main/java/com/qgexam/rabbit/constants/FinishExamRabbitConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/FinishExamRabbitConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/SubjectInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/GetSubjectVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/SubjectInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/AnswerPaperInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/AnswerPaperInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/ExaminationInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish/dao/ExaminationInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/AnswerPaperInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/AnswerPaperInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/ExaminationInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-dao/src/main/resources/mapper/ExaminationInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/impl/FinishExamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/impl/FinishExamServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-finish-exam-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-finish-exam-consumer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/java/com/qgexam/exam/finish/controller/FinishExamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/java/com/qgexam/exam/finish/controller/FinishExamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/AdminInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/AdminInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubjectInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/SubjectInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubjectInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/resources/mapper/SubjectInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/StudentInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/StudentInfoServiceImpl.java" afterDir="false" />
     </list>
     <list id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +34,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Interface" />
         <option value="mybatis-mapper" />
         <option value="Class" />
@@ -29,14 +42,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="JsbtTreeLayoutManager">
     <layout place="tools.popupGrunt">
@@ -49,10 +54,8 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="D:\maven\apache-maven-3.3.9-bin\maven_repository" />
-        <option name="mavenHome" value="D:/maven/apache-maven-3.3.9-bin/apache-maven-3.3.9" />
-        <option name="useMavenConfig" value="true" />
-        <option name="userSettingsFile" value="D:\maven\apache-maven-3.3.9-bin\apache-maven-3.3.9\conf\settings.xml" />
+        <option name="localRepository" value="C:\Users\23215\.m2\repository" />
+        <option name="userSettingsFile" value="C:\Users\23215\.m2\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -64,60 +67,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelOrder2" value="2" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RequestMappingsPanelWidth2" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/23215/Desktop/qgexam-backend/finishi-exam-service/finish-exam-dao/src/main/java/com/qgexam/exam/finish",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "spring.configuration.checksum": "07b1b8c92fe209f8ac7554f7079410bc"
+  }
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RebelAgentSelection">
-    <selection>jr</selection>
-  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JavaWeb\javaee_project\qgexam" />
-      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\resources\mapper" />
-      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\java\com\qgexam\quartz\dao" />
-      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-provider\src\main\java\com\qgexam\quartz\utils" />
-      <recent name="E:\JavaWeb\javaee_project\qgexam\rabbitmq-service\rabbitmq-provider\src\main\java\com\qgexam\rabbit\config" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\resources\mapper" />
-      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-dao\src\main\resources" />
-      <recent name="E:\JavaWeb\javaee_project\qgexam\quartz-service\quartz-provider\src\main\resources" />
+      <recent name="F:\JavaEE Projects\project\qgexam" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.qgexam.answerPapers.marking" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.qgexam.rabbit.constants" />
-      <recent name="com.qgexam.quartz.service.impl" />
-      <recent name="com.qgexam.quartz.service" />
-      <recent name="com.qgexam.quartz.PO" />
-      <recent name="com.qgexam.quartz.enums" />
+      <recent name="com.qgexam.exam.finish.service.listener" />
+      <recent name="com.qgexam.exam.finish.aspect" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install" />
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -126,7 +115,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RabbitmqProviderApplication">
+  <component name="RunManager" selected="Spring Boot.UserConsumerApplication">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -138,113 +127,67 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="qgexam-user-consumer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qgexam.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.qgexam" />
-      <option name="MAIN_CLASS_NAME" value="com.qgexam.MyTest" />
-      <option name="METHOD_NAME" value="test2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RedisTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="quartz-provider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qgexam.quartz.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.qgexam.quartz" />
-      <option name="MAIN_CLASS_NAME" value="com.qgexam.quartz.RedisTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TranTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-provider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qgexam.user.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.qgexam.user.service" />
-      <option name="MAIN_CLASS_NAME" value="com.qgexam.user.service.TranTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TranTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-provider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qgexam.user.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.qgexam.user.service" />
-      <option name="MAIN_CLASS_NAME" value="com.qgexam.user.service.TranTest" />
-      <option name="METHOD_NAME" value="test2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EnterExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="EnterExamConsumerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-enter-exam-consumer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamConsumerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EnterExamProviderApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="quartz-provider" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamProviderApplication" />
+    <configuration name="EnterExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="qgexam-enter-exam-consumer" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.EnterExamConsumerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="EnterExamProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="enter-exam-provider" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.enter.EnterExamProviderApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FinishExamConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="qgexam-finish-exam-consumer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.finish.FinishExamConsumerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qgexam.exam.finish.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FinishExamProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="finish-exam-provider" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.finish.service.FinishExamProviderApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qgexam.exam.finish.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="MarkingConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-marking-consumer" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingConsumerApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingConsumerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="MarkingProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="marking-provider" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingProviderApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="QuartzProviderApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="rabbitmq-provider" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.quartz.QuartzProviderApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.marking.MarkingProviderApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -256,14 +199,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RabbitmqProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="RabbitmqProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="rabbitmq-provider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qgexam.rabbit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.rabbit.RabbitmqProviderApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -271,18 +208,16 @@
     </configuration>
     <configuration name="UserConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-user-consumer" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserConsumerApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserConsumerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="UserProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="user-provider" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserProviderApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.user.UserProviderApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -290,7 +225,6 @@
     <configuration name="ViewExamResultsConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="qgexam-view-exam-results-consumer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.viewresults.ViewExamResultsConsumerApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -298,36 +232,31 @@
     <configuration name="ViewExamResultsProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="view-exam-results-provider" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qgexam.exam.viewresults.ViewExamResultsProviderApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.RedisTest.test" />
-      <item itemvalue="JUnit.TranTest.test" />
-      <item itemvalue="JUnit.MyTest.test2" />
-      <item itemvalue="JUnit.TranTest.test2" />
       <item itemvalue="Spring Boot.QuartzProviderApplication" />
-      <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
+      <item itemvalue="Spring Boot.RabbitmqProviderApplication" />
+      <item itemvalue="Spring Boot.EnterExamConsumerApplication (1)" />
+      <item itemvalue="Spring Boot.MarkingProviderApplication" />
       <item itemvalue="Spring Boot.UserConsumerApplication" />
       <item itemvalue="Spring Boot.UserProviderApplication" />
-      <item itemvalue="Spring Boot.MarkingProviderApplication" />
       <item itemvalue="Spring Boot.MarkingConsumerApplication" />
       <item itemvalue="Spring Boot.EnterExamProviderApplication" />
+      <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
       <item itemvalue="Spring Boot.ViewExamResultsProviderApplication" />
       <item itemvalue="Spring Boot.ViewExamResultsConsumerApplication" />
-      <item itemvalue="Spring Boot.EnterExamProviderApplication (1)" />
-      <item itemvalue="Spring Boot.QuartzProviderApplication (1)" />
-      <item itemvalue="Spring Boot.RabbitmqProviderApplication" />
+      <item itemvalue="Spring Boot.FinishExamConsumerApplication" />
+      <item itemvalue="Spring Boot.FinishExamProviderApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.RabbitmqProviderApplication" />
-        <item itemvalue="JUnit.TranTest.test2" />
-        <item itemvalue="JUnit.MyTest.test2" />
-        <item itemvalue="JUnit.TranTest.test" />
-        <item itemvalue="JUnit.RedisTest.test" />
+        <item itemvalue="Spring Boot.FinishExamConsumerApplication" />
+        <item itemvalue="Spring Boot.FinishExamProviderApplication" />
+        <item itemvalue="Spring Boot.MarkingConsumerApplication" />
+        <item itemvalue="Spring Boot.MarkingProviderApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -349,7 +278,6 @@
     </task>
     <task active="true" id="Default" summary="默认任务">
       <changelist id="f0f008ff-402e-4364-99a1-ecaa087cdfc4" name="变更" comment="学生查询成绩模块创建完毕2" />
-      <changelist id="ca5d1b81-4938-488d-b47c-20056a0921ad" name="Changes" comment="考试状态改为数字" />
       <created>1671188548499</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -375,18 +303,20 @@
       <workItem from="1672735074904" duration="3188000" />
       <workItem from="1672908051731" duration="601000" />
       <workItem from="1672926304662" duration="3506000" />
-      <workItem from="1672972327521" duration="399000" />
-      <workItem from="1672980303713" duration="48000" />
-      <workItem from="1673001101010" duration="11159000" />
-      <workItem from="1673020767074" duration="1256000" />
-      <workItem from="1673077040238" duration="5689000" />
-      <workItem from="1673165799278" duration="21000" />
-      <workItem from="1673183665821" duration="96126000" />
-      <workItem from="1673398541376" duration="35978000" />
-      <workItem from="1673488093138" duration="36158000" />
-      <workItem from="1673610679124" duration="8512000" />
-      <workItem from="1673661569967" duration="17000" />
-      <workItem from="1673675140229" duration="7656000" />
+      <workItem from="1673081657824" duration="47000" />
+      <workItem from="1673081721307" duration="569000" />
+      <workItem from="1673157752231" duration="10050000" />
+      <workItem from="1673171370234" duration="126000" />
+      <workItem from="1673182030372" duration="5863000" />
+      <workItem from="1673261832039" duration="1326000" />
+      <workItem from="1673263181004" duration="3679000" />
+      <workItem from="1673337009470" duration="9136000" />
+      <workItem from="1673418943575" duration="9625000" />
+      <workItem from="1673513657803" duration="3000000" />
+      <workItem from="1673601226126" duration="8337000" />
+      <workItem from="1673680840472" duration="1865000" />
+      <workItem from="1673682956646" duration="104000" />
+      <workItem from="1673683071729" duration="17451000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -458,19 +388,19 @@
       <option name="project" value="LOCAL" />
       <updated>1672908087637</updated>
     </task>
-    <task id="LOCAL-00013" summary="ddddd">
-      <created>1672972542195</created>
+    <task id="LOCAL-00013" summary="Changes">
+      <created>1673682698223</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1672972542195</updated>
+      <updated>1673682698223</updated>
     </task>
-    <task id="LOCAL-00014" summary="考试状态改为数字">
-      <created>1673002154425</created>
+    <task id="LOCAL-00014" summary="Finish Examination">
+      <created>1673689571636</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1673002154425</updated>
+      <updated>1673689571636</updated>
     </task>
     <option name="localTasksCounter" value="15" />
     <servers />
@@ -500,15 +430,20 @@
     <MESSAGE value="教务教师查看试卷列表" />
     <MESSAGE value="自动安排监考教师" />
     <MESSAGE value="ddddd" />
-    <MESSAGE value="考试状态改为数字" />
-    <option name="LAST_COMMIT_MESSAGE" value="考试状态改为数字" />
+    <MESSAGE value="Changes" />
+    <MESSAGE value="Finish Examination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish Examination" />
   </component>
   <component name="XDebuggerManager">
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="java.util.LinkedHashMap$Entry" memberName="value" />
-      </pinned-members>
-    </pin-to-top-manager>
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/finishi-exam-service/finish-exam-provider/src/main/java/com/qgexam/exam/finish/service/impl/FinishExamServiceImpl.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

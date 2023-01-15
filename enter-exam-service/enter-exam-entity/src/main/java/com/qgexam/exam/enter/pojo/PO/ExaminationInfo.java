@@ -39,7 +39,7 @@ public class ExaminationInfo implements Serializable {
     //是否选项乱序(0表示否，1表示是)
     private Integer isOptionResort;
     //阅卷结束时间
-    private LocalDateTime judgeOvertime;
+    private LocalDateTime resultQueryTime;
     //创建时间
     private LocalDateTime createTime;
     //更新时间

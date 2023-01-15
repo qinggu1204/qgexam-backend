@@ -4,6 +4,7 @@ import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.utils.BeanCopyUtils;
+import com.qgexam.user.dao.CourseInfoDao;
 import com.qgexam.user.dao.StudentInfoDao;
 import com.qgexam.user.dao.UserInfoDao;
 import com.qgexam.user.pojo.PO.StudentInfo;
@@ -12,7 +13,6 @@ import com.qgexam.user.pojo.VO.GetStudentInfoVO;
 import com.qgexam.user.pojo.VO.UserInfoVO;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -29,6 +29,8 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
 
     @Autowired
     private UserInfoDao userInfoDao;
+    @Autowired
+    private CourseInfoDao courseInfoDao;
 
     @Override
     public GetStudentInfoVO getStudentInfo(SaSession session) {
@@ -64,10 +66,22 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
      */
     @Override
     public boolean joinCourse(Integer studentId, String userName, String studentNumber, Integer courseId) {
+        if(courseInfoDao.selectById(courseId)==null){
+            return false;
+        }
         if (studentInfoDao.joinCourse(studentId,userName,studentNumber,courseId) != 0) {
             return true;
         }
         return false;
+    }
+    @Override
+    public Integer getStudentId(SaSession session){
+        UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
+        //获取用户信息
+        UserInfo userInfo = userInfoVO.getUserInfo();
+        //获取学生信息
+        StudentInfo studentInfo = userInfoVO.getStudentInfo();
+        return studentInfo.getStudentId();
     }
 }
 
