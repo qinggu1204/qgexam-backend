@@ -156,7 +156,7 @@
 
     <select id="getCourseListBySubject" resultType="com.qgexam.user.pojo.PO.CourseInfo">
         select * from course_info
-        where subject_id=#{subjectId} and is_deleted = 0;
+        where subject_id=#{subjectId} and is_deleted = 0
     </select>
 
 </mapper>

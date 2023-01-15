@@ -20,9 +20,7 @@ import java.util.Arrays;
 public class RabbitmqProviderApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(RabbitmqProviderApplication.class, args);
-        String[] names = run.getBeanDefinitionNames();
-        Arrays.stream(names).forEach(System.out::println);
+        SpringApplication.run(RabbitmqProviderApplication.class, args);
     }
 
 }

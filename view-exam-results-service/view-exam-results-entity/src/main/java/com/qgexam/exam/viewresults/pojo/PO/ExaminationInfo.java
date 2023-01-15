@@ -2,6 +2,8 @@ package com.qgexam.exam.viewresults.pojo.PO;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExaminationInfo implements Serializable {
-    
+    @TableId
     private Integer examinationId;
     //试卷编号
     private Integer examinationPaperId;

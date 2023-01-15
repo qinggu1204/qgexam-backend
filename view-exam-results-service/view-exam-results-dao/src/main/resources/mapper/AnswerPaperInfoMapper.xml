@@ -7,6 +7,6 @@
         from answer_paper_info
         where examination_id = #{examinationId}
           and student_id = #{studentId}
-          and is_deleted = 0;
+          and is_deleted = 0
     </select>
 </mapper>

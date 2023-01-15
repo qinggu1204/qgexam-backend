@@ -30,7 +30,7 @@ public class WebConfigure implements WebMvcConfigurer {
         // 日期格式配置
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         // Long类型返回为String
-        SerializeConfig.globalInstance.put(Long.class, ToStringSerializer.instance);
+//        SerializeConfig.globalInstance.put(Long.class, ToStringSerializer.instance);
 
         fastJsonConfig.setSerializeConfig(SerializeConfig.globalInstance);
         fastConverter.setFastJsonConfig(fastJsonConfig);
@@ -43,19 +43,5 @@ public class WebConfigure implements WebMvcConfigurer {
         converters.add(fastJsonHttpMessageConverters());
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        // 设置允许跨域的路径
-        registry.addMapping("/**")
-                // 设置允许跨域请求的域名
-                .allowedOrigins("*")
-                // 是否允许cookie
-                .allowCredentials(true)
-                // 设置允许的请求方式
-                .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTIONS")
-                // 设置允许的header属性
-                .allowedHeaders("*")
-                // 跨域允许时间
-                .maxAge(3600);
-    }
+
 }
