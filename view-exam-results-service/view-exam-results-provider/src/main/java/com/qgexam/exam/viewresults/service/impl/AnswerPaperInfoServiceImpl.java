@@ -55,7 +55,7 @@ public class AnswerPaperInfoServiceImpl extends ServiceImpl<AnswerPaperInfoDao, 
             DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime resultQueryTime = LocalDateTime.parse(strQueryTime, df);
             // 成绩查询未开始
-            if (LocalDateTime.now().isBefore(resultQueryTime) || strQueryTime.equals("")) {
+            if (LocalDateTime.now().isBefore(resultQueryTime) || strQueryTime.equals("123")) {
                 throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "成绩查询还未开始，无法进入查询页面。");
             }
             // 查询缓存里的考试总分和答卷总分
