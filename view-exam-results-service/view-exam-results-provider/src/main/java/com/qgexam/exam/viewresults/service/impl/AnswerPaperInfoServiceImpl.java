@@ -54,13 +54,13 @@ public class AnswerPaperInfoServiceImpl extends ServiceImpl<AnswerPaperInfoDao, 
         // 成绩查询未开始
         if(strQueryTime != null) {
             if (strQueryTime.equals("123")) {
-                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "成绩查询还未开始，无法进入查询页面。");
+                throw new BusinessException(AppHttpCodeEnum.RESULTQUERY_ERROR.getCode(),AppHttpCodeEnum.RESULTQUERY_ERROR.getMsg());
             }
             DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime resultQueryTime = LocalDateTime.parse(strQueryTime, df);
             // 成绩查询未开始
             if (LocalDateTime.now().isBefore(resultQueryTime)) {
-                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "成绩查询还未开始，无法进入查询页面。");
+                throw new BusinessException(AppHttpCodeEnum.RESULTQUERY_ERROR.getCode(),AppHttpCodeEnum.RESULTQUERY_ERROR.getMsg());
             }
             // 查询缓存里的考试总分和答卷总分
             Integer totalScore = redisCache.getCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId);

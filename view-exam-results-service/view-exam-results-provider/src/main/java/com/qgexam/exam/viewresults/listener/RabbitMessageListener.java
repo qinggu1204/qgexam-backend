@@ -77,9 +77,9 @@ public class RabbitMessageListener {
         List<QuestionInfo> questionInfoList = examinationPaper.getQuestionInfoList();
         try {
             // 将查询成绩时间存入redis并设置缓存时间
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime(), 2, TimeUnit.MINUTES);
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime(), 2, TimeUnit.DAYS);
             // 将试卷总分存入redis
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId, examinationPaper.getTotalScore(), 2, TimeUnit.MINUTES);
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId, examinationPaper.getTotalScore(), 2, TimeUnit.DAYS);
             // 根据考试编号获取课程列表
             List<Integer> courseList = courseInfoDao.getCourseIdListByExaminationId(examinationId);
             // 把这些课程的学生考试成绩明细放入缓存
@@ -91,7 +91,7 @@ public class RabbitMessageListener {
                     // 查询该学生的答卷
                     AnswerPaperInfo answerPaperInfo = answerPaperInfoDao.selectStuAnswerPaper(examinationId, studentId);
                     // 将答卷总分存入redis
-                    redisCache.setCacheObject(ExamConstants.EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, answerPaperInfo.getPaperTotalScore(), 2, TimeUnit.MINUTES);
+                    redisCache.setCacheObject(ExamConstants.EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, answerPaperInfo.getPaperTotalScore(), 2, TimeUnit.DAYS);
                     // 创建不同题型的list
                     List<ObjResultVO> singleList = new ArrayList<ObjResultVO>();
                     List<ObjResultVO> multiList = new ArrayList<ObjResultVO>();
@@ -172,20 +172,20 @@ public class RabbitMessageListener {
                     // 单选题
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, singleMap);
                     // 设置超时时间
-                    redisCache.expire(ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, multiMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, judgeMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, completionMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, complexMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
                 }
             }
         }catch (Exception e){
