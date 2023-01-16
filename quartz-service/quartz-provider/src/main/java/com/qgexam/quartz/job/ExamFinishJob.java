@@ -29,8 +29,8 @@ public class ExamFinishJob {
         ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
         // 将查询成绩时间存入redis
         if(examinationInfo.getResultQueryTime() == null)
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, "123", 2, TimeUnit.MINUTES);
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, "123");
         else
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime(), 2, TimeUnit.MINUTES);
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime());
     }
 }
