@@ -18,4 +18,5 @@ public class ExamRecordDTO implements Serializable {
     private Integer examinationId;
     private Integer studentId;
     private LocalDateTime enterTime;
+    private String remoteIp;
 }

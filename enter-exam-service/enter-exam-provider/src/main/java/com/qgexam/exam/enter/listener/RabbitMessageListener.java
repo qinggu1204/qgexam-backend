@@ -38,18 +38,13 @@ public class RabbitMessageListener {
         Integer studentId = examRecordDTO.getStudentId();
         Integer examinationId = examRecordDTO.getExaminationId();
         LocalDateTime enterTime = examRecordDTO.getEnterTime();
-        // 查询是否已经有相关记录
-        StudentExamRecord examRecord = studentExamRecordDao.selectByStudentIdAndExaminationId(studentId, examinationId);
-        if (examRecord != null) {
-            log.info("学生{}已经进入考试{}，不需要再次记录", studentId, examinationId);
-            // 手动ack
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-            return;
-        }
+        String remoteIp = examRecordDTO.getRemoteIp();
+
         StudentExamRecord studentExamRecord = new StudentExamRecord();
         studentExamRecord.setStudentId(studentId);
         studentExamRecord.setExaminationId(examinationId);
         studentExamRecord.setEnterTime(enterTime);
+        studentExamRecord.setRemoteIp(remoteIp);
 
         int count = studentExamRecordDao.insert(studentExamRecord);
         if (count > 0) {
