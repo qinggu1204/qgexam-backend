@@ -34,6 +34,7 @@ public class RabbitMessageListener {
 
     @RabbitListener(queues = ExamRecordRabbitConstant.EXAM_RECORD_QUEUE_NAME)
     public void listenExamRecordQueue(ExamRecordDTO examRecordDTO, Channel channel, Message message) throws IOException {
+        System.out.println("==================RabbitMessageListener.listenExamRecordQueue===========");
         Integer studentId = examRecordDTO.getStudentId();
         Integer examinationId = examRecordDTO.getExaminationId();
         LocalDateTime enterTime = examRecordDTO.getEnterTime();
@@ -65,7 +66,7 @@ public class RabbitMessageListener {
     @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = ExamRecordRabbitConstant.EXAM_ACTION_QUEUE_NAME)
     public void listenExamActionQueue(ScreenCuttingRabbitMessageDTO screenCuttingRabbitMessageDTO,
-                                      Channel channel, Message message) throws IOException {
+                                      Channel channel, Message message) throws IOException, InterruptedException {
         Integer studentId = screenCuttingRabbitMessageDTO.getStudentId();
         Integer examinationId = screenCuttingRabbitMessageDTO.getExaminationId();
 

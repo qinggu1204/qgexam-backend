@@ -2,6 +2,7 @@ package com.qgexam.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.SubQuestionInfo;
+import com.qgexam.user.pojo.VO.PreviewSubQuestionInfoVO;
 import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public interface SubQuestionInfoDao extends BaseMapper<SubQuestionInfo> {
     List<SubQuestionInfoVO> selectSubQuestionInfoListByQuestionInfoId(Integer questionInfoId);
+    List<PreviewSubQuestionInfoVO> selectPreviewSubQuestionInfoListByQuestionInfoId(Integer questionInfoId);
 
     Integer insertSubQuestionInfoBatch(@Param("subQuestionInfoList") List<SubQuestionInfo> subQuestionInfoList);
 }

@@ -5,6 +5,7 @@ import cn.hutool.core.date.LocalDateTimeUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
+import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
@@ -31,8 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author yzw
@@ -53,6 +54,12 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     private MessageInfoDao messageInfoDao;
     @Autowired
     private AnswerPaperInfoDao answerPaperInfoDao;
+    @Autowired
+    private ExaminationPaperDao examinationPaperDao;
+    @Autowired
+    private OptionInfoDao optionInfoDao;
+    @Autowired
+    private SubQuestionInfoDao subQuestionInfoDao;
 
     @DubboReference(registry = "quartzRegistry")
     private SysJobService sysJobService;
@@ -247,5 +254,63 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     public IPage<GetInvigilationInfoVO> getInvigilationInfo(GetInvigilationInfoDTO getInvigilationInfoDTO) {
         IPage<GetInvigilationInfoVO> page = new Page<>(getInvigilationInfoDTO.getCurrentPage(), getInvigilationInfoDTO.getPageSize());
         return teacherInfoDao.selectInvigilationInfo(page, getInvigilationInfoDTO.getExaminationId());
+    }
+
+
+
+    @Override
+    public List<PreviewQuestionInfoVO> previewPaper(Integer examinationPaperId) {
+        // 查询试卷，同时查询试卷中的题目
+        ExaminationPaper examinationPaper = examinationPaperDao.selectExaminationPaperById(examinationPaperId);
+        // 获取题目list
+        List<QuestionInfo> questionInfoList = examinationPaper.getQuestionInfoList();
+        questionInfoList.stream()
+                .forEach(questionInfo -> {
+                    // 获取题目Id
+                    Integer questionId = questionInfo.getQuestionId();
+                    // 根据题目Id查询选项
+                    List<PreviewOptionInfoVO> optionInfos = optionInfoDao.selectPreviewOptionInfoListByQuestionInfoId(questionId);
+                    // 根据题目Id查询小题
+                    List<PreviewSubQuestionInfoVO> subQuestionInfos = subQuestionInfoDao.selectPreviewSubQuestionInfoListByQuestionInfoId(questionId);
+                    questionInfo.setPreviewOptionInfo(optionInfos);
+                    questionInfo.setPreviewSubQuestionInfo(subQuestionInfos);
+                });
+        // 从questionInfoList过滤出不同题型
+        List<QuestionInfo> singleQuestionInfoList = questionInfoList.stream()
+                .filter(questionInfo -> ExamConstants.QUESTION_TYPE_SINGLE.equals(questionInfo.getType()))
+                .collect(Collectors.toList());
+
+        List<QuestionInfo> multipleQuestionInfoList = questionInfoList.stream()
+                .filter(questionInfo -> ExamConstants.QUESTION_TYPE_MULTI.equals(questionInfo.getType()))
+                .collect(Collectors.toList());
+
+        List<QuestionInfo> judgeQuestionInfoList = questionInfoList.stream()
+                .filter(questionInfo -> ExamConstants.QUESTION_TYPE_JUDGE.equals(questionInfo.getType()))
+                .collect(Collectors.toList());
+
+        List<QuestionInfo> completionQuestionInfoList = questionInfoList.stream()
+                .filter(questionInfo -> ExamConstants.QUESTION_TYPE_COMPLETION.equals(questionInfo.getType()))
+                .collect(Collectors.toList());
+
+        List<QuestionInfo> complexQuestionInfoList = questionInfoList.stream()
+                .filter(questionInfo -> ExamConstants.QUESTION_TYPE_COMPLEX.equals(questionInfo.getType()))
+                .collect(Collectors.toList());
+
+        List<QuestionInfo> questionInfos = new ArrayList<>();
+        questionInfos.addAll(singleQuestionInfoList);
+        questionInfos.addAll(multipleQuestionInfoList);
+        questionInfos.addAll(judgeQuestionInfoList);
+        questionInfos.addAll(completionQuestionInfoList);
+        questionInfos.addAll(complexQuestionInfoList);
+        List<PreviewQuestionInfoVO> previewQuestionInfoVOList = questionInfos.stream()
+                .map(questionInfo -> {
+                    PreviewQuestionInfoVO previewQuestionInfoVO = BeanCopyUtils.copyBean(questionInfo, PreviewQuestionInfoVO.class);
+                    previewQuestionInfoVO.setOptionInfo(questionInfo.getPreviewOptionInfo());
+                    previewQuestionInfoVO.setSubQuestionInfo(questionInfo.getPreviewSubQuestionInfo());
+                    return previewQuestionInfoVO;
+                })
+                .collect(Collectors.toList());
+
+        return previewQuestionInfoVOList;
     }
 }

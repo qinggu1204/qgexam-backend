@@ -30,13 +30,13 @@ public class RabbitServiceImpl implements RabbitService {
                     if (result.isAck()) {
                         log.info("消息发送成功, 消息id:{}", correlationData.getId());
                     } else {
-                        log.error("消息发送失败, 消息id:{}, 原因:{}", correlationData.getId(), result.getReason());
+                        log.info("消息发送失败, 消息id:{}, 原因:{}", correlationData.getId(), result.getReason());
                         // 重发消息
                         rabbitTemplate.convertAndSend(exchange, routingKey, message, correlationData);
                     }
                 },
                 ex -> {
-                    log.error("消息发送失败, 消息id:{}, 原因:{}", correlationData.getId(), ex.getMessage());
+                    log.info("消息发送失败, 消息id:{}, 原因:{}", correlationData.getId(), ex.getMessage());
                     // 重发消息
                     rabbitTemplate.convertAndSend(exchange, routingKey, message, correlationData);
                 }

@@ -15,4 +15,10 @@
         from option_info oi
         where oi.question_id = #{questionInfoId} and oi.is_deleted = 0
     </select>
+    <select id="selectPreviewOptionInfoListByQuestionInfoId"
+            resultType="com.qgexam.user.pojo.VO.PreviewOptionInfoVO">
+        select oi.option_id, oi.option_name, oi.option_desc
+        from option_info oi
+        where oi.question_id = #{questionInfoId} and oi.is_deleted = 0
+    </select>
 </mapper>

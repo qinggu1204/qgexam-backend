@@ -87,4 +87,9 @@ public class NeteacherInfoController extends BaseController {
                                               Integer currentPage, Integer pageSize){
         return ResponseResult.okResult(neTeacherInfoService.getInvigilationInfo(new GetInvigilationInfoDTO(examinationId,currentPage,pageSize)));
     }
+
+    @GetMapping("/previewPaper/{examinationPaperId}")
+    public ResponseResult previewPaper(@PathVariable("examinationPaperId") Integer examinationPaperId){
+        return ResponseResult.okResult(neTeacherInfoService.previewPaper(examinationPaperId));
+    }
 }

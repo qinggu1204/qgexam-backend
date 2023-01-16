@@ -4,9 +4,7 @@ import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
 import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
-import com.qgexam.user.pojo.VO.ChapterInfoListVO;
-import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
-import com.qgexam.user.pojo.VO.GetInvigilationInfoVO;
+import com.qgexam.user.pojo.VO.*;
 
 import java.util.List;
 
@@ -22,4 +20,6 @@ public interface NeTeacherInfoService{
     boolean createExamination(Integer userId, CreateExamDTO createExamDTO);
 
     IPage<GetInvigilationInfoVO> getInvigilationInfo(GetInvigilationInfoDTO getInvigilationInfoDTO);
+
+    List<PreviewQuestionInfoVO> previewPaper(Integer examinationPaperId);
 }
