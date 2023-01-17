@@ -1,6 +1,7 @@
 package com.qgexam.exam.finish.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.qgexam.exam.finish.pojo.PO.AnswerPaperInfo;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -9,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
  * @author tageshi
  * @since 2023-01-09 19:19:33
  */
-public interface AnswerPaperInfoDao extends BaseMapper<PO.AnswerPaperInfo> {
+public interface AnswerPaperInfoDao extends BaseMapper<AnswerPaperInfo> {
     public Integer getAnswerPaperId(@Param("studentId")Integer studentId, @Param("examinationId")Integer examinationId);
     public Integer insertObjectiveScore(@Param("answerPaperId")Integer answerPaperId,@Param("objectiveScore")Integer objectiveScore);
 }

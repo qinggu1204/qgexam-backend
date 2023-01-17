@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-@Component
 public class RabbitMessageListener {
     @Autowired
     private ExaminationInfoDao examinationInfoDao;

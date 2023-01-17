@@ -7,4 +7,8 @@
         insert into sub_question_answer_detail(answer_paper_detail_id,sub_question_id,sub_question_answer)
         values (#{answerPaperDetailId},#{subQuestionId},#{subQuestionAnswer})
     </insert>
+    <update id="update">
+        update sub_question_answer_detail set sub_question_answer=#{subQuestionAnswer}
+        where answer_paper_detail_id=#{answerPaperDetailId} and sub_question_id=#{subQuestionId}
+    </update>
 </mapper>
