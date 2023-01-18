@@ -68,6 +68,14 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
      */
     @Override
     public boolean joinCourse(Integer studentId, String userName, String studentNumber, Integer courseId) {
+        // 判断改课程是否存在
+        if (courseInfoDao.getCourseInfoById(courseId) == null) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该课程不存在");
+        }
+        // 判断该学生是否已经加入该课程
+        if (studentInfoDao.getCountByStudentIdAndCourseId(studentId, courseId) != 0) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该学生已经加入该课程");
+        }
         if(courseInfoDao.selectById(courseId) == null){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "课程已结束");
         }else return studentInfoDao.joinCourse(studentId, userName, studentNumber, courseId) != 0;

@@ -148,6 +148,10 @@ public class EnterExamServiceImpl implements EnterExamService {
         if (examinationInfo == null) {
             // 从数据库查询考试消息
             ExaminationInfo tempExaminationInfo = examinationInfoDao.selectById(examinationId);
+            // 考试不存在
+            if (tempExaminationInfo == null) {
+                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试不存在");
+            }
             LocalDateTime startTime = tempExaminationInfo.getStartTime();
             LocalDateTime endTime = tempExaminationInfo.getEndTime();
             // 考试未开始

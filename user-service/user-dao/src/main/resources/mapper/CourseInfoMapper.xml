@@ -76,7 +76,7 @@
     <select id="getCourseTeacherList" resultType="com.qgexam.user.pojo.VO.CourseTeacherListVO">
         select teacher_id,user_name from teacher_course where course_id=#{courseId}
     </select>
-    <select id="getCourseListByStudent" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
+        <select id="getCourseListByStudent" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
         select ci.course_id,
                ci.course_name,
                ci.course_url,
@@ -157,6 +157,9 @@
     <select id="getCourseListBySubject" resultType="com.qgexam.user.pojo.PO.CourseInfo">
         select * from course_info
         where subject_id=#{subjectId} and is_deleted = 0
+    </select>
+    <select id="getCourseInfoById" resultType="com.qgexam.user.pojo.PO.CourseInfo">
+        select * from course_info where course_id=#{courseId}
     </select>
 
 </mapper>

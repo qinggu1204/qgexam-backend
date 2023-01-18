@@ -28,6 +28,12 @@
             and ui.is_deleted=0
         </where>
     </select>
+    <select id="getCountByStudentIdAndCourseId" resultType="java.lang.Integer">
+        select count(1)
+        from student_course sc
+        where sc.student_id=#{studentId}
+          and sc.course_id=#{courseId}
+    </select>
     <insert id="joinCourse">
         insert into student_course (student_id,user_name,student_number,course_id)
         values (#{studentId},#{userName},#{studentNumber},#{courseId})
