@@ -72,6 +72,7 @@
             and tc.teacher_id=#{teacherId}
             and ci.course_id=tc.course_id
         </where>
+        order by ci.is_deleted
     </select>
     <select id="getCourseTeacherList" resultType="com.qgexam.user.pojo.VO.CourseTeacherListVO">
         select teacher_id,user_name from teacher_course where course_id=#{courseId}
@@ -101,6 +102,7 @@
             and sc.student_id=#{studentId}
             and ci.course_id=sc.course_id
         </where>
+        order by ci.is_deleted
     </select>
     <select id="getCourseListByAdmin" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
         select ci.course_id,
@@ -125,6 +127,7 @@
                 and ci.course_id=#{courseId}
             </if>
         </where>
+        order by ci.is_deleted
     </select>
     <select id="getCourseListByNeteacher" resultType="com.qgexam.user.pojo.VO.GetCourseListVO">
         select ci.course_id,
@@ -152,6 +155,7 @@
             and tc.teacher_id in (select ti.teacher_id from teacher_info ti where ti.school_id=#{schoolId})
         </where>
         group by ci.course_id
+        order by ci.is_deleted
     </select>
 
     <select id="getCourseListBySubject" resultType="com.qgexam.user.pojo.PO.CourseInfo">
