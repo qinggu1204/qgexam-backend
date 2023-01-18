@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import static com.qgexam.common.core.constants.ExamConstants.EXAMINATION_ANSWER_SUBMIT_KEY_PREFIX;
+
 @Slf4j
 @Validated
 @RestController
@@ -38,12 +40,28 @@ public class FinishExamController extends BaseController {
         finishExamDTO.setExaminationId(saveOrSubmitDTO.getExaminationId());
         finishExamDTO.setSubmitTime(submitTime);
         /*判断是否在考试结束时间前提交（考试是否合法）*/
-        System.out.println(finishExamService.getEndTime(saveOrSubmitDTO.getExaminationId()));
+        if(submitTime.compareTo(finishExamService.getEndTime(saveOrSubmitDTO.getExaminationId()))<0){
+            /*发送一条提交学生作答消息*/
+            rabbitService.sendMessage(FinishExamRabbitConstants.EXAM_FINISH_EXCHANGE_NAME,
+                    FinishExamRabbitConstants.EXAM_FINISH_ROUTING_KEY,finishExamDTO);
+        }
+        return ResponseResult.okResult(finishExamService.saveOrSubmit(saveOrSubmitDTO,getStudentId()));
+    }
+    @PostMapping("/save")
+    public ResponseResult save(@Validated @RequestBody SaveOrSubmitDTO saveOrSubmitDTO){
+        /*获取时间*/
+        LocalDateTime submitTime=LocalDateTime.now();
+        /*封装消息队列*/
+        FinishExamDTO finishExamDTO=new FinishExamDTO();
+        finishExamDTO.setStudentId(getStudentId());
+        finishExamDTO.setExaminationId(saveOrSubmitDTO.getExaminationId());
+        finishExamDTO.setSubmitTime(submitTime);
+        /*判断是否在考试结束时间前保存（考试是否合法）*/
         if(submitTime.compareTo(finishExamService.getEndTime(saveOrSubmitDTO.getExaminationId()))<0){
             /*发送一条保存学生作答消息*/
             rabbitService.sendMessage(FinishExamRabbitConstants.EXAM_FINISH_EXCHANGE_NAME,
                     FinishExamRabbitConstants.EXAM_FINISH_ROUTING_KEY,finishExamDTO);
         }
-        return ResponseResult.okResult(finishExamService.saveOrSubmit(saveOrSubmitDTO,getStudentId()));
+        return ResponseResult.okResult(finishExamService.save(saveOrSubmitDTO,getStudentId()));
     }
 }

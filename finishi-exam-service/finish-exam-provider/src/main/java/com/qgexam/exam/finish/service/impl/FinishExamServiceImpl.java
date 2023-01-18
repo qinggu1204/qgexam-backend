@@ -17,6 +17,9 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import static com.qgexam.common.core.constants.ExamConstants.EXAMINATION_ANSWER_DETAIL_KEY_PREFIX;
 
 /**
  * @author tageshi
@@ -38,6 +41,10 @@ public class FinishExamServiceImpl implements FinishExamService {
     private SubQuestionAnswerDetailDao subQuestionAnswerDetailDao;
     @Autowired
     private RedisCache redisCache;
+
+    /**
+     * 学生提交作答
+     */
     @Override
     @Transactional
     public boolean saveOrSubmit(SaveOrSubmitDTO saveOrSubmitDTO,Integer studentId) {
@@ -130,4 +137,24 @@ public class FinishExamServiceImpl implements FinishExamService {
         return examinationInfo.getEndTime();
     }
 
+    /**
+     * 学生保存作答（到Redis缓存）
+     */
+    @Override
+    @Transactional
+    public boolean save(SaveOrSubmitDTO saveOrSubmitDTO, Integer studentId){
+        /*获取Redis前缀*/
+        /*将提交信号答卷编号（answer_paper_id）放入缓存中*/
+        Integer answerPaperId=answerPaperInfoDao.getAnswerPaperId(studentId,saveOrSubmitDTO.getExaminationId());
+        String detailPrefix = EXAMINATION_ANSWER_DETAIL_KEY_PREFIX+answerPaperId;
+        com.qgexam.user.pojo.PO.ExaminationInfo examinationInfo =
+                redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX
+                        + saveOrSubmitDTO.getExaminationId());
+        /*考试不在进行中时抛出异常*/
+        if (examinationInfo == null) {
+            throw new RuntimeException("考试不存在");
+        }
+        redisCache.setCacheObject(detailPrefix,saveOrSubmitDTO);
+        return true;
+    }
 }
