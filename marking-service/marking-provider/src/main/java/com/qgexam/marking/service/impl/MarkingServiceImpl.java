@@ -18,6 +18,7 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -55,9 +56,26 @@ public class MarkingServiceImpl implements MarkingService {
     @Override
     public IPage<TaskVO> getTaskList(Integer teacherId, Integer currentPage, Integer pageSize) {
         List<Integer> examIdList = markingDao.getExamIdList(teacherId);
+        if(examIdList.isEmpty()){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
+        }
+
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.in(ExaminationInfo::getExaminationId,examIdList);
+        //挑选阅卷还未截止的考试
+        List<ExaminationInfo> idList = examinationInfoDao.selectList(lambdaQueryWrapper).stream().filter(examinationInfo -> {
+            LocalDateTime now = LocalDateTime.now();
+            return now.isBefore(examinationInfo.getEndTime());
+        }).collect(Collectors.toList());
+        if(idList.isEmpty()){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
+        }
+        List<Integer> examinationIdList = idList.stream()
+                .map(ExaminationInfo::getExaminationId)
+                .collect(Collectors.toList());
 
         LambdaQueryWrapper<ExaminationInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.in(!examIdList.isEmpty(), ExaminationInfo::getExaminationId, examIdList);
+        queryWrapper.in(ExaminationInfo::getExaminationId, examinationIdList);
 
         IPage<ExaminationInfo> page = new Page<>(currentPage, pageSize);
         IPage<ExaminationInfo> examinationInfos = examinationInfoDao.selectPage(page, queryWrapper);
@@ -67,6 +85,14 @@ public class MarkingServiceImpl implements MarkingService {
 
     @Override
     public IPage<AnswerPaperVO> getAnswerPaperList(Integer teacherId, Integer examinationId, Integer currentPage, Integer pageSize) {
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
+        //查看是否已经截止
+        ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
+        if(LocalDateTime.now().isAfter(examinationInfo.getEndTime())){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
+        }
+
         LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(AnswerPaperInfo::getExaminationId, examinationId)
                 .eq(AnswerPaperInfo::getTeacherId, teacherId);
@@ -74,12 +100,17 @@ public class MarkingServiceImpl implements MarkingService {
         IPage<AnswerPaperInfo> page = new Page<>(currentPage, pageSize);
         IPage<AnswerPaperInfo> answerPaperInfos = answerPaperInfoDao.selectPage(page, queryWrapper);
 
+        //将答卷编号列表存入redis中
+        List<Integer> answerPaperIdList = answerPaperInfos.getRecords().stream()
+                .map(AnswerPaperInfo::getAnswerPaperId)
+                .collect(Collectors.toList());
+        redisCache.setCacheList(ExamConstants.ANSWER_PAPER_ID_LIST_KEY, answerPaperIdList);
         //获取第一个answerPaperId
         Integer answerPaperId = answerPaperInfos.getRecords().get(0).getAnswerPaperId();
         List<GetAnswerPaperVO> answerPaper = redisCache.getCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperId);
         if (answerPaper.isEmpty()) {
             answerPaperInfos.getRecords().forEach(answerPaperInfo -> {
-                List<GetAnswerPaperVO> answerPaperList = getAnswerPaper(answerPaperInfo.getAnswerPaperId());
+                List<GetAnswerPaperVO> answerPaperList = getAnswerPaper(teacherId,answerPaperInfo.getAnswerPaperId());
                 redisCache.setCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperInfo.getAnswerPaperId(), answerPaperList);
             });
         }
@@ -89,15 +120,32 @@ public class MarkingServiceImpl implements MarkingService {
     }
 
     @Override
-    public List<GetAnswerPaperVO> getAnswerPaper(Integer answerPaperId) {
+    public List<GetAnswerPaperVO> getAnswerPaper(Integer teacherId, Integer answerPaperId) {
+        //根据答卷id查询考试编号
+        Integer examinationId = answerPaperInfoDao.selectById(answerPaperId).getExaminationId();
+
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
+        //查看是否已经截止
+        ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
+        if(LocalDateTime.now().isAfter(examinationInfo.getEndTime())){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
+        }
+
         //从redis中获取答卷
         List<GetAnswerPaperVO> answerPaper = redisCache.getCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperId);
         if (!answerPaper.isEmpty()) {
+            System.out.println("----------------------------从redis中获取----------------------");
             return answerPaper;
         }
-
-        //根据答卷id查询考试编号
-        Integer examinationId = answerPaperInfoDao.selectById(answerPaperId).getExaminationId();
+        System.out.println("-------------------------从数据库获取--------------------------------");
+        LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AnswerPaperInfo::getTeacherId,teacherId)
+                .eq(AnswerPaperInfo::getAnswerPaperId,answerPaperId);
+        Long count = answerPaperInfoDao.selectCount(queryWrapper);
+        if (count == 0){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无权限批阅该试卷");
+        }
 
         //查询该考试的试卷编号
         Integer examinationPaperId = examinationInfoDao.selectById(examinationId).getExaminationPaperId();
@@ -106,7 +154,7 @@ public class MarkingServiceImpl implements MarkingService {
         List<Integer> subQuestionIdList = examinationInfoDao.selectSubQuestionIdList(examinationPaperId);
         //若没有主观题则不需用到教师阅卷，直接抛出异常
         if (subQuestionIdList.isEmpty()) {
-            throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(),"无主观题无需教师阅卷");
         }
 
         //根据主观题编号查询试题编号和分数
@@ -128,7 +176,7 @@ public class MarkingServiceImpl implements MarkingService {
         //获取没有小题的试题编号
         LambdaQueryWrapper<QuestionInfo> noSubQuestionQueryWrapper = new LambdaQueryWrapper<>();
         noSubQuestionQueryWrapper.in(QuestionInfo::getQuestionId, questionIdList)
-                .eq(QuestionInfo::getHasSubQuestion, 0);
+                .eq(QuestionInfo::getHasSubQuestion, ExamConstants.NO_SUB_QUESTION);
         List<Integer> noSubQuestionIdList = questionInfoDao.selectList(noSubQuestionQueryWrapper).stream()
                 .map(QuestionInfo::getQuestionId)
                 .collect(Collectors.toList());
@@ -195,7 +243,7 @@ public class MarkingServiceImpl implements MarkingService {
 
             //将学生题目答案添加到题目信息中
             getAnswerPaperVOMap.forEach((questionId, getAnswerPaperVO) -> {
-                if (getAnswerPaperVO.getHasSubQuestion() == 1) {
+                if (ExamConstants.HAS_SUB_QUESTION.equals(getAnswerPaperVO.getHasSubQuestion())) {
                     getAnswerPaperVO.getSubQuestionInfo().forEach(subQuestionAnsVO -> {
                         subQuestionAnsVO.setSubQuestionAnswer(hasSubQuestionAnswerMap.get(subQuestionAnsVO.getSubQuestionId()));
                     });
@@ -210,12 +258,29 @@ public class MarkingServiceImpl implements MarkingService {
     }
 
     @Override
-    public void marking(Integer answerPaperId, List<MarkingDTO> questionList) {
+    public void marking(Integer teacherId, Integer answerPaperId, List<MarkingDTO> questionList) {
+        Integer examinationId = answerPaperInfoDao.selectById(answerPaperId).getExaminationId();
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
+        //查看是否已经截止
+        ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
+        if(LocalDateTime.now().isAfter(examinationInfo.getEndTime())){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
+        }
+        //查看是否是自己的试卷
+        LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AnswerPaperInfo::getTeacherId,teacherId)
+                .eq(AnswerPaperInfo::getAnswerPaperId,answerPaperId);
+        Long count = answerPaperInfoDao.selectCount(queryWrapper);
+        if (count == 0){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无权限批阅该试卷");
+        }
+
         //批量更新数据库学生得分
         answerPaperDetailDao.updateScoreBatch(answerPaperId, questionList);
         //从数据库中查询答卷更新redis中的答卷信息
         redisCache.deleteObject(ExamConstants.ANSWER_PAPER_KEY + answerPaperId);
-        List<GetAnswerPaperVO> answerPaper = getAnswerPaper(answerPaperId);
+        List<GetAnswerPaperVO> answerPaper = getAnswerPaper(teacherId, answerPaperId);
         redisCache.setCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperId, answerPaper);
 
         //算出学生的主观题总得分
@@ -227,8 +292,8 @@ public class MarkingServiceImpl implements MarkingService {
         LambdaUpdateWrapper<AnswerPaperInfo> answerPaperUpdateWrapper = new LambdaUpdateWrapper<>();
         answerPaperUpdateWrapper.set(AnswerPaperInfo::getSubjectiveScore, subScore)
                 .eq(AnswerPaperInfo::getAnswerPaperId, answerPaperId);
-        int count = answerPaperInfoDao.update(null, answerPaperUpdateWrapper);
-        if (count < 1) {
+        int updateCount = answerPaperInfoDao.update(null, answerPaperUpdateWrapper);
+        if (updateCount < 1) {
             throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
         }
 
@@ -240,14 +305,13 @@ public class MarkingServiceImpl implements MarkingService {
         answerPaperUpdateWrapper.set(AnswerPaperInfo::getPaperTotalScore, totalScore)
                 .set(AnswerPaperInfo::getIsMarked, 1)
                 .eq(AnswerPaperInfo::getAnswerPaperId, answerPaperId);
-        count = answerPaperInfoDao.update(null, answerPaperUpdateWrapper);
-        if (count < 1) {
+        updateCount = answerPaperInfoDao.update(null, answerPaperUpdateWrapper);
+        if (updateCount < 1) {
             throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
         }
 
-        //根据答卷id查询出学生的id和考试id
+        //根据答卷id查询出学生的id
         Integer studentId = answerPaperInfoDao.selectById(answerPaperId).getStudentId();
-        Integer examinationId = answerPaperInfoDao.selectById(answerPaperId).getExaminationId();
 
         //根据考试id查询课程id
         List<Integer> courseIdList = examinationInfoDao.selectCourseIdList(examinationId);
@@ -256,12 +320,10 @@ public class MarkingServiceImpl implements MarkingService {
         }
 
         //根据学生id和课程id查询学生选课，将成绩插入课程成绩
-        Integer updateCount = examinationInfoDao.updateCourseScore(studentId, courseIdList, totalScore);
+        updateCount = examinationInfoDao.updateCourseScore(studentId, courseIdList, totalScore);
         if (updateCount < 1) {
             throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
         }
-
     }
-
 
 }

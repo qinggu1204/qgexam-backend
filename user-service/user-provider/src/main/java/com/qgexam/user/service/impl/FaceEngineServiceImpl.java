@@ -4,7 +4,10 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.arcsoft.face.*;
 import com.arcsoft.face.enums.DetectMode;
 import com.arcsoft.face.enums.DetectOrient;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.google.common.collect.Lists;
+import com.qgexam.common.core.api.AppHttpCodeEnum;
+import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.factory.FaceEngineFactory;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.user.dao.StudentInfoDao;
@@ -84,7 +87,7 @@ public class FaceEngineServiceImpl implements FaceEngineService {
     }
 
     @Override
-    public List<FaceInfo> detectFaces(ImageInfo2 imageInfo) {
+    public List<FaceInfo2> detectFaces(ImageInfo2 imageInfo) {
         FaceEngine faceEngine = null;
         try {
             //获取引擎对象
@@ -95,7 +98,7 @@ public class FaceEngineServiceImpl implements FaceEngineService {
 
             //人脸检测
             faceEngine.detectFaces(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), imageInfo.getImageFormat(), faceInfoList);
-            return faceInfoList;
+            return BeanCopyUtils.copyBeanList(faceInfoList, FaceInfo2.class);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -184,17 +187,21 @@ public class FaceEngineServiceImpl implements FaceEngineService {
             }
 
         }
-
         return null;
     }
 
     @Override
-    public List<FaceUserInfo> compareFaceFeature(byte[] faceFeature) throws InterruptedException, ExecutionException {
+    public List<FaceUserInfo> compareFaceFeature(Integer studentId, byte[] faceFeature) throws InterruptedException, ExecutionException {
         List<FaceUserInfo> resultFaceInfoList = Lists.newLinkedList();//识别到的人脸列表
 
         FaceFeature targetFaceFeature = new FaceFeature();
         targetFaceFeature.setFeatureData(faceFeature);
-        List<StudentInfo> studentInfos = studentInfoDao.selectList(null);
+        StudentInfo studentInfo = studentInfoDao.selectById(studentId);
+        if (studentInfo.getFaceFeature() == null){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "未录入人脸");
+        }
+        List<StudentInfo> studentInfos=new ArrayList<>();
+        studentInfos.add(studentInfo);
         List<FaceUserInfo> faceInfoList = BeanCopyUtils.copyBeanList(studentInfos, FaceUserInfo.class);//从数据库中取出人脸库
         List<List<FaceUserInfo>> faceUserInfoPartList = Lists.partition(faceInfoList, 1000);//分成1000一组，多线程处理
         CompletionService<List<FaceUserInfo>> completionService = new ExecutorCompletionService(executorService);
@@ -240,7 +247,7 @@ public class FaceEngineServiceImpl implements FaceEngineService {
                     if (similarValue > passRate) {//相似值大于配置预期，加入到识别到人脸的列表
 
                         FaceUserInfo info = new FaceUserInfo();
-                        info.setName(faceUserInfo.getName());
+                        info.setUserName(faceUserInfo.getUserName());
                         info.setSimilarValue(similarValue);
                         resultFaceInfoList.add(info);
                     }

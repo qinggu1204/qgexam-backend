@@ -28,12 +28,4 @@
             (#{messageInfo.userId}, #{messageInfo.title}, #{messageInfo.examinationName}, #{messageInfo.startTime}, 1)
         </foreach>
     </insert>
-    <update id="updateBatch">
-        UPDATE message_info
-        SET is_deleted = 0
-        WHERE message_id IN
-        <foreach collection="messageIdList" item="messageId" open="(" close=")" separator=",">
-            #{messageId}
-        </foreach>
-    </update>
 </mapper>

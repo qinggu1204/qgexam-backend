@@ -1,5 +1,6 @@
 package com.qgexam.user.pojo.PO;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -26,17 +27,19 @@ public class ExaminationInfo implements Serializable {
     
     private Integer createdBy;
     //考试结束时间
-    private Date endTime;
+    private LocalDateTime endTime;
     //考试状态(NOT_START UNDERWAY OVER)
     private String status;
     //考试开始时间
-    private Date startTime;
+    private LocalDateTime startTime;
     //是否题目乱序(0表示否，1表示是)
     private Integer isQuestionResort;
     //是否选项乱序(0表示否，1表示是)
     private Integer isOptionResort;
     //限时进入时间(0为不限时)
     private Integer limitTime;
+    //成绩查询开始时间
+    private LocalDateTime resultQueryTime;
     //更新时间
     private Date updateTime;
     //0未删除 1已删除

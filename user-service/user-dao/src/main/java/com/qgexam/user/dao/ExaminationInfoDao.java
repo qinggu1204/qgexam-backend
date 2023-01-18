@@ -17,5 +17,6 @@ public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
     Integer insertExaminationInfo(ExaminationInfo examinationInfo);
 
     List<Integer> getTeacherIdList(Integer examinationId);
+    List<Integer> selectSubQuestionIdList(Integer examinationPaperId);
 }
 

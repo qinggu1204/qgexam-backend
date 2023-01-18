@@ -2,7 +2,9 @@ package com.qgexam.quartz.pojo.PO;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @TableName("sys_job")
+@AllArgsConstructor
+@NoArgsConstructor
 public class SysJob implements Serializable {
 
     private static final long serialVersionUID = 1L;

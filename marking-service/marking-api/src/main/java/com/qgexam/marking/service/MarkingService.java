@@ -18,7 +18,7 @@ public interface MarkingService {
 
     IPage<AnswerPaperVO> getAnswerPaperList(Integer teacherId, Integer examinationId, Integer currentPage, Integer pageSize);
 
-    List<GetAnswerPaperVO> getAnswerPaper(Integer answerPaperId);
+    List<GetAnswerPaperVO> getAnswerPaper(Integer teacherId, Integer answerPaperId);
 
-    void marking(Integer answerPaperId, List<MarkingDTO> questionList);
+    void marking(Integer teacherId, Integer answerPaperId, List<MarkingDTO> questionList);
 }

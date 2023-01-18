@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @Validated
-@RequestMapping("/tea")
+@RequestMapping("/tea/marking")
 public class MarkingController extends BaseController {
     @DubboReference
     private MarkingService markingService;
@@ -47,7 +47,8 @@ public class MarkingController extends BaseController {
      */
     @GetMapping("/getAnswerPaper/{answerPaperId}")
     public ResponseResult getAnswerPaper(@PathVariable Integer answerPaperId) {
-        return ResponseResult.okResult(markingService.getAnswerPaper(answerPaperId));
+        Integer teacherId = getTeacherId();
+        return ResponseResult.okResult(markingService.getAnswerPaper(teacherId, answerPaperId));
     }
 
     /**
@@ -58,7 +59,7 @@ public class MarkingController extends BaseController {
      */
     @PutMapping("/marking/{answerPaperId}")
     public ResponseResult marking(@PathVariable Integer answerPaperId, @RequestBody @Validated List<MarkingDTO> questionList) {
-        markingService.marking(answerPaperId, questionList);
+        markingService.marking(getTeacherId(),answerPaperId, questionList);
         return ResponseResult.okResult();
     }
 }

@@ -98,4 +98,14 @@ public class ExamConstants {
      * 答卷id列表
      */
     public static final String ANSWER_PAPER_ID_LIST_KEY = "after:marking:answerPaperIdList";
+
+    /**
+     * 发现切屏动作
+     */
+    public static final Integer ACTION_TYPE_CUTTING_SCREEN = 0;
+
+    /**
+     * 人脸识别不合格
+     */
+    public static final Integer ACTION_TYPE_FACE = 1;
 }

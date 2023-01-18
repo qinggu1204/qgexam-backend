@@ -1,29 +1,40 @@
 package com.qgexam.user.service.impl;
 
+import cn.dev33.satoken.session.SaSession;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.lang.WeightRandom;
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.constants.ExamConstants;
-import com.qgexam.common.core.constants.JobConstants;
 import com.qgexam.common.core.constants.MessageConstants;
+import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.core.utils.DateTimeToCronUtils;
 import com.qgexam.common.redis.utils.RedisCache;
+import com.qgexam.quartz.dao.SysJobDao;
+import com.qgexam.quartz.pojo.PO.SysJob;
+import com.qgexam.quartz.service.SysJobService;
+import com.qgexam.quartz.utils.CronUtil;
+import com.qgexam.user.constants.BeginCacheJobConstants;
+import com.qgexam.user.constants.ExamBeginJobConstants;
+import com.qgexam.user.constants.QueryScoreNoticeJobConstants;
 import com.qgexam.user.dao.*;
+import com.qgexam.user.pojo.DTO.CreateExamDTO;
 import com.qgexam.user.pojo.DTO.CreatePaperDTO;
+import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
 import com.qgexam.user.pojo.DTO.QuestionDTO;
 import com.qgexam.user.pojo.PO.*;
-import com.qgexam.user.pojo.VO.ChapterImportanceLevelVO;
-import com.qgexam.user.pojo.VO.SubjectVO;
+import com.qgexam.user.pojo.VO.*;
 import com.qgexam.user.service.NeTeacherInfoService;
-import com.qgexam.common.core.utils.QuartzManager;
-import com.qgexam.user.task.BeginCacheTask;
-import com.qgexam.user.task.QueryScoreNoticeTask;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
+import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,6 +80,9 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
 
     @Autowired
     private StudentInfoDao studentInfoDao;
+
+    @Autowired
+    private AnswerPaperDetailDao answerPaperDetailDao;
 
     @Autowired
     private RedisCache redisCache;
@@ -249,6 +263,13 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void distributeJudgeTask(Integer examinationId, Date endTime) {
+        //查询该考试的主观题编号
+        ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationId);
+        List<Integer> subQuestionIdList = examinationInfoDao.selectSubQuestionIdList(examinationInfo.getExaminationPaperId());
+        //若没有主观题则不需用到教师阅卷，直接抛出异常
+        if (subQuestionIdList.isEmpty()) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(),"无主观题无需教师阅卷");
+        }
         //查询作弊的学生的答卷编号
         List<Integer> cheatPaperIdList = answerPaperInfoDao.getCheatPaperIdList(examinationId);
         //根据考试编号查询教这个学科的教师编号列表
@@ -271,8 +292,20 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
                 .collect(Collectors.toList());
 
         if(answerPaperIdList.isEmpty()){
-            throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(),"没有需要分配的答卷");
         }
+
+        List<Integer> tmp = new ArrayList<>();
+        //将白卷剔除，不分配阅卷任务
+        answerPaperIdList.forEach(answerPaperId -> {
+            LambdaQueryWrapper<AnswerPaperDetail> answerPaperDetailQueryWrapper = new LambdaQueryWrapper<AnswerPaperDetail>();
+            answerPaperDetailQueryWrapper.eq(AnswerPaperDetail::getAnswerPaperId, answerPaperId);
+            Long count = answerPaperDetailDao.selectCount(answerPaperDetailQueryWrapper);
+            if (count == 0) {
+                tmp.add(answerPaperId);
+            }
+        });
+        answerPaperIdList.removeAll(tmp);
 
         //将答卷编号随机分配给教师
         //创建权重对象列表
@@ -319,6 +352,9 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
                 .filter(entry -> !entry.getValue().isEmpty())
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+        if (teacherIdListWithPaper.isEmpty()){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(),"没有需要发送消息的阅卷教师");
+        }
 
         //根据教师id查询userid
         LambdaQueryWrapper<TeacherInfo> teacherInfoQueryWrapper = new LambdaQueryWrapper<TeacherInfo>();
@@ -340,7 +376,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             messageInfo.setUserId(teacherUserId);
             messageInfo.setTitle(title);
             messageInfo.setExaminationName(examinationName);
-            messageInfo.setEndTime(endTime);
+            messageInfo.setEndTime(LocalDateTimeUtil.of(endTime));
             messageInfoList.add(messageInfo);
         });
         Integer count = messageInfoDao.insertMarkingMessageBatch(messageInfoList);
@@ -379,7 +415,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             messageInfo.setUserId(studentUserId);
             messageInfo.setTitle(scoreQueryTitle);
             messageInfo.setExaminationName(examinationName);
-            messageInfo.setStartTime(endTime);
+            messageInfo.setStartTime(LocalDateTimeUtil.of(endTime));
             studentMessageInfoList.add(messageInfo);
         });
         Integer insertCount = messageInfoDao.insertScoreQueryMessageBatch(studentMessageInfoList);
@@ -394,21 +430,55 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
                 .collect(Collectors.toList());
         //将消息编号列表存入redis中
         redisCache.setCacheList(MessageConstants.MESSAGE_ID_LIST_KEY, messageIdList);
-        //将答卷编号列表存入redis中
-        redisCache.setCacheList(ExamConstants.ANSWER_PAPER_ID_LIST_KEY, answerPaperIdList);
 
         //定时任务，通知答卷可以开始缓存
-        QuartzManager.addJob(JobConstants.BEGIN_CACHE_JOB_NAME, JobConstants.JOB_GROUP_NAME,
-                JobConstants.BEGIN_CACHE_TRIGGER_NAME, JobConstants.TRIGGER_GROUP_NAME,
-                BeginCacheTask.class, DateTimeToCronUtils.getCron(endTime,DateTimeToCronUtils.YEAR));
+        SysJob beginCacheJob = new SysJob()
+                // 定时任务的名称为beginCacheJob :考试Id
+                .setJobName(BeginCacheJobConstants.BEGIN_CACHE_JOB_NAME + ":" + examinationId)
+                .setJobGroup(BeginCacheJobConstants.BEGIN_CACHE_JOB_GROUP_NAME)
+                .setCronExpression(DateTimeToCronUtils.getCron(endTime,DateTimeToCronUtils.YEAR))
+                .setInvokeTarget(BeginCacheJobConstants.getInvokeTarget(examinationId));
+
+        sysJobService.deleteJobById(beginCacheJob);
+        Boolean succ;
+        try {
+            succ = sysJobService.saveJob(beginCacheJob);
+        } catch (SchedulerException e) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), e.getMessage());
+        }
+        if (!succ) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "发送信息失败");
+        }
 
         //延迟一小时发送将学生查询成绩通知置为可查询到
-        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(endTime), 1, ChronoUnit.HOURS);
+        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(endTime), 1, ChronoUnit.MINUTES);
 
         //定时任务，定时将学生查询成绩通知逻辑删除置为0即可以查询到
-        QuartzManager.addJob(JobConstants.QUERY_SCORE_NOTICE_JOB_NAME, JobConstants.JOB_GROUP_NAME,
-                JobConstants.QUERY_SCORE_NOTICE_TRIGGER_NAME, JobConstants.TRIGGER_GROUP_NAME,
-                QueryScoreNoticeTask.class, DateTimeToCronUtils.getCron(noticeTaskTime,DateTimeToCronUtils.YEAR));
+        SysJob queryScoreNoticeJob = new SysJob()
+                // 定时任务的名称为queryScoreNoticeJob
+                .setJobName(QueryScoreNoticeJobConstants.QUERY_SCORE_NOTICE_JOB_NAME)
+                .setJobGroup(QueryScoreNoticeJobConstants.QUERY_SCORE_NOTICE_JOB_GROUP_NAME)
+                .setCronExpression(DateTimeToCronUtils.getCron(noticeTaskTime,DateTimeToCronUtils.YEAR))
+                .setInvokeTarget(QueryScoreNoticeJobConstants.QUERY_SCORE_NOTICE_JOB_INVOKE_TARGET);
+
+        sysJobService.deleteJobById(queryScoreNoticeJob);
+        Boolean succ2;
+        try {
+            succ2 = sysJobService.saveJob(queryScoreNoticeJob);
+        } catch (SchedulerException e) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), e.getMessage());
+        }
+        if (!succ2) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "发送通知失败");
+        }
+
+        LambdaUpdateWrapper<ExaminationInfo> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.eq(ExaminationInfo::getExaminationId, examinationId)
+                .set(ExaminationInfo::getResultQueryTime, noticeTaskTime);
+        int updateCount = examinationInfoDao.update(null, updateWrapper);
+        if (updateCount < 1) {
+            throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
+        }
     }
 
     /**
@@ -450,8 +520,8 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
                 messageInfo.setUserId(randomElement.getUserId());
                 messageInfo.setTitle("监考通知");
                 messageInfo.setExaminationName(examinationName);
-                messageInfo.setStartTime(examinationInfoDao.getByExaminationId(examinationId).getStartTime());
-                messageInfo.setEndTime(examinationInfoDao.getByExaminationId(examinationId).getEndTime());
+               // messageInfo.setStartTime(examinationInfoDao.getByExaminationId(examinationId).getStartTime());
+                //messageInfo.setEndTime(examinationInfoDao.getByExaminationId(examinationId).getEndTime());
                 if (teacherInfoDao.arrangeInvigilation(examinationId, course.getCourseId(), randomElement.getTeacherId(), course.getCourseName(), randomElement.getUserName(), examinationName) == 0) {
                     flag = false;
                 }

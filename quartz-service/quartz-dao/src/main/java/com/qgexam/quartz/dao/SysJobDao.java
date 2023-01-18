@@ -11,8 +11,8 @@ import org.apache.ibatis.annotations.Mapper;
  * @author lamb007
  * @since 2023-01-07 20:33:27
  */
-@Mapper
 public interface SysJobDao extends BaseMapper<SysJob> {
     SysJob getJobByNameAndGroup(SysJob sysJob);
+
 }
 

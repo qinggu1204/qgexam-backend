@@ -6,6 +6,8 @@ import com.qgexam.user.pojo.PO.MessageInfo;
 import com.qgexam.user.pojo.VO.MessageInfoListVO;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 消息表(MessageInfo)表数据库访问层
  *
@@ -19,7 +21,5 @@ public interface MessageInfoDao extends BaseMapper<MessageInfo> {
     Integer insertMarkingMessageBatch(@Param("messageInfoList") List<MessageInfo> messageInfoList);
 
     Integer insertScoreQueryMessageBatch(@Param("messageInfoList") List<MessageInfo> messageInfoList);
-
-    Integer updateBatch(@Param("messageIdList") List<Integer> messageIdList);
 }
 

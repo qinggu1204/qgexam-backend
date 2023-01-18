@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/enter-exam-service/enter-exam-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/enter-exam-service/enter-exam-entity/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/enter-exam-service/enter-exam-provider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/marking-service/marking-api/src/main/java" charset="UTF-8" />
@@ -18,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qgexam-enter-exam-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qgexam-finish-exam-consumer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qgexam-marking-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qgexam-marking-consumer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qgexam-user-consumer/src/main/java" charset="UTF-8" />
@@ -25,12 +30,27 @@
     <file url="file://$PROJECT_DIR$/qgexam-user-consumer/src/test/java/com/qgexam/MyTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qgexam-view-exam-results-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qgexam-view-exam-results-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/quartz-service/quartz-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/quartz-service/quartz-dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/quartz-service/quartz-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/quartz-service/quartz-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/quartz-service/quartz-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/quartz-service/quartz-provider/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-service/rabbitmq-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-service/rabbitmq-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-service/rabbitmq-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-dao/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-dao/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-entity/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/user-provider/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/view-exam-results-service/view-exam-results-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/view-exam-results-service/view-exam-results-dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/view-exam-results-service/view-exam-results-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/view-exam-results-service/view-exam-results-entity/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/view-exam-results-service/view-exam-results-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/view-exam-results-service/view-exam-results-provider/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />

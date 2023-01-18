@@ -73,15 +73,6 @@ public class NeteacherInfoController extends BaseController {
     }
 
     /**
-     * 获取排考结果
-     */
-    @GetMapping("/getInvigilationInfo/{examinationId}")
-    public ResponseResult getInvigilationInfo(@PathVariable("examinationId") Integer examinationId){
-
-        return ResponseResult.okResult();
-    }
-
-    /**
      * @description 获取学科列表
      * @return com.qgexam.common.core.api.ResponseResult
      * @author peter guo

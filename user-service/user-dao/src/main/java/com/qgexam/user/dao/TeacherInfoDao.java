@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.user.pojo.PO.CourseInfo;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
-import com.qgexam.user.pojo.VO.ScoreVO;
-import com.qgexam.user.pojo.VO.StudentVO;
+import com.qgexam.user.pojo.VO.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
