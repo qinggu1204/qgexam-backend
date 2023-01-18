@@ -102,7 +102,7 @@ public class StudentInfoServiceImpl extends ServiceImpl<StudentInfoDao, StudentI
         LambdaQueryWrapper<StudentExamAction> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(StudentExamAction::getExaminationId, examinationId)
                 .eq(StudentExamAction::getStudentId, studentId)
-                .eq(StudentExamAction::getType, ExamConstants.ACTION_TYPE_FACE);
+                .eq(StudentExamAction::getType, ExamConstants.FACE_ACTION);
         Long count = studentExamActionDao.selectCount(queryWrapper);
         return count.intValue();
     }

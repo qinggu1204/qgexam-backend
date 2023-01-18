@@ -5,9 +5,8 @@
     <select id="getCheatPaperIdList" resultType="java.lang.Integer">
         select answer_paper_id
         from answer_paper_info
-        where (examination_id,student_id) in (select student_exam_record.examination_id,student_exam_record.student_id
-                            from student_exam_record
-                            where examination_id = #{examinationId}
-                              and is_cheat = 1)
+        where (examination_id,student_id) in (select student_cheat_record.examination_id,student_cheat_record.student_id
+                            from student_cheat_record
+                            where examination_id = #{examinationId})
     </select>
 </mapper>

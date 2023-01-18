@@ -116,14 +116,4 @@ public class ExamConstants {
     public static final String EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX = "examinationresult:totalscore:";
     public static final String EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX = "examinationresult:stutotalscore:";
     public static final String EXAMRESULT_STUID_HASH_KEY_PREFIX = "studentId:";
-
-    /**
-     * 发现切屏动作
-     */
-    public static final Integer ACTION_TYPE_CUTTING_SCREEN = 0;
-
-    /**
-     * 人脸识别不合格
-     */
-    public static final Integer ACTION_TYPE_FACE = 1;
 }

@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit...............">
-      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-common/src/main/java/com/qgexam/rabbit/constants/ExamActionRabbitConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-entity/src/main/java/com/qgexam/rabbit/pojo/DTO/ExamFaceComparisonRabbitDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-dao/src/main/java/com/qgexam/user/dao/StudentExamRecordDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/PO/StudentExamRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/listener/RabbitMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit ......................">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/FaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/FaceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-common/src/main/java/com/qgexam/rabbit/constants/RabbitMQConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/BeginCacheRabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/BeginCacheRabbitConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/ExamActionRabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitmq-service/rabbitmq-provider/src/main/java/com/qgexam/rabbit/config/ExamActionRabbitConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/StudentExamActionService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/StudentInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/StudentInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/StudentExamActionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/constants/ExamConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/constants/ExamConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/listener/RabbitMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/listener/RabbitMessageListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/StudentInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/StudentInfoServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -296,7 +283,7 @@
       <workItem from="1671958740519" duration="4534000" />
       <workItem from="1671969426597" duration="340385000" />
       <workItem from="1673457489875" duration="14113000" />
-      <workItem from="1673621364947" duration="120096000" />
+      <workItem from="1673621364947" duration="122848000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -375,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674018561393</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="peter commit ......................">
+      <created>1674054318568</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1674054318568</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +396,8 @@
     <MESSAGE value="peter commit" />
     <MESSAGE value="peter commit very very very more" />
     <MESSAGE value="peter commit..............." />
-    <option name="LAST_COMMIT_MESSAGE" value="peter commit..............." />
+    <MESSAGE value="peter commit ......................" />
+    <option name="LAST_COMMIT_MESSAGE" value="peter commit ......................" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
