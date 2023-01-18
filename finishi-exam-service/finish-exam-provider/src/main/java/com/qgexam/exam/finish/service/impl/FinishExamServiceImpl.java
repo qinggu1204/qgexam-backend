@@ -51,8 +51,21 @@ public class FinishExamServiceImpl implements FinishExamService {
         for (QuestionDTO question:questionDTO) {
             questionId=question.getQuestionId();
             questionAnswer=question.getQuestionAnswer();
+            //////
+
+
+
+
+
+
+
             answerPaperDetailId=answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId);
             System.out.println(answerPaperDetailId);
+
+
+
+
+            ///
             Integer questionScore=examinationPaperQuestionDao.getScore(examinationPaperId,questionId);
             switch (questionInfoDao.geyTypeByQuestionId(questionId)){
                 /*客观题直接判分*/
