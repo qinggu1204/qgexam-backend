@@ -1,14 +1,19 @@
 package com.qgexam.exam.finish.service.impl;
 
+import com.qgexam.common.core.constants.ExamConstants;
+import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.finish.dao.*;
 import com.qgexam.exam.finish.pojo.DTO.QuestionDTO;
 import com.qgexam.exam.finish.pojo.DTO.SaveOrSubmitDTO;
 import com.qgexam.exam.finish.pojo.DTO.SubQuestionDTO;
+import com.qgexam.exam.finish.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.finish.service.FinishExamService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +36,8 @@ public class FinishExamServiceImpl implements FinishExamService {
     private ExaminationPaperQuestionDao examinationPaperQuestionDao;
     @Autowired
     private SubQuestionAnswerDetailDao subQuestionAnswerDetailDao;
+    @Autowired
+    private RedisCache redisCache;
     @Override
     @Transactional
     public boolean saveOrSubmit(SaveOrSubmitDTO saveOrSubmitDTO,Integer studentId) {
@@ -118,8 +125,9 @@ public class FinishExamServiceImpl implements FinishExamService {
     }
 
     @Override
-    public boolean isCorrectSubmitted(Integer examinationId, Date submitTime) {
-        /*判断是否在考试结束前提交*/
-        return submitTime.compareTo(examinationInfoDao.getEndTimeDate(examinationId)) <= 0;
+    public LocalDateTime getEndTime(Integer examinationId) {
+        com.qgexam.user.pojo.PO.ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
+        return examinationInfo.getEndTime();
     }
+
 }

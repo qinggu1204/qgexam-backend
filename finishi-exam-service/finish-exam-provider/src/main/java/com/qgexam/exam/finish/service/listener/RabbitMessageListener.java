@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class RabbitMessageListener {
                                       Message message)throws IOException{
         boolean flag=true;
         /*插入提交记录*/
-        if(examSubmitRecordDao.insertRecord(finishExamDTO.getStudentId(), finishExamDTO.getExaminationId(),finishExamDTO.getSubmitTime())==0){
+        if(examSubmitRecordDao.insertRecord(finishExamDTO.getStudentId(), finishExamDTO.getExaminationId(),Date.from(finishExamDTO.getSubmitTime().atZone(ZoneId.systemDefault()).toInstant()))==0){
             flag=false;
         }
         if(flag){

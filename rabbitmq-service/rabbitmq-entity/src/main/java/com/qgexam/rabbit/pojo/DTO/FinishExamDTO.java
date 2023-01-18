@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -17,5 +18,5 @@ import java.util.Date;
 public class FinishExamDTO implements Serializable {
     private Integer examinationId;
     private Integer studentId;
-    private Date submitTime;
+    private LocalDateTime submitTime;
 }
