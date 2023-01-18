@@ -98,7 +98,6 @@ public class FinishExamServiceImpl implements FinishExamService {
                             subQuestionId=subQuestion.getSubQuestionId();
                             subQuestionAnswer=subQuestion.getSubQuestionAnswer();
                             answerPaperDetailId=answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId);
-                            System.out.println(answerPaperDetailId);
                             if(subQuestionAnswerDetailDao.update(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
                                 if(subQuestionAnswerDetailDao.insert(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
                                     flag=false;
