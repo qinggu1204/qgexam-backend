@@ -23,7 +23,7 @@ public interface CourseInfoDao extends BaseMapper<CourseInfo> {
     List<GetCourseListVO> getCourseListByAdmin(@Param("courseId") Integer courseId, @Param("year") String year, @Param("semester") String semester);
     List<GetCourseListVO> getCourseListByNeteacher(@Param("schoolId")Integer schoolId, @Param("courseId") Integer courseId, @Param("year") String year, @Param("semester") String semester);
     Integer insertCourseInfo(CourseInfo courseInfo);
-
+    CourseInfo getCourseInfoById(Integer courseId);
     Integer insertCourseTeacher(CourseTeacherDTO courseTeacherDTO);
     List<CourseTeacherListVO> getCourseTeacherList(Integer userId);
     List<CourseInfo> getCourseListBySubject(@Param("subjectId") Integer subjectId);

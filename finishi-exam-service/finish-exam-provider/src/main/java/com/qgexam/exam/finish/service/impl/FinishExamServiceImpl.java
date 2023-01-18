@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -114,5 +115,11 @@ public class FinishExamServiceImpl implements FinishExamService {
             return true;
         }
         else return false;
+    }
+
+    @Override
+    public boolean isCorrectSubmitted(Integer examinationId, Date submitTime) {
+        /*判断是否在考试结束前提交*/
+        return submitTime.compareTo(examinationInfoDao.getEndTimeDate(examinationId)) <= 0;
     }
 }

@@ -208,6 +208,7 @@ public class RabbitMessageListener {
     @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = ViewExamResultsRabbitConstant.EXAM_RVIEWRESULTS_QUEUE_NAME)
     public void listenExamViewResultsQueue(ErrorQuestionDTO errorQuestionDTO, Channel channel, Message message) throws IOException {
+        System.out.println("====================listenExamViewResultsQueue=====================");
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(errorQuestionDTO.getExaminationId());
         // 如果examinationInfo为空，抛出BusinessException

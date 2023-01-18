@@ -89,6 +89,10 @@ public class ExamConstants {
 
     public static final String EXAMINATION_INFO_HASH_KEY_PREFIX = "before:examination:info:";
 
+    public static final String SCREEN_CUTTING_KEY = "underway:examination:screenCutting:";
+
+    public static final Integer SCREEN_CUTTING_ACTION = 0;
+    public static final Integer FACE_ACTION = 1;
     /**
      * 储存的答卷的键的前缀
      */

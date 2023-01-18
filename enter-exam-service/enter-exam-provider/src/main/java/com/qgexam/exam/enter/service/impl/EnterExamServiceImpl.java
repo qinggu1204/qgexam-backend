@@ -18,6 +18,7 @@ import com.qgexam.user.pojo.VO.QuestionInfoVO;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -105,7 +106,7 @@ public class EnterExamServiceImpl implements EnterExamService {
         LocalDateTime joinTime = joinExamDTO.getJoinTime();
         // 判断当前考试是否合法
         ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
-        if(examinationInfo == null) {
+        if (examinationInfo == null) {
             examinationInfo = examinationInfoDao.selectById(examinationId);
         }
         // 获取考试信息
@@ -118,8 +119,21 @@ public class EnterExamServiceImpl implements EnterExamService {
     public void screenCutting(JoinExamDTO joinExamDTO) {
         Integer examinationId = joinExamDTO.getExaminationId();
         LocalDateTime joinTime = joinExamDTO.getJoinTime();
+        Integer studentId = joinExamDTO.getStudentId();
         // 判断当前考试是否合法
         ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime);
+        LocalDateTime endTime = examinationInfo.getEndTime();
+        Duration duration = LocalDateTimeUtil.between(LocalDateTime.now(), endTime);
+        long timeout = duration.toMillis();
+        // 如果合法则则将redis中的切屏次数+1
+        String screenCuttingKey = ExamConstants.SCREEN_CUTTING_KEY + examinationId + ":" + studentId;
+        Integer cuttingNumber = redisCache.getCacheObject(screenCuttingKey);
+        if (cuttingNumber == null) {
+            cuttingNumber = 0;
+        }
+        cuttingNumber ++;
+        redisCache.setCacheObject(screenCuttingKey, cuttingNumber);
+        redisCache.expire(screenCuttingKey, timeout);
     }
 
 
@@ -128,20 +142,24 @@ public class EnterExamServiceImpl implements EnterExamService {
         ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
 
         /*
-            * 1.考试未开始，数据内容还未加载到redis中
-            * 2.考试已结束，数据内容已从redis中删除
+         * 1.考试未开始，数据内容还未加载到redis中
+         * 2.考试已结束，数据内容已从redis中删除
          */
         if (examinationInfo == null) {
             // 从数据库查询考试消息
             ExaminationInfo tempExaminationInfo = examinationInfoDao.selectById(examinationId);
+            // 考试不存在
+            if (tempExaminationInfo == null) {
+                throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试不存在");
+            }
             LocalDateTime startTime = tempExaminationInfo.getStartTime();
             LocalDateTime endTime = tempExaminationInfo.getEndTime();
             // 考试未开始
-            if(joinTime.isBefore(startTime)) {
+            if (joinTime.isBefore(startTime)) {
                 throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试还未开始，无法进入考试。");
             }
             // 考试已结束
-            if(joinTime.isAfter(endTime)) {
+            if (joinTime.isAfter(endTime)) {
                 throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已结束。");
             }
         }
