@@ -1,6 +1,8 @@
-package PO;
+package com.qgexam.exam.finish.pojo.PO;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnswerPaperDetail implements Serializable {
-    
+    @TableId("answer_paper_detail_id")
     private Integer answerPaperDetailId;
     //答卷编号
     private Integer answerPaperId;

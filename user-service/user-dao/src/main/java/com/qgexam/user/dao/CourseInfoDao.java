@@ -18,10 +18,10 @@ import java.util.List;
  */
 public interface CourseInfoDao extends BaseMapper<CourseInfo> {
 
-    List<GetCourseListVO> getCourseListByTeacher(@Param("teacherId")Integer teacherId, @Param("subjectId") Integer subjectId, @Param("year") String year, @Param("semester") String semester);
-    List<GetCourseListVO> getCourseListByStudent(@Param("studentId")Integer teacherId, @Param("subjectId") Integer subjectId, @Param("year") String year, @Param("semester") String semester);
-    List<GetCourseListVO> getCourseListByAdmin(@Param("subjectId") Integer subjectId, @Param("year") String year, @Param("semester") String semester);
-    List<GetCourseListVO> getCourseListByNeteacher(@Param("schoolId")Integer schoolId, @Param("subjectId") Integer subjectId, @Param("year") String year, @Param("semester") String semester);
+    List<GetCourseListVO> getCourseListByTeacher(@Param("teacherId")Integer teacherId, @Param("courseId") Integer courseId, @Param("year") String year, @Param("semester") String semester);
+    List<GetCourseListVO> getCourseListByStudent(@Param("studentId")Integer teacherId, @Param("courseId") Integer courseId, @Param("year") String year, @Param("semester") String semester);
+    List<GetCourseListVO> getCourseListByAdmin(@Param("courseId") Integer courseId, @Param("year") String year, @Param("semester") String semester);
+    List<GetCourseListVO> getCourseListByNeteacher(@Param("schoolId")Integer schoolId, @Param("courseId") Integer courseId, @Param("year") String year, @Param("semester") String semester);
     Integer insertCourseInfo(CourseInfo courseInfo);
 
     Integer insertCourseTeacher(CourseTeacherDTO courseTeacherDTO);

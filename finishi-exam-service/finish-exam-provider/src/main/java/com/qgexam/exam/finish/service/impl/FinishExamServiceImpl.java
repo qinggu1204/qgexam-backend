@@ -9,6 +9,7 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -50,30 +51,59 @@ public class FinishExamServiceImpl implements FinishExamService {
         for (QuestionDTO question:questionDTO) {
             questionId=question.getQuestionId();
             questionAnswer=question.getQuestionAnswer();
+            //////
+
+
+
+
+
+
+
             answerPaperDetailId=answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId);
-            String correctAnswer=questionInfoDao.getCorrectAnswer(questionId);
+            System.out.println(answerPaperDetailId);
+
+
+
+
+            ///
             Integer questionScore=examinationPaperQuestionDao.getScore(examinationPaperId,questionId);
             switch (questionInfoDao.geyTypeByQuestionId(questionId)){
                 /*客观题直接判分*/
-                case "SINGLE":
-                case "JUDGE":
                 case "MULTI":
-                    if(questionAnswer.equals(correctAnswer)){
-                        if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,questionScore)==0){
-                            objectiveScore+=questionScore;
-                            flag=false;
+                    String multiAns="";
+                    for (int i=0;i<questionAnswer.length();i++){
+                        if(questionAnswer.charAt(i)>='A'&&questionAnswer.charAt(i)<='D'){
+                            multiAns+=questionAnswer.charAt(i);
                         }
                     }
+                    char[] ans=multiAns.toCharArray();
+                    Arrays.sort(ans);
+                    questionAnswer=new String(ans);
+                case "JUDGE":
+                case "SINGLE":
+                    String correctAnswer=questionInfoDao.getCorrectAnswer(questionId);
+                    if(questionAnswer.equals(correctAnswer)){
+                        if(answerPaperDetailDao.updateAnswerPaperDetail(answerPaperId,questionId,questionAnswer,questionScore)==0){
+                            if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,questionScore)==0){
+                                flag=false;
+                            }
+                        }
+                        objectiveScore+=questionScore;
+                    }
                     else {
-                        if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){
-                            flag=false;
+                        if(answerPaperDetailDao.updateAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){
+                            if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){
+                                flag=false;
+                            }
                         }
                     }
                     break;
                 case "COMPLETION":
                 case "COMPLEX":
-                    if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){
-                        flag=false;
+                    if(answerPaperDetailDao.updateAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){
+                        if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){
+                            flag=false;
+                        }
                     }
                     /*判断是否有小题，以填写questionAnswer的值*/
                     if(questionInfoDao.hasSubQuestion(questionId)!=0){
@@ -82,8 +112,10 @@ public class FinishExamServiceImpl implements FinishExamService {
                         for (SubQuestionDTO subQuestion:subQuestionDTO) {
                             subQuestionId=subQuestion.getSubQuestionId();
                             subQuestionAnswer=subQuestion.getSubQuestionAnswer();
-                            if(subQuestionAnswerDetailDao.insert(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
-                                flag=false;
+                            if(subQuestionAnswerDetailDao.update(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
+                                if(subQuestionAnswerDetailDao.insert(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
+                                    flag=false;
+                                }
                             }
                         }
                     }

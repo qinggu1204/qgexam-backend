@@ -1,4 +1,4 @@
-package com.qgexam.user.PO;
+package com.qgexam.exam.finish.pojo.PO;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;

@@ -6,6 +6,7 @@ import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.CreateCourseDTO;
 import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
+import com.qgexam.user.service.SubjectInfoService;
 import com.qgexam.user.service.TeacherInfoService;
 import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -33,7 +34,8 @@ public class TeacherInfoController extends BaseController {
 
     @DubboReference
     private TeacherInfoService teacherInfoService;
-
+    @DubboReference
+    private SubjectInfoService subjectInfoService;
 
     /**
      * @description 获取教师信息
@@ -91,6 +93,6 @@ public class TeacherInfoController extends BaseController {
      */
     @GetMapping("/getSubjectList")
     public ResponseResult getSubjectList() {
-        return ResponseResult.okResult();
+        return ResponseResult.okResult(subjectInfoService.getSubjectList());
     }
 }
