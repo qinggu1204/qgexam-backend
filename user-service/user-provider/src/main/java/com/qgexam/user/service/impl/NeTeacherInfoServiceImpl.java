@@ -2,21 +2,29 @@ package com.qgexam.user.service.impl;
 
 import cn.dev33.satoken.session.SaSession;
 import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.lang.WeightRandom;
+import cn.hutool.core.util.RandomUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
+import com.qgexam.common.core.constants.ExamConstants;
+import com.qgexam.common.core.constants.MessageConstants;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
-
-
+import com.qgexam.common.core.utils.DateTimeToCronUtils;
+import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.quartz.pojo.PO.SysJob;
 import com.qgexam.quartz.service.SysJobService;
 import com.qgexam.quartz.utils.CronUtil;
-import com.qgexam.user.constants.ExamBeginJobConstants;
+import com.qgexam.user.constants.*;
 import com.qgexam.user.dao.*;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
+import com.qgexam.user.pojo.DTO.CreatePaperDTO;
 import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
+import com.qgexam.user.pojo.DTO.QuestionDTO;
 import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.*;
 import com.qgexam.user.service.NeTeacherInfoService;
@@ -29,8 +37,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author yzw
@@ -42,6 +50,9 @@ import java.util.Random;
 public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     @Autowired
     private TeacherInfoDao teacherInfoDao;
+
+    @Autowired
+    private StudentInfoDao studentInfoDao;
 
     @Autowired
     private ExaminationPaperDao examinationPaperDao;
@@ -68,14 +79,10 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     private MessageInfoDao messageInfoDao;
 
     @Autowired
-    private AnswerPaperInfoDao answerPaperInfoDao;
-    @Autowired
-    private ExaminationPaperDao examinationPaperDao;
-    @Autowired
     private OptionInfoDao optionInfoDao;
+
     @Autowired
     private SubQuestionInfoDao subQuestionInfoDao;
-    private StudentInfoDao studentInfoDao;
 
     @Autowired
     private AnswerPaperDetailDao answerPaperDetailDao;
@@ -668,8 +675,6 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         IPage<GetInvigilationInfoVO> page = new Page<>(getInvigilationInfoDTO.getCurrentPage(), getInvigilationInfoDTO.getPageSize());
         return teacherInfoDao.selectInvigilationInfo(page, getInvigilationInfoDTO.getExaminationId());
     }
-
-
 
     @Override
     public List<PreviewQuestionInfoVO> previewPaper(Integer examinationPaperId) {

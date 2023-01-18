@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Configuration;
 public class BeginCacheRabbitConfig {
     @Bean
     public Queue beginCacheQueue(){
-        return new Queue(BeginCacheRabbitConstants.BEGIN_CACHE_QUEUE_NAME);
+        return new Queue(BeginCacheRabbitConstants.BEGIN_CACHE_QUEUE_NAME,true,false,false);
     }
 
     @Bean
     public DirectExchange beginCacheDirectExchange(){
-        return new DirectExchange(BeginCacheRabbitConstants.BEGIN_CACHE_EXCHANGE_NAME);
+        return new DirectExchange(BeginCacheRabbitConstants.BEGIN_CACHE_EXCHANGE_NAME,true,false);
     }
 
     @Bean

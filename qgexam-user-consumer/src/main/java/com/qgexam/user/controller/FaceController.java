@@ -5,20 +5,19 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollectionUtil;
 import com.arcsoft.face.toolkit.ImageFactory;
 import com.arcsoft.face.toolkit.ImageInfo;
-import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.FaceErrorCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
-import com.qgexam.common.core.constants.ExamConstants;
-import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.web.base.BaseController;
+import com.qgexam.rabbit.constants.ExamActionRabbitConstant;
+import com.qgexam.rabbit.pojo.DTO.ExamFaceComparisonRabbitDTO;
+import com.qgexam.rabbit.service.RabbitService;
 import com.qgexam.user.pojo.DTO.AddFaceDTO;
 import com.qgexam.user.pojo.DTO.ExamFaceComparisonDTO;
 import com.qgexam.user.pojo.DTO.SearchFaceDTO;
 import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.FaceSearchResVO;
 import com.qgexam.user.service.FaceEngineService;
-import com.qgexam.user.service.StudentExamActionService;
 import com.qgexam.user.service.StudentInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
@@ -51,8 +50,8 @@ public class FaceController extends BaseController {
     @DubboReference
     private StudentInfoService studentInfoService;
 
-    @DubboReference
-    private StudentExamActionService studentExamActionService;
+    @DubboReference(registry = "rabbitmqRegistry")
+    private RabbitService rabbitService;
 
     /*
     人脸添加
@@ -177,15 +176,13 @@ public class FaceController extends BaseController {
 
             return ResponseResult.okResult();
         }
-        //若不合格,添加进考试行为表
-        StudentExamAction studentExamAction = new StudentExamAction();
-        studentExamAction.setStudentId(getStudentId());
-        studentExamAction.setExaminationId(examFaceComparisonDTO.getExaminationId());
-        studentExamAction.setType(ExamConstants.ACTION_TYPE_FACE);
-        boolean succ = studentExamActionService.save(studentExamAction);
-        if (!succ) {
-            throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
-        }
+        //若不合格,放入消息队列
+        ExamFaceComparisonRabbitDTO examFaceComparisonRabbitDTO = new ExamFaceComparisonRabbitDTO();
+        examFaceComparisonRabbitDTO.setStudentId(getStudentId());
+        examFaceComparisonRabbitDTO.setExaminationId(examFaceComparisonDTO.getExaminationId());
+        rabbitService.sendMessage(ExamActionRabbitConstant.EXAM_ACTION_FACE_EXCHANGE_NAME,
+                ExamActionRabbitConstant.EXAM_ACTION_FACE_ROUTING_KEY,
+                examFaceComparisonRabbitDTO);
 
         return ResponseResult.errorResult(FaceErrorCodeEnum.FACE_DOES_NOT_MATCH.getCode(),
                 FaceErrorCodeEnum.FACE_DOES_NOT_MATCH.getDescription());
@@ -218,6 +215,11 @@ public class FaceController extends BaseController {
         } else {
             return "";
         }
+    }
+
+    @GetMapping("/getFaceErrorNumber")
+    public ResponseResult getFaceErrorNumber(Integer examinationId) throws IOException {
+        return ResponseResult.okResult(studentInfoService.getFaceErrorNumber(examinationId,getStudentId()));
     }
 }
 
