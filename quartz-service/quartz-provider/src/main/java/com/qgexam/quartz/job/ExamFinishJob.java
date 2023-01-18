@@ -28,6 +28,9 @@ public class ExamFinishJob {
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
         // 将查询成绩时间存入redis
-        redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime(), 2, TimeUnit.MINUTES);
+        if(examinationInfo.getResultQueryTime() == null)
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, "123");
+        else
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime());
     }
 }

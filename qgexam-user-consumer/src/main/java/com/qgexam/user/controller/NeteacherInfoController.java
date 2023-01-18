@@ -111,4 +111,9 @@ public class NeteacherInfoController extends BaseController {
     public ResponseResult getSubjectList() {
         return ResponseResult.okResult(subjectInfoService.getSubjectList());
     }
+
+    @GetMapping("/previewPaper/{examinationPaperId}")
+    public ResponseResult previewPaper(@PathVariable("examinationPaperId") Integer examinationPaperId){
+        return ResponseResult.okResult(neTeacherInfoService.previewPaper(examinationPaperId));
+    }
 }

@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Param;
  * @since 2023-01-10 13:00:38
  */
 public interface QuestionInfoDao extends BaseMapper<QuestionInfo> {
-    QuestionInfo selectQuestionInfoById(@Param("questionId") Integer questionId, @Param("examinationPaperId")Integer examinationPaperId);
+    QuestionInfo selectQuestionInfoByIds(@Param("questionId") Integer questionId, @Param("examinationPaperId")Integer examinationPaperId);
 }
 

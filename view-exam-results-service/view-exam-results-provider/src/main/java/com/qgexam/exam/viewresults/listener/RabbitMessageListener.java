@@ -3,13 +3,12 @@ package com.qgexam.exam.viewresults.listener;
 import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.viewresults.dao.*;
-import com.qgexam.exam.viewresults.pojo.DTO.ErrorDTO;
-import com.qgexam.exam.viewresults.pojo.DTO.ErrorQuestionDTO;
 import com.qgexam.exam.viewresults.pojo.PO.*;
 import com.qgexam.exam.viewresults.pojo.VO.*;
 import com.qgexam.rabbit.constants.RabbitMQConstants;
 
 import com.qgexam.rabbit.constants.ViewExamResultsRabbitConstant;
+import com.qgexam.rabbit.pojo.PO.ErrorQuestionDTO;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -78,9 +77,9 @@ public class RabbitMessageListener {
         List<QuestionInfo> questionInfoList = examinationPaper.getQuestionInfoList();
         try {
             // 将查询成绩时间存入redis并设置缓存时间
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime(), 2, TimeUnit.MINUTES);
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime(), 2, TimeUnit.DAYS);
             // 将试卷总分存入redis
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId, examinationPaper.getTotalScore(), 2, TimeUnit.MINUTES);
+            redisCache.setCacheObject(ExamConstants.EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX + examinationId, examinationPaper.getTotalScore(), 2, TimeUnit.DAYS);
             // 根据考试编号获取课程列表
             List<Integer> courseList = courseInfoDao.getCourseIdListByExaminationId(examinationId);
             // 把这些课程的学生考试成绩明细放入缓存
@@ -92,7 +91,7 @@ public class RabbitMessageListener {
                     // 查询该学生的答卷
                     AnswerPaperInfo answerPaperInfo = answerPaperInfoDao.selectStuAnswerPaper(examinationId, studentId);
                     // 将答卷总分存入redis
-                    redisCache.setCacheObject(ExamConstants.EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, answerPaperInfo.getPaperTotalScore(), 2, TimeUnit.MINUTES);
+                    redisCache.setCacheObject(ExamConstants.EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, answerPaperInfo.getPaperTotalScore(), 2, TimeUnit.DAYS);
                     // 创建不同题型的list
                     List<ObjResultVO> singleList = new ArrayList<ObjResultVO>();
                     List<ObjResultVO> multiList = new ArrayList<ObjResultVO>();
@@ -173,20 +172,20 @@ public class RabbitMessageListener {
                     // 单选题
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, singleMap);
                     // 设置超时时间
-                    redisCache.expire(ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_SINGLE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, multiMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_MULTI_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, judgeMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_JUDGE_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, completionMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLETION_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
 
                     redisCache.setCacheMap(ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, complexMap);
-                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.MINUTES);
+                    redisCache.expire(ExamConstants.EXAMRESULT_COMPLEX_QUESTION_HASH_FIELD + examinationId + ExamConstants.EXAMRESULT_STUID_HASH_KEY_PREFIX + studentId, 2, TimeUnit.DAYS);
                 }
             }
         }catch (Exception e){
@@ -209,8 +208,6 @@ public class RabbitMessageListener {
     @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = ViewExamResultsRabbitConstant.EXAM_RVIEWRESULTS_QUEUE_NAME)
     public void listenExamViewResultsQueue(ErrorQuestionDTO errorQuestionDTO, Channel channel, Message message) throws IOException {
-        // 设置插入语句是否成功的标志
-        Integer flag = 0;
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(errorQuestionDTO.getExaminationId());
         // 如果examinationInfo为空，抛出BusinessException
@@ -219,7 +216,7 @@ public class RabbitMessageListener {
         }
         // 根据examinationInfo.paperId查询试卷信息
         Integer examinationPaperId = examinationInfo.getExaminationPaperId();
-        QuestionInfo questionInfo = questionInfoDao.selectQuestionInfoById(errorQuestionDTO.getQuestionId(), examinationPaperId);
+        QuestionInfo questionInfo = questionInfoDao.selectQuestionInfoByIds(errorQuestionDTO.getQuestionId(), examinationPaperId);
         ErrorquestionInfo errorquestionInfo = new ErrorquestionInfo();
         errorquestionInfo.setStudentId(errorQuestionDTO.getStudentId());
         errorquestionInfo.setQuestionId(errorQuestionDTO.getQuestionId());

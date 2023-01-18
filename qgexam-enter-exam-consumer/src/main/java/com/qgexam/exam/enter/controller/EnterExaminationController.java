@@ -5,12 +5,12 @@ import com.qgexam.common.web.base.BaseController;
 import com.qgexam.exam.enter.pojo.DTO.JoinExamDTO;
 import com.qgexam.exam.enter.pojo.DTO.ScreenCuttingDTO;
 import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
-import com.qgexam.rabbit.pojo.PO.ExamRecordDTO;
+import com.qgexam.rabbit.pojo.DTO.ExamRecordDTO;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.pojo.VO.GetExaminationPaperVO;
 import com.qgexam.exam.enter.service.EnterExamService;
 import com.qgexam.exam.enter.service.ExaminationInfoService;
-import com.qgexam.rabbit.pojo.PO.ScreenCuttingRabbitMessageDTO;
+import com.qgexam.rabbit.pojo.DTO.ScreenCuttingRabbitMessageDTO;
 import com.qgexam.rabbit.service.RabbitService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -18,6 +18,7 @@ import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -63,7 +64,7 @@ public class EnterExaminationController extends BaseController {
     }
 
     @GetMapping("/joinExam")
-    public ResponseResult joinExam(@NotNull Integer examinationId) {
+    public ResponseResult joinExam(@NotNull Integer examinationId, HttpServletRequest request) {
         JoinExamDTO joinExamDTO = new JoinExamDTO();
         joinExamDTO.setExaminationId(examinationId);
         joinExamDTO.setJoinTime(LocalDateTime.now());
@@ -75,6 +76,7 @@ public class EnterExaminationController extends BaseController {
         examRecordDTO.setExaminationId(examinationId);
         examRecordDTO.setStudentId(getStudentId());
         examRecordDTO.setEnterTime(LocalDateTime.now());
+        examRecordDTO.setRemoteIp(request.getRemoteAddr());
         // 消息队列发送一条消息--保存学生考试记录
         rabbitService.sendMessage(ExamRecordRabbitConstant.EXAM_RECORD_EXCHANGE_NAME,
                 ExamRecordRabbitConstant.EXAM_RECORD_ROUTING_KEY,

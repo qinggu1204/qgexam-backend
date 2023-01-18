@@ -1,4 +1,4 @@
-package com.qgexam.rabbit.pojo.PO;
+package com.qgexam.rabbit.pojo.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +18,5 @@ public class ExamRecordDTO implements Serializable {
     private Integer examinationId;
     private Integer studentId;
     private LocalDateTime enterTime;
+    private String remoteIp;
 }

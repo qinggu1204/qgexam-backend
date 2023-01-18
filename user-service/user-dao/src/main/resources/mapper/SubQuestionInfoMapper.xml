@@ -16,4 +16,10 @@
         from sub_question_info sqi
         where sqi.question_id = #{questionId} and sqi.is_deleted = 0
     </select>
+    <select id="selectPreviewSubQuestionInfoListByQuestionInfoId"
+            resultType="com.qgexam.user.pojo.VO.PreviewSubQuestionInfoVO">
+        select sqi.sub_question_id, sqi.sub_question_desc, sqi.sub_question_ans
+        from sub_question_info sqi
+        where sqi.question_id = #{questionId} and sqi.is_deleted = 0
+    </select>
 </mapper>
