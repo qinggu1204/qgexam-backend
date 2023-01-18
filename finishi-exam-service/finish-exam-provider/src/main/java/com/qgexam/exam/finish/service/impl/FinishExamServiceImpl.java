@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,21 +52,6 @@ public class FinishExamServiceImpl implements FinishExamService {
         for (QuestionDTO question:questionDTO) {
             questionId=question.getQuestionId();
             questionAnswer=question.getQuestionAnswer();
-            //////
-
-
-
-
-
-
-
-            answerPaperDetailId=answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId);
-            System.out.println(answerPaperDetailId);
-
-
-
-
-            ///
             Integer questionScore=examinationPaperQuestionDao.getScore(examinationPaperId,questionId);
             switch (questionInfoDao.geyTypeByQuestionId(questionId)){
                 /*客观题直接判分*/
@@ -112,6 +98,7 @@ public class FinishExamServiceImpl implements FinishExamService {
                         for (SubQuestionDTO subQuestion:subQuestionDTO) {
                             subQuestionId=subQuestion.getSubQuestionId();
                             subQuestionAnswer=subQuestion.getSubQuestionAnswer();
+                            answerPaperDetailId=answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId);
                             if(subQuestionAnswerDetailDao.update(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
                                 if(subQuestionAnswerDetailDao.insert(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
                                     flag=false;
@@ -128,5 +115,11 @@ public class FinishExamServiceImpl implements FinishExamService {
             return true;
         }
         else return false;
+    }
+
+    @Override
+    public boolean isCorrectSubmitted(Integer examinationId, Date submitTime) {
+        /*判断是否在考试结束前提交*/
+        return submitTime.compareTo(examinationInfoDao.getEndTimeDate(examinationId)) <= 0;
     }
 }
