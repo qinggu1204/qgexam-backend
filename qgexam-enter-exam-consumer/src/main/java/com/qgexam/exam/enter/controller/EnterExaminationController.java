@@ -98,6 +98,7 @@ public class EnterExaminationController extends BaseController {
         JoinExamDTO joinExamDTO = new JoinExamDTO();
         joinExamDTO.setExaminationId(screenCuttingDTO.getExaminationId());
         joinExamDTO.setJoinTime(LocalDateTime.now());
+        joinExamDTO.setStudentId(getStudentId());
         // 判断当前考试是否合法
         enterExamService.screenCutting(joinExamDTO);
         // 封装队列消息

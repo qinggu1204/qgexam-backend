@@ -1,20 +1,22 @@
 package com.qgexam;
 
-import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import com.qgexam.exam.finish.dao.AnswerPaperDetailDao;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+import com.qgexam.exam.finish.service.FinishExamProviderApplication;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest(classes = FinishExamProviderApplication.class)
+public class AppTest {
+
+    @Autowired
+    private AnswerPaperDetailDao answerPaperDetailDao;
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void shouldAnswerWithTrue() {
+        Integer answerPaperDetailId = answerPaperDetailDao.getAnswerPaperDetailId(1, 1);
+        System.out.println("answerPaperDetailId: " + answerPaperDetailId);
+
     }
 }

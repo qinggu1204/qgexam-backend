@@ -17,4 +17,5 @@ import java.time.LocalDateTime;
 public class JoinExamDTO implements Serializable {
     private Integer examinationId;
     private LocalDateTime joinTime;
+    private Integer studentId;
 }
