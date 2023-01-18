@@ -35,7 +35,7 @@ public class BusinessExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseResult<String> exceptionHandler(BusinessException exception) {
         log.error("exceptionHandle {}\n{}", exception.getMessage(), ExceptionUtil.stacktraceToString(exception));
-        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR, exception.getMsg());
+        return ResponseResult.errorResult(exception.getCode(), exception.getMsg());
     }
 
 

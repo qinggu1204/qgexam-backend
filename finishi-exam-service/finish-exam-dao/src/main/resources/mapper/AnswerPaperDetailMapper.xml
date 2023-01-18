@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.exam.finish.dao.AnswerPaperDetailDao">
+    <insert id="insertAnswerPaperDetail">
+        insert into answer_paper_detail(answer_paper_id,question_id,student_answer,score)
+        values (#{answerPaperId},#{questionId},#{studentAnswer},#{score})
+    </insert>
+    <update id="updateAnswerPaperDetail">
+        update answer_paper_detail set student_answer=#{studentAnswer},score=#{score}
+        where answer_paper_id=#{answerPaperId} and question_id=#{questionId}
+    </update>
+    <select id="getAnswerPaperDetailId" resultType="java.lang.Integer">
+        select answer_paper_detail_id from answer_paper_detail
+        where answer_paper_id=#{answerPaperId} and question_id=#{questionId} and is_deleted=0
+    </select>
+</mapper>

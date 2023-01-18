@@ -23,6 +23,8 @@ public class StudentExamRecord implements Serializable {
     private Integer examinationId;
     //学生编号
     private Integer studentId;
+    // 客户端ip
+    private String remoteIp;
     //进入时间
     private LocalDateTime enterTime;
     //创建时间

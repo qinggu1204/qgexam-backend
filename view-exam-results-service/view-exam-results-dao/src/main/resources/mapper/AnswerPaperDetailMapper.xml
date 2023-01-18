@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.exam.viewresults.dao.AnswerPaperDetailDao">
+    <select id="selectStuAnswerDetail" resultType="com.qgexam.exam.viewresults.pojo.PO.AnswerPaperDetail">
+        select *
+        from answer_paper_detail
+        where answer_paper_id = #{answerPaperId}
+          and question_id = #{questionId}
+          and is_deleted = 0
+    </select>
+</mapper>

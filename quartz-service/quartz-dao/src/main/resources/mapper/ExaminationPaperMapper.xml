@@ -39,6 +39,6 @@
                  join
              question_info qi
              on epq.question_id = qi.question_id
-        where ep.examination_paper_id = #{examinationPaperId};
+        where ep.examination_paper_id = #{examinationPaperId}
     </select>
 </mapper>

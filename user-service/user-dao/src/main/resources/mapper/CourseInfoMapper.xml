@@ -66,8 +66,8 @@
             <if test="semester!=null and semester!=''">
                 and ci.semester=#{semester}
             </if>
-            <if test="subjectId!=null and subjectId!=''">
-                and ci.subject_id=#{subjectId}
+            <if test="courseId!=null and courseId!=''">
+                and ci.course_id=#{courseId}
             </if>
             and tc.teacher_id=#{teacherId}
             and ci.course_id=tc.course_id
@@ -95,8 +95,8 @@
             <if test="semester!=null and semester!=''">
                 and ci.semester=#{semester}
             </if>
-            <if test="subjectId!=null and subjectId!=''">
-                and ci.subject_id=#{subjectId}
+            <if test="courseId!=null and courseId!=''">
+                and ci.course_id=#{courseId}
             </if>
             and sc.student_id=#{studentId}
             and ci.course_id=sc.course_id
@@ -121,8 +121,8 @@
             <if test="semester!=null and semester!=''">
                 and ci.semester=#{semester}
             </if>
-            <if test="subjectId!=null and subjectId!=''">
-                and ci.subject_id=#{subjectId}
+            <if test="courseId!=null and courseId!=''">
+                and ci.course_id=#{courseId}
             </if>
         </where>
     </select>
@@ -145,8 +145,8 @@
             <if test="semester!=null and semester!=''">
                 and ci.semester=#{semester}
             </if>
-            <if test="subjectId!=null and subjectId!=''">
-                and ci.subject_id=#{subjectId}
+            <if test="courseId!=null and courseId!=''">
+                and ci.course_id=#{courseId}
             </if>
             and tc.course_id=ci.course_id
             and tc.teacher_id in (select ti.teacher_id from teacher_info ti where ti.school_id=#{schoolId})
@@ -156,7 +156,7 @@
 
     <select id="getCourseListBySubject" resultType="com.qgexam.user.pojo.PO.CourseInfo">
         select * from course_info
-        where subject_id=#{subjectId} and is_deleted = 0;
+        where subject_id=#{subjectId} and is_deleted = 0
     </select>
 
 </mapper>

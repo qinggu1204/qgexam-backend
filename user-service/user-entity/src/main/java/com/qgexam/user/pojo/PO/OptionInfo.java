@@ -1,6 +1,8 @@
 package com.qgexam.user.pojo.PO;
 
 import java.time.LocalDateTime;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OptionInfo implements Serializable {
-    
+    @TableId
     private Integer optionId;
     //题目编号
     private Integer questionId;

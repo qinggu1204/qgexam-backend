@@ -21,6 +21,8 @@
         <module>view-exam-results-service</module>
         <module>qgexam-enter-exam-consumer</module>
         <module>enter-exam-service</module>
+        <module>quartz-service</module>
+        <module>rabbitmq-service</module>
     </modules>
     <packaging>pom</packaging>
 

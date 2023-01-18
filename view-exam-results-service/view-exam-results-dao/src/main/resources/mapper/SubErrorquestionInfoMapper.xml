@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.exam.viewresults.dao.SubErrorquestionInfoDao">
+
+    <select id="selectSubQuestionInfoList" resultType="com.qgexam.exam.viewresults.pojo.VO.SubQuestionResultVO">
+        select sub_question_id,sub_question_desc,sub_question_answer,sub_question_ans
+        from sub_errorquestion_info
+        where question_id = #{questionId}
+          and student_id = #{studentId}
+          and is_deleted = 0
+    </select>
+</mapper>

@@ -9,6 +9,8 @@ import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
 import com.qgexam.user.pojo.VO.GetInvigilationInfoVO;
 import com.qgexam.user.pojo.DTO.CreatePaperDTO;
 import com.qgexam.user.pojo.VO.SubjectVO;
+import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
+import com.qgexam.user.pojo.VO.*;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +27,8 @@ public interface NeTeacherInfoService{
     boolean createExamination(Integer userId, CreateExamDTO createExamDTO);
 
     IPage<GetInvigilationInfoVO> getInvigilationInfo(GetInvigilationInfoDTO getInvigilationInfoDTO);
+
+    List<PreviewQuestionInfoVO> previewPaper(Integer examinationPaperId);
 
     void createPaper(Integer teacherId, CreatePaperDTO createPaperDTO);
 

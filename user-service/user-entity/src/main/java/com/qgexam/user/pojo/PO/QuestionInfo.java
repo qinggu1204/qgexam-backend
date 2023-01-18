@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.qgexam.user.pojo.VO.OptionInfoVO;
+import com.qgexam.user.pojo.VO.PreviewOptionInfoVO;
+import com.qgexam.user.pojo.VO.PreviewSubQuestionInfoVO;
 import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -60,6 +62,13 @@ public class QuestionInfo implements Serializable {
     // 题目小题
     @TableField(exist = false)
     private List<SubQuestionInfoVO> subQuestionInfo;
+
+    @TableField(exist = false)
+    private List<PreviewOptionInfoVO> previewOptionInfo;
+
+    // 题目小题
+    @TableField(exist = false)
+    private List<PreviewSubQuestionInfoVO> previewSubQuestionInfo;
 
 }
 

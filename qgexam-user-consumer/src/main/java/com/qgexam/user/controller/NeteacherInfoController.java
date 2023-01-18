@@ -11,7 +11,11 @@ import com.qgexam.common.web.base.BaseController;
 import com.qgexam.user.pojo.DTO.ArrangeInvigilationDTO;
 import com.qgexam.user.pojo.DTO.CreateExamDTO;
 import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
+import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
 import com.qgexam.user.service.NeTeacherInfoService;
+import com.qgexam.user.service.SubjectInfoService;
+import com.qgexam.user.service.TeacherInfoService;
+import com.qgexam.user.service.UserInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +31,12 @@ public class NeteacherInfoController extends BaseController {
 
     @DubboReference
     private NeTeacherInfoService neTeacherInfoService;
+    @DubboReference
+    private TeacherInfoService teacherInfoService;
+    @DubboReference
+    private UserInfoService userInfoService;
+    @DubboReference
+    private SubjectInfoService subjectInfoService;
 
     /**
      * @description 教务教师组卷
@@ -122,5 +132,24 @@ public class NeteacherInfoController extends BaseController {
     public ResponseResult getInvigilationInfo(@PathVariable("examinationId") Integer examinationId,
                                               Integer currentPage, Integer pageSize){
         return ResponseResult.okResult(neTeacherInfoService.getInvigilationInfo(new GetInvigilationInfoDTO(examinationId,currentPage,pageSize)));
+    }
+    @GetMapping("/getTeacherInfo")
+    public ResponseResult getTeacherInfo(){
+        SaSession session=StpUtil.getSession();
+        return ResponseResult.okResult(teacherInfoService.getTeacherInfo(session));
+    }
+    @PutMapping("/updateTeacherInfo")
+    public ResponseResult updateTeacherInfo(@RequestBody @Validated UpdateTeacherInfoDTO updateTeacherInfoDTO) {
+        userInfoService.updateTeacherInfo(getUserId(), updateTeacherInfoDTO);
+        return ResponseResult.okResult();
+    }
+    @GetMapping("/getSubjectList")
+    public ResponseResult getSubjectList() {
+        return ResponseResult.okResult(subjectInfoService.getSubjectList());
+    }
+
+    @GetMapping("/previewPaper/{examinationPaperId}")
+    public ResponseResult previewPaper(@PathVariable("examinationPaperId") Integer examinationPaperId){
+        return ResponseResult.okResult(neTeacherInfoService.previewPaper(examinationPaperId));
     }
 }

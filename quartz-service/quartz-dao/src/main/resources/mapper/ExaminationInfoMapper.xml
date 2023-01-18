@@ -12,4 +12,10 @@
         values(#{examinationPaperId},#{examinationName}, #{createdBy}, #{startTime}, #{endTime}, #{limitTime}, #{isQuestionResort}, #{isOptionResort})
     </insert>
 
+    <update id="updateStatus">
+        update examination_info
+        set status = #{status}
+        where examination_id = #{examinationId}
+    </update>
+
 </mapper>

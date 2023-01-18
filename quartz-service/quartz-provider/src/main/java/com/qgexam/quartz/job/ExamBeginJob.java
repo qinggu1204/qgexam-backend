@@ -14,6 +14,7 @@ import com.qgexam.quartz.pojo.VO.ExaminationInfoVO;
 import com.qgexam.user.pojo.VO.OptionInfoVO;
 import com.qgexam.user.pojo.VO.QuestionInfoVO;
 import com.qgexam.user.pojo.VO.SubQuestionInfoVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
  * @author yzw
  * @date 2023年01月08日 23:42
  */
+@Slf4j
 @Component("examBeginJob")
 public class ExamBeginJob {
 
@@ -48,7 +50,7 @@ public class ExamBeginJob {
     private SubQuestionInfoDao subQuestionInfoDao;
 
     public void execute(Integer examinationId) {
-        System.out.println("###########examBeginJob.execute()###########");
+        log.info("###########examBeginJob.execute()###########");
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
         // 如果examinationInfo为空，抛出BusinessException
@@ -125,16 +127,6 @@ public class ExamBeginJob {
                         questionInfo -> BeanCopyUtils.copyBean(questionInfo, QuestionInfoVO.class)
                 ));
 
-        // 获取考试信息
-        ExaminationInfoVO examinationInfoVO = BeanCopyUtils.copyBean(examinationInfo, ExaminationInfoVO.class);
-        // 将数字的考试状态转换为中文
-        if(ExamConstants.EXAM_STATUS_NOT_START.equals(examinationInfo.getStatus())){
-            examinationInfoVO.setStatus(ExamConstants.EXAM_STATUS_NOT_START_VO);
-        }else if(ExamConstants.EXAM_STATUS_UNDERWAY.equals(examinationInfo.getStatus())){
-            examinationInfoVO.setStatus(ExamConstants.EXAM_STATUS_UNDERWAY_VO);
-        }else if(ExamConstants.EXAM_STATUS_OVER.equals(examinationInfo.getStatus())){
-            examinationInfoVO.setStatus(ExamConstants.EXAM_STATUS_OVER_VO);
-        }
 
         // 获取考试结束时间
         LocalDateTime endTime = examinationInfo.getEndTime();
@@ -144,7 +136,7 @@ public class ExamBeginJob {
         long timeout = duration.toMillis();
 
         // 将考试信息存入redis
-        redisCache.setCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), examinationInfoVO);
+        redisCache.setCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), examinationInfo);
         redisCache.expire(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), timeout, TimeUnit.MILLISECONDS);
         // 将题目信息存入redis
         // 单选题

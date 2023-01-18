@@ -34,4 +34,12 @@ public class TranTest {
 //        int count2 = subQuestionInfoDao.insert(subQuestionInfo);
 //        System.out.println(count2);
     }
+
+    @Test
+    public void test2() {
+        QuestionInfo questionInfo = new QuestionInfo();
+        questionInfo.setDescription("测试测试");
+        int key = questionInfoDao.insertQuestionInfo(questionInfo);
+        System.out.println("================ " + questionInfo.getQuestionId());
+    }
 }

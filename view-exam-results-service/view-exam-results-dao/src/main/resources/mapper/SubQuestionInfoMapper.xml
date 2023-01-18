@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.exam.viewresults.dao.SubQuestionInfoDao">
+
+    <select id="selectSubQuestionInfoList" resultType="com.qgexam.exam.viewresults.pojo.VO.SubQuestionResultVO">
+        select sqi.sub_question_id,sqi.sub_question_desc,sqad.sub_question_answer,sqi.sub_question_ans
+        from sub_question_info sqi, sub_question_answer_detail sqad
+        where sqi.question_id = #{questionId}
+          and sqad.answer_paper_detail_id = #{answerPaperDetailId}
+          and sqad.sub_question_id = sqi.sub_question_id
+          and sqi.is_deleted = 0
+          and sqad.is_deleted = 0
+    </select>
+
+    <select id="selectSubQuestionInfoListByQuestionInfoId" resultType="com.qgexam.exam.viewresults.pojo.VO.SubQuestionResultVO">
+        select sqi.sub_question_id,sqi.sub_question_desc,"" as subQuestionAnswer,sqi.sub_question_ans
+        from sub_question_info sqi
+        where sqi.question_id = #{questionId}
+          and sqi.is_deleted = 0
+    </select>
+
+</mapper>

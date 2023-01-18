@@ -3,7 +3,7 @@ package com.qgexam.exam.enter.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
-import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
+import com.qgexam.user.pojo.PO.ExaminationInfo;
 import org.apache.ibatis.annotations.Param;
 
 /**

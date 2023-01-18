@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qgexam.user.pojo.PO.MessageInfo;
 import com.qgexam.user.pojo.VO.MessageInfoListVO;
+import com.qgexam.user.pojo.VO.MessageInfoVO;
 
 /**
  * 消息表(MessageInfo)表服务接口
@@ -15,5 +16,6 @@ public interface MessageInfoService extends IService<MessageInfo> {
     IPage<MessageInfoListVO> getMessageList(Integer userId, Integer currentPage, Integer pageSize);
 
     Integer getBadgeNumber(Integer userId);
+    MessageInfoVO getMessage(Integer userId,Integer messageId);
 }
 

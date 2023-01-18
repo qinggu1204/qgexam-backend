@@ -30,7 +30,7 @@ public class AnswerPaperInfo implements Serializable {
     //主观题得分
     private Integer subjectiveScore;
     //卷面总分
-    private Integer paperTotalSccore;
+    private Integer paperTotalScore;
     //是否已批阅(0未批阅 1已批阅)
     private Integer isMarked;
     //学生是否可以查询答卷(0 不可以 1可以)
