@@ -41,9 +41,9 @@ public class ExaminationInfo implements Serializable {
     //成绩查询开始时间
     private LocalDateTime resultQueryTime;
     //创建时间
-    private Date createTime;
+    private LocalDateTime createTime;
     //更新时间
-    private Date updateTime;
+    private LocalDateTime updateTime;
     //0未删除 1已删除
     private Integer isDeleted;
 
