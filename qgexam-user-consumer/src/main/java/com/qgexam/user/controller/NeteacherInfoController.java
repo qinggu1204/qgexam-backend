@@ -5,13 +5,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.api.ResponseResult;
 import com.qgexam.common.web.base.BaseController;
-import com.qgexam.user.pojo.DTO.CreatePaperDTO;
-import com.qgexam.user.pojo.DTO.DistributeJudgeTaskDTO;
-import com.qgexam.common.web.base.BaseController;
-import com.qgexam.user.pojo.DTO.ArrangeInvigilationDTO;
-import com.qgexam.user.pojo.DTO.CreateExamDTO;
-import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
-import com.qgexam.user.pojo.DTO.UpdateTeacherInfoDTO;
+import com.qgexam.user.pojo.DTO.*;
 import com.qgexam.user.service.NeTeacherInfoService;
 import com.qgexam.user.service.SubjectInfoService;
 import com.qgexam.user.service.TeacherInfoService;
@@ -20,8 +14,6 @@ import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Validated
@@ -46,10 +38,10 @@ public class NeteacherInfoController extends BaseController {
      */
     @PostMapping("/createPaper")
     public ResponseResult createPaper(@RequestBody @Validated CreatePaperDTO createPaperDTO){
-        //获取教师编号
-        Integer teacherId = getTeacherId();
+        //获取用户编号
+        Integer userId = getUserId();
         //将相关信息插入试卷表
-        neTeacherInfoService.createPaper(teacherId,createPaperDTO);
+        neTeacherInfoService.createPaper(userId,createPaperDTO);
         return ResponseResult.okResult();
     }
 

@@ -30,7 +30,7 @@ public interface NeTeacherInfoService{
 
     List<PreviewQuestionInfoVO> previewPaper(Integer examinationPaperId);
 
-    void createPaper(Integer teacherId, CreatePaperDTO createPaperDTO);
+    void createPaper(Integer userId, CreatePaperDTO createPaperDTO);
 
     List<SubjectVO> getSubjectList();
 
