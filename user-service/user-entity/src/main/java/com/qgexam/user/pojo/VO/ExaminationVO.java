@@ -18,9 +18,7 @@ import java.time.LocalDateTime;
 public class ExaminationVO implements Serializable {
     private Integer examinationId;
     private String examinationName;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private LocalDateTime startTime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private LocalDateTime endTime;
     private Integer status;
 }
