@@ -2,6 +2,7 @@ package com.qgexam.user.service;
 
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.user.UserProviderApplication;
+import com.qgexam.user.pojo.PO.ExaminationInfo;
 import com.qgexam.user.pojo.PO.UserInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,13 @@ public class RedisCacheTest {
     private RedisCache redisCache;
     @Test
     public void test() {
-        Map<String, UserInfo> userInfoMap = new HashMap<>();
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserId(1);
-        userInfo.setLoginName("zhangssan");
-        userInfoMap.put("1", userInfo);
-        UserInfo userInfo2 = new UserInfo();
-        userInfo2.setUserId(2);
-        userInfo2.setLoginName("lisi");
-        userInfoMap.put("2", userInfo2);
-        redisCache.setCacheMap("user:1", userInfoMap);
-        Map<String, Object> cacheMap = redisCache.getCacheMap("user:1");
-        cacheMap.forEach((k, v) -> {
-            System.out.println(k + " : " + v);
-        });
+        ExaminationInfo examinationInfo = new ExaminationInfo();
+        examinationInfo.setExaminationId(1);
+
+        redisCache.setCacheObject("exi", examinationInfo);
+        System.out.println("-----------------------------");
+        ExaminationInfo examinationInfo1 = redisCache.getCacheObject("exi");
+        System.out.println(examinationInfo1);
+
     }
 }

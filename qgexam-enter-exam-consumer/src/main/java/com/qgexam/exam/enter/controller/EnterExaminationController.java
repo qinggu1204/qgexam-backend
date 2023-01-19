@@ -59,7 +59,7 @@ public class EnterExaminationController extends BaseController {
                                       @NotNull(message = "currentPage不能为空") Integer currentPage,
                                       @NotNull(message = "pageSize不能为空") Integer pageSize) {
         return ResponseResult.okResult(examinationInfoService.getExamList(new GetExamListDTO(courseId,
-                examinationName, currentPage, pageSize)));
+                examinationName, currentPage, pageSize, getStudentId())));
 
     }
 
@@ -68,6 +68,7 @@ public class EnterExaminationController extends BaseController {
         JoinExamDTO joinExamDTO = new JoinExamDTO();
         joinExamDTO.setExaminationId(examinationId);
         joinExamDTO.setJoinTime(LocalDateTime.now());
+        joinExamDTO.setStudentId(getStudentId());
         // 获取试卷
         GetExaminationPaperVO examinationPaper = enterExamService.getExaminationPaper(joinExamDTO);
         // 向学生考试记录消息队列中发送一条消息

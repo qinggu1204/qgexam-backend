@@ -512,7 +512,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         String examinationName = examinationInfoDao.getByExaminationId(examinationId).getExaminationName();
         /*随机抽取列表中的教师作为监考教师*/
         Random rand = new Random();
-        int randomIndex = rand.nextInt(availableTeacherList.size());
+        int randomIndex = rand.nextInt(availableTeacherList.size() - 1);
         for (CourseInfo course : availableCourseList) {
             for (int i = 0; i < availableCourseList.size(); i++) {
                 /*随机抽中的教师信息*/

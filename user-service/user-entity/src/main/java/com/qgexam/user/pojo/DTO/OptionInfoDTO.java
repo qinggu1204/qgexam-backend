@@ -16,8 +16,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OptionInfoDTO implements Serializable {
-    @NotBlank(message = "选项名称不能为空")
     private String optionName;
-    @NotBlank(message = "选项内容不能为空")
     private String optionDesc;
 }
