@@ -144,8 +144,8 @@ public class FinishExamServiceImpl implements FinishExamService {
     @Transactional
     public boolean save(SaveOrSubmitDTO saveOrSubmitDTO, Integer studentId){
         /*获取Redis前缀*/
-        /*将提交信号试卷id和学生id放入缓存中*/
-        String detailPrefix = EXAMINATIONANSWER_DETAIL_KEY_PREFIX+examinationInfoDao.getExaminationPaperId(saveOrSubmitDTO.getExaminationId())+":"+studentId;
+        /*将提交信号考试id和学生id放入缓存中*/
+        String detailPrefix = EXAMINATIONANSWER_DETAIL_KEY_PREFIX+saveOrSubmitDTO.getExaminationId()+":"+studentId;
         com.qgexam.user.pojo.PO.ExaminationInfo examinationInfo =
                 redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX
                         + saveOrSubmitDTO.getExaminationId());
