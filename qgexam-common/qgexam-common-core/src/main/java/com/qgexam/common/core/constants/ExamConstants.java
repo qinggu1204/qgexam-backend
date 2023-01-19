@@ -116,4 +116,8 @@ public class ExamConstants {
     public static final String EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX = "examinationresult:totalscore:";
     public static final String EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX = "examinationresult:stutotalscore:";
     public static final String EXAMRESULT_STUID_HASH_KEY_PREFIX = "studentId:";
+
+
+    public static final String EXAM_ANSWER_SUBMIT_KEY = "examinationanswer:submit:";
+    public static final String EXAM_ANSWER_DETAIL_KEY = "examinationanswer:submit:";
 }

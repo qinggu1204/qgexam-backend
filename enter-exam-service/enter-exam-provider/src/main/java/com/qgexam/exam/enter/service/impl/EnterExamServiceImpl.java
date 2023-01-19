@@ -131,7 +131,7 @@ public class EnterExamServiceImpl implements EnterExamService {
         if (cuttingNumber == null) {
             cuttingNumber = 0;
         }
-        cuttingNumber ++;
+        cuttingNumber++;
         redisCache.setCacheObject(screenCuttingKey, cuttingNumber);
         redisCache.expire(screenCuttingKey, timeout);
     }
@@ -142,7 +142,7 @@ public class EnterExamServiceImpl implements EnterExamService {
         ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
 
         /*
-         * 1.考试未开始，数据内容还未加载到redis中
+         * 1.考试未开始(未到开始前10分钟)，数据内容还未加载到redis中
          * 2.考试已结束，数据内容已从redis中删除
          */
         if (examinationInfo == null) {
@@ -163,18 +163,33 @@ public class EnterExamServiceImpl implements EnterExamService {
                 throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已结束。");
             }
         }
-        // 运行到此处说明examinationInfo不为空
+        // 运行到此处说明redis中examinationInfo不为空
+        /*
+        需要考虑以下情况：
+            1.试卷已经加在到redis中但是未开始考试
+            2.试卷已经加载到redis中但是考试已经结束(非必要,因为考试结束后会将redis中的数据删除)
+            // 上面1，2能够保证考试一定在进行中
+            考虑以下情况：
+            3.考试已经开始但是超过了限时进入时间
+            4.考试未结束，但是学生已经提交试卷
 
-        // 判断考试是否已经结束
+         */
+
         LocalDateTime endTime = examinationInfo.getEndTime();
         Integer limitTime = examinationInfo.getLimitTime();
         LocalDateTime startTime = examinationInfo.getStartTime();
 
-        // 考试未开始
+        // 试卷已经加在到redis中但是未开始考试
         if (joinTime.isBefore(startTime)) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试还未开始，无法进入考试。");
         }
 
+        // 试卷已经加载到redis中但是考试已经结束(非必要,因为考试结束后会将redis中的数据删除)
+        if (joinTime.isAfter(endTime)) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已经结束。");
+        }
+
+        // 考试已经开始但是超过了限时进入时间
         // 等于0说明不限时进入
         if (limitTime != 0) {
             // 计算限时进入时间点
@@ -184,10 +199,9 @@ public class EnterExamServiceImpl implements EnterExamService {
                 throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "晚于考试限时进入时间，无法进入考试。");
             }
         }
-        // 判断考试是否已经结束，非必须
-        if (joinTime.isAfter(endTime)) {
-            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试已经结束。");
-        }
+        // 考试未结束，但是学生已经提交试卷
+
+
 
         return examinationInfo;
     }
