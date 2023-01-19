@@ -5,7 +5,7 @@ import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.viewresults.dao.*;
 import com.qgexam.exam.viewresults.pojo.PO.*;
 import com.qgexam.exam.viewresults.pojo.VO.*;
-import com.qgexam.rabbit.constants.RabbitMQConstants;
+import com.qgexam.rabbit.constants.BeginCacheRabbitConstants;
 
 import com.qgexam.rabbit.constants.ViewExamResultsRabbitConstant;
 import com.qgexam.rabbit.pojo.PO.ErrorQuestionDTO;
@@ -60,7 +60,7 @@ public class RabbitMessageListener {
      * @author ljy
      * @date 2023/1/10 15:59
      */
-    @RabbitListener(queues = RabbitMQConstants.BEGIN_CACHE_QUEUE_NAME)
+    @RabbitListener(queues = BeginCacheRabbitConstants.BEGIN_CACHE_QUEUE_NAME)
     public void listenBeginCacheQueue(Integer examinationId, Channel channel, Message message) throws IOException {
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationId);
