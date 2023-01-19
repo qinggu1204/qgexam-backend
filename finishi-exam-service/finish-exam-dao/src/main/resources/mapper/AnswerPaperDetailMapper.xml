@@ -8,6 +8,7 @@
     </insert>
     <update id="updateAnswerPaperDetail">
         update answer_paper_detail set student_answer=#{studentAnswer},score=#{score}
+
         where answer_paper_id=#{answerPaperId} and question_id=#{questionId}
     </update>
     <select id="getAnswerPaperDetailId" resultType="java.lang.Integer">

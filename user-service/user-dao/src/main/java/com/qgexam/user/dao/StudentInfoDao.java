@@ -23,5 +23,8 @@ public interface StudentInfoDao extends BaseMapper<StudentInfo> {
                                        @Param("loginName")String loginName, IPage<GetStudentVO> page);
     Integer updateStudentNumber(@Param("studentId")Integer studentId,@Param("newStudentNUmber")String newStudentNumber);
     Integer updateStudentNumberInStudentCourse(@Param("studentId")Integer studentId,@Param("newStudentNUmber")String newStudentNumber);
+
+    Integer getCountByStudentIdAndCourseId(@Param("studentId") Integer studentId,
+                                           @Param("courseId") Integer courseId);
 }
 

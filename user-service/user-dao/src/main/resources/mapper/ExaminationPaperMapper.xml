@@ -3,6 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.user.dao.ExaminationPaperDao">
 
+    <insert id="savePaperQuestionBatch">
+        insert into examination_paper_question (examination_paper_id, question_id, question_score)
+        values
+        <foreach collection="questionIdList" item="questionId" index="index" separator=",">
+            (#{examinationPaperId}, #{questionId},#{questionScore})
+        </foreach>
+    </insert>
+
     <resultMap id="selectExaminationPaperByIdResultMap" type="com.qgexam.user.pojo.PO.ExaminationPaper">
         <id column="examination_paper_id" property="examinationPaperId"/>
         <result column="title" property="title"/>

@@ -14,9 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import static com.qgexam.common.core.constants.ExamConstants.EXAMINATION_ANSWER_SUBMIT_KEY_PREFIX;
 
 @Slf4j
 @Validated

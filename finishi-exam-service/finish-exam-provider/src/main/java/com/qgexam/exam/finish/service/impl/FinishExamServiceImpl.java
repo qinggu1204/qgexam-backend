@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static com.qgexam.common.core.constants.ExamConstants.EXAMINATION_ANSWER_DETAIL_KEY_PREFIX;
+import static com.qgexam.common.core.constants.ExamConstants.EXAMINATIONANSWER_DETAIL_KEY_PREFIX;
 
 /**
  * @author tageshi
@@ -144,9 +144,8 @@ public class FinishExamServiceImpl implements FinishExamService {
     @Transactional
     public boolean save(SaveOrSubmitDTO saveOrSubmitDTO, Integer studentId){
         /*获取Redis前缀*/
-        /*将提交信号答卷编号（answer_paper_id）放入缓存中*/
-        Integer answerPaperId=answerPaperInfoDao.getAnswerPaperId(studentId,saveOrSubmitDTO.getExaminationId());
-        String detailPrefix = EXAMINATION_ANSWER_DETAIL_KEY_PREFIX+answerPaperId;
+        /*将提交信号试卷id和学生id放入缓存中*/
+        String detailPrefix = EXAMINATIONANSWER_DETAIL_KEY_PREFIX+examinationInfoDao.getExaminationPaperId(saveOrSubmitDTO.getExaminationId())+":"+studentId;
         com.qgexam.user.pojo.PO.ExaminationInfo examinationInfo =
                 redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX
                         + saveOrSubmitDTO.getExaminationId());

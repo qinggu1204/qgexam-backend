@@ -143,7 +143,7 @@ public class UserInfoController extends BaseController {
     /**
      * @description 从session中获取用户信息
      * @return com.qgexam.common.core.api.ResponseResult
-     * @aythor peter guo
+     * @author peter guo
      * @date 2022/12/14 19:10:29
      */
     @GetMapping("/common/getUserInfo")

@@ -12,4 +12,20 @@
         values(#{examinationPaperId},#{examinationName}, #{createdBy}, #{startTime}, #{endTime}, #{limitTime}, #{isQuestionResort}, #{isOptionResort})
     </insert>
 
+    <select id="getTeacherIdList" resultType="java.lang.Integer">
+        select teacher_id
+        from teacher_course
+        where course_id in (select course_id
+                            from course_examination
+                            where examination_id = #{examinationId})
+    </select>
+    <select id="selectSubQuestionIdList" resultType="java.lang.Integer">
+        select question_id
+        from question_info
+        where question_id in
+              (select question_id
+               from examination_paper_question
+               where examination_paper_id = #{examinationPaperId})
+          and sub_or_obj = 0;
+    </select>
 </mapper>

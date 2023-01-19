@@ -43,6 +43,7 @@
         <aliyun-java-sdk-dysmsapi.version>2.1.0</aliyun-java-sdk-dysmsapi.version>
         <sa-token.version>1.33.0</sa-token.version>
         <servlet.version>4.0.1</servlet.version>
+        <arcsoft.version>2.2.0.1</arcsoft.version>
     </properties>
 
 
@@ -165,7 +166,6 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-log4j12.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>

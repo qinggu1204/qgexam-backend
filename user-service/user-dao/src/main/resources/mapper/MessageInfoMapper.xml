@@ -17,4 +17,18 @@
         select examination_name,start_time,end_time from message_info where user_id=#{userId} and message_id=#{messageId}
     </select>
 
+    <insert id="insertMarkingMessageBatch">
+        INSERT INTO message_info (user_id, title, examination_name, end_time)
+        VALUES
+        <foreach collection="messageInfoList" item="messageInfo" separator=",">
+            (#{messageInfo.userId}, #{messageInfo.title}, #{messageInfo.examinationName}, #{messageInfo.endTime})
+        </foreach>
+    </insert>
+    <insert id="insertScoreQueryMessageBatch" useGeneratedKeys="true" keyProperty="messageId">
+        INSERT INTO message_info (user_id, title, examination_name, start_time, is_deleted)
+        VALUES
+        <foreach collection="messageInfoList" item="messageInfo" separator=",">
+            (#{messageInfo.userId}, #{messageInfo.title}, #{messageInfo.examinationName}, #{messageInfo.startTime}, 1)
+        </foreach>
+    </insert>
 </mapper>

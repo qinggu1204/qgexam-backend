@@ -106,4 +106,12 @@
         </where>
     </select>
 
+    <select id="getScorePage" resultType="com.qgexam.user.pojo.VO.ScoreVO">
+        select student_id,
+               student_number,
+               user_name,
+               final_score
+        from student_course
+        where course_id = #{courseId}
+    </select>
 </mapper>

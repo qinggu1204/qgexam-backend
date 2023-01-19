@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * 学科信息表(SubjectInfo)表数据库访问层
  *
- * @author lamb007
- * @since 2023-01-11 19:38:22
+ * @author peter guo
+ * @since 2022-12-24 17:10:07
  */
 public interface SubjectInfoDao extends BaseMapper<SubjectInfo> {
     List<GetSubjectVO>getSubjectInfo();

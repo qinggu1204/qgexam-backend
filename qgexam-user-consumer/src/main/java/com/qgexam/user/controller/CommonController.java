@@ -20,6 +20,11 @@ public class CommonController extends BaseController {
     @DubboReference
     private MessageInfoService messageInfoService;
 
+    @GetMapping("/getBadgeNumber")
+    public ResponseResult getBadgeNumber() {
+        return ResponseResult.okResult(messageInfoService.getBadgeNumber(getUserId()));
+    }
+
     /**
      * @description 获取消息列表
      * @return com.qgexam.common.core.api.ResponseResult

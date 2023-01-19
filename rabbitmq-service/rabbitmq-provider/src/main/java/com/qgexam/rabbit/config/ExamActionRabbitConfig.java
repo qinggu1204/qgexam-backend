@@ -1,5 +1,6 @@
 package com.qgexam.rabbit.config;
 
+import com.qgexam.rabbit.constants.ExamActionRabbitConstant;
 import com.qgexam.rabbit.constants.ExamRecordRabbitConstant;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -26,6 +27,20 @@ public class ExamActionRabbitConfig {
     @Bean
     public Binding screenCuttingBinding(DirectExchange screenCuttingDirectExchange, Queue screenCuttingQueue) {
         return BindingBuilder.bind(screenCuttingQueue).to(screenCuttingDirectExchange).with(ExamRecordRabbitConstant.EXAM_ACTION_ROUTING_KEY);
+    }
+
+    @Bean
+    public DirectExchange examFaceComparisonDirectExchange() {
+        return new DirectExchange(ExamActionRabbitConstant.EXAM_ACTION_FACE_EXCHANGE_NAME, true, false);
+    }
+    @Bean
+    public Queue examFaceComparisonQueue() {
+        return new Queue(ExamActionRabbitConstant.EXAM_ACTION_FACE_QUEUE_NAME, true, false, false);
+    }
+
+    @Bean
+    public Binding examFaceComparisonBinding(DirectExchange examFaceComparisonDirectExchange, Queue examFaceComparisonQueue) {
+        return BindingBuilder.bind(examFaceComparisonQueue).to(examFaceComparisonDirectExchange).with(ExamActionRabbitConstant.EXAM_ACTION_FACE_ROUTING_KEY);
     }
 
 }

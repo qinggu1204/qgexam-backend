@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.qgexam.user.pojo.DTO.CreateCourseDTO;
 
 import com.qgexam.user.pojo.PO.TeacherInfo;
+import com.qgexam.user.pojo.VO.ScoreVO;
 import com.qgexam.user.pojo.VO.StudentVO;
 import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
 
@@ -24,5 +25,6 @@ public interface TeacherInfoService extends IService<TeacherInfo> {
 
     GetTeacherInfoVO getTeacherInfo(SaSession session);
 
+    IPage<ScoreVO> getScoreList(Integer courseId, Integer currentPage, Integer pageSize);
 }
 

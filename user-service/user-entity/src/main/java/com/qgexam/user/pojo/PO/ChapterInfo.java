@@ -10,8 +10,8 @@ import java.io.Serializable;
 /**
  * 学科章节表(ChapterInfo)表实体类
  *
- * @author ljy
- * @since 2022-12-25 20:30:48
+ * @author peter guo
+ * @since 2022-12-23 12:20:52
  */
 @Data
 @AllArgsConstructor

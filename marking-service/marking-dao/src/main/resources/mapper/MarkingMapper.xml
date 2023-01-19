@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qgexam.marking.dao.MarkingDao">
+
+    <select id="getExamIdList" resultType="java.lang.Integer">
+        select examination_id
+        from course_examination
+        where course_id in (select course_id from teacher_course where teacher_id = #{teacherId});
+    </select>
+</mapper>

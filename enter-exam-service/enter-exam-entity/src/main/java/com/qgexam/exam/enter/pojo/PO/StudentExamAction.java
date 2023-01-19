@@ -24,8 +24,8 @@ public class StudentExamAction implements Serializable {
     private Integer studentId;
     
     private Integer examinationId;
-    //学生切屏次数
-    private Integer screenCuttingNumber;
+    //类型 0切屏 1人脸
+    private Integer type;
     //创建时间
     private LocalDateTime createTime;
     //更新时间

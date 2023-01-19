@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qgexam.marking.dao.AnswerPaperDetailDao">
+
+    <update id="updateScoreBatch">
+        UPDATE answer_paper_detail SET score =
+        <foreach collection="questionList" item="question" index="index" open="CASE question_id " separator=" "
+                 close="END">
+            WHEN #{question.questionId} THEN #{question.score}
+        </foreach>
+        WHERE answer_paper_id = #{answerPaperId} and question_id in
+        <foreach collection="questionList" index="index" item="question" separator="," open="(" close=")">
+            #{question.questionId}
+        </foreach>
+    </update>
+</mapper>

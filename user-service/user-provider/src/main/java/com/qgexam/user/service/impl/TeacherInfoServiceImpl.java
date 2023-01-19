@@ -15,6 +15,7 @@ import com.qgexam.user.pojo.DTO.CreateCourseDTO;
 import com.qgexam.user.pojo.PO.CourseInfo;
 import com.qgexam.user.pojo.PO.StudentInfo;
 import com.qgexam.user.pojo.PO.TeacherInfo;
+import com.qgexam.user.pojo.VO.ScoreVO;
 import com.qgexam.user.pojo.VO.StudentVO;
 import com.qgexam.user.pojo.PO.UserInfo;
 import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
@@ -88,6 +89,12 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
         }
 
 
+    }
+
+    @Override
+    public IPage<ScoreVO> getScoreList(Integer courseId, Integer currentPage, Integer pageSize){
+        IPage<ScoreVO> page=new Page<>(currentPage,pageSize);
+        return teacherInfoDao.getScorePage(courseId,page);
     }
 }
 

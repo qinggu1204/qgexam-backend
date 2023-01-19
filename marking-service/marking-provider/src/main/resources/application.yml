@@ -15,7 +15,7 @@ dubbo:
     # 注册中心名称
     markingRegistry:
       # 注册中心地址
-      address: zookeeper://81.68.168.28:2182
+      address: zookeeper://101.35.52.77:2182
       default: true
       timeout: 600000
 
@@ -64,7 +64,6 @@ oss:
   secretKey: ZvqIjeQGEqGs3NyN8ChydWwlJEXbw_GddeLQ26hN
   bucket: my-blog11
   ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
-
 
 
 

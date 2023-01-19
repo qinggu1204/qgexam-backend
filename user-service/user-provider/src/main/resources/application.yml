@@ -55,6 +55,22 @@ spring:
     url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
+  rabbitmq:
+    host: 101.35.52.77
+    port: 5672
+    username: qgexam
+    password: qgexam
+    virtual-host: /qgexam
+    #开启发送端确认
+    publisher-confirm-type: correlated
+    #开启发送端抵达队列确认
+    publisher-returns: true
+    # 只要抵达队列，以异步的方式回调returnCallback
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
 
   # redis配置
   redis:
@@ -68,7 +84,6 @@ spring:
         max-wait: 1ms
         max-idle: 4
         min-idle: 0
-
 
 
 mybatis-plus:
@@ -96,5 +111,9 @@ oss:
   ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
 
 
-
-
+config:
+  arcface-sdk:
+    sdk-lib-path: /WIN64
+    app-id: 2sr4gtUog9QmdqzYCtmebyjaQEb3hXjzEAqM7UV7PZWQ
+    sdk-key: DASnoSyQzbkuJT96YPuZZzQSuKRyHRjXfp1kaximn985
+    thread-pool-size: 5

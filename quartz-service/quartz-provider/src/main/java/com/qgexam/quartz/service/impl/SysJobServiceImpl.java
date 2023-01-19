@@ -190,5 +190,14 @@ public class SysJobServiceImpl extends ServiceImpl<SysJobDao, SysJob> implements
         }
         ScheduleUtils.createScheduleJob(scheduler, job);
     }
+
+    @Override
+    public void deleteJobById(SysJob job) {
+        SysJob sysJob = sysJobDao.getJobByNameAndGroup(job);
+        if (sysJob == null) {
+            return;
+        }
+        sysJobDao.deleteById(sysJob.getId());
+    }
 }
 

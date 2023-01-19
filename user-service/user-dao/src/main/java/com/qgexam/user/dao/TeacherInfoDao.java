@@ -31,5 +31,7 @@ public interface TeacherInfoDao extends BaseMapper<TeacherInfo> {
     IPage<GetInvigilationInfoVO> selectInvigilationInfo(IPage<GetInvigilationInfoVO> page, @Param("examinationId") Integer examinationId);
     IPage<GetTeacherListVO> getTeacherPage(@Param("schoolId") Integer schoolId, @Param("roleId") Integer roleId, @Param("loginName") String loginName, IPage<GetTeacherListVO> page);
     Integer updateTeacherNumberInteger(@Param("teacherId")Integer teacherId,@Param("newTeacherNumber")String newTeacherNumber);
+
+    IPage<ScoreVO> getScorePage(@Param("courseId") Integer courseId, IPage<ScoreVO> page);
 }
 

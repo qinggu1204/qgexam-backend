@@ -51,6 +51,15 @@ public class ExamConstants {
      */
     public static final String QUESTION_TYPE_COMPLEX = "COMPLEX";
 
+    /**
+     * 题目难度等级最小值
+     */
+    public static final Integer DIFFICULTY_LEVEL_MINIMUM = 1;
+
+    /**
+     * 题目难度等级最大值
+     */
+    public static final Integer DIFFICULTY_LEVEL_MAXIMUM = 10;
 
     /**
      * 题目类型：判断题
@@ -80,6 +89,21 @@ public class ExamConstants {
 
     public static final String EXAMINATION_INFO_HASH_KEY_PREFIX = "before:examination:info:";
 
+    public static final String SCREEN_CUTTING_KEY = "underway:examination:screenCutting:";
+
+    public static final Integer SCREEN_CUTTING_ACTION = 0;
+    public static final Integer FACE_ACTION = 1;
+    /**
+     * 储存的答卷的键的前缀
+     */
+    public static final String ANSWER_PAPER_KEY = "before:marking:answerPaper:";
+
+    /**
+     * 答卷id列表
+     */
+    public static final String ANSWER_PAPER_ID_LIST_KEY = "after:marking:answerPaperIdList";
+
+
     /**
      * 查询成绩明细缓存常量
      */
@@ -96,9 +120,9 @@ public class ExamConstants {
     /**
      * 学生提交作答信号缓存常量
      */
-    public static final String EXAMINATION_ANSWER_SUBMIT_KEY_PREFIX="before:examination:answer:submit:";
+    public static final String EXAMINATIONANSWER_SUBMIT_KEY_PREFIX="examinationanswer:submit:";
     /**
      * 学生作答详情缓存常量
      */
-    public static final String EXAMINATION_ANSWER_DETAIL_KEY_PREFIX="before:examination:answer:detail:";
+    public static final String EXAMINATIONANSWER_DETAIL_KEY_PREFIX="examinationanswer:detail:";
 }

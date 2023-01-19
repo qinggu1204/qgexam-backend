@@ -29,4 +29,6 @@ public class GetStudentInfoVO implements Serializable {
     private String loginName;
     //头像url
     private String headImg;
+    //人脸图片url
+    private String faceImg;
 }

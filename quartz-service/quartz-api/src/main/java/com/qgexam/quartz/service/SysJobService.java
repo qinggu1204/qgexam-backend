@@ -20,5 +20,6 @@ public interface SysJobService extends IService<SysJob> {
     Boolean changeStatus(SysJob job) throws SchedulerException;
     Boolean saveJob(SysJob job) throws SchedulerException;
     Boolean updateJob(SysJob job) throws SchedulerException;
+    void deleteJobById(SysJob job);
 }
 

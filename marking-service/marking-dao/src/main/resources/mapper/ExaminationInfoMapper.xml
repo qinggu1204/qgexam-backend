@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qgexam.marking.dao.ExaminationInfoDao">
+    <select id="selectQuestionList" resultType="com.qgexam.marking.pojo.VO.GetAnswerPaperVO">
+        select question_id, question_score
+        from examination_paper_question
+        where question_id in
+        <foreach collection="subQuestionIdList" item="subQuestionId" open="(" separator="," close=")">
+            #{subQuestionId}
+        </foreach>
+    </select>
+    <select id="selectSubQuestionIdList" resultType="java.lang.Integer">
+        select question_id
+        from question_info
+        where question_id in
+              (select question_id
+               from examination_paper_question
+               where examination_paper_id = #{examinationPaperId})
+          and sub_or_obj = 0;
+    </select>
+    <select id="selectCourseIdList" resultType="java.lang.Integer">
+        select course_id
+        from course_examination
+        where examination_id = #{examinationId};
+    </select>
+
+    <update id="updateCourseScore">
+        update student_course set final_score = #{totalScore}
+        where student_id = #{studentId} and course_id in
+        <foreach collection="courseIdList" item="courseId" open="(" separator="," close=")">
+            #{courseId}
+        </foreach>
+    </update>
+
+</mapper>

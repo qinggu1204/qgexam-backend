@@ -6,6 +6,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.user.dao.MessageInfoDao;
 import com.qgexam.user.pojo.PO.MessageInfo;
 import com.qgexam.user.pojo.VO.MessageInfoListVO;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qgexam.user.dao.MessageInfoDao;
+import com.qgexam.user.pojo.PO.MessageInfo;
 import com.qgexam.user.pojo.VO.MessageInfoVO;
 import com.qgexam.user.service.MessageInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
@@ -39,6 +43,14 @@ public class MessageInfoServiceImpl extends ServiceImpl<MessageInfoDao, MessageI
     public MessageInfoVO getMessage(Integer userId, Integer messageId) {
         MessageInfoVO messageInfoVO=messageInfoDao.getMessage(userId,messageId);
         return messageInfoVO;
+    }
+
+    @Override
+    public Integer getBadgeNumber(Integer userId) {
+        LambdaQueryWrapper<MessageInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(MessageInfo::getUserId, userId)
+                .eq(MessageInfo::getStatus, 0);
+        return messageInfoDao.selectCount(queryWrapper).intValue();
     }
 }
 

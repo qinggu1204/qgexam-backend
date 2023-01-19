@@ -14,6 +14,8 @@ import com.qgexam.user.pojo.VO.MessageInfoVO;
  */
 public interface MessageInfoService extends IService<MessageInfo> {
     IPage<MessageInfoListVO> getMessageList(Integer userId, Integer currentPage, Integer pageSize);
+
+    Integer getBadgeNumber(Integer userId);
     MessageInfoVO getMessage(Integer userId,Integer messageId);
 }
 

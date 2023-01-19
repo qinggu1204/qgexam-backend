@@ -7,9 +7,12 @@ import com.qgexam.user.pojo.DTO.GetInvigilationInfoDTO;
 import com.qgexam.user.pojo.VO.ChapterInfoListVO;
 import com.qgexam.user.pojo.VO.GetExaminationPaperVO;
 import com.qgexam.user.pojo.VO.GetInvigilationInfoVO;
+import com.qgexam.user.pojo.DTO.CreatePaperDTO;
+import com.qgexam.user.pojo.VO.SubjectVO;
 import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
 import com.qgexam.user.pojo.VO.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,4 +29,11 @@ public interface NeTeacherInfoService{
     IPage<GetInvigilationInfoVO> getInvigilationInfo(GetInvigilationInfoDTO getInvigilationInfoDTO);
 
     List<PreviewQuestionInfoVO> previewPaper(Integer examinationPaperId);
+
+    void createPaper(Integer teacherId, CreatePaperDTO createPaperDTO);
+
+    List<SubjectVO> getSubjectList();
+
+    void distributeJudgeTask(Integer examinationId, Date endTime);
+
 }
