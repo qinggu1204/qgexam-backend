@@ -118,6 +118,13 @@ public class ExamConstants {
     public static final String EXAMRESULT_STUID_HASH_KEY_PREFIX = "studentId:";
 
 
-    public static final String EXAM_ANSWER_SUBMIT_KEY = "examinationanswer:submit:";
-    public static final String EXAM_ANSWER_DETAIL_KEY = "examinationanswer:submit:";
+    /**
+     * 学生提交作答信号缓存常量
+     */
+    public static final String EXAMINATIONANSWER_SUBMIT_KEY_PREFIX="examinationanswer:submit:";
+    /**
+     * 学生作答详情缓存常量
+     */
+    public static final String EXAMINATIONANSWER_DETAIL_KEY_PREFIX="examinationanswer:detail:";
 }
+

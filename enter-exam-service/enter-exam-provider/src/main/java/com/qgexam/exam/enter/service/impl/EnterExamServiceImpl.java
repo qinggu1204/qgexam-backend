@@ -40,8 +40,9 @@ public class EnterExamServiceImpl implements EnterExamService {
     public GetExaminationPaperVO getExaminationPaper(JoinExamDTO joinExamDTO) {
         Integer examinationId = joinExamDTO.getExaminationId();
         LocalDateTime joinTime = joinExamDTO.getJoinTime();
+        Integer studentId = joinExamDTO.getStudentId();
         // 判断当前考试是否合法
-        ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime);
+        ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime, studentId);
 
         String singlePrefix = ExamConstants.EXAMINATION_SINGLE_QUESTION_HASH_FIELD + examinationId;
         String multiPrefix = ExamConstants.EXAMINATION_MULTI_QUESTION_HASH_FIELD + examinationId;
@@ -121,7 +122,7 @@ public class EnterExamServiceImpl implements EnterExamService {
         LocalDateTime joinTime = joinExamDTO.getJoinTime();
         Integer studentId = joinExamDTO.getStudentId();
         // 判断当前考试是否合法
-        ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime);
+        ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime, studentId);
         LocalDateTime endTime = examinationInfo.getEndTime();
         Duration duration = LocalDateTimeUtil.between(LocalDateTime.now(), endTime);
         long timeout = duration.toMillis();
@@ -137,7 +138,7 @@ public class EnterExamServiceImpl implements EnterExamService {
     }
 
 
-    private ExaminationInfo isExamInvalid(Integer examinationId, LocalDateTime joinTime) {
+    private ExaminationInfo isExamInvalid(Integer examinationId, LocalDateTime joinTime, Integer studentId) {
         // 从redis中读出考试信息
         ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
 
@@ -200,8 +201,13 @@ public class EnterExamServiceImpl implements EnterExamService {
             }
         }
         // 考试未结束，但是学生已经提交试卷
-
-
+        String submitKey = ExamConstants.EXAMINATIONANSWER_SUBMIT_KEY_PREFIX + examinationId + ":" + studentId;
+        // 从缓存中取出答卷提交标记
+        Object cacheObject = redisCache.getCacheObject(submitKey);
+        // 如果不为空说明学生已经提交试卷
+        if (cacheObject != null) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "已经提交答卷，无法再次进入考试。");
+        }
 
         return examinationInfo;
     }

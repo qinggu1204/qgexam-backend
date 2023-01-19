@@ -1,17 +1,25 @@
 package com.qgexam.exam.finish.service.impl;
 
+import com.qgexam.common.core.constants.ExamConstants;
+import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.finish.dao.*;
 import com.qgexam.exam.finish.pojo.DTO.QuestionDTO;
 import com.qgexam.exam.finish.pojo.DTO.SaveOrSubmitDTO;
 import com.qgexam.exam.finish.pojo.DTO.SubQuestionDTO;
+import com.qgexam.exam.finish.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.finish.service.FinishExamService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import static com.qgexam.common.core.constants.ExamConstants.EXAMINATIONANSWER_DETAIL_KEY_PREFIX;
 
 /**
  * @author tageshi
@@ -31,6 +39,12 @@ public class FinishExamServiceImpl implements FinishExamService {
     private ExaminationPaperQuestionDao examinationPaperQuestionDao;
     @Autowired
     private SubQuestionAnswerDetailDao subQuestionAnswerDetailDao;
+    @Autowired
+    private RedisCache redisCache;
+
+    /**
+     * 学生提交作答
+     */
     @Override
     @Transactional
     public boolean saveOrSubmit(SaveOrSubmitDTO saveOrSubmitDTO,Integer studentId) {
@@ -118,8 +132,28 @@ public class FinishExamServiceImpl implements FinishExamService {
     }
 
     @Override
-    public boolean isCorrectSubmitted(Integer examinationId, Date submitTime) {
-        /*判断是否在考试结束前提交*/
-        return submitTime.compareTo(examinationInfoDao.getEndTimeDate(examinationId)) <= 0;
+    public LocalDateTime getEndTime(Integer examinationId) {
+        com.qgexam.user.pojo.PO.ExaminationInfo examinationInfo = redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationId);
+        return examinationInfo.getEndTime();
+    }
+
+    /**
+     * 学生保存作答（到Redis缓存）
+     */
+    @Override
+    @Transactional
+    public boolean save(SaveOrSubmitDTO saveOrSubmitDTO, Integer studentId){
+        /*获取Redis前缀*/
+        /*将提交信号考试id和学生id放入缓存中*/
+        String detailPrefix = EXAMINATIONANSWER_DETAIL_KEY_PREFIX+saveOrSubmitDTO.getExaminationId()+":"+studentId;
+        com.qgexam.user.pojo.PO.ExaminationInfo examinationInfo =
+                redisCache.getCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX
+                        + saveOrSubmitDTO.getExaminationId());
+        /*考试不在进行中时抛出异常*/
+        if (examinationInfo == null) {
+            throw new RuntimeException("考试不存在");
+        }
+        redisCache.setCacheObject(detailPrefix,saveOrSubmitDTO);
+        return true;
     }
 }
