@@ -43,22 +43,4 @@ public class WebConfigure implements WebMvcConfigurer {
         converters.add(fastJsonHttpMessageConverters());
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        // 设置允许跨域的路径
-        registry.addMapping("/**")
-                .allowCredentials(true)
-                // 设置允许跨域请求的域名
-                .allowedOrigins("*")
-                // 是否允许cookie
-                .allowCredentials(true)
-                // 设置允许的请求方式
-                .allowedMethods("GET", "POST", "DELETE", "PUT")
-                // 设置允许的header属性
-                .allowedHeaders("*")
-                .exposedHeaders("token")
-                // 跨域允许时间
-                .maxAge(3600);
-    }
-
 }

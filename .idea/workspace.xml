@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit ......................">
+    <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit ......................!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/marking-service/marking-entity/src/main/java/com/qgexam/marking/pojo/PO/ExaminationInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-entity/src/main/java/com/qgexam/marking/pojo/PO/ExaminationInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/NeteacherInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/NeteacherInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/NeTeacherInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/NeTeacherInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +115,7 @@
       <recent name="com.qgexam.user.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.EnterExamConsumerApplication">
+  <component name="RunManager" selected="Spring Boot.UserConsumerApplication">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -280,7 +287,7 @@
       <workItem from="1671958740519" duration="4534000" />
       <workItem from="1671969426597" duration="340385000" />
       <workItem from="1673457489875" duration="14113000" />
-      <workItem from="1673621364947" duration="125341000" />
+      <workItem from="1673621364947" duration="138380000" />
     </task>
     <task id="LOCAL-00003" summary="peter commit 实现了教师查看选课学生">
       <created>1671204136439</created>
@@ -373,7 +380,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674058202573</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="peter commit ......................!!!">
+      <created>1674059663751</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1674059663751</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,7 +415,8 @@
     <MESSAGE value="peter commit very very very more" />
     <MESSAGE value="peter commit..............." />
     <MESSAGE value="peter commit ......................" />
-    <option name="LAST_COMMIT_MESSAGE" value="peter commit ......................" />
+    <MESSAGE value="peter commit ......................!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="peter commit ......................!!!" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -113,7 +113,7 @@ oss:
 
 config:
   arcface-sdk:
-    sdk-lib-path: /WIN64
+    sdk-lib-path: F:/JavaEE Projects/faceDemo/WIN64
     app-id: 2sr4gtUog9QmdqzYCtmebyjaQEb3hXjzEAqM7UV7PZWQ
     sdk-key: DASnoSyQzbkuJT96YPuZZzQSuKRyHRjXfp1kaximn985
     thread-pool-size: 5

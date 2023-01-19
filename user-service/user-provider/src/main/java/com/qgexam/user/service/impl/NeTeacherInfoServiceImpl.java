@@ -95,7 +95,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
 
 
     /**
-     * @param teacherId
+     * @param userId
      * @param createPaperDTO
      * @return void
      * @description 教务教师组卷，向试卷表插入记录，根据题目总数量和章节重要程度按比例分配章节题目数量，并按照题目平均难度随机选取题目，插入试卷-题目表
@@ -104,12 +104,12 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void createPaper(Integer teacherId, CreatePaperDTO createPaperDTO) {
+    public void createPaper(Integer userId, CreatePaperDTO createPaperDTO) {
         //将相关信息插入试卷表
         ExaminationPaper examinationPaper = new ExaminationPaper();
         examinationPaper.setTitle(createPaperDTO.getTitle());
         examinationPaper.setTotalScore(createPaperDTO.getTotalScore());
-        examinationPaper.setCreatedBy(teacherId);
+        examinationPaper.setCreatedBy(userId);
         //空试卷插入试卷表
         int count = examinationPaperDao.insert(examinationPaper);
         if (count < 1) {

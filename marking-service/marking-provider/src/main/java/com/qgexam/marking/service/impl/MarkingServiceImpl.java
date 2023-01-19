@@ -65,7 +65,7 @@ public class MarkingServiceImpl implements MarkingService {
         //挑选阅卷还未截止的考试
         List<ExaminationInfo> idList = examinationInfoDao.selectList(lambdaQueryWrapper).stream().filter(examinationInfo -> {
             LocalDateTime now = LocalDateTime.now();
-            return now.isBefore(examinationInfo.getEndTime());
+            return now.isBefore(examinationInfo.getMarkingEndTime());
         }).collect(Collectors.toList());
         if(idList.isEmpty()){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
@@ -89,7 +89,7 @@ public class MarkingServiceImpl implements MarkingService {
         lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
-        if(LocalDateTime.now().isAfter(examinationInfo.getEndTime())){
+        if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
 
@@ -128,7 +128,7 @@ public class MarkingServiceImpl implements MarkingService {
         lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
-        if(LocalDateTime.now().isAfter(examinationInfo.getEndTime())){
+        if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
 
@@ -264,7 +264,7 @@ public class MarkingServiceImpl implements MarkingService {
         lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
-        if(LocalDateTime.now().isAfter(examinationInfo.getEndTime())){
+        if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
         //查看是否是自己的试卷
