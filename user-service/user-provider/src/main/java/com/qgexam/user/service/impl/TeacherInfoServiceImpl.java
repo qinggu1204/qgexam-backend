@@ -9,22 +9,20 @@ import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.user.dao.CourseInfoDao;
+import com.qgexam.user.dao.ExaminationInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
 import com.qgexam.user.pojo.DTO.CourseTeacherDTO;
 import com.qgexam.user.pojo.DTO.CreateCourseDTO;
-import com.qgexam.user.pojo.PO.CourseInfo;
-import com.qgexam.user.pojo.PO.StudentInfo;
-import com.qgexam.user.pojo.PO.TeacherInfo;
-import com.qgexam.user.pojo.VO.ScoreVO;
-import com.qgexam.user.pojo.VO.StudentVO;
-import com.qgexam.user.pojo.PO.UserInfo;
-import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
-import com.qgexam.user.pojo.VO.UserInfoVO;
+import com.qgexam.user.pojo.DTO.GetExamListDTO;
+import com.qgexam.user.pojo.PO.*;
+import com.qgexam.user.pojo.VO.*;
 import com.qgexam.user.service.TeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 /**
@@ -42,6 +40,9 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
 
     @Autowired
     private CourseInfoDao courseInfoDao;
+
+    @Autowired
+    private ExaminationInfoDao examinationInfoDao;
 
     @Override
     public IPage<StudentVO> getStudentList(Integer courseId, Integer currentPage, Integer pageSize) {
@@ -95,6 +96,19 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
     public IPage<ScoreVO> getScoreList(Integer courseId, Integer currentPage, Integer pageSize){
         IPage<ScoreVO> page=new Page<>(currentPage,pageSize);
         return teacherInfoDao.getScorePage(courseId,page);
+    }
+
+    @Override
+    public IPage<ExaminationVO> getExamList(GetExamListDTO getExamListDTO) {
+        IPage<ExaminationInfo> page = new Page<>(getExamListDTO.getCurrentPage(), getExamListDTO.getPageSize());
+
+        examinationInfoDao.selectAllExaminationInfo(page, getExamListDTO);
+        List<ExaminationInfo> records = page.getRecords();
+        List<ExaminationVO> getExamListVOS = BeanCopyUtils.copyBeanList(records, ExaminationVO.class);
+
+        IPage<ExaminationVO> pageVO = BeanCopyUtils.copyBean(page, Page.class);
+        pageVO.setRecords(getExamListVOS);
+        return pageVO;
     }
 }
 

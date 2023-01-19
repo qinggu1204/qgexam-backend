@@ -23,7 +23,10 @@ public class BusinessException extends RuntimeException {
         this.code = code;
         this.msg = msg;
     }
-
+    public BusinessException(AppHttpCodeEnum appHttpCodeEnum) {
+        this.code = appHttpCodeEnum.getCode();
+        this.msg = appHttpCodeEnum.getMsg();
+    }
     public static BusinessException newInstance(AppHttpCodeEnum appHttpCodeEnum) {
         return new BusinessException(appHttpCodeEnum.getCode(), appHttpCodeEnum.getMsg());
     }

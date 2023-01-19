@@ -27,7 +27,7 @@ import java.io.IOException;
  * @since 2023-01-18 12:27:39
  */
 @Slf4j
-@Component
+//@Component
 public class RabbitMessageListener {
 
     @Autowired

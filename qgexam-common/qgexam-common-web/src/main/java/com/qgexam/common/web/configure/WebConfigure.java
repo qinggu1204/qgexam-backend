@@ -43,4 +43,5 @@ public class WebConfigure implements WebMvcConfigurer {
         converters.add(fastJsonHttpMessageConverters());
     }
 
+
 }

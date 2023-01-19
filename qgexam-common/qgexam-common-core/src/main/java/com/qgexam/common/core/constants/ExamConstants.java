@@ -116,4 +116,15 @@ public class ExamConstants {
     public static final String EXAMRESULT_TOTALSCORE_HASH_KEY_PREFIX = "examinationresult:totalscore:";
     public static final String EXAMRESULT_STUTOTALSCORE_HASH_KEY_PREFIX = "examinationresult:stutotalscore:";
     public static final String EXAMRESULT_STUID_HASH_KEY_PREFIX = "studentId:";
+
+
+    /**
+     * 学生提交作答信号缓存常量
+     */
+    public static final String EXAMINATIONANSWER_SUBMIT_KEY_PREFIX="examinationanswer:submit:";
+    /**
+     * 学生作答详情缓存常量
+     */
+    public static final String EXAMINATIONANSWER_DETAIL_KEY_PREFIX="examinationanswer:detail:";
 }
+

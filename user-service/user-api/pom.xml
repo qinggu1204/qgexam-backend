@@ -74,6 +74,7 @@
             <artifactId>arcsoft-sdk-face</artifactId>
             <version>2.2.0.1</version>
         </dependency>
+
     </dependencies>
 
 </project>
