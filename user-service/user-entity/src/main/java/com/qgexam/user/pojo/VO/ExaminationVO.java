@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author yzw
@@ -16,7 +17,7 @@ import java.io.Serializable;
 public class ExaminationVO implements Serializable {
     private Integer examinationId;
     private String examinationName;
-    private String startTime;
-    private String endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private Integer status;
 }
