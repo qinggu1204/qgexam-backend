@@ -11,6 +11,10 @@ dubbo:
       # 注册中心地址
       address: zookeeper://47.96.154.148:2181
       timeout: 600000
+    rabbitmqRegistry:
+      # 注册中心地址 rabbitmq
+      address: zookeeper://211.159.223.185:2183
+      timeout: 600000
 
   consumer:
     timeout: 600000

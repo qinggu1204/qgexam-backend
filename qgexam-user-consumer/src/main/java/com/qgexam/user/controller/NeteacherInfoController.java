@@ -143,10 +143,6 @@ public class NeteacherInfoController extends BaseController {
         userInfoService.updateTeacherInfo(getUserId(), updateTeacherInfoDTO);
         return ResponseResult.okResult();
     }
-    @GetMapping("/getSubjectList")
-    public ResponseResult getSubjectList() {
-        return ResponseResult.okResult(subjectInfoService.getSubjectList());
-    }
 
     @GetMapping("/previewPaper/{examinationPaperId}")
     public ResponseResult previewPaper(@PathVariable("examinationPaperId") Integer examinationPaperId){
