@@ -458,7 +458,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         }
 
         //延迟一小时发送将学生查询成绩通知置为可查询到
-        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(markingEndTime), 1, ChronoUnit.MINUTES);
+        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(markingEndTime), 1, ChronoUnit.HOURS);
 
         //定时任务，定时将学生查询成绩通知逻辑删除置为0即可以查询到
         SysJob queryScoreNoticeJob = new SysJob()

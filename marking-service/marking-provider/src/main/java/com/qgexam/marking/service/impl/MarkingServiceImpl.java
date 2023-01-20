@@ -92,6 +92,9 @@ public class MarkingServiceImpl implements MarkingService {
         lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
+        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无法查看还未结束的考试");
+        }
         if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
@@ -138,6 +141,9 @@ public class MarkingServiceImpl implements MarkingService {
         lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
+        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无法查看还未结束的考试");
+        }
         if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
@@ -274,6 +280,9 @@ public class MarkingServiceImpl implements MarkingService {
         lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
+        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无法查看还未结束的考试");
+        }
         if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
