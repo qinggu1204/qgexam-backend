@@ -477,6 +477,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
 
         LambdaUpdateWrapper<ExaminationInfo> updateWrapper = new LambdaUpdateWrapper<>();
         updateWrapper.eq(ExaminationInfo::getExaminationId, examinationId)
+                .set(ExaminationInfo::getMarkingEndTime, LocalDateTimeUtil.of(endTime))
                 .set(ExaminationInfo::getResultQueryTime, noticeTaskTime);
         int updateCount = examinationInfoDao.update(null, updateWrapper);
         if (updateCount < 1) {
