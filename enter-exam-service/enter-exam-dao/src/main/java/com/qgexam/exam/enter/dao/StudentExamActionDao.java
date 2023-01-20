@@ -17,6 +17,7 @@ public interface StudentExamActionDao extends BaseMapper<StudentExamAction> {
 
     Integer insertStudentExamAction(StudentExamAction insertStudentExamAction);
 
-    Integer updateScreenCuttingCount(Integer id);
+
+    Integer countScreenCutting(Integer studentId, Integer examinationId);
 }
 

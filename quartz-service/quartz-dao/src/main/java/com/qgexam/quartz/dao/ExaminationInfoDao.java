@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.user.pojo.PO.ExaminationInfo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 考试信息表(ExaminationInfo)表数据库访问层
  *
@@ -14,5 +16,6 @@ public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
     ExaminationInfo getByExaminationId(Integer examinationId);
     Integer insertExaminationInfo(ExaminationInfo examinationInfo);
     Integer updateStatus(@Param("examinationId")Integer examinationId, @Param("status")Integer status);
+    List<Integer> selectCourseIdByExaminationId(Integer examinationId);
 }
 

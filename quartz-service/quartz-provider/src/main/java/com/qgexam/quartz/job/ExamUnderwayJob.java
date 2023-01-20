@@ -39,7 +39,7 @@ public class ExamUnderwayJob {
         // 获取考试结束时间和当前时间的时间差
         Duration duration = LocalDateTimeUtil.between(LocalDateTime.now(), endTime);
         // 获取时间差的毫秒数，作为redis超时时间，单位为毫秒
-        long timeout = duration.toMillis();
+        long timeout = duration.toMillis() + 60000;
 
         // 将考试信息存入redis
         redisCache.setCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), examinationInfo);

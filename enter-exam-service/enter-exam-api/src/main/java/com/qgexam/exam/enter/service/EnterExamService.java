@@ -10,4 +10,6 @@ public interface EnterExamService {
     GetExaminationInfoVO getExaminationInfo(JoinExamDTO joinExamDTO);
 
     void screenCutting(JoinExamDTO joinExamDTO);
+
+    Integer getScreenCuttingNumber(JoinExamDTO joinExamDTO);
 }

@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2000ac0-27a0-4432-89cf-6e57e975427a" name="变更" comment="peter commit ......................!!!">
+    <list default="true" id="3416a30c-1377-4a90-ab72-e6037e8028da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/utils/PathUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/UploadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/UploadService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/VO/UploadImgVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/UploadServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/marking-service/marking-entity/src/main/java/com/qgexam/marking/pojo/PO/ExaminationInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/marking-service/marking-entity/src/main/java/com/qgexam/marking/pojo/PO/ExaminationInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-web/src/main/java/com/qgexam/common/web/configure/WebConfigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/NeteacherInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/java/com/qgexam/user/controller/NeteacherInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-user-consumer/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/NeTeacherInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-api/src/main/java/com/qgexam/user/service/NeTeacherInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/java/com/qgexam/user/service/impl/NeTeacherInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/api/AppHttpCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/qgexam-common/qgexam-common-core/src/main/java/com/qgexam/common/core/api/AppHttpCodeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/DTO/ImageUploadDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-entity/src/main/java/com/qgexam/user/pojo/DTO/ImageUploadDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/user-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-provider/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Mybatis Mapper" />
+        <option value="mybatis-mapper" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -71,7 +76,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/user-service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/enter-exam-service/enter-exam-dao/src/main/resources/mapper" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -80,10 +85,13 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -94,11 +102,11 @@
       <recent name="com.qgexam.marking.pojo.VO" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JavaWeb\javaee_project\qgexam\enter-exam-service\enter-exam-dao\src\main\resources\mapper" />
       <recent name="F:\JavaEE Projects\project\qgexam\qgexam-user-consumer\src\main\resources\static" />
       <recent name="F:\JavaEE Projects\project\qgexam\qgexam-user-consumer\src\main\resources" />
       <recent name="F:\JavaEE Projects\project\qgexam" />
       <recent name="F:\JavaEE Projects\project\qgexam\user-service\user-api" />
-      <recent name="F:\JavaEE Projects\project\qgexam\qgexam-common\qgexam-common-core\lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\JavaEE Projects\project\qgexam\qgexam-common\qgexam-common-core" />
@@ -115,7 +123,14 @@
       <recent name="com.qgexam.user.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserConsumerApplication">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.PathUtils">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -123,6 +138,19 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PathUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.qgexam.common.core.utils.PathUtils" />
+      <module name="qgexam-common-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qgexam.common.core.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -243,12 +271,14 @@
       <item itemvalue="Spring Boot.ViewExamResultsProviderApplication" />
       <item itemvalue="Spring Boot.QuartzProviderApplication" />
       <item itemvalue="Spring Boot.RabbitmqProviderApplication" />
-      <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
       <item itemvalue="Spring Boot.FinishExamProviderApplication" />
       <item itemvalue="Spring Boot.FinishExamConsumerApplication" />
+      <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
+      <item itemvalue="Application.PathUtils" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PathUtils" />
         <item itemvalue="Spring Boot.EnterExamConsumerApplication" />
         <item itemvalue="Spring Boot.MarkingConsumerApplication" />
       </list>
@@ -403,7 +433,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hhh" />
@@ -424,6 +453,10 @@
         <watch expression="answerPaper" language="JAVA" />
       </inline-watch>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/qgexam$SMSUtils.ic" NAME="SMSUtils 覆盖结果" MODIFIED="1671074415972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -104,16 +104,16 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
 
 
-oss:
-  accessKey: QrsCXu18PoWhOIGDIa5Ufej0pWLIKNfieQ3CpbGp
-  secretKey: ZvqIjeQGEqGs3NyN8ChydWwlJEXbw_GddeLQ26hN
-  bucket: my-blog11
-  ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
+qiniu:
+  accessKey: SgCZS8maB20gHLLbvBr9ZVKuZ5n6Opugh8RRmYcL
+  secretKey: lxYjjQOhgkKMhIgPNcOv41KuM30mrhhtn2B6OwZJ
+  bucket: qgexam
+  ossUrl: http://roq1oxwf8.bkt.clouddn.com/
 
 
 config:
   arcface-sdk:
-    sdk-lib-path: /WIN64
+    sdk-lib-path: E:\JavaWeb\javaee_project\qgexam\WIN64
     app-id: 2sr4gtUog9QmdqzYCtmebyjaQEb3hXjzEAqM7UV7PZWQ
     sdk-key: DASnoSyQzbkuJT96YPuZZzQSuKRyHRjXfp1kaximn985
     thread-pool-size: 5

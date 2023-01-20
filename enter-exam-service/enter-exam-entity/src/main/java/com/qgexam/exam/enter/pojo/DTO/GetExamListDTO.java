@@ -19,5 +19,6 @@ public class GetExamListDTO implements Serializable{
     private String examinationName;
     private Integer currentPage;
     private Integer pageSize;
+    private Integer studentId;
 
 }

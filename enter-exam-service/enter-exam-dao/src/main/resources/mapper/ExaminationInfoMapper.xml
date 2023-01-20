@@ -15,6 +15,7 @@
             <if test="examListDTO.courseId != null and examListDTO.courseId != ''">
                 and ce.course_id = #{examListDTO.courseId}
             </if>
+
             and ei.is_deleted = 0
         </where>
         order by ei.status

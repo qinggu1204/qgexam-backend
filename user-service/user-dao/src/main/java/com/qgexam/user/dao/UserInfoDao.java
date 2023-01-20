@@ -22,7 +22,9 @@ public interface UserInfoDao extends BaseMapper<UserInfo> {
 
     UserInfo getUserInfoByLoginName(String loginName);
     Integer insertTeacher(TeacherInfo teacherInfo);
-    Integer insertTeacherRole(Integer roleId,String roleName,Integer userId);
+    Integer insertTeacherRole(@Param("roleId") Integer roleId,
+                              @Param("roleName") String roleName,
+                              @Param("userId") Integer userId);
     Integer insertStudent(StudentInfo studentInfo);
     Integer updatePassword(UserInfo userInfo);
 
