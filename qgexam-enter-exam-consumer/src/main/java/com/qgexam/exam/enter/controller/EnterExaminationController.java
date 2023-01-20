@@ -113,9 +113,23 @@ public class EnterExaminationController extends BaseController {
         return ResponseResult.okResult();
     }
 
+    /**
+     * 获取切屏次数
+     * @author yzw
+     * @date 2023/1/20 9:19
+     * @param examinationId
+     * @return ResponseResult
+     */
 
-
-
+    @GetMapping("/getScreenCuttingNumber")
+    public ResponseResult getScreenCuttingNumber(@NotNull Integer examinationId) {
+        JoinExamDTO joinExamDTO = new JoinExamDTO();
+        joinExamDTO.setExaminationId(examinationId);
+        joinExamDTO.setJoinTime(LocalDateTime.now());
+        joinExamDTO.setStudentId(getStudentId());
+        // 判断当前考试是否合法
+        return ResponseResult.okResult(enterExamService.getScreenCuttingNumber(joinExamDTO));
+    }
 
 
 }

@@ -17,5 +17,7 @@ public interface MessageInfoService extends IService<MessageInfo> {
 
     Integer getBadgeNumber(Integer userId);
     MessageInfoVO getMessage(Integer userId,Integer messageId);
+
+    void deleteMessage(Integer messageId);
 }
 

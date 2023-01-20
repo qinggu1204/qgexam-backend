@@ -6,15 +6,16 @@
         insert into student_exam_action (student_id, examination_id)
         values (#{studentId}, #{examinationId})
     </insert>
-    <update id="updateScreenCuttingCount">
-        update student_exam_action
-        set screen_cutting_number = screen_cutting_number + 1
-        where id = #{id} and is_deleted = 0;
-    </update>
 
     <select id="selectByStudentIdAndExaminationId"
             resultType="com.qgexam.exam.enter.pojo.PO.StudentExamAction">
         select * from student_exam_action
         where student_id = #{studentId} and examination_id = #{examinationId} and is_deleted = 0
+    </select>
+    <select id="countScreenCutting" resultType="java.lang.Integer">
+        select count(*) from student_exam_action
+        where student_id = #{studentId}
+        and examination_id = #{examinationId}
+          and type = 0 and is_deleted = 0
     </select>
 </mapper>
