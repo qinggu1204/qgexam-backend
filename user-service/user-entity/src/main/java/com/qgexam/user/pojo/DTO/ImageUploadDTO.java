@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
 /**
@@ -15,4 +16,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class ImageUploadDTO implements Serializable {
     private String originalFilename;
+    private byte[] fileBytes;
+    private Integer userId;
 }

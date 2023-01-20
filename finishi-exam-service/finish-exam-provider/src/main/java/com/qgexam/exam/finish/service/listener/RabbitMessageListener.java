@@ -3,6 +3,7 @@ package com.qgexam.exam.finish.service.listener;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.finish.dao.*;
 import com.qgexam.rabbit.constants.FinishExamRabbitConstants;
+import com.qgexam.rabbit.constants.SaveExamRabbitConstants;
 import com.qgexam.rabbit.pojo.DTO.FinishExamDTO;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -52,4 +53,5 @@ public class RabbitMessageListener {
             channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
         }
     }
+
 }

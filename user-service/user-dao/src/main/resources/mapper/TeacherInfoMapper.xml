@@ -42,7 +42,7 @@
         select examination_paper_id,title from examination_paper where created_by=#{userId}
     </select>
     <select id="getInvigilationTeacherList" resultType="com.qgexam.user.pojo.PO.TeacherInfo">
-        select teacher_id,user_name from teacher_info
+        select teacher_id,user_id,user_name from teacher_info
         where teacher_id not in
               (select teacher_id from course_examination,teacher_course
                where teacher_course.course_id=course_examination.course_id and

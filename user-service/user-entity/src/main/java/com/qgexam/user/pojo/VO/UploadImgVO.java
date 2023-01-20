@@ -5,17 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * @author tageshi
- * @date 2023/1/8 22:29
+ * @author yzw
+ * @date 2023年01月20日 15:16
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageInfoVO implements Serializable {
-    String examinationName;
-    Date startTime;
-    Date endTime;
+public class UploadImgVO implements Serializable {
+    private String url;
+    private String name;
 }
