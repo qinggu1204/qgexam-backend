@@ -37,7 +37,7 @@ public interface UserInfoService extends IService<UserInfo> {
 
     void updateTeacherInfo(Integer userId, UpdateTeacherInfoDTO updateTeacherInfoDTO);
 
-    GetUserInfoVO getUserInfo(SaSession session);
+    GetUserInfoVO getUserInfo(SaSession session, Integer userId);
 
 
 }
