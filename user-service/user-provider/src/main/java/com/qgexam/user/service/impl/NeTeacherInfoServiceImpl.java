@@ -509,6 +509,10 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     @Transactional
     public boolean arrangeInvigilation(Integer examinationId) {
         boolean flag = true;
+        /*判断该场考试是否已被安排监考*/
+        if (examinationInfoDao.isArranged(examinationId)>0){
+            return false;
+        }
         /*获取可以安排的教师列表*/
         List<TeacherInfo> availableTeacherList = teacherInfoDao.getInvigilationTeacherList(examinationId);
         /*获取参加该场考试的课程列表*/

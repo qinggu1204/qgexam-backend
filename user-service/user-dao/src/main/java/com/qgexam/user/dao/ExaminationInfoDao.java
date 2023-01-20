@@ -23,6 +23,7 @@ public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
     List<Integer> selectSubQuestionIdList(Integer examinationPaperId);
 
     IPage<ExaminationInfo> selectAllExaminationInfo(IPage<ExaminationInfo> page, @Param("examListDTO") GetExamListDTO getExamListDTO);
+    Integer isArranged(@Param("examinationId")Integer examinationId);
 
 }
 

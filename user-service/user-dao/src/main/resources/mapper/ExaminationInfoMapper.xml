@@ -41,4 +41,7 @@
         </where>
         order by ei.status
     </select>
+    <select id="isArranged" resultType="java.lang.Integer">
+        select count(*) from teacher_invigilation where examination_id=#{examinationId} and is_deleted=0
+    </select>
 </mapper>
