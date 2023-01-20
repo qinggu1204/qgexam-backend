@@ -16,8 +16,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubQuestionInfoDTO implements Serializable {
-    @NotBlank(message = "子题目内容不能为空")
     private String subQuestionDesc;
-    @NotBlank(message = "子题目答案不能为空")
     private String subQuestionAns;
 }

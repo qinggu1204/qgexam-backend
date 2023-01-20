@@ -9,7 +9,9 @@ import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
 
 import com.qgexam.exam.enter.dao.ExaminationInfoDao;
+import com.qgexam.exam.enter.dao.ExaminationPaperDao;
 import com.qgexam.exam.enter.pojo.DTO.JoinExamDTO;
+import com.qgexam.exam.enter.pojo.PO.ExaminationPaper;
 import com.qgexam.exam.enter.pojo.VO.*;
 import com.qgexam.exam.enter.service.EnterExamService;
 
@@ -35,6 +37,9 @@ public class EnterExamServiceImpl implements EnterExamService {
 
     @Autowired
     private ExaminationInfoDao examinationInfoDao;
+
+    @Autowired
+    private ExaminationPaperDao examinationPaperDao;
 
     @Override
     public GetExaminationPaperVO getExaminationPaper(JoinExamDTO joinExamDTO) {
@@ -111,8 +116,11 @@ public class EnterExamServiceImpl implements EnterExamService {
             examinationInfo = examinationInfoDao.selectById(examinationId);
         }
         // 获取考试信息
+        Integer examinationPaperId = examinationInfo.getExaminationPaperId();
+        ExaminationPaper examinationPaper = examinationPaperDao.selectById(examinationPaperId);
+        Integer totalScore = examinationPaper.getTotalScore();
         GetExaminationInfoVO examinationInfoVO = BeanCopyUtils.copyBean(examinationInfo, GetExaminationInfoVO.class);
-
+        examinationInfoVO.setTotalScore(totalScore);
         return examinationInfoVO;
     }
 
@@ -135,6 +143,23 @@ public class EnterExamServiceImpl implements EnterExamService {
         cuttingNumber++;
         redisCache.setCacheObject(screenCuttingKey, cuttingNumber);
         redisCache.expire(screenCuttingKey, timeout);
+    }
+
+    @Override
+    public Integer getScreenCuttingNumber(JoinExamDTO joinExamDTO) {
+        Integer studentId = joinExamDTO.getStudentId();
+        Integer examinationId = joinExamDTO.getExaminationId();
+        LocalDateTime joinTime = joinExamDTO.getJoinTime();
+        // 判断当前考试是否合法
+        ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime, studentId);
+
+        String cuttingKey = ExamConstants.SCREEN_CUTTING_KEY + examinationId + ":" + studentId;
+        Integer cuttingNumber = redisCache.getCacheObject(cuttingKey);
+        // 如果cuttingNumber为null则说明没有切屏
+        if (cuttingNumber == null) {
+            cuttingNumber = 0;
+        }
+        return cuttingNumber;
     }
 
 

@@ -70,7 +70,7 @@ public class TeacherInfoController extends BaseController {
      */
     @PostMapping("/createCourse")
     public ResponseResult createCourse(@RequestBody @Validated CreateCourseDTO createCourseDTO) {
-        teacherInfoService.createCourse(getUserId(), getUserName(), createCourseDTO);
+        teacherInfoService.createCourse(getTeacherId(), getUserName(), createCourseDTO);
         return ResponseResult.okResult();
     }
 

@@ -3,6 +3,8 @@ package com.qgexam.user.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qgexam.common.core.api.AppHttpCodeEnum;
+import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.user.dao.MessageInfoDao;
 import com.qgexam.user.pojo.PO.MessageInfo;
 import com.qgexam.user.pojo.VO.MessageInfoListVO;
@@ -43,6 +45,14 @@ public class MessageInfoServiceImpl extends ServiceImpl<MessageInfoDao, MessageI
     public MessageInfoVO getMessage(Integer userId, Integer messageId) {
         MessageInfoVO messageInfoVO=messageInfoDao.getMessage(userId,messageId);
         return messageInfoVO;
+    }
+
+    @Override
+    public void deleteMessage(Integer messageId) {
+        int deleteCount = messageInfoDao.deleteById(messageId);
+        if (deleteCount == 0) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "删除失败");
+        }
     }
 
     @Override

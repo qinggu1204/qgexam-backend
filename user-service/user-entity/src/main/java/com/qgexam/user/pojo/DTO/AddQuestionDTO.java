@@ -42,9 +42,7 @@ public class AddQuestionDTO implements Serializable {
 
     private String questionAns;
 
-    @Valid
     List<SubQuestionInfoDTO> subQuestionInfo;
 
-    @Valid
     List<OptionInfoDTO> optionInfo;
 }

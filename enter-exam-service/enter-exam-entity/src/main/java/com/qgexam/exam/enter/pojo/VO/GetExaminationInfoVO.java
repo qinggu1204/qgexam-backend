@@ -20,4 +20,5 @@ public class GetExaminationInfoVO implements Serializable {
     private LocalDateTime startTime;
     private Integer status;
     private LocalDateTime endTime;
+    private Integer totalScore;
 }

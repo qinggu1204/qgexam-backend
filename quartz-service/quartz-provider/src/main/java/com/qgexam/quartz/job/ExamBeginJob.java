@@ -1,14 +1,13 @@
 package com.qgexam.quartz.job;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
+import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.constants.ExamConstants;
+import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.redis.utils.RedisCache;
 
-import com.qgexam.quartz.dao.ExaminationInfoDao;
-import com.qgexam.quartz.dao.ExaminationPaperDao;
-import com.qgexam.quartz.dao.OptionInfoDao;
-import com.qgexam.quartz.dao.SubQuestionInfoDao;
+import com.qgexam.quartz.dao.*;
 import com.qgexam.user.pojo.PO.*;
 import com.qgexam.quartz.pojo.VO.ExaminationInfoVO;
 import com.qgexam.user.pojo.VO.OptionInfoVO;
@@ -49,13 +48,15 @@ public class ExamBeginJob {
     @Autowired
     private SubQuestionInfoDao subQuestionInfoDao;
 
+
+
     public void execute(Integer examinationId) {
         log.info("###########examBeginJob.execute()###########");
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
         // 如果examinationInfo为空，抛出BusinessException
         if (examinationInfo == null) {
-            throw new RuntimeException("考试不存在");
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试不存在");
         }
         // 根据examinationInfo.paperId查询试卷信息
         // 获取试卷Id
@@ -133,7 +134,7 @@ public class ExamBeginJob {
         // 获取考试结束时间和当前时间的时间差
         Duration duration = LocalDateTimeUtil.between(LocalDateTime.now(), endTime);
         // 获取时间差的毫秒数，作为redis超时时间，单位为毫秒
-        long timeout = duration.toMillis();
+        long timeout = duration.toMillis() + 60000;
 
         // 将考试信息存入redis
         redisCache.setCacheObject(ExamConstants.EXAMINATION_INFO_HASH_KEY_PREFIX + examinationInfo.getExaminationId(), examinationInfo);
@@ -156,6 +157,8 @@ public class ExamBeginJob {
 
         redisCache.setCacheMap(ExamConstants.EXAMINATION_COMPLEX_QUESTION_HASH_FIELD + examinationInfo.getExaminationId(), complexMap);
         redisCache.expire(ExamConstants.EXAMINATION_COMPLEX_QUESTION_HASH_FIELD + examinationInfo.getExaminationId(), timeout, TimeUnit.MILLISECONDS);
+
+
 
 
     }
