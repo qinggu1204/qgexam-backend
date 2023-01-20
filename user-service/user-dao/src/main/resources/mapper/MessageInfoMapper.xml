@@ -32,4 +32,8 @@
             (#{messageInfo.userId}, #{messageInfo.title}, #{messageInfo.examinationName}, #{messageInfo.startTime}, 1)
         </foreach>
     </insert>
+
+    <update id="updateStatus">
+        update message_info set status=1 where message_id=#{messageId}
+    </update>
 </mapper>

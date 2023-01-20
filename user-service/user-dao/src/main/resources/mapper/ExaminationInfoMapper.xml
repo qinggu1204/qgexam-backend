@@ -4,12 +4,17 @@
 <mapper namespace="com.qgexam.user.dao.ExaminationInfoDao">
 
     <select id="getByExaminationId" resultType="com.qgexam.user.pojo.PO.ExaminationInfo">
-        select * from examination_info where examination_id=#{examinationId} and is_deleted = 0
+        select *
+        from examination_info
+        where examination_id = #{examinationId}
+          and is_deleted = 0
     </select>
 
     <insert id="insertExaminationInfo" useGeneratedKeys="true" keyProperty="examinationId" keyColumn="examination_id">
-        insert into examination_info(examination_paper_id, examination_name, created_by, start_time, end_time, limit_time, is_question_resort, is_option_resort)
-        values(#{examinationPaperId},#{examinationName}, #{createdBy}, #{startTime}, #{endTime}, #{limitTime}, #{isQuestionResort}, #{isOptionResort})
+        insert into examination_info(examination_paper_id, examination_name, created_by, start_time, end_time,
+                                     limit_time, is_question_resort, is_option_resort)
+        values (#{examinationPaperId}, #{examinationName}, #{createdBy}, #{startTime}, #{endTime}, #{limitTime},
+                #{isQuestionResort}, #{isOptionResort})
     </insert>
 
     <select id="getTeacherIdList" resultType="java.lang.Integer">
@@ -29,19 +34,22 @@
           and sub_or_obj = 0;
     </select>
 
-    <select id="selectAllExaminationInfo" resultType="com.qgexam.user.pojo.PO.ExaminationInfo">
-        select distinct ei.examination_id, ei.examination_paper_id, ei.examination_name, ei.created_by, ei.start_time, ei.end_time, ei.status, ei.limit_time, ei.is_question_resort, ei.is_option_resort, ei.result_query_time, ei.create_time, ei.update_time, ei.is_deleted
+    <select id="selectAllExaminationInfo" resultType="com.qgexam.user.pojo.VO.ExaminationVO">
+        select distinct ei.examination_id, ei.examination_name, ei.start_time, ei.end_time, ei.status
         from examination_info ei
         left join course_examination ce on ei.examination_id = ce.examination_id
-        <where>
-            <if test="examListDTO.courseId != null and examListDTO.courseId != ''">
-                and ce.course_id = #{examListDTO.courseId}
-            </if>
-            and ei.is_deleted = 0
-        </where>
+        where
+        ce.course_id in
+        <foreach collection="courseIdList" item="courseId" open="(" separator="," close=")">
+            #{courseId}
+        </foreach>
+        and ei.is_deleted = 0
         order by ei.status
     </select>
     <select id="isArranged" resultType="java.lang.Integer">
-        select count(*) from teacher_invigilation where examination_id=#{examinationId} and is_deleted=0
+        select count(*)
+        from teacher_invigilation
+        where examination_id = #{examinationId}
+          and is_deleted = 0
     </select>
 </mapper>

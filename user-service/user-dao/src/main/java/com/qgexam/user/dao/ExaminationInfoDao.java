@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.user.pojo.DTO.GetExamListDTO;
 import com.qgexam.user.pojo.PO.ExaminationInfo;
+import com.qgexam.user.pojo.VO.ExaminationVO;
+import com.qgexam.user.pojo.VO.GetCourseListVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,7 +24,7 @@ public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
     List<Integer> getTeacherIdList(Integer examinationId);
     List<Integer> selectSubQuestionIdList(Integer examinationPaperId);
 
-    IPage<ExaminationInfo> selectAllExaminationInfo(IPage<ExaminationInfo> page, @Param("examListDTO") GetExamListDTO getExamListDTO);
+    IPage<ExaminationVO> selectAllExaminationInfo(IPage<ExaminationInfo> page, @Param("courseIdList") List<Integer> courseIdList);
     Integer isArranged(@Param("examinationId")Integer examinationId);
 
 }

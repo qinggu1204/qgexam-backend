@@ -29,4 +29,6 @@ public class UploadController extends BaseController {
         UploadImgVO uploadImgVO = uploadService.uploadImg(imageUploadDTO);
         return ResponseResult.okResult(uploadImgVO);
     }
+
+
 }

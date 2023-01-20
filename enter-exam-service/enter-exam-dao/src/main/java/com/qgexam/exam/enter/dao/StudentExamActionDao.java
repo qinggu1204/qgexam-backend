@@ -18,6 +18,7 @@ public interface StudentExamActionDao extends BaseMapper<StudentExamAction> {
     Integer insertStudentExamAction(StudentExamAction insertStudentExamAction);
 
 
-    Integer countScreenCutting(Integer studentId, Integer examinationId);
+    Integer countScreenCutting(@Param("studentId") Integer studentId,
+                               @Param("examinationId") Integer examinationId);
 }
 

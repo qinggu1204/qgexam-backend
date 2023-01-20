@@ -1,10 +1,12 @@
 package com.qgexam.user.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
+import com.qgexam.common.core.constants.RoleConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
 import com.qgexam.common.core.constants.SystemConstants;
@@ -23,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -46,17 +49,18 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
 
     @Override
     public IPage<StudentVO> getStudentList(Integer courseId, Integer currentPage, Integer pageSize) {
-        IPage<StudentVO> page=new Page<>(currentPage,pageSize);
-        return teacherInfoDao.getStudentPage(courseId,page);
+        IPage<StudentVO> page = new Page<>(currentPage, pageSize);
+        return teacherInfoDao.getStudentPage(courseId, page);
     }
+
     @Override
     public GetTeacherInfoVO getTeacherInfo(SaSession session) {
         /*获取用户信息*/
         UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
         UserInfo userInfo = userInfoVO.getUserInfo();
         /*获取教师信息*/
-        TeacherInfo teacherInfo=userInfoVO.getTeacherInfo();
-        GetTeacherInfoVO getTeacherInfoVO= BeanCopyUtils.copyFromManyBean(GetTeacherInfoVO.class, userInfo, teacherInfo);
+        TeacherInfo teacherInfo = userInfoVO.getTeacherInfo();
+        GetTeacherInfoVO getTeacherInfoVO = BeanCopyUtils.copyFromManyBean(GetTeacherInfoVO.class, userInfo, teacherInfo);
         return getTeacherInfoVO;
     }
 
@@ -93,22 +97,39 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
     }
 
     @Override
-    public IPage<ScoreVO> getScoreList(Integer courseId, Integer currentPage, Integer pageSize){
-        IPage<ScoreVO> page=new Page<>(currentPage,pageSize);
-        return teacherInfoDao.getScorePage(courseId,page);
+    public IPage<ScoreVO> getScoreList(Integer courseId, Integer currentPage, Integer pageSize) {
+        IPage<ScoreVO> page = new Page<>(currentPage, pageSize);
+        return teacherInfoDao.getScorePage(courseId, page);
     }
 
     @Override
     public IPage<ExaminationVO> getExamList(GetExamListDTO getExamListDTO) {
+        UserInfoVO userInfoVO = getExamListDTO.getUserInfoVO();
+        Integer schoolId = userInfoVO.getTeacherInfo().getSchoolId();
+
+        UserInfo userInfo = userInfoVO.getUserInfo();
+        List<RoleInfo> roleList = userInfo.getRoleList();
+
         IPage<ExaminationInfo> page = new Page<>(getExamListDTO.getCurrentPage(), getExamListDTO.getPageSize());
 
-        examinationInfoDao.selectAllExaminationInfo(page, getExamListDTO);
-        List<ExaminationInfo> records = page.getRecords();
-        List<ExaminationVO> getExamListVOS = BeanCopyUtils.copyBeanList(records, ExaminationVO.class);
+        // 判断是否为教务教师
+        for (RoleInfo roleInfo : roleList) {
+            if (RoleConstants.ROLE_NETEACHER.equals(roleInfo.getRoleName())) {
+                List<GetCourseListVO> courseList = courseInfoDao.getCourseListByNeteacher(schoolId, null, null, null);
+                List<Integer> courseIdList = courseList.stream()
+                        .map(GetCourseListVO::getCourseId).collect(Collectors.toList());
+                // 查询课程的所有考试
+                IPage<ExaminationVO> pageVO = examinationInfoDao.selectAllExaminationInfo(page, courseIdList);
+                return pageVO;
+            }
+        }
 
-        IPage<ExaminationVO> pageVO = BeanCopyUtils.copyBean(page, Page.class);
-        pageVO.setRecords(getExamListVOS);
+        List<GetCourseListVO> courseList = courseInfoDao.getCourseListByTeacher(getExamListDTO.getTeacherId(), getExamListDTO.getCourseId(),
+                null, null);
+        List<Integer> courseIdList = courseList.stream().map(GetCourseListVO::getCourseId).collect(Collectors.toList());
+        IPage<ExaminationVO> pageVO = examinationInfoDao.selectAllExaminationInfo(page, courseIdList);
         return pageVO;
+
     }
 }
 

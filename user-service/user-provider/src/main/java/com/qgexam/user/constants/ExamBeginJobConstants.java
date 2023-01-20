@@ -10,7 +10,7 @@ public class ExamBeginJobConstants {
 
     private static String invoke_target = "examBeginJob.execute(%d)";
 
-    public static final Long TIME_BEGIN_EXAM = -2L;
+    public static final Long TIME_BEGIN_EXAM = -3L;
 
     public static String getInvokeTarget(Integer examinationId) {
         return String.format(invoke_target, examinationId);

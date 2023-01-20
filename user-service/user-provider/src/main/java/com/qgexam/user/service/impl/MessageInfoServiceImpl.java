@@ -47,6 +47,7 @@ public class MessageInfoServiceImpl extends ServiceImpl<MessageInfoDao, MessageI
     @Override
     public MessageInfoVO getMessage(Integer userId, Integer messageId) {
         MessageInfoVO messageInfoVO=messageInfoDao.getMessage(userId,messageId);
+        messageInfoDao.updateStatus(messageId);
         return messageInfoVO;
     }
 

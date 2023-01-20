@@ -76,7 +76,7 @@ sa-token:
 
 ignored: |
   /error,
-  /user/stu/register,/user/tea/register,/user/sendCode,/user/getSchoolList,/user/login,/user/loginByCode,/user/updatePassword,/user/validateCode
+  /user/stu/register,/user/tea/register,/user/sendCode,/user/getSchoolList,/user/login,/user/loginByCode,/user/updatePassword,/user/validateCode,/common/upload
 
 
 
