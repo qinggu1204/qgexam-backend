@@ -192,7 +192,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     }
 
     @Override
-    public GetUserInfoVO getUserInfo(SaSession session) {
+    public GetUserInfoVO getUserInfo(SaSession session, Integer userId) {
         //获取session中的用户信息
         UserInfoVO userInfoVO = (UserInfoVO) session.get(SystemConstants.SESSION_USER_KEY);
         // 获取用户信息
@@ -201,7 +201,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         List<RoleInfo> roleList = userInfo.getRoleList();
         // 获取用户信息中的角色列表中的角色名，作为List<String>返回
         List<String> roleArray = roleList.stream().map(RoleInfo::getRoleName).collect(Collectors.toList());
-        GetUserInfoVO getUserInfoVO = BeanCopyUtils.copyBean(userInfo, GetUserInfoVO.class);
+        UserInfo user = userInfoDao.selectById(userId);
+        GetUserInfoVO getUserInfoVO = BeanCopyUtils.copyBean(user, GetUserInfoVO.class);
         // 设置角色列表
         getUserInfoVO.setRoleList(roleArray);
         return getUserInfoVO;
