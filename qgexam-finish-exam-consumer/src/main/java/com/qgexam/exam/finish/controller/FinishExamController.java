@@ -5,6 +5,7 @@ import com.qgexam.common.web.base.BaseController;
 import com.qgexam.exam.finish.pojo.DTO.SaveOrSubmitDTO;
 import com.qgexam.exam.finish.service.FinishExamService;
 import com.qgexam.rabbit.constants.FinishExamRabbitConstants;
+import com.qgexam.rabbit.constants.SaveExamRabbitConstants;
 import com.qgexam.rabbit.pojo.DTO.FinishExamDTO;
 import com.qgexam.rabbit.service.RabbitService;
 import com.qgexam.user.service.StudentInfoService;
@@ -53,12 +54,6 @@ public class FinishExamController extends BaseController {
         finishExamDTO.setStudentId(getStudentId());
         finishExamDTO.setExaminationId(saveOrSubmitDTO.getExaminationId());
         finishExamDTO.setSubmitTime(submitTime);
-        /*判断是否在考试结束时间前保存（考试是否合法）*/
-        if(submitTime.compareTo(finishExamService.getEndTime(saveOrSubmitDTO.getExaminationId()))<0){
-            /*发送一条保存学生作答消息*/
-            rabbitService.sendMessage(FinishExamRabbitConstants.EXAM_FINISH_EXCHANGE_NAME,
-                    FinishExamRabbitConstants.EXAM_FINISH_ROUTING_KEY,finishExamDTO);
-        }
         return ResponseResult.okResult(finishExamService.save(saveOrSubmitDTO,getStudentId()));
     }
 }

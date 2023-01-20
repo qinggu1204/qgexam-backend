@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author tageshi
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MessageInfoVO implements Serializable {
-    String examination_name;
-    String start_time;
-    String end_time;
+    String examinationName;
+    Date startTime;
+    Date endTime;
 }
