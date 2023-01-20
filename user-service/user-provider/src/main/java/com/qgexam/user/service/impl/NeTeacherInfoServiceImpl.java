@@ -265,9 +265,13 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void distributeJudgeTask(Integer examinationId, Date endTime) {
-        //查询该考试的主观题编号
+    public void distributeJudgeTask(Integer examinationId, Date markingEndTime) {
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationId);
+        LocalDateTime endTime = examinationInfo.getEndTime();
+        if (LocalDateTime.now().isBefore(endTime)){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(),"考试还未结束无法分配");
+        }
+        //查询该考试的主观题编号
         List<Integer> subQuestionIdList = examinationInfoDao.selectSubQuestionIdList(examinationInfo.getExaminationPaperId());
         //若没有主观题则不需用到教师阅卷，直接抛出异常
         if (subQuestionIdList.isEmpty()) {
@@ -379,7 +383,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             messageInfo.setUserId(teacherUserId);
             messageInfo.setTitle(title);
             messageInfo.setExaminationName(examinationName);
-            messageInfo.setEndTime(LocalDateTimeUtil.of(endTime));
+            messageInfo.setEndTime(LocalDateTimeUtil.of(markingEndTime));
             messageInfoList.add(messageInfo);
         });
         Integer count = messageInfoDao.insertMarkingMessageBatch(messageInfoList);
@@ -418,7 +422,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             messageInfo.setUserId(studentUserId);
             messageInfo.setTitle(scoreQueryTitle);
             messageInfo.setExaminationName(examinationName);
-            messageInfo.setStartTime(LocalDateTimeUtil.of(endTime));
+            messageInfo.setStartTime(LocalDateTimeUtil.of(markingEndTime));
             studentMessageInfoList.add(messageInfo);
         });
         Integer insertCount = messageInfoDao.insertScoreQueryMessageBatch(studentMessageInfoList);
@@ -439,7 +443,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
                 // 定时任务的名称为beginCacheJob :考试Id
                 .setJobName(BeginCacheJobConstants.BEGIN_CACHE_JOB_NAME + ":" + examinationId)
                 .setJobGroup(BeginCacheJobConstants.BEGIN_CACHE_JOB_GROUP_NAME)
-                .setCronExpression(DateTimeToCronUtils.getCron(endTime,DateTimeToCronUtils.YEAR))
+                .setCronExpression(DateTimeToCronUtils.getCron(markingEndTime,DateTimeToCronUtils.YEAR))
                 .setInvokeTarget(BeginCacheJobConstants.getInvokeTarget(examinationId));
 
         sysJobService.deleteJobById(beginCacheJob);
@@ -454,7 +458,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         }
 
         //延迟一小时发送将学生查询成绩通知置为可查询到
-        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(endTime), 1, ChronoUnit.MINUTES);
+        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(markingEndTime), 1, ChronoUnit.MINUTES);
 
         //定时任务，定时将学生查询成绩通知逻辑删除置为0即可以查询到
         SysJob queryScoreNoticeJob = new SysJob()
@@ -477,7 +481,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
 
         LambdaUpdateWrapper<ExaminationInfo> updateWrapper = new LambdaUpdateWrapper<>();
         updateWrapper.eq(ExaminationInfo::getExaminationId, examinationId)
-                .set(ExaminationInfo::getMarkingEndTime, LocalDateTimeUtil.of(endTime))
+                .set(ExaminationInfo::getMarkingEndTime, LocalDateTimeUtil.of(markingEndTime))
                 .set(ExaminationInfo::getResultQueryTime, noticeTaskTime);
         int updateCount = examinationInfoDao.update(null, updateWrapper);
         if (updateCount < 1) {

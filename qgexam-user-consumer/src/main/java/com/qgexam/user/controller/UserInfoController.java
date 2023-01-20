@@ -150,7 +150,7 @@ public class UserInfoController extends BaseController {
     public ResponseResult getUserInfo() {
         // 获取session
         SaSession session = StpUtil.getSession();
-        return ResponseResult.okResult(userInfoService.getUserInfo(session));
+        return ResponseResult.okResult(userInfoService.getUserInfo(session,getUserId()));
     }
 
     /**
