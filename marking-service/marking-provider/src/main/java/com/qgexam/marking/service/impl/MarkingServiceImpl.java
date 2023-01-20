@@ -1,5 +1,6 @@
 package com.qgexam.marking.service.impl;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -18,8 +19,10 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
@@ -65,7 +68,7 @@ public class MarkingServiceImpl implements MarkingService {
         //挑选阅卷还未截止的考试
         List<ExaminationInfo> idList = examinationInfoDao.selectList(lambdaQueryWrapper).stream().filter(examinationInfo -> {
             LocalDateTime now = LocalDateTime.now();
-            return now.isBefore(examinationInfo.getMarkingEndTime());
+            return examinationInfo.getMarkingEndTime() != null && now.isBefore(examinationInfo.getMarkingEndTime());
         }).collect(Collectors.toList());
         if(idList.isEmpty()){
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
@@ -112,6 +115,13 @@ public class MarkingServiceImpl implements MarkingService {
             answerPaperInfos.getRecords().forEach(answerPaperInfo -> {
                 List<GetAnswerPaperVO> answerPaperList = getAnswerPaper(teacherId,answerPaperInfo.getAnswerPaperId());
                 redisCache.setCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperInfo.getAnswerPaperId(), answerPaperList);
+                // 获取阅卷结束时间
+                LocalDateTime markingEndTime = examinationInfo.getMarkingEndTime();
+                // 获取阅卷结束时间和当前时间的时间差
+                Duration duration = LocalDateTimeUtil.between(LocalDateTime.now(), markingEndTime);
+                // 获取时间差的毫秒数，作为redis超时时间，单位为毫秒
+                long timeout = duration.toMillis();
+                redisCache.expire(ExamConstants.ANSWER_PAPER_KEY + answerPaperInfo.getAnswerPaperId(),timeout, TimeUnit.MILLISECONDS);
             });
         }
 
