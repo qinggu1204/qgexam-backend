@@ -22,5 +22,6 @@ public interface MessageInfoDao extends BaseMapper<MessageInfo> {
     Integer insertMarkingMessageBatch(@Param("messageInfoList") List<MessageInfo> messageInfoList);
 
     Integer insertScoreQueryMessageBatch(@Param("messageInfoList") List<MessageInfo> messageInfoList);
+    Integer updateStatus(@Param("messageId")Integer messageId);
 }
 
