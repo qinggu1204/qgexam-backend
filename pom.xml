@@ -38,7 +38,7 @@
         <mybaitsPlus.vesion>3.5.1</mybaitsPlus.vesion>
         <hutool.version>5.8.8</hutool.version>
         <mysql-connector.version>8.0.29</mysql-connector.version>
-        <qiniu.version>7.11.0</qiniu.version>
+        <qiniu.version>[7.7.0, 7.10.99]</qiniu.version>
         <aliyun-java-sdk-core.version>4.5.16</aliyun-java-sdk-core.version>
         <aliyun-java-sdk-dysmsapi.version>2.1.0</aliyun-java-sdk-dysmsapi.version>
         <sa-token.version>1.33.0</sa-token.version>

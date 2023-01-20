@@ -104,11 +104,11 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
 
 
-oss:
-  accessKey: QrsCXu18PoWhOIGDIa5Ufej0pWLIKNfieQ3CpbGp
-  secretKey: ZvqIjeQGEqGs3NyN8ChydWwlJEXbw_GddeLQ26hN
-  bucket: my-blog11
-  ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
+qiniu:
+  accessKey: SgCZS8maB20gHLLbvBr9ZVKuZ5n6Opugh8RRmYcL
+  secretKey: lxYjjQOhgkKMhIgPNcOv41KuM30mrhhtn2B6OwZJ
+  bucket: qgexam
+  ossUrl: http://roq1oxwf8.bkt.clouddn.com/
 
 
 config:
