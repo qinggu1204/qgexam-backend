@@ -7,6 +7,9 @@
         insert into message_info(user_id, title, examination_name, start_time, end_time)
         values(#{userId},#{title}, #{examinationName}, #{startTime}, #{endTime})
     </insert>
+    <update id="updateStatus">
+        update message_info set status=1 where message_id=#{messageId}
+    </update>
 
     <select id="getMessagePage" resultType="com.qgexam.user.pojo.VO.MessageInfoListVO">
         select message_id, title, status

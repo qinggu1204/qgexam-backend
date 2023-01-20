@@ -70,6 +70,10 @@ public class FinishExamServiceImpl implements FinishExamService {
             switch (questionInfoDao.geyTypeByQuestionId(questionId)){
                 /*客观题直接判分*/
                 case "MULTI":
+                    if(questionAnswer==null||questionAnswer.equals("")){
+                        answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,null,0);
+                        break;
+                    }
                     String multiAns="";
                     for (int i=0;i<questionAnswer.length();i++){
                         if(questionAnswer.charAt(i)>='A'&&questionAnswer.charAt(i)<='D'){
@@ -81,6 +85,10 @@ public class FinishExamServiceImpl implements FinishExamService {
                     questionAnswer=new String(ans);
                 case "JUDGE":
                 case "SINGLE":
+                    if(questionAnswer==null||questionAnswer.equals("")){
+                        answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,null,0);
+                        break;
+                    }
                     String correctAnswer=questionInfoDao.getCorrectAnswer(questionId);
                     if(questionAnswer.equals(correctAnswer)){
                         if(answerPaperDetailDao.updateAnswerPaperDetail(answerPaperId,questionId,questionAnswer,questionScore)==0){
@@ -113,6 +121,10 @@ public class FinishExamServiceImpl implements FinishExamService {
                             subQuestionId=subQuestion.getSubQuestionId();
                             subQuestionAnswer=subQuestion.getSubQuestionAnswer();
                             answerPaperDetailId=answerPaperDetailDao.getAnswerPaperDetailId(answerPaperId,questionId);
+                            if(subQuestionAnswer==null||subQuestionAnswer.equals("")){
+                                subQuestionAnswerDetailDao.insert(answerPaperDetailId,subQuestionId,null);
+                                break;
+                            }
                             if(subQuestionAnswerDetailDao.update(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
                                 if(subQuestionAnswerDetailDao.insert(answerPaperDetailId,subQuestionId,subQuestionAnswer)==0){
                                     flag=false;
