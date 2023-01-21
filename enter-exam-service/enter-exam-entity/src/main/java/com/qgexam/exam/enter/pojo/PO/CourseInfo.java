@@ -9,7 +9,7 @@ import java.io.Serializable;
  * 课程信息表(CourseInfo)表实体类
  *
  * @author lamb007
- * @since 2023-01-20 22:42:41
+ * @since 2023-01-21 00:38:53
  */
 @Data
 @AllArgsConstructor
