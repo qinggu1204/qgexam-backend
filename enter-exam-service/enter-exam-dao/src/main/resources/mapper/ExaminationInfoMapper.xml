@@ -13,5 +13,17 @@
         </foreach>
         order by ei.status
     </select>
+    <update id="updateStatus">
+        update examination_info
+        set status = #{status}
+        where examination_id = #{examinationId}
+    </update>
+
+    <select id="getByExaminationId" resultType="com.qgexam.exam.enter.pojo.PO.ExaminationInfo">
+        select * from examination_info where examination_id=#{examinationId}
+    </select>
+    <select id="selectCourseIdByExaminationId" resultType="java.lang.Integer">
+        select course_id from course_examination where examination_id=#{examinationId} and is_deleted=0
+    </select>
 
 </mapper>

@@ -1,7 +1,7 @@
-package com.qgexam.quartz.dao;
+package com.qgexam.exam.enter.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qgexam.user.pojo.PO.MessageInfo;
+import com.qgexam.exam.enter.pojo.PO.MessageInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface CourseInfoDao extends BaseMapper<CourseInfo> {
 
-    List<Integer> selectStudentIdListByCourseId(Integer courseId);
+    List<Integer> selectStudentIdListByCourseIds(List<Integer> courseIdList);
 }
 

@@ -22,6 +22,8 @@ spring:
     url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
+    hikari:
+      max-lifetime: 500000
 
 
   # redis配置
@@ -72,12 +74,13 @@ mybatis-plus:
   # mapper文件位置
   mapper-locations: classpath*:/mapper/**/*.xml
 
+qgexam:
+  thread:
+    core-pool-size: 20
+    max-pool-size: 200
+    keep-alive-time: 10
+    queue-capacity: 100000
 
-oss:
-  accessKey: QrsCXu18PoWhOIGDIa5Ufej0pWLIKNfieQ3CpbGp
-  secretKey: ZvqIjeQGEqGs3NyN8ChydWwlJEXbw_GddeLQ26hN
-  bucket: my-blog11
-  ossUrl: http://rjmbc6tzh.bkt.clouddn.com/
 
 
 

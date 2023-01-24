@@ -1,6 +1,6 @@
 package com.qgexam.exam.enter.pojo.VO;
 
-import com.qgexam.user.pojo.VO.QuestionInfoVO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -5,16 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author yzw
- * @date 2023年01月09日 20:33
+ * @date 2023年01月15日 23:46
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MultipleVO implements Serializable {
-    private String type;
-    private List<QuestionInfoVO> multiList;
+public class PreviewSubQuestionInfoVO implements Serializable {
+    private Integer subQuestionId;
+    private String subQuestionDesc;
+    private String subQuestionAns;
 }

@@ -5,16 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author yzw
- * @date 2023年01月09日 20:34
+ * @date 2023年01月15日 23:45
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class JudgeVO implements Serializable {
-    private String type;
-    private List<QuestionInfoVO> judgeList;
+@NoArgsConstructor
+public class PreviewOptionInfoVO implements Serializable {
+    private Integer optionId;
+    private String optionName;
+    private String optionDesc;
 }

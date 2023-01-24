@@ -3,10 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qgexam.quartz.dao.CourseInfoDao">
 
-    <select id="selectStudentIdListByCourseId" resultType="java.lang.Integer">
+
+    <select id="selectStudentIdListByCourseIds" resultType="java.lang.Integer">
         select student_id
         from student_course
-        where course_id = #{courseId}
-          and is_deleted = 0
+        where course_id in
+        <foreach collection="courseIdList" item="courseId" open="(" separator="," close=")">
+            #{courseId}
+        </foreach>
+        and is_deleted = 0
     </select>
 </mapper>

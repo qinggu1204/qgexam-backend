@@ -11,12 +11,13 @@ import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.exam.enter.dao.ExaminationInfoDao;
 import com.qgexam.exam.enter.dao.ExaminationPaperDao;
 import com.qgexam.exam.enter.pojo.DTO.JoinExamDTO;
+
+import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.enter.pojo.PO.ExaminationPaper;
 import com.qgexam.exam.enter.pojo.VO.*;
 import com.qgexam.exam.enter.service.EnterExamService;
 
-import com.qgexam.user.pojo.PO.ExaminationInfo;
-import com.qgexam.user.pojo.VO.QuestionInfoVO;
+
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 

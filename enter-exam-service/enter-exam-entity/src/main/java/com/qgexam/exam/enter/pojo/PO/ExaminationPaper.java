@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class ExaminationPaper implements Serializable {
     private String title;
     //试卷总分
     private Integer totalScore;
-    
+
     private Integer createdBy;
     //更新时间
     private Date updateTime;
@@ -35,6 +36,8 @@ public class ExaminationPaper implements Serializable {
     //创建时间
     private Date createTime;
 
+    @TableField(exist = false)
+    private List<QuestionInfo> questionInfoList;
 
 }
 
