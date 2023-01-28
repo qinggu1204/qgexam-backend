@@ -27,5 +27,6 @@ public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
     IPage<ExaminationVO> selectAllExaminationInfo(IPage<ExaminationInfo> page, @Param("courseIdList") List<Integer> courseIdList);
     Integer isArranged(@Param("examinationId")Integer examinationId);
 
+    List<Integer> getExaminationIdListByCourseId(Integer courseId);
 }
 

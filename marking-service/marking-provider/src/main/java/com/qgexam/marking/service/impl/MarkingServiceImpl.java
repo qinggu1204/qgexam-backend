@@ -106,11 +106,6 @@ public class MarkingServiceImpl implements MarkingService {
         IPage<AnswerPaperInfo> page = new Page<>(currentPage, pageSize);
         IPage<AnswerPaperInfo> answerPaperInfos = answerPaperInfoDao.selectPage(page, queryWrapper);
 
-        //将答卷编号列表存入redis中
-        List<Integer> answerPaperIdList = answerPaperInfos.getRecords().stream()
-                .map(AnswerPaperInfo::getAnswerPaperId)
-                .collect(Collectors.toList());
-        redisCache.setCacheList(ExamConstants.ANSWER_PAPER_ID_LIST_KEY, answerPaperIdList);
         //获取第一个answerPaperId
         Integer answerPaperId = answerPaperInfos.getRecords().get(0).getAnswerPaperId();
         List<GetAnswerPaperVO> answerPaper = redisCache.getCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperId);

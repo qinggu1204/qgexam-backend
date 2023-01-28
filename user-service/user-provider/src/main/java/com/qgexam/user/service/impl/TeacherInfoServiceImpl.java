@@ -1,15 +1,14 @@
 package com.qgexam.user.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import cn.dev33.satoken.session.SaSession;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qgexam.common.core.api.AppHttpCodeEnum;
 import com.qgexam.common.core.constants.RoleConstants;
+import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.common.core.exception.BusinessException;
 import com.qgexam.common.core.utils.BeanCopyUtils;
-import com.qgexam.common.core.constants.SystemConstants;
 import com.qgexam.user.dao.CourseInfoDao;
 import com.qgexam.user.dao.ExaminationInfoDao;
 import com.qgexam.user.dao.TeacherInfoDao;
@@ -20,10 +19,10 @@ import com.qgexam.user.pojo.PO.*;
 import com.qgexam.user.pojo.VO.*;
 import com.qgexam.user.service.TeacherInfoService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -97,9 +96,18 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
     }
 
     @Override
-    public IPage<ScoreVO> getScoreList(Integer courseId, Integer currentPage, Integer pageSize) {
-        IPage<ScoreVO> page = new Page<>(currentPage, pageSize);
-        return teacherInfoDao.getScorePage(courseId, page);
+    public IPage<ScoreVO> getScoreList(Integer courseId, Integer currentPage, Integer pageSize){
+        List<Integer> examinationIdList = examinationInfoDao.getExaminationIdListByCourseId(courseId);
+        List<Integer> collect = examinationIdList.stream().filter(examinationInfoId -> {
+            LocalDateTime now = LocalDateTime.now();
+            ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationInfoId);
+            return examinationInfo != null && examinationInfo.getMarkingEndTime() != null && now.isBefore(examinationInfo.getMarkingEndTime());
+        }).collect(Collectors.toList());
+        if (!collect.isEmpty()){
+            throw new BusinessException(AppHttpCodeEnum.CODE_ERROR.getCode(),"阅卷还未结束，未开放查询成绩");
+        }
+        IPage<ScoreVO> page=new Page<>(currentPage,pageSize);
+        return teacherInfoDao.getScorePage(courseId,page);
     }
 
     @Override
