@@ -4,7 +4,8 @@
     <select id="selectQuestionList" resultType="com.qgexam.marking.pojo.VO.GetAnswerPaperVO">
         select question_id, question_score
         from examination_paper_question
-        where question_id in
+        where examination_paper_id = #{examinationPaperId}
+          and question_id in
         <foreach collection="subQuestionIdList" item="subQuestionId" open="(" separator="," close=")">
             #{subQuestionId}
         </foreach>

@@ -35,6 +35,7 @@ public class ExamUnderwayListener {
 
     @RabbitListener(queues = ExamUnderwayRabbitConstants.EXAM_UNDERWAY_QUEUE_NAME)
     public void listenExamUnderwayQueue(Integer examinationId, Channel channel, Message message) throws IOException {
+        System.out.println("==============ExamUnderwayListener.listenExamUnderwayQueue========");
         examinationInfoDao.updateStatus(examinationId,1);
         ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
         // 如果examinationInfo为空，抛出BusinessException

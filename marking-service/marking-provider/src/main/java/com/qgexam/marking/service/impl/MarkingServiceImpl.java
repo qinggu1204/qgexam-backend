@@ -23,6 +23,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BiConsumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 
@@ -59,18 +61,18 @@ public class MarkingServiceImpl implements MarkingService {
     @Override
     public IPage<TaskVO> getTaskList(Integer teacherId, Integer currentPage, Integer pageSize) {
         List<Integer> examIdList = markingDao.getExamIdList(teacherId);
-        if(examIdList.isEmpty()){
+        if (examIdList.isEmpty()) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
         }
 
-        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.in(ExaminationInfo::getExaminationId,examIdList);
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.in(ExaminationInfo::getExaminationId, examIdList);
         //挑选阅卷还未截止的考试
         List<ExaminationInfo> idList = examinationInfoDao.selectList(lambdaQueryWrapper).stream().filter(examinationInfo -> {
             LocalDateTime now = LocalDateTime.now();
             return examinationInfo.getMarkingEndTime() != null && now.isBefore(examinationInfo.getMarkingEndTime());
         }).collect(Collectors.toList());
-        if(idList.isEmpty()){
+        if (idList.isEmpty()) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
         }
         List<Integer> examinationIdList = idList.stream()
@@ -88,14 +90,14 @@ public class MarkingServiceImpl implements MarkingService {
 
     @Override
     public IPage<AnswerPaperVO> getAnswerPaperList(Integer teacherId, Integer examinationId, Integer currentPage, Integer pageSize) {
-        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId, examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
-        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())){
+        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无法查看还未结束的考试");
         }
-        if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
+        if (LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
 
@@ -111,7 +113,7 @@ public class MarkingServiceImpl implements MarkingService {
         List<GetAnswerPaperVO> answerPaper = redisCache.getCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperId);
         if (answerPaper.isEmpty()) {
             answerPaperInfos.getRecords().forEach(answerPaperInfo -> {
-                List<GetAnswerPaperVO> answerPaperList = getAnswerPaper(teacherId,answerPaperInfo.getAnswerPaperId());
+                List<GetAnswerPaperVO> answerPaperList = getAnswerPaper(teacherId, answerPaperInfo.getAnswerPaperId());
                 redisCache.setCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperInfo.getAnswerPaperId(), answerPaperList);
                 // 获取阅卷结束时间
                 LocalDateTime markingEndTime = examinationInfo.getMarkingEndTime();
@@ -119,7 +121,7 @@ public class MarkingServiceImpl implements MarkingService {
                 Duration duration = LocalDateTimeUtil.between(LocalDateTime.now(), markingEndTime);
                 // 获取时间差的毫秒数，作为redis超时时间，单位为毫秒
                 long timeout = duration.toMillis();
-                redisCache.expire(ExamConstants.ANSWER_PAPER_KEY + answerPaperInfo.getAnswerPaperId(),timeout, TimeUnit.MILLISECONDS);
+                redisCache.expire(ExamConstants.ANSWER_PAPER_KEY + answerPaperInfo.getAnswerPaperId(), timeout, TimeUnit.MILLISECONDS);
             });
         }
 
@@ -132,14 +134,14 @@ public class MarkingServiceImpl implements MarkingService {
         //根据答卷id查询考试编号
         Integer examinationId = answerPaperInfoDao.selectById(answerPaperId).getExaminationId();
 
-        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId, examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
-        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())){
+        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无法查看还未结束的考试");
         }
-        if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
+        if (LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
 
@@ -151,10 +153,10 @@ public class MarkingServiceImpl implements MarkingService {
         }
         System.out.println("-------------------------从数据库获取--------------------------------");
         LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(AnswerPaperInfo::getTeacherId,teacherId)
-                .eq(AnswerPaperInfo::getAnswerPaperId,answerPaperId);
+        queryWrapper.eq(AnswerPaperInfo::getTeacherId, teacherId)
+                .eq(AnswerPaperInfo::getAnswerPaperId, answerPaperId);
         Long count = answerPaperInfoDao.selectCount(queryWrapper);
-        if (count == 0){
+        if (count == 0) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无权限批阅该试卷");
         }
 
@@ -165,14 +167,14 @@ public class MarkingServiceImpl implements MarkingService {
         List<Integer> subQuestionIdList = examinationInfoDao.selectSubQuestionIdList(examinationPaperId);
         //若没有主观题则不需用到教师阅卷，直接抛出异常
         if (subQuestionIdList.isEmpty()) {
-            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(),"无主观题无需教师阅卷");
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "无主观题无需教师阅卷");
         }
 
         //根据主观题编号查询试题编号和分数
-        List<GetAnswerPaperVO> getAnswerPaperVOList = examinationInfoDao.selectQuestionList(subQuestionIdList);
+        List<GetAnswerPaperVO> getAnswerPaperVOList = examinationInfoDao.selectQuestionList(subQuestionIdList, examinationPaperId);
 
         //将答卷信息转换为map
-        Map<Integer,GetAnswerPaperVO> getAnswerPaperVOMap = getAnswerPaperVOList.stream()
+        Map<Integer, GetAnswerPaperVO> getAnswerPaperVOMap = getAnswerPaperVOList.stream()
                 .collect(Collectors.toMap(GetAnswerPaperVO::getQuestionId, getAnswerPaperVO -> getAnswerPaperVO));
 
         //获取试题编号
@@ -250,7 +252,12 @@ public class MarkingServiceImpl implements MarkingService {
 
             //将有小题答案转换为map
             Map<Integer, String> hasSubQuestionAnswerMap = hasSubQuestionAnswerList.stream()
-                    .collect(Collectors.toMap(SubQuestionAnswerDetail::getSubQuestionId, SubQuestionAnswerDetail::getSubQuestionAnswer));
+                    .collect(Collectors.toMap(SubQuestionAnswerDetail::getSubQuestionId, subQuestionAnswerDetail -> {
+                        if (subQuestionAnswerDetail.getSubQuestionAnswer() == null) {
+                            return "";
+                        }
+                        return subQuestionAnswerDetail.getSubQuestionAnswer();
+                    }));
 
             //将学生题目答案添加到题目信息中
             getAnswerPaperVOMap.forEach((questionId, getAnswerPaperVO) -> {
@@ -271,22 +278,22 @@ public class MarkingServiceImpl implements MarkingService {
     @Override
     public void marking(Integer teacherId, Integer answerPaperId, List<MarkingDTO> questionList) {
         Integer examinationId = answerPaperInfoDao.selectById(answerPaperId).getExaminationId();
-        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId,examinationId);
+        LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ExaminationInfo::getExaminationId, examinationId);
         //查看是否已经截止
         ExaminationInfo examinationInfo = examinationInfoDao.selectOne(lambdaQueryWrapper);
-        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())){
+        if (LocalDateTime.now().isBefore(examinationInfo.getEndTime())) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无法查看还未结束的考试");
         }
-        if(LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())){
+        if (LocalDateTime.now().isAfter(examinationInfo.getMarkingEndTime())) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷时间已截止");
         }
         //查看是否是自己的试卷
         LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(AnswerPaperInfo::getTeacherId,teacherId)
-                .eq(AnswerPaperInfo::getAnswerPaperId,answerPaperId);
+        queryWrapper.eq(AnswerPaperInfo::getTeacherId, teacherId)
+                .eq(AnswerPaperInfo::getAnswerPaperId, answerPaperId);
         Long count = answerPaperInfoDao.selectCount(queryWrapper);
-        if (count == 0){
+        if (count == 0) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "您无权限批阅该试卷");
         }
 
@@ -339,5 +346,6 @@ public class MarkingServiceImpl implements MarkingService {
             throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
         }
     }
+
 
 }

@@ -86,11 +86,11 @@ public class ExamBeginListener {
             setExaminationPaper(examinationInfo);
         }, executor);
 
-        CompletableFuture<Void> sentMessageFeture = CompletableFuture.runAsync(() -> {
+        CompletableFuture<Void> sentMessageFuture = CompletableFuture.runAsync(() -> {
             sentMessage(examinationInfo);
         }, executor);
 
-        CompletableFuture.allOf(setExaminationPaperFuture, sentMessageFeture).whenComplete((res, exception) -> {
+        CompletableFuture.allOf(setExaminationPaperFuture, sentMessageFuture).whenComplete((res, exception) -> {
             if (exception != null) {
                 log.error("考试开始缓存消息监听异常", exception);
                 try {
@@ -228,7 +228,7 @@ public class ExamBeginListener {
                 .map(userId -> {
                     MessageInfo messageInfo = new MessageInfo();
                     messageInfo.setUserId(userId);
-                    messageInfo.setTitle(MessageConstants.EXAMINATION_NOTICE);
+                    messageInfo.setTitle(MessageConstants.EXAM_BEGIN_NOTICE);
                     messageInfo.setExaminationName(examinationInfo.getExaminationName());
                     messageInfo.setStartTime(examinationInfo.getStartTime());
                     messageInfo.setEndTime(examinationInfo.getEndTime());
