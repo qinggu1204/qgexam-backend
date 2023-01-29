@@ -9,10 +9,10 @@ import com.qgexam.exam.enter.dao.CourseInfoDao;
 import com.qgexam.exam.enter.dao.ExaminationInfoDao;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
 import com.qgexam.exam.enter.pojo.PO.CourseInfo;
+import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.enter.pojo.VO.GetExamListVO;
 import com.qgexam.exam.enter.service.ExaminationInfoService;
 
-import com.qgexam.user.pojo.PO.ExaminationInfo;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 

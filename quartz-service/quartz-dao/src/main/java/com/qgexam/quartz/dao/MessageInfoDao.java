@@ -17,5 +17,6 @@ import java.util.List;
 public interface MessageInfoDao extends BaseMapper<MessageInfo> {
     Integer updateBatch(@Param("messageIdList") List<Integer> messageIdList);
 
+    Integer insertBache(@Param("messageInfoList") List<MessageInfo> messageInfoList);
 }
 

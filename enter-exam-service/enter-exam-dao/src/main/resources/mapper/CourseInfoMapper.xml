@@ -14,4 +14,14 @@
             and ci.is_deleted = 0
         </where>
     </select>
+
+    <select id="selectStudentIdListByCourseIds" resultType="java.lang.Integer">
+        select student_id
+        from student_course
+        where course_id in
+        <foreach collection="courseIdList" item="courseId" open="(" separator="," close=")">
+            #{courseId}
+        </foreach>
+        and is_deleted = 0
+    </select>
 </mapper>

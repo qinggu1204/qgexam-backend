@@ -99,12 +99,6 @@ public class ExamConstants {
     public static final String ANSWER_PAPER_KEY = "before:marking:answerPaper:";
 
     /**
-     * 答卷id列表
-     */
-    public static final String ANSWER_PAPER_ID_LIST_KEY = "after:marking:answerPaperIdList";
-
-
-    /**
      * 查询成绩明细缓存常量
      */
     public static final String EXAMRESULT_SINGLE_QUESTION_HASH_FIELD = "examinationresult:question:single:";

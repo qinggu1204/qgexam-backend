@@ -3,8 +3,11 @@ package com.qgexam.quartz.job;
 import com.qgexam.common.core.constants.ExamConstants;
 import com.qgexam.common.redis.utils.RedisCache;
 import com.qgexam.quartz.dao.ExaminationInfoDao;
+import com.qgexam.rabbit.constants.ExamFinishRabbitConstants;
+import com.qgexam.rabbit.service.RabbitService;
 import com.qgexam.user.pojo.PO.ExaminationInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,20 +20,13 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component("examFinishJob")
 public class ExamFinishJob {
-    @Autowired
-    private ExaminationInfoDao examinationInfoDao;
-    @Autowired
-    private RedisCache redisCache;
+    @DubboReference
+    private RabbitService rabbitService;
 
     public void execute(Integer examinationId) {
         log.info("###########examFinishJob.execute()###########");
-        examinationInfoDao.updateStatus(examinationId,3);
-        // 根据考试Id查询考试信息
-        ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
-        // 将查询成绩时间存入redis
-        if(examinationInfo.getResultQueryTime() == null)
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, "123");
-        else
-            redisCache.setCacheObject(ExamConstants.EXAMRESULT_QUERYTIME_HASH_KEY_PREFIX + examinationId, examinationInfo.getResultQueryTime());
+        rabbitService.sendMessage(ExamFinishRabbitConstants.EXAM_FINISH_EXCHANGE_NAME,
+                ExamFinishRabbitConstants.EXAM_FINISH_ROUTING_KEY,
+                examinationId);
     }
 }

@@ -2,6 +2,7 @@ package com.qgexam.exam.enter.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.qgexam.exam.enter.pojo.PO.CourseInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ import java.util.List;
 public interface CourseInfoDao extends BaseMapper<CourseInfo> {
 
     List<CourseInfo> selectCourseInfoListByStudentId(Integer studentId);
+    List<Integer> selectStudentIdListByCourseIds(@Param("courseIdList") List<Integer> courseIdList);
+
 }
 

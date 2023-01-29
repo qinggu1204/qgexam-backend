@@ -313,6 +313,9 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             }
         });
         answerPaperIdList.removeAll(tmp);
+        if (answerPaperIdList.isEmpty()){
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(),"没有需要分配的答卷");
+        }
 
         //将答卷编号随机分配给教师
         //创建权重对象列表
@@ -415,6 +418,8 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         if (studentUserIdList.isEmpty()) {
             throw BusinessException.newInstance(AppHttpCodeEnum.SYSTEM_ERROR);
         }
+        //延迟五分钟发送将学生查询成绩通知置为可查询到
+        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(markingEndTime), 5, ChronoUnit.MINUTES);
         //学生查询成绩通知插入消息表
         List<MessageInfo> studentMessageInfoList = new ArrayList<>();
         studentUserIdList.forEach(studentUserId -> {
@@ -422,7 +427,7 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             messageInfo.setUserId(studentUserId);
             messageInfo.setTitle(scoreQueryTitle);
             messageInfo.setExaminationName(examinationName);
-            messageInfo.setStartTime(LocalDateTimeUtil.of(markingEndTime));
+            messageInfo.setStartTime(noticeTaskTime);
             studentMessageInfoList.add(messageInfo);
         });
         Integer insertCount = messageInfoDao.insertScoreQueryMessageBatch(studentMessageInfoList);
@@ -456,9 +461,6 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
         if (!succ) {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "发送信息失败");
         }
-
-        //延迟一小时发送将学生查询成绩通知置为可查询到
-        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(markingEndTime), 5, ChronoUnit.MINUTES);
 
         //定时任务，定时将学生查询成绩通知逻辑删除置为0即可以查询到
         SysJob queryScoreNoticeJob = new SysJob()

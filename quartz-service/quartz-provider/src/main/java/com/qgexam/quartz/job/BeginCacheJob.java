@@ -29,12 +29,5 @@ public class BeginCacheJob {
     public void execute(Integer examinationId) {
         rabbitService.sendMessage(BeginCacheRabbitConstants.BEGIN_CACHE_EXCHANGE_NAME,
                 BeginCacheRabbitConstants.BEGIN_CACHE_ROUTING_KEY, examinationId);
-
-        //将答卷编号列表从redis中取出
-        List<Integer> answerPaperIdList = redisCache.getCacheList(ExamConstants.ANSWER_PAPER_ID_LIST_KEY);
-        answerPaperIdList.forEach(answerPaperId ->{
-            redisCache.deleteObject(ExamConstants.ANSWER_PAPER_KEY + answerPaperId);
-        });
-        redisCache.deleteObject(ExamConstants.ANSWER_PAPER_ID_LIST_KEY);
     }
 }

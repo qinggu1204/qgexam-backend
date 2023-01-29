@@ -3,8 +3,9 @@ package com.qgexam.exam.enter.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qgexam.exam.enter.pojo.DTO.GetExamListDTO;
+import com.qgexam.exam.enter.pojo.PO.ExaminationInfo;
 import com.qgexam.exam.enter.pojo.VO.GetExamListVO;
-import com.qgexam.user.pojo.PO.ExaminationInfo;
+
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,8 +17,12 @@ import java.util.List;
  * @since 2023-01-06 14:16:57
  */
 public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
+    ExaminationInfo getByExaminationId(Integer examinationId);
+    Integer updateStatus(@Param("examinationId")Integer examinationId, @Param("status")Integer status);
 
     IPage<GetExamListVO> selectAllExaminationInfo(IPage<ExaminationInfo> page, @Param("courseIdList") List<Integer> courseIdList);
+    List<Integer> selectCourseIdByExaminationId(Integer examinationId);
+
 
 }
 

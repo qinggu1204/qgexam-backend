@@ -21,6 +21,8 @@ spring:
     url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
+    hikari:
+      max-lifetime: 500000
 
   # redis配置
   redis:

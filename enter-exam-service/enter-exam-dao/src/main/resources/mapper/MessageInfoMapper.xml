@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qgexam.exam.enter.dao.MessageInfoDao">
+
+
+    <insert id="insertBache">
+        insert into message_info(user_id, title, examination_name, start_time, end_time)
+        values
+        <foreach collection="messageInfoList" item="messageInfo" separator=",">
+            (#{messageInfo.userId}, #{messageInfo.title}, #{messageInfo.examinationName}, #{messageInfo.startTime},
+            #{messageInfo.endTime})
+        </foreach>
+    </insert>
+    <update id="updateBatch">
+        UPDATE message_info
+        SET is_deleted = 0
+        WHERE message_id IN
+        <foreach collection="messageIdList" item="messageId" open="(" close=")" separator=",">
+            #{messageId}
+        </foreach>
+    </update>
+</mapper>
