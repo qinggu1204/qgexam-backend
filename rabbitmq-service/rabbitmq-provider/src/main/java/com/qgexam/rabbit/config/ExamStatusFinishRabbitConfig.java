@@ -14,18 +14,18 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023年01月24日 14:26
  */
 @Configuration
-public class ExamFinishRabbitConfig {
+public class ExamStatusFinishRabbitConfig {
     @Bean
-    public DirectExchange examFinishDirectExchange() {
+    public DirectExchange examStatusFinishDirectExchange() {
         return new DirectExchange(ExamFinishRabbitConstants.EXAM_FINISH_EXCHANGE_NAME, true, false);
     }
     @Bean
-    public Queue examFinishQueue() {
+    public Queue examStatusFinishQueue() {
         return new Queue(ExamFinishRabbitConstants.EXAM_FINISH_QUEUE_NAME, true, false, false);
     }
 
     @Bean
-    public Binding examFinishBinding(DirectExchange examFinishDirectExchange, Queue examFinishQueue) {
-        return BindingBuilder.bind(examFinishQueue).to(examFinishDirectExchange).with(ExamFinishRabbitConstants.EXAM_FINISH_ROUTING_KEY);
+    public Binding examStatusFinishBinding(DirectExchange examStatusFinishDirectExchange, Queue examStatusFinishQueue) {
+        return BindingBuilder.bind(examStatusFinishQueue).to(examStatusFinishDirectExchange).with(ExamFinishRabbitConstants.EXAM_FINISH_ROUTING_KEY);
     }
 }

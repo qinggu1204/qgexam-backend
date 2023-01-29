@@ -81,6 +81,7 @@ public class FinishExamServiceImpl implements FinishExamService {
                     Arrays.sort(ans);
                     questionAnswer=new String(ans);
                 case "JUDGE":
+                case "COMPLETION":
                 case "SINGLE":
                     if(questionAnswer==null||questionAnswer.equals("")){
                         answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,null,0);
@@ -103,7 +104,6 @@ public class FinishExamServiceImpl implements FinishExamService {
                         }
                     }
                     break;
-                case "COMPLETION":
                 case "COMPLEX":
                     if(answerPaperDetailDao.updateAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){
                         if(answerPaperDetailDao.insertAnswerPaperDetail(answerPaperId,questionId,questionAnswer,0)==0){

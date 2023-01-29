@@ -45,6 +45,9 @@ public class ExaminationInfoServiceImpl extends ServiceImpl<ExaminationInfoDao, 
             IPage<ExaminationInfo> page = new Page<>(getExamListDTO.getCurrentPage(), getExamListDTO.getPageSize());
             List<CourseInfo> courseInfoList = courseInfoDao.selectCourseInfoListByStudentId(getExamListDTO.getStudentId());
             List<Integer> courseIdList = courseInfoList.stream().map(CourseInfo::getCourseId).collect(Collectors.toList());
+            if (courseIdList.isEmpty()) {
+                return new Page<>();
+            }
             IPage<GetExamListVO> pageVO = examinationInfoDao.selectAllExaminationInfo(page, courseIdList);
             return pageVO;
         }
