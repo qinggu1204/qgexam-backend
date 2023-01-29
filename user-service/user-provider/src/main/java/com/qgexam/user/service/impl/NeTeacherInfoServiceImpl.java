@@ -265,7 +265,10 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void distributeJudgeTask(Integer examinationId, Date markingEndTime) {
+    public void distributeJudgeTask(Integer examinationId, LocalDateTime markingEndTime) {
+        if (markingEndTime.isBefore(LocalDateTime.now())) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷截止时间不能早于当前时间");
+        }
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationId);
         LocalDateTime endTime = examinationInfo.getEndTime();
         if (LocalDateTime.now().isBefore(endTime)){
