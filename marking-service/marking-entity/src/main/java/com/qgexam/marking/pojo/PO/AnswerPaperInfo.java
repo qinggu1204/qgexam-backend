@@ -1,5 +1,6 @@
 package com.qgexam.marking.pojo.PO;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -36,7 +37,7 @@ public class AnswerPaperInfo implements Serializable {
     //学生编号
     private Integer studentId;
     //更新时间
-    private Date updateTime;
+    private LocalDateTime updateTime;
     //0未删除 1已删除
     private Integer isDeleted;
     //学生是否可以查询答卷(0 不可以 1可以)
