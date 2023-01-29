@@ -194,7 +194,7 @@ public class EnterExamServiceImpl implements EnterExamService {
         /*
         需要考虑以下情况：
             1.试卷已经加在到redis中但是未开始考试
-            2.试卷已经加载到redis中但是考试已经结束(非必要,因为考试结束后会将redis中的数据删除)
+            2.试卷已经加载到redis中但是考试已经结束(考试结束后1min缓存考试消息才会过期)
             // 上面1，2能够保证考试一定在进行中
             考虑以下情况：
             3.考试已经开始但是超过了限时进入时间

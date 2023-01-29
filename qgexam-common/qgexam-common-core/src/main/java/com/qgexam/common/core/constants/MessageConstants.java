@@ -22,6 +22,11 @@ public class MessageConstants {
     public static final String SCORE_QUERY_NOTICE = "成绩查询通知";
 
     /**
+     * 考试开始通知
+     */
+    public static final String EXAM_BEGIN_NOTICE = "考试开始通知";
+
+    /**
      * 消息id前缀
      */
     public static final String MESSAGE_ID_LIST_KEY = "message:messageId";

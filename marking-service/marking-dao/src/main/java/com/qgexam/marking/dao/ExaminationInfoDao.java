@@ -15,7 +15,8 @@ import java.util.List;
  */
 public interface ExaminationInfoDao extends BaseMapper<ExaminationInfo> {
 
-    List<GetAnswerPaperVO> selectQuestionList(@Param("subQuestionIdList") List<Integer> subQuestionIdList);
+    List<GetAnswerPaperVO> selectQuestionList(@Param("subQuestionIdList") List<Integer> subQuestionIdList,
+                                              @Param("examinationPaperId") Integer examinationPaperId);
 
     List<Integer> selectSubQuestionIdList(Integer examinationPaperId);
 

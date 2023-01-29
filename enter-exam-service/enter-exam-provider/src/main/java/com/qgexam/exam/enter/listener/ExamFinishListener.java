@@ -36,6 +36,7 @@ public class ExamFinishListener {
 
     @RabbitListener(queues = ExamFinishRabbitConstants.EXAM_FINISH_QUEUE_NAME)
     public void listenExamRecordQueue(Integer examinationId, Channel channel, Message message) throws IOException {
+        System.out.println("===============ExamFinishListener.listenExamRecordQueue==============");
         examinationInfoDao.updateStatus(examinationId,3);
         // 根据考试Id查询考试信息
         ExaminationInfo examinationInfo = examinationInfoDao.getByExaminationId(examinationId);
