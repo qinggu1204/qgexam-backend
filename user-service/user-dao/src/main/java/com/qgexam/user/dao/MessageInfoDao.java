@@ -18,7 +18,7 @@ import java.util.List;
 public interface MessageInfoDao extends BaseMapper<MessageInfo> {
     Integer insertMessageInfo(MessageInfo messageInfo);
     IPage<MessageInfoListVO> getMessagePage(@Param("userId") Integer userId, IPage<MessageInfoListVO> page);
-    MessageInfoVO getMessage(@Param("userId") Integer userId,@Param("messageId") Integer messageId);
+    MessageInfo getMessage(@Param("userId") Integer userId,@Param("messageId") Integer messageId);
     Integer insertMarkingMessageBatch(@Param("messageInfoList") List<MessageInfo> messageInfoList);
 
     Integer insertScoreQueryMessageBatch(@Param("messageInfoList") List<MessageInfo> messageInfoList);
