@@ -12,6 +12,7 @@ import com.qgexam.user.pojo.VO.SubjectVO;
 import com.qgexam.user.pojo.VO.GetTeacherInfoVO;
 import com.qgexam.user.pojo.VO.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,6 @@ public interface NeTeacherInfoService{
 
     List<SubjectVO> getSubjectList();
 
-    void distributeJudgeTask(Integer examinationId, Date endTime);
+    void distributeJudgeTask(Integer examinationId, LocalDateTime endTime);
 
 }

@@ -14,6 +14,7 @@ import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Validated
@@ -94,7 +95,7 @@ public class NeteacherInfoController extends BaseController {
     @PostMapping("/distributeJudgeTask")
     public ResponseResult distributeJudgeTask(@RequestBody @Validated DistributeJudgeTaskDTO distributeJudgeTaskDTO){
         Integer examinationId = distributeJudgeTaskDTO.getExaminationId();
-        Date endTime = distributeJudgeTaskDTO.getEndTime();
+        LocalDateTime endTime = distributeJudgeTaskDTO.getEndTime();
         neTeacherInfoService.distributeJudgeTask(examinationId,endTime);
         return ResponseResult.okResult();
     }
