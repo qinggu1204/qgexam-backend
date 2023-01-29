@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 
 /**
- * (StudentExamAction)表服务接口
  *
  * @author peter guo
  * @since 2023-01-18 12:27:39
