@@ -65,6 +65,18 @@ public class MarkingServiceImpl implements MarkingService {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
         }
 
+        //排除该教师没有任务的考试
+        List<Integer> tmp = new ArrayList<>();
+        examIdList.forEach(examId -> {
+            LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(AnswerPaperInfo::getExaminationId, examId);
+            Long count = answerPaperInfoDao.selectCount(queryWrapper);
+            if (count == 0) {
+                tmp.add(examId);
+            }
+        });
+        examIdList.removeAll(tmp);
+
         LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.in(ExaminationInfo::getExaminationId, examIdList);
         //挑选阅卷还未截止的考试
