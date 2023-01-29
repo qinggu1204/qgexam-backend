@@ -462,9 +462,6 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
             throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "发送信息失败");
         }
 
-        //延迟一小时发送将学生查询成绩通知置为可查询到
-        LocalDateTime noticeTaskTime = LocalDateTimeUtil.offset(LocalDateTimeUtil.of(markingEndTime), 5, ChronoUnit.MINUTES);
-
         //定时任务，定时将学生查询成绩通知逻辑删除置为0即可以查询到
         SysJob queryScoreNoticeJob = new SysJob()
                 // 定时任务的名称为queryScoreNoticeJob
