@@ -191,6 +191,9 @@ public class UserInfoController extends BaseController {
      */
     @PutMapping("/updatePassword")
     public ResponseResult updatePassword(@RequestBody @Validated UpdatePasswordDTO updatePasswordDTO){
+        if (!updatePasswordDTO.getLoginName().equals(userInfoService.getLoginName(getUserId()))){
+            return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        }
         if(!messageCodeService.validateCode(updatePasswordDTO.getLoginName(),updatePasswordDTO.getCode())){
             return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
         }

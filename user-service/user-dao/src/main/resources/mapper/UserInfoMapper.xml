@@ -65,6 +65,9 @@
     <select id="getUserInfoByLoginName" resultType="com.qgexam.user.pojo.PO.UserInfo">
         select * from user_info where login_name = #{loginName}
     </select>
+    <select id="getLoginName" resultType="java.lang.String">
+        select login_name from user_info where user_id=#{userId}
+    </select>
     <parameterMap id="updatePasswordParameter" type="com.qgexam.user.pojo.PO.UserInfo">
         <parameter property="loginName"/>
         <parameter property="password"/>

@@ -29,5 +29,6 @@ public interface UserInfoDao extends BaseMapper<UserInfo> {
     Integer updatePassword(UserInfo userInfo);
 
     Integer updateLoginNameAndHeadImgByUserId(@Param("loginName") String loginName, @Param("headImg") String headImg, @Param("userId") Integer userId);
+    String getLoginName(@Param("userId")Integer userId);
 }
 
