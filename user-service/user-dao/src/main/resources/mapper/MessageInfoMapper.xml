@@ -16,7 +16,7 @@
         from message_info
         where user_id = #{userId} and is_deleted = 0
     </select>
-    <select id="getMessage" resultType="com.qgexam.user.pojo.VO.MessageInfoVO">
+    <select id="getMessage" resultType="com.qgexam.user.pojo.PO.MessageInfo">
         select examination_name,start_time,end_time
         from message_info where user_id=#{userId} and message_id=#{messageId} and is_deleted=0
     </select>

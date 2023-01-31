@@ -54,6 +54,12 @@ public class FinishExamController extends BaseController {
         finishExamDTO.setStudentId(getStudentId());
         finishExamDTO.setExaminationId(saveOrSubmitDTO.getExaminationId());
         finishExamDTO.setSubmitTime(submitTime);
+        /*判断是否在考试结束时间前提交（考试是否合法）*/
+        if(submitTime.compareTo(finishExamService.getEndTime(saveOrSubmitDTO.getExaminationId()))<0){
+            /*发送一条提交学生作答消息*/
+            rabbitService.sendMessage(FinishExamRabbitConstants.EXAM_FINISH_EXCHANGE_NAME,
+                    FinishExamRabbitConstants.EXAM_FINISH_ROUTING_KEY,finishExamDTO);
+        }
         return ResponseResult.okResult(finishExamService.save(saveOrSubmitDTO,getStudentId()));
     }
 }

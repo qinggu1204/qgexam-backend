@@ -39,6 +39,8 @@ public interface UserInfoService extends IService<UserInfo> {
 
     GetUserInfoVO getUserInfo(SaSession session, Integer userId);
 
+    String getLoginName(Integer userId);
+
 
 }
 

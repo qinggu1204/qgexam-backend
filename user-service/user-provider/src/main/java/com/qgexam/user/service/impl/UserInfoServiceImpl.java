@@ -218,5 +218,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         }
     }
 
+    @Override
+    public String getLoginName(Integer userId){
+        return userInfoDao.getLoginName(userId);
+    }
+
 }
 
