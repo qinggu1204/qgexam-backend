@@ -139,7 +139,8 @@ public class EnterExaminationController extends BaseController {
         joinExamDTO.setJoinTime(LocalDateTime.now());
         joinExamDTO.setStudentId(getStudentId());
         // 判断当前考试是否合法
-        return ResponseResult.okResult(enterExamService.checkExam(joinExamDTO));
+        enterExamService.checkExam(joinExamDTO);
+        return ResponseResult.okResult();
     }
 
 

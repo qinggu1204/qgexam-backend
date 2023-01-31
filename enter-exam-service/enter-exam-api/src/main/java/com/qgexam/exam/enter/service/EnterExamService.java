@@ -13,5 +13,5 @@ public interface EnterExamService {
 
     Integer getScreenCuttingNumber(JoinExamDTO joinExamDTO);
 
-    Boolean checkExam(JoinExamDTO joinExamDTO);
+    void checkExam(JoinExamDTO joinExamDTO);
 }

@@ -307,12 +307,11 @@ public class EnterExamServiceImpl implements EnterExamService {
 
 
     @Override
-    public Boolean checkExam(JoinExamDTO joinExamDTO) {
+    public void checkExam(JoinExamDTO joinExamDTO) {
         Integer studentId = joinExamDTO.getStudentId();
         Integer examinationId = joinExamDTO.getExaminationId();
         LocalDateTime joinTime = joinExamDTO.getJoinTime();
         // 判断当前考试是否合法
         ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime, studentId);
-        return true;
     }
 }
