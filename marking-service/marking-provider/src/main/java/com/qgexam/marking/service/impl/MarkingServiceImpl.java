@@ -315,6 +315,13 @@ public class MarkingServiceImpl implements MarkingService {
         redisCache.deleteObject(ExamConstants.ANSWER_PAPER_KEY + answerPaperId);
         List<GetAnswerPaperVO> answerPaper = getAnswerPaper(teacherId, answerPaperId);
         redisCache.setCacheList(ExamConstants.ANSWER_PAPER_KEY + answerPaperId, answerPaper);
+        // 获取阅卷结束时间
+        LocalDateTime markingEndTime = examinationInfo.getMarkingEndTime();
+        // 获取阅卷结束时间和当前时间的时间差
+        Duration duration = LocalDateTimeUtil.between(LocalDateTime.now(), markingEndTime);
+        // 获取时间差的毫秒数，作为redis超时时间，单位为毫秒
+        long timeout = duration.toMillis();
+        redisCache.expire(ExamConstants.ANSWER_PAPER_KEY + answerPaperId, timeout, TimeUnit.MILLISECONDS);
 
         //算出学生的主观题总得分
         List<Integer> scoreList = questionList.stream()
