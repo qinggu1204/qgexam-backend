@@ -265,7 +265,10 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void distributeJudgeTask(Integer examinationId, Date markingEndTime) {
+    public void distributeJudgeTask(Integer examinationId, LocalDateTime markingEndTime) {
+        if (markingEndTime.isBefore(LocalDateTime.now())) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "阅卷截止时间不能早于当前时间");
+        }
         ExaminationInfo examinationInfo = examinationInfoDao.selectById(examinationId);
         LocalDateTime endTime = examinationInfo.getEndTime();
         if (LocalDateTime.now().isBefore(endTime)){
@@ -563,6 +566,12 @@ public class NeTeacherInfoServiceImpl implements NeTeacherInfoService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean createExamination(Integer userId, CreateExamDTO createExamDTO)  {
+        if (createExamDTO.getStartTime().isBefore(LocalDateTime.now())) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试开始时间不能早于当前时间");
+        }
+        if (createExamDTO.getEndTime().isBefore(createExamDTO.getStartTime())) {
+            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "考试结束时间不能早于开始时间");
+        }
         /*1.创建新考试对象*/
         ExaminationInfo examinationInfo = new ExaminationInfo();
         examinationInfo.setExaminationPaperId(createExamDTO.getExaminationPaperId());

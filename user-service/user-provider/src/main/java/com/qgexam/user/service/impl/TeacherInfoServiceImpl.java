@@ -126,6 +126,9 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
                 List<GetCourseListVO> courseList = courseInfoDao.getCourseListByNeteacher(schoolId, null, null, null);
                 List<Integer> courseIdList = courseList.stream()
                         .map(GetCourseListVO::getCourseId).collect(Collectors.toList());
+                if (courseIdList.isEmpty()) {
+                    return new Page<>();
+                }
                 // 查询课程的所有考试
                 IPage<ExaminationVO> pageVO = examinationInfoDao.selectAllExaminationInfo(page, courseIdList);
                 return pageVO;
@@ -135,6 +138,9 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoDao, TeacherI
         List<GetCourseListVO> courseList = courseInfoDao.getCourseListByTeacher(getExamListDTO.getTeacherId(), getExamListDTO.getCourseId(),
                 null, null);
         List<Integer> courseIdList = courseList.stream().map(GetCourseListVO::getCourseId).collect(Collectors.toList());
+        if (courseIdList.isEmpty()) {
+            return new Page<>();
+        }
         IPage<ExaminationVO> pageVO = examinationInfoDao.selectAllExaminationInfo(page, courseIdList);
         return pageVO;
 

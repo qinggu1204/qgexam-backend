@@ -19,7 +19,7 @@ dubbo:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://124.71.189.158:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
     hikari:

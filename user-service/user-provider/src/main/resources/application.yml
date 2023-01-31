@@ -52,7 +52,7 @@ dubbo:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.60.165.47:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://124.71.189.158:3306/qgexam?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: Eeeee11111
     hikari:
@@ -115,7 +115,7 @@ qiniu:
 
 config:
   arcface-sdk:
-    sdk-lib-path: E:\JavaWeb\javaee_project\qgexam\WIN64
+    sdk-lib-path: F:\JavaEE Projects\project\qgexam\WIN64
     app-id: 2sr4gtUog9QmdqzYCtmebyjaQEb3hXjzEAqM7UV7PZWQ
     sdk-key: DASnoSyQzbkuJT96YPuZZzQSuKRyHRjXfp1kaximn985
     thread-pool-size: 5

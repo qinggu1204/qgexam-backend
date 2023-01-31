@@ -132,4 +132,15 @@ public class EnterExaminationController extends BaseController {
     }
 
 
+    @GetMapping("/checkExam")
+    public ResponseResult checkExam(@NotNull Integer examinationId) {
+        JoinExamDTO joinExamDTO = new JoinExamDTO();
+        joinExamDTO.setExaminationId(examinationId);
+        joinExamDTO.setJoinTime(LocalDateTime.now());
+        joinExamDTO.setStudentId(getStudentId());
+        // 判断当前考试是否合法
+        return ResponseResult.okResult(enterExamService.checkExam(joinExamDTO));
+    }
+
+
 }
