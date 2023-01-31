@@ -18,6 +18,7 @@ import com.qgexam.exam.enter.pojo.VO.*;
 import com.qgexam.exam.enter.service.EnterExamService;
 
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -302,5 +303,16 @@ public class EnterExamServiceImpl implements EnterExamService {
         }
 
         return examinationInfo;
+    }
+
+
+    @Override
+    public Boolean checkExam(JoinExamDTO joinExamDTO) {
+        Integer studentId = joinExamDTO.getStudentId();
+        Integer examinationId = joinExamDTO.getExaminationId();
+        LocalDateTime joinTime = joinExamDTO.getJoinTime();
+        // 判断当前考试是否合法
+        ExaminationInfo examinationInfo = isExamInvalid(examinationId, joinTime, studentId);
+        return true;
     }
 }
