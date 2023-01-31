@@ -62,7 +62,7 @@ public class MarkingServiceImpl implements MarkingService {
     public IPage<TaskVO> getTaskList(Integer teacherId, Integer currentPage, Integer pageSize) {
         List<Integer> examIdList = markingDao.getExamIdList(teacherId);
         if (examIdList.isEmpty()) {
-            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
+            return new Page<>();
         }
 
         //排除该教师没有任务的考试
@@ -85,7 +85,7 @@ public class MarkingServiceImpl implements MarkingService {
             return examinationInfo.getMarkingEndTime() != null && now.isBefore(examinationInfo.getMarkingEndTime());
         }).collect(Collectors.toList());
         if (idList.isEmpty()) {
-            throw new BusinessException(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), "该教师没有任务");
+            return new Page<>();
         }
         List<Integer> examinationIdList = idList.stream()
                 .map(ExaminationInfo::getExaminationId)
