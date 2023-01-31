@@ -38,9 +38,6 @@ import java.util.stream.Collectors;
 public class MarkingServiceImpl implements MarkingService {
 
     @Autowired
-    private MarkingDao markingDao;
-
-    @Autowired
     private ExaminationInfoDao examinationInfoDao;
 
     @Autowired
@@ -60,22 +57,12 @@ public class MarkingServiceImpl implements MarkingService {
 
     @Override
     public IPage<TaskVO> getTaskList(Integer teacherId, Integer currentPage, Integer pageSize) {
-        List<Integer> examIdList = markingDao.getExamIdList(teacherId);
-        if (examIdList.isEmpty()) {
-            return new Page<>();
-        }
-
-        //排除该教师没有任务的考试
-        List<Integer> tmp = new ArrayList<>();
-        examIdList.forEach(examId -> {
-            LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
-            queryWrapper.eq(AnswerPaperInfo::getExaminationId, examId);
-            Long count = answerPaperInfoDao.selectCount(queryWrapper);
-            if (count == 0) {
-                tmp.add(examId);
-            }
-        });
-        examIdList.removeAll(tmp);
+        LambdaQueryWrapper<AnswerPaperInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.select(AnswerPaperInfo::getExaminationId)
+                .eq(AnswerPaperInfo::getTeacherId, teacherId);
+        List<Integer> examIdList = answerPaperInfoDao.selectList(queryWrapper).stream()
+                .map(AnswerPaperInfo::getExaminationId)
+                .collect(Collectors.toList());
 
         LambdaQueryWrapper<ExaminationInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.in(ExaminationInfo::getExaminationId, examIdList);
@@ -91,11 +78,11 @@ public class MarkingServiceImpl implements MarkingService {
                 .map(ExaminationInfo::getExaminationId)
                 .collect(Collectors.toList());
 
-        LambdaQueryWrapper<ExaminationInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.in(ExaminationInfo::getExaminationId, examinationIdList);
+        LambdaQueryWrapper<ExaminationInfo> examinationInfoQueryWrapper = new LambdaQueryWrapper<>();
+        examinationInfoQueryWrapper.in(ExaminationInfo::getExaminationId, examinationIdList);
 
         IPage<ExaminationInfo> page = new Page<>(currentPage, pageSize);
-        IPage<ExaminationInfo> examinationInfos = examinationInfoDao.selectPage(page, queryWrapper);
+        IPage<ExaminationInfo> examinationInfos = examinationInfoDao.selectPage(page, examinationInfoQueryWrapper);
         // 转换为视图对象
         return examinationInfos.convert(examinationInfo -> BeanCopyUtils.copyBean(examinationInfo, TaskVO.class));
     }
